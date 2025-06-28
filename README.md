@@ -22,6 +22,9 @@ Unson OSは、従来の「1つの大きなビジネス」ではなく、「100-2
   - [`micro-business-strategy.md`](docs/strategy/micro-business-strategy.md) - マイクロビジネス戦略
   - [`user-assumption-research.md`](docs/strategy/user-assumption-research.md) - ユーザーの思い込み調査手法
   - [`mvp-validation-framework.md`](docs/strategy/mvp-validation-framework.md) - MVP検証フレームワーク
+  - [`dao-concept-design.md`](docs/strategy/dao-concept-design.md) - DAO詳細設計
+  - [`tokenomics-unified.md`](docs/strategy/tokenomics-unified.md) - 統一トークノミクス
+  - [`dao-capabilities.md`](docs/strategy/dao-capabilities.md) - DAOでできること
 
 ### 技術ドキュメント
 - [`/docs/testing-guidelines.md`](docs/testing-guidelines.md) - TDDガイドライン
