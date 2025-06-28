@@ -761,15 +761,15 @@ freee APIで仕訳            DAO トレジャリーへUSDC
 
 ```
 売上 100 %
- ├─ 60 %  運営・再投資（OPEX / 広告 / インフラ）
- ├─ 10 %  Founding Member Bonus   ★創業期長期報酬
- └─ 30 %  Community Dividend Fund ★DAO 配当
+ ├─ 45 %  運営・再投資（OPEX / 広告 / インフラ）
+ ├─ 15 %  Founding Member Bonus   ★創業期長期報酬
+ └─ 40 %  Community Dividend Fund ★DAO 配当
 
 ```
 
-- **60 %**：Jibble打刻×¥1,000/h を月末に freee 連携で即払。残額は広告・サーバ費へ
-- **10 %**：創業メンバー専用 Safe に毎月 USDC プール → ベスティングルールで四半期払
-- **30 %**：DAO Treasury に USDC で自動送金 → UNF トークン保有者へ配当
+- **45 %**：Jibble打刻×¥1,000/h を月末に freee 連携で即払。残額は広告・サーバ費へ
+- **15 %**：創業メンバー専用 Safe に毎月 USDC プール → ベスティングルールで四半期払
+- **40 %**：DAO Treasury に USDC で自動送金 → UNSON トークン保有者へ配当
 
 ---
 
@@ -794,7 +794,7 @@ freee APIで仕訳            DAO トレジャリーへUSDC
 
 ---
 
-### 8-3　UNF トークン ― ストック型報酬
+### 8-3　UNSON トークン ― ストック型報酬
 
 | 項目 | 内容 |
 | --- | --- |
@@ -803,7 +803,7 @@ freee APIで仕訳            DAO トレジャリーへUSDC
 | 権利 | ① 四半期配当請求権② Snapshot 投票権③ RageQuit でUSDC換金 |
 | 活動係数 | PR=+3 / Issue=+2 / メディア確認=+1 / Slack Q&A解決=+1 |
 
-> 配当額 = Fund残高 × (UNF保有比率 × 活動係数)
+> 配当額 = Fund残高 × (UNSON保有比率 × 活動係数)
 > 
 
 ---
@@ -816,7 +816,7 @@ freee APIで仕訳            DAO トレジャリーへUSDC
 | Treasury | Gnosis Safe （USDC 90 % / ETH 10 %） |
 | スマコン | Moloch v3 + Superfluid ストリーム |
 | 投票ルール | 参加率 ≥20 % かつ 賛成 ≥66 % で可決 |
-| RageQuit | UNF 焼却 → 保有比率ぶん USDC 即受領 |
+| RageQuit | UNSON 焼却 → 保有比率ぶん USDC 即受領 |
 
 ---
 

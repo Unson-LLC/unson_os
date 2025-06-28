@@ -43,6 +43,7 @@ unson_os/
 - **docs/strategy/micro-business-strategy.md**: 1-2個の大型ビジネスから100-200個の小規模収益性ビジネスへの転換
 - **docs/strategy/user-assumption-research.md**: 「破壊すべきユーザーの思い込み」を発見する調査手法
 - **docs/strategy/mvp-validation-framework.md**: 開発前のランディングページとユーザーテストによるSaaSアイデア検証プロセス
+- **docs/strategy/tokenomics-unified.md**: 統一されたトークノミクスと収益分配モデル（45-15-40）
 
 ## 開発方針
 
