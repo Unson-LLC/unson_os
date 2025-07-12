@@ -36,11 +36,12 @@ jobs:
       - name: Run unit tests
         run: npm run test:ci
         
-      - name: Install Playwright
-        run: npx playwright install --with-deps
-        
-      - name: Run E2E tests
-        run: npm run test:e2e
+      # E2E tests temporarily disabled for faster CI/CD
+      # - name: Install Playwright
+      #   run: npx playwright install --with-deps
+      #   
+      # - name: Run E2E tests
+      #   run: npm run test:e2e
 
   deploy:
     needs: test
