@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Python SDK - Unson OS ドキュメント',
@@ -15,7 +16,7 @@ export default function PythonSDKPage() {
   const readingTime = '約10分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-yellow-50">
         <div className="container-custom">
@@ -68,6 +69,6 @@ export default function PythonSDKPage() {
         ]}
         backgroundColor="bg-gradient-to-r from-green-600 to-blue-600"
       />
-    </div>
+    </DocsLayout>
   )
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'プロダクト開発プロセス - Unson OS ドキュメント',
@@ -167,7 +168,7 @@ export default function DevelopmentProcessPage() {
   const readingTime = '約12分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
@@ -525,6 +526,6 @@ export default function DevelopmentProcessPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

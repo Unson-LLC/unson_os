@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'ダウンロード - Unson OS ドキュメント',
@@ -148,7 +149,7 @@ const readingTime = 6
 
 export default function DownloadsPage() {
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
@@ -637,6 +638,6 @@ unson deploy`}
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

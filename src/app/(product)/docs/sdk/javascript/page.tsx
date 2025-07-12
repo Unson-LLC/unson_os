@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'JavaScript SDK - Unson OS ドキュメント',
@@ -114,7 +115,7 @@ export default function JavaScriptSDKPage() {
   const readingTime = '約8分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-green-50 to-blue-50">
         <div className="container-custom">
@@ -643,6 +644,6 @@ NEXT_PUBLIC_UNSON_REGION=us-east-1`}</code></pre>
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

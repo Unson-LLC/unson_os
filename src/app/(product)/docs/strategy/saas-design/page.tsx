@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'SaaS設計プロセス - Unson OS ドキュメント',
@@ -218,7 +219,7 @@ export default function SaaSDesignProcessPage() {
   const totalMRR = unitEconomics.mrrCalculation.reduce((sum, plan) => sum + plan.mrr, 0)
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="container-custom">
@@ -698,6 +699,6 @@ export default function SaaSDesignProcessPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

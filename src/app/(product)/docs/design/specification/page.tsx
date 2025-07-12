@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'ランディングページ設計仕様書 - Unson OS ドキュメント',
@@ -247,7 +248,7 @@ export default function DesignSpecificationPage() {
   const readingTime = '約25分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="container-custom">
@@ -982,6 +983,6 @@ export default function DesignSpecificationPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

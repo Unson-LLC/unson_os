@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Webプラットフォーム戦略 - Unson OS ドキュメント',
@@ -261,7 +262,7 @@ export default function WebPlatformStrategyPage() {
   const readingTime = '約22分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-cyan-50 to-blue-50">
         <div className="container-custom">
@@ -733,6 +734,6 @@ export default function WebPlatformStrategyPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

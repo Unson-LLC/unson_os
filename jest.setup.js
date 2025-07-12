@@ -16,7 +16,11 @@ global.TransformStream = TransformStream
 if (!global.Request) {
   global.Request = class Request {
     constructor(input, init = {}) {
-      this.url = typeof input === 'string' ? input : input.url
+      Object.defineProperty(this, 'url', {
+        value: typeof input === 'string' ? input : input.url,
+        writable: false,
+        enumerable: true
+      })
       this.method = init.method || 'GET'
       this.headers = new Headers(init.headers || {})
       this._body = init.body || null

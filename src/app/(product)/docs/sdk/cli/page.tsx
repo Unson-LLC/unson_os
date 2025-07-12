@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'CLI ツール - Unson OS ドキュメント',
@@ -164,7 +165,7 @@ export default function CLIPage() {
   const readingTime = '約8分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container-custom">
@@ -636,6 +637,6 @@ CMD ["/deploy.sh"]`}</code></pre>
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

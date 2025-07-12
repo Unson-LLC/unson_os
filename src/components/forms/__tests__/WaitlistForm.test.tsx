@@ -3,10 +3,17 @@ import userEvent from '@testing-library/user-event'
 import { WaitlistForm } from '../WaitlistForm'
 
 // useAnalytics のモック
-const mockTrack = jest.fn()
+const mockTrackEvent = jest.fn()
+const mockTrackWaitlistSignup = jest.fn()
+const mockTrackContactForm = jest.fn()
+const mockTrackPageView = jest.fn()
+
 jest.mock('../../../hooks/useAnalytics', () => ({
   useAnalytics: () => ({
-    track: mockTrack,
+    trackEvent: mockTrackEvent,
+    trackWaitlistSignup: mockTrackWaitlistSignup,
+    trackContactForm: mockTrackContactForm,
+    trackPageView: mockTrackPageView,
   }),
 }))
 

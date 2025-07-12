@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'ユーザー思い込み調査 - Unson OS ドキュメント',
@@ -301,7 +302,7 @@ export default function UserAssumptionResearchPage() {
   const readingTime = '約16分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-red-50 to-orange-50">
         <div className="container-custom">
@@ -822,6 +823,6 @@ export default function UserAssumptionResearchPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

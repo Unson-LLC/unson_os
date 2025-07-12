@@ -6,10 +6,17 @@ import { WaitlistForm } from '@/components/forms/WaitlistForm'
 global.fetch = jest.fn()
 
 // useAnalytics のモック
-const mockTrack = jest.fn()
-jest.mock('../../../hooks/useAnalytics', () => ({
+const mockTrackEvent = jest.fn()
+const mockTrackWaitlistSignup = jest.fn()
+const mockTrackContactForm = jest.fn()
+const mockTrackPageView = jest.fn()
+
+jest.mock('@/hooks/useAnalytics', () => ({
   useAnalytics: () => ({
-    track: mockTrack,
+    trackEvent: mockTrackEvent,
+    trackWaitlistSignup: mockTrackWaitlistSignup,
+    trackContactForm: mockTrackContactForm,
+    trackPageView: mockTrackPageView,
   }),
 }))
 
@@ -18,7 +25,10 @@ describe('Form-API Integration Tests', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-    mockTrack.mockClear()
+    mockTrackEvent.mockClear()
+    mockTrackWaitlistSignup.mockClear()
+    mockTrackContactForm.mockClear()
+    mockTrackPageView.mockClear()
   })
 
   describe('Successful Form Submission Flow', () => {
@@ -64,10 +74,7 @@ describe('Form-API Integration Tests', () => {
       })
 
       // Analytics追跡の確認
-      expect(mockTrack).toHaveBeenCalledWith('waitlist_form_submitted', {
-        role: 'developer',
-        hasName: true,
-      })
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('successful@example.com')
     })
 
     it('should handle form validation and API error recovery', async () => {
@@ -234,10 +241,7 @@ describe('Form-API Integration Tests', () => {
       })
 
       // Analytics追跡の詳細確認
-      expect(mockTrack).toHaveBeenCalledWith('waitlist_form_submitted', {
-        role: 'designer',
-        hasName: true,
-      })
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('data-flow@example.com')
     })
 
     it('should handle optional fields correctly', async () => {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'Unson OS 技術アーキテクチャ - Unson OS ドキュメント',
@@ -203,7 +204,7 @@ export default function UnsonOSArchitecturePage() {
   const readingTime = '約15分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
@@ -704,6 +705,6 @@ npm run dev`}</pre>
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }
