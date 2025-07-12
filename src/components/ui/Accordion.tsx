@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 interface AccordionItem {
-  id: string
+  id?: string
   title: string
   content: React.ReactNode
 }
@@ -15,6 +15,12 @@ interface AccordionProps {
 }
 
 export function Accordion({ items, allowMultiple = false, defaultOpenItems = [] }: AccordionProps) {
+  // idがない場合は自動生成
+  const processedItems = items.map((item, index) => ({
+    ...item,
+    id: item.id || `accordion-item-${index}`
+  }))
+  
   const [openItems, setOpenItems] = useState<string[]>(defaultOpenItems)
 
   const toggleItem = (itemId: string) => {
@@ -33,13 +39,13 @@ export function Accordion({ items, allowMultiple = false, defaultOpenItems = [] 
 
   return (
     <div className="space-y-2">
-      {items.map((item) => {
-        const isOpen = openItems.includes(item.id)
+      {processedItems.map((item) => {
+        const isOpen = openItems.includes(item.id!)
         
         return (
           <div key={item.id} className="border border-gray-200 rounded-lg">
             <button
-              onClick={() => toggleItem(item.id)}
+              onClick={() => toggleItem(item.id!)}
               className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
             >
               <span className="font-medium text-gray-900">{item.title}</span>

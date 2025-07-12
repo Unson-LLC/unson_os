@@ -111,7 +111,7 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
   }
 
   return (
-    <div className={`bg-white border-r border-gray-200 ${className}`}>
+    <div className={`bg-white border-r border-gray-200 overflow-y-auto ${className}`}>
       <div className="p-4">
         <Link href="/docs" className="flex items-center space-x-2 mb-6">
           <span className="text-2xl">📚</span>

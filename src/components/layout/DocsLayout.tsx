@@ -23,13 +23,13 @@ export function DocsLayout({ children }: DocsLayoutProps) {
       <div className="flex">
         {/* サイドバー */}
         <DocsSidebar 
-          className={`fixed left-0 top-0 h-full w-80 z-50 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:z-auto ${
+          className={`fixed left-0 top-0 h-screen w-80 z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:z-auto ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         />
 
         {/* メインコンテンツエリア */}
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col lg:ml-80">
           {/* ヘッダー（モバイルメニューボタン） */}
           <header className="bg-white border-b border-gray-200 lg:hidden">
             <div className="flex items-center justify-between px-4 py-3">
