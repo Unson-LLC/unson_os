@@ -166,14 +166,14 @@ export default function TokenomicsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <NavigationLink 
                 href="#revenue-model" 
-                variant="default" as const
+                variant="default"
                 size="lg"
               >
                 収益分配モデル
               </NavigationLink>
               <NavigationLink 
                 href="#token-design" 
-                variant="outline" as const
+                variant="outline"
                 size="lg"
               >
                 トークン設計
