@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -200,33 +200,41 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -341,10 +349,8 @@
 import { WaitlistForm } from <span class="cstat-no" title="statement not covered" >'@/components/forms/WaitlistForm'</span>
 import { NavigationLink } from <span class="cstat-no" title="statement not covered" >'@/components/ui/NavigationLink'</span>
 import { CTASection } from <span class="cstat-no" title="statement not covered" >'@/components/sections/CTASection'</span>
-import { useNavigation } from <span class="cstat-no" title="statement not covered" >'@/hooks/useNavigation'</span>
 &nbsp;
 export default function <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >HomePage() {</span></span>
-  const { commonCTAPatterns } = <span class="cstat-no" title="statement not covered" >useNavigation()</span>
   return (
     &lt;div className="min-h-screen"&gt;
       {/* ヒーローセクション */}
@@ -362,13 +368,16 @@ export default function <span class="cstat-no" title="statement not covered" ><s
               DAOコミュニティ主導で24-48時間のプロダクトライフサイクル自動化を実現します。
             &lt;/p&gt;
             &lt;div className="flex flex-col sm:flex-row gap-4 justify-center"&gt;
-              {commonCTAPatterns.homeHero.map(<span class="fstat-no" title="function not covered" >(a</span>ction, index) =&gt; (
+              {[
+                { label: '無料で始める', href: '/waitlist', variant: 'default' },
+                { label: 'デモを見る', href: '/products', variant: 'outline' }
+              ].map(<span class="fstat-no" title="function not covered" >(a</span>ction, index) =&gt; (
 <span class="cstat-no" title="statement not covered" >                &lt;NavigationLink</span>
                   key={index}
                   href={action.href}
-                  variant={action.variant}
+                  variant={(action.variant as "default" | "outline" | "secondary") || 'default'}
                   size="lg"
-                  external={action.external}
+                  external={(action as any).external || false}
                 &gt;
                   {action.label}
                 &lt;/NavigationLink&gt;
@@ -470,7 +479,10 @@ export default function <span class="cstat-no" title="statement not covered" ><s
       &lt;CTASection
         title="革新的なSaaSエコシステムに参加"
         subtitle="「Company-as-a-Product」アプローチで、新しいビジネスの未来を共に創造しましょう。"
-        actions={commonCTAPatterns.homeCTA}
+        actions={[
+          { label: '無料で始める', href: '/waitlist' },
+          { label: '料金プラン', href: '/pricing', variant: 'outline' }
+        ]}
       /&gt;
     &lt;/div&gt;
   )
@@ -481,7 +493,7 @@ export default function <span class="cstat-no" title="statement not covered" ><s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-12T13:21:57.235Z
+                at 2025-07-12T16:50:48.663Z
             </div>
         <script src="../prettify.js"></script>
         <script>

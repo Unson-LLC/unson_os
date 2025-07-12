@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -130,7 +130,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">80x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,21 +142,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,18 +156,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,7 +192,7 @@
 /**
  * バリデーション闾値
  */
-export const <span class="cstat-no" title="statement not covered" >VALIDATION_LIMITS </span>= <span class="cstat-no" title="statement not covered" >{</span>
+export const VALIDATION_LIMITS = {
   EMAIL_MAX_LENGTH: 100,
   NAME_MAX_LENGTH: 100,
   MESSAGE_MAX_LENGTH: 5000,
@@ -204,7 +204,7 @@ export const <span class="cstat-no" title="statement not covered" >VALIDATION_LI
 /**
  * 許可されたプロダクトカテゴリ
  */
-export const <span class="cstat-no" title="statement not covered" >PRODUCT_CATEGORIES </span>= <span class="cstat-no" title="statement not covered" >[</span>
+export const PRODUCT_CATEGORIES = [
   'productivity',
   'marketing', 
   'finance',
@@ -218,7 +218,7 @@ export const <span class="cstat-no" title="statement not covered" >PRODUCT_CATEG
 /**
  * 許可された採用ポジション
  */
-export const <span class="cstat-no" title="statement not covered" >CAREER_POSITIONS </span>= <span class="cstat-no" title="statement not covered" >[</span>
+export const CAREER_POSITIONS = [
   'Frontend Developer',
   'Backend Developer', 
   'Full Stack Developer',
@@ -235,7 +235,7 @@ export const <span class="cstat-no" title="statement not covered" >CAREER_POSITI
 /**
  * エラーメッセージ
  */
-export const <span class="cstat-no" title="statement not covered" >ERROR_MESSAGES </span>= <span class="cstat-no" title="statement not covered" >{</span>
+export const <span class="cstat-no" title="statement not covered" >ERROR_MESSAGES </span>= {
   INVALID_JSON: 'Invalid JSON',
   INTERNAL_ERROR: 'Internal server error',
 } as const
@@ -243,7 +243,7 @@ export const <span class="cstat-no" title="statement not covered" >ERROR_MESSAGE
 /**
  * 成功メッセージ
  */
-export const <span class="cstat-no" title="statement not covered" >SUCCESS_MESSAGES </span>= <span class="cstat-no" title="statement not covered" >{</span>
+export const SUCCESS_MESSAGES = {
   CONTACT_SUBMITTED: 'Contact form submitted successfully',
   PRODUCT_REQUEST_SUBMITTED: 'Product request submitted successfully',
   CAREER_APPLICATION_SUBMITTED: 'Career application submitted successfully',
@@ -256,7 +256,7 @@ export const <span class="cstat-no" title="statement not covered" >SUCCESS_MESSA
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-12T13:21:57.235Z
+                at 2025-07-12T16:50:48.663Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>4/25</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">17.39% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>4/23</span>
             </div>
         
             
@@ -126,16 +126,12 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,22 +158,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -190,19 +173,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export interface FormSubmissionResult {
   success: boolean
   message: string
 }
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >handleFormSubmission </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (</span></span>
+export const <span class="cstat-no" title="statement not covered" >handleFormSubmission </span>= <span class="fstat-no" title="function not covered" >async (</span>
   formData: FormData,
   type: 'contact' | 'career' | 'support'
 ): Promise&lt;FormSubmissionResult&gt; =&gt; {
@@ -229,7 +221,7 @@ export const <span class="cstat-no" title="statement not covered" >handleFormSub
   })
 }
 &nbsp;
-const getRequiredFields = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(t</span>ype: string): string[] =&gt; {</span>
+const getRequiredFields = <span class="fstat-no" title="function not covered" >(t</span>ype: string): string[] =&gt; {
   const commonFields = <span class="cstat-no" title="statement not covered" >['name', 'email']</span>
   
 <span class="cstat-no" title="statement not covered" >  switch (type) {</span>
@@ -244,7 +236,7 @@ const getRequiredFields = <span class="cstat-no" title="statement not covered" >
   }
 }
 &nbsp;
-const getSuccessMessage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(t</span>ype: string): string =&gt; {</span>
+const getSuccessMessage = <span class="fstat-no" title="function not covered" >(t</span>ype: string): string =&gt; {
 <span class="cstat-no" title="statement not covered" >  switch (type) {</span>
     case 'contact':
 <span class="cstat-no" title="statement not covered" >      return 'お問い合わせを受け付けました。24時間以内にご連絡いたします。'</span>
@@ -257,12 +249,8 @@ const getSuccessMessage = <span class="cstat-no" title="statement not covered" >
   }
 }
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >validateEmail </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>mail: string): boolean =&gt; {</span>
-  const emailRegex = <span class="cstat-no" title="statement not covered" >/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>
-<span class="cstat-no" title="statement not covered" >  return emailRegex.test(email)</span>
-}
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >validateRequired </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alue: string): boolean =&gt; {</span>
+export const <span class="cstat-no" title="statement not covered" >validateRequired </span>= <span class="fstat-no" title="function not covered" >(v</span>alue: string): boolean =&gt; {
 <span class="cstat-no" title="statement not covered" >  return value.trim().length &gt; 0</span>
 }</pre></td></tr></table></pre>
 
@@ -271,7 +259,7 @@ export const <span class="cstat-no" title="statement not covered" >validateRequi
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-12T13:21:57.235Z
+                at 2025-07-12T16:50:48.663Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1752326517273" clover="3.2.0">
-  <project timestamp="1752326517273" name="All files">
-    <metrics statements="571" coveredstatements="72" conditionals="265" coveredconditionals="15" methods="186" coveredmethods="17" elements="1022" coveredelements="104" complexity="0" loc="571" ncloc="571" packages="28" files="42" classes="42"/>
+<coverage generated="1752339048749" clover="3.2.0">
+  <project timestamp="1752339048749" name="All files">
+    <metrics statements="1324" coveredstatements="417" conditionals="423" coveredconditionals="111" methods="567" coveredmethods="131" elements="2314" coveredelements="659" complexity="0" loc="1324" ncloc="1324" packages="59" files="79" classes="79"/>
     <package name="app">
-      <metrics statements="16" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <metrics statements="14" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="5" coveredmethods="0"/>
       <file name="layout.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/layout.tsx">
         <metrics statements="9" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
@@ -17,158 +17,1098 @@
         <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/page.tsx">
-        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="5" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
       </file>
     </package>
     <package name="app.(marketing).about">
-      <metrics statements="15" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="7" coveredmethods="0"/>
       <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/about/page.tsx">
-        <metrics statements="15" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="13" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="240" count="0" type="stmt"/>
+        <line num="266" count="0" type="stmt"/>
+        <line num="296" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(marketing).careers">
+      <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/careers/page.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="210" count="0" type="stmt"/>
+        <line num="238" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(marketing).community">
+      <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/community/page.tsx">
+        <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="101" count="0" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="109" count="0" type="stmt"/>
-        <line num="197" count="0" type="stmt"/>
-        <line num="225" count="0" type="stmt"/>
-        <line num="228" count="0" type="stmt"/>
-        <line num="242" count="0" type="stmt"/>
-        <line num="268" count="0" type="stmt"/>
-        <line num="298" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="279" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="app.(marketing).careers">
-      <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/careers/page.tsx">
-        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
+    <package name="app.(marketing).contact">
+      <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/contact/page.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="129" count="0" type="stmt"/>
-        <line num="156" count="0" type="stmt"/>
-        <line num="182" count="0" type="stmt"/>
-        <line num="209" count="0" type="stmt"/>
-        <line num="237" count="0" type="stmt"/>
-        <line num="274" count="0" type="stmt"/>
-        <line num="275" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="app.(marketing).community">
-      <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/community/page.tsx">
-        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+    <package name="app.(marketing).support">
+      <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/support/page.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="120" count="0" type="stmt"/>
-        <line num="121" count="0" type="stmt"/>
-        <line num="141" count="0" type="stmt"/>
-        <line num="194" count="0" type="stmt"/>
-        <line num="225" count="0" type="stmt"/>
-        <line num="278" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="app.(marketing).contact">
-      <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/contact/page.tsx">
-        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="230" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="app.(marketing).support">
-      <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(marketing)/support/page.tsx">
-        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="126" count="0" type="stmt"/>
-        <line num="156" count="0" type="stmt"/>
-        <line num="157" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
       </file>
     </package>
     <package name="app.(product).docs">
-      <metrics statements="25" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <metrics statements="26" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="11" coveredmethods="0"/>
       <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/page.tsx">
-        <metrics statements="25" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <metrics statements="26" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="175" count="0" type="stmt"/>
+        <line num="180" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="187" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="188" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="192" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="197" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="205" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="206" count="0" type="stmt"/>
+        <line num="209" count="0" type="stmt"/>
+        <line num="210" count="0" type="stmt"/>
+        <line num="211" count="0" type="stmt"/>
+        <line num="245" count="0" type="stmt"/>
+        <line num="259" count="0" type="stmt"/>
+        <line num="293" count="0" type="stmt"/>
+        <line num="307" count="0" type="stmt"/>
+        <line num="340" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.capabilities">
+      <metrics statements="43" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="18" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/capabilities/page.tsx">
+        <metrics statements="43" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="18" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="193" count="0" type="stmt"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="207" count="0" type="stmt"/>
+        <line num="215" count="0" type="stmt"/>
+        <line num="221" count="0" type="stmt"/>
+        <line num="244" count="0" type="stmt"/>
+        <line num="267" count="0" type="stmt"/>
+        <line num="273" count="0" type="stmt"/>
+        <line num="303" count="0" type="stmt"/>
+        <line num="326" count="0" type="stmt"/>
+        <line num="341" count="0" type="stmt"/>
+        <line num="409" count="0" type="stmt"/>
+        <line num="493" count="0" type="stmt"/>
+        <line num="534" count="0" type="stmt"/>
+        <line num="560" count="0" type="stmt"/>
+        <line num="578" count="0" type="stmt"/>
+        <line num="625" count="0" type="stmt"/>
+        <line num="640" count="0" type="stmt"/>
+        <line num="654" count="0" type="stmt"/>
+        <line num="696" count="0" type="stmt"/>
+        <line num="711" count="0" type="stmt"/>
+        <line num="727" count="0" type="stmt"/>
+        <line num="759" count="0" type="stmt"/>
+        <line num="776" count="0" type="stmt"/>
+        <line num="798" count="0" type="stmt"/>
+        <line num="815" count="0" type="stmt"/>
+        <line num="839" count="0" type="stmt"/>
+        <line num="862" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.concept">
+      <metrics statements="81" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="47" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/concept/page.tsx">
+        <metrics statements="81" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="47" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
-        <line num="112" count="0" type="stmt"/>
-        <line num="143" count="0" type="stmt"/>
-        <line num="145" count="0" type="stmt"/>
-        <line num="149" count="0" type="stmt"/>
-        <line num="154" count="0" type="stmt"/>
-        <line num="155" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="156" count="0" type="stmt"/>
-        <line num="157" count="0" type="stmt"/>
-        <line num="160" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="165" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="171" count="0" type="stmt"/>
-        <line num="173" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="174" count="0" type="stmt"/>
-        <line num="177" count="0" type="stmt"/>
-        <line num="178" count="0" type="stmt"/>
-        <line num="179" count="0" type="stmt"/>
-        <line num="227" count="0" type="stmt"/>
-        <line num="261" count="0" type="stmt"/>
-        <line num="275" count="0" type="stmt"/>
-        <line num="308" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="118" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="176" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="207" count="0" type="stmt"/>
+        <line num="214" count="0" type="stmt"/>
+        <line num="229" count="0" type="stmt"/>
+        <line num="250" count="0" type="stmt"/>
+        <line num="255" count="0" type="stmt"/>
+        <line num="265" count="0" type="stmt"/>
+        <line num="271" count="0" type="stmt"/>
+        <line num="298" count="0" type="stmt"/>
+        <line num="305" count="0" type="stmt"/>
+        <line num="311" count="0" type="stmt"/>
+        <line num="338" count="0" type="stmt"/>
+        <line num="361" count="0" type="stmt"/>
+        <line num="367" count="0" type="stmt"/>
+        <line num="470" count="0" type="stmt"/>
+        <line num="478" count="0" type="stmt"/>
+        <line num="494" count="0" type="stmt"/>
+        <line num="523" count="0" type="stmt"/>
+        <line num="563" count="0" type="stmt"/>
+        <line num="570" count="0" type="stmt"/>
+        <line num="582" count="0" type="stmt"/>
+        <line num="597" count="0" type="stmt"/>
+        <line num="637" count="0" type="stmt"/>
+        <line num="660" count="0" type="stmt"/>
+        <line num="674" count="0" type="stmt"/>
+        <line num="687" count="0" type="stmt"/>
+        <line num="691" count="0" type="stmt"/>
+        <line num="716" count="0" type="stmt"/>
+        <line num="738" count="0" type="stmt"/>
+        <line num="761" count="0" type="stmt"/>
+        <line num="766" count="0" type="stmt"/>
+        <line num="776" count="0" type="stmt"/>
+        <line num="781" count="0" type="stmt"/>
+        <line num="793" count="0" type="stmt"/>
+        <line num="798" count="0" type="stmt"/>
+        <line num="812" count="0" type="stmt"/>
+        <line num="817" count="0" type="stmt"/>
+        <line num="830" count="0" type="stmt"/>
+        <line num="842" count="0" type="stmt"/>
+        <line num="856" count="0" type="stmt"/>
+        <line num="868" count="0" type="stmt"/>
+        <line num="872" count="0" type="stmt"/>
+        <line num="895" count="0" type="stmt"/>
+        <line num="911" count="0" type="stmt"/>
+        <line num="925" count="0" type="stmt"/>
+        <line num="941" count="0" type="stmt"/>
+        <line num="961" count="0" type="stmt"/>
+        <line num="986" count="0" type="stmt"/>
+        <line num="1002" count="0" type="stmt"/>
+        <line num="1014" count="0" type="stmt"/>
+        <line num="1033" count="0" type="stmt"/>
+        <line num="1037" count="0" type="stmt"/>
+        <line num="1052" count="0" type="stmt"/>
+        <line num="1056" count="0" type="stmt"/>
+        <line num="1078" count="0" type="stmt"/>
+        <line num="1092" count="0" type="stmt"/>
+        <line num="1136" count="0" type="stmt"/>
+        <line num="1143" count="0" type="stmt"/>
+        <line num="1161" count="0" type="stmt"/>
+        <line num="1168" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.guide">
+      <metrics statements="28" coveredstatements="28" conditionals="1" coveredconditionals="1" methods="14" coveredmethods="14"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/guide/page.tsx">
+        <metrics statements="28" coveredstatements="28" conditionals="1" coveredconditionals="1" methods="14" coveredmethods="14"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="143" count="1" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="199" count="1" type="stmt"/>
+        <line num="214" count="1" type="stmt"/>
+        <line num="229" count="1" type="stmt"/>
+        <line num="289" count="3" type="stmt"/>
+        <line num="325" count="3" type="stmt"/>
+        <line num="352" count="2" type="stmt"/>
+        <line num="358" count="6" type="stmt"/>
+        <line num="382" count="2" type="stmt"/>
+        <line num="406" count="3" type="stmt"/>
+        <line num="430" count="4" type="stmt"/>
+        <line num="447" count="9" type="stmt"/>
+        <line num="471" count="5" type="stmt"/>
+        <line num="502" count="5" type="stmt"/>
+        <line num="544" count="3" type="stmt"/>
+        <line num="573" count="4" type="stmt"/>
+        <line num="587" count="4" type="stmt"/>
       </file>
     </package>
     <package name="app.(product).docs.dao.overview">
-      <metrics statements="16" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <metrics statements="15" coveredstatements="15" conditionals="1" coveredconditionals="1" methods="5" coveredmethods="5"/>
       <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/overview/page.tsx">
-        <metrics statements="16" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <metrics statements="15" coveredstatements="15" conditionals="1" coveredconditionals="1" methods="5" coveredmethods="5"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="204" count="3" type="stmt"/>
+        <line num="238" count="4" type="stmt"/>
+        <line num="270" count="5" type="stmt"/>
+        <line num="321" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.proposals">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/proposals/page.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.revenue-sharing">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/revenue-sharing/page.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.structure">
+      <metrics statements="29" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="15" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/structure/page.tsx">
+        <metrics statements="29" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="15" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="210" count="0" type="stmt"/>
+        <line num="228" count="0" type="stmt"/>
+        <line num="297" count="0" type="stmt"/>
+        <line num="311" count="0" type="stmt"/>
+        <line num="337" count="0" type="stmt"/>
+        <line num="417" count="0" type="stmt"/>
+        <line num="445" count="0" type="stmt"/>
+        <line num="487" count="0" type="stmt"/>
+        <line num="512" count="0" type="stmt"/>
+        <line num="527" count="0" type="stmt"/>
+        <line num="532" count="0" type="stmt"/>
+        <line num="564" count="0" type="stmt"/>
+        <line num="580" count="0" type="stmt"/>
+        <line num="592" count="0" type="stmt"/>
+        <line num="618" count="0" type="stmt"/>
+        <line num="710" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.tokenomics">
+      <metrics statements="23" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/tokenomics/page.tsx">
+        <metrics statements="23" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
+        <line num="237" count="0" type="stmt"/>
+        <line num="303" count="0" type="stmt"/>
+        <line num="317" count="0" type="stmt"/>
+        <line num="369" count="0" type="stmt"/>
+        <line num="385" count="0" type="stmt"/>
+        <line num="440" count="0" type="stmt"/>
+        <line num="479" count="0" type="stmt"/>
+        <line num="491" count="0" type="stmt"/>
+        <line num="524" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.dao.unified-tokenomics">
+      <metrics statements="39" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="21" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/dao/unified-tokenomics/page.tsx">
+        <metrics statements="39" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="21" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="199" count="0" type="stmt"/>
+        <line num="220" count="0" type="stmt"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="249" count="0" type="stmt"/>
+        <line num="267" count="0" type="stmt"/>
+        <line num="290" count="0" type="stmt"/>
+        <line num="313" count="0" type="stmt"/>
+        <line num="408" count="0" type="stmt"/>
+        <line num="423" count="0" type="stmt"/>
+        <line num="435" count="0" type="stmt"/>
+        <line num="462" count="0" type="stmt"/>
+        <line num="493" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="528" count="0" type="stmt"/>
+        <line num="561" count="0" type="stmt"/>
+        <line num="589" count="0" type="stmt"/>
+        <line num="610" count="0" type="stmt"/>
+        <line num="647" count="0" type="stmt"/>
+        <line num="658" count="0" type="stmt"/>
+        <line num="679" count="0" type="stmt"/>
+        <line num="691" count="0" type="stmt"/>
+        <line num="713" count="0" type="stmt"/>
+        <line num="746" count="0" type="stmt"/>
+        <line num="777" count="0" type="stmt"/>
+        <line num="805" count="0" type="stmt"/>
+        <line num="812" count="0" type="stmt"/>
+        <line num="840" count="0" type="stmt"/>
+        <line num="868" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.design.specification">
+      <metrics statements="46" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="29" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/design/specification/page.tsx">
+        <metrics statements="46" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="29" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="181" count="0" type="stmt"/>
+        <line num="202" count="0" type="stmt"/>
+        <line num="208" count="0" type="stmt"/>
+        <line num="217" count="0" type="stmt"/>
+        <line num="224" count="0" type="stmt"/>
+        <line num="247" count="0" type="stmt"/>
+        <line num="248" count="0" type="stmt"/>
+        <line num="344" count="0" type="stmt"/>
+        <line num="359" count="0" type="stmt"/>
+        <line num="384" count="0" type="stmt"/>
+        <line num="388" count="0" type="stmt"/>
+        <line num="404" count="0" type="stmt"/>
+        <line num="423" count="0" type="stmt"/>
+        <line num="429" count="0" type="stmt"/>
+        <line num="449" count="0" type="stmt"/>
+        <line num="468" count="0" type="stmt"/>
+        <line num="491" count="0" type="stmt"/>
+        <line num="504" count="0" type="stmt"/>
+        <line num="534" count="0" type="stmt"/>
+        <line num="544" count="0" type="stmt"/>
+        <line num="563" count="0" type="stmt"/>
+        <line num="571" count="0" type="stmt"/>
+        <line num="587" count="0" type="stmt"/>
+        <line num="595" count="0" type="stmt"/>
+        <line num="619" count="0" type="stmt"/>
+        <line num="623" count="0" type="stmt"/>
+        <line num="649" count="0" type="stmt"/>
+        <line num="664" count="0" type="stmt"/>
+        <line num="675" count="0" type="stmt"/>
+        <line num="698" count="0" type="stmt"/>
+        <line num="715" count="0" type="stmt"/>
+        <line num="734" count="0" type="stmt"/>
+        <line num="740" count="0" type="stmt"/>
+        <line num="899" count="0" type="stmt"/>
+        <line num="915" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.development.api-tests-complete">
+      <metrics statements="23" coveredstatements="17" conditionals="3" coveredconditionals="1" methods="8" coveredmethods="5"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/development/api-tests-complete/page.tsx">
+        <metrics statements="23" coveredstatements="17" conditionals="3" coveredconditionals="1" methods="8" coveredmethods="5"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="197" count="1" type="stmt"/>
+        <line num="447" count="1" type="stmt"/>
+        <line num="490" count="1" type="stmt"/>
+        <line num="575" count="1" type="stmt"/>
+        <line num="652" count="4" type="stmt"/>
+        <line num="661" count="16" type="stmt"/>
+        <line num="689" count="4" type="stmt"/>
+        <line num="699" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.development.folder-structure-guide">
+      <metrics statements="28" coveredstatements="22" conditionals="3" coveredconditionals="1" methods="11" coveredmethods="8"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/development/folder-structure-guide/page.tsx">
+        <metrics statements="28" coveredstatements="22" conditionals="3" coveredconditionals="1" methods="11" coveredmethods="8"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="230" count="1" type="stmt"/>
+        <line num="249" count="1" type="stmt"/>
+        <line num="290" count="1" type="stmt"/>
+        <line num="365" count="1" type="stmt"/>
+        <line num="410" count="1" type="stmt"/>
+        <line num="483" count="4" type="stmt"/>
+        <line num="514" count="2" type="stmt"/>
+        <line num="520" count="6" type="stmt"/>
+        <line num="543" count="3" type="stmt"/>
+        <line num="579" count="2" type="stmt"/>
+        <line num="585" count="6" type="stmt"/>
+        <line num="613" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.development.frontend-structure">
+      <metrics statements="20" coveredstatements="14" conditionals="3" coveredconditionals="1" methods="6" coveredmethods="3"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/development/frontend-structure/page.tsx">
+        <metrics statements="20" coveredstatements="14" conditionals="3" coveredconditionals="1" methods="6" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="234" count="1" type="stmt"/>
+        <line num="375" count="1" type="stmt"/>
+        <line num="402" count="1" type="stmt"/>
+        <line num="471" count="4" type="stmt"/>
+        <line num="494" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.development.node-version-management">
+      <metrics statements="25" coveredstatements="19" conditionals="15" coveredconditionals="11" methods="9" coveredmethods="6"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/development/node-version-management/page.tsx">
+        <metrics statements="25" coveredstatements="19" conditionals="15" coveredconditionals="11" methods="9" coveredmethods="6"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="210" count="1" type="stmt"/>
+        <line num="237" count="1" type="stmt"/>
+        <line num="292" count="1" type="stmt"/>
+        <line num="319" count="1" type="stmt"/>
+        <line num="418" count="4" type="stmt"/>
+        <line num="470" count="2" type="stmt"/>
+        <line num="505" count="4" type="stmt"/>
+        <line num="570" count="5" type="stmt"/>
+        <line num="576" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.development.process">
+      <metrics statements="17" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/development/process/page.tsx">
+        <metrics statements="17" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
         <line num="103" count="0" type="stmt"/>
-        <line num="110" count="0" type="stmt"/>
-        <line num="111" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="168" count="0" type="stmt"/>
+        <line num="285" count="0" type="stmt"/>
+        <line num="343" count="0" type="stmt"/>
+        <line num="363" count="0" type="stmt"/>
+        <line num="389" count="0" type="stmt"/>
+        <line num="396" count="0" type="stmt"/>
+        <line num="442" count="0" type="stmt"/>
+        <line num="448" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.development.setup-guide">
+      <metrics statements="18" coveredstatements="12" conditionals="3" coveredconditionals="1" methods="5" coveredmethods="2"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/development/setup-guide/page.tsx">
+        <metrics statements="18" coveredstatements="12" conditionals="3" coveredconditionals="1" methods="5" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="184" count="1" type="stmt"/>
+        <line num="290" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.downloads">
+      <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/downloads/page.tsx">
+        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="227" count="0" type="stmt"/>
+        <line num="250" count="0" type="stmt"/>
+        <line num="262" count="0" type="stmt"/>
+        <line num="321" count="0" type="stmt"/>
+        <line num="329" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.introduction">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/introduction/page.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.platform-overview">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/platform-overview/page.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.quickstart">
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/quickstart/page.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="133" count="1" type="stmt"/>
+        <line num="180" count="3" type="stmt"/>
+        <line num="186" count="9" type="stmt"/>
+        <line num="213" count="4" type="stmt"/>
+        <line num="246" count="15" type="stmt"/>
+        <line num="291" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.sdk.cli">
+      <metrics statements="16" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/sdk/cli/page.tsx">
+        <metrics statements="16" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="232" count="0" type="stmt"/>
+        <line num="255" count="0" type="stmt"/>
+        <line num="404" count="0" type="stmt"/>
+        <line num="410" count="0" type="stmt"/>
+        <line num="417" count="0" type="stmt"/>
+        <line num="450" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.sdk.javascript">
+      <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/sdk/javascript/page.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="209" count="0" type="stmt"/>
+        <line num="342" count="0" type="stmt"/>
+        <line num="348" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.sdk.python">
+      <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/sdk/python/page.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.strategy.micro-business">
+      <metrics statements="26" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="16" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/strategy/micro-business/page.tsx">
+        <metrics statements="26" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="16" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="257" count="0" type="stmt"/>
+        <line num="267" count="0" type="stmt"/>
+        <line num="277" count="0" type="stmt"/>
+        <line num="295" count="0" type="stmt"/>
+        <line num="305" count="0" type="stmt"/>
+        <line num="315" count="0" type="stmt"/>
+        <line num="340" count="0" type="stmt"/>
+        <line num="376" count="0" type="stmt"/>
+        <line num="387" count="0" type="stmt"/>
+        <line num="416" count="0" type="stmt"/>
+        <line num="427" count="0" type="stmt"/>
+        <line num="468" count="0" type="stmt"/>
+        <line num="498" count="0" type="stmt"/>
+        <line num="535" count="0" type="stmt"/>
+        <line num="541" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.strategy.mvp-validation">
+      <metrics statements="24" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="13" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/strategy/mvp-validation/page.tsx">
+        <metrics statements="24" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="242" count="0" type="stmt"/>
+        <line num="243" count="0" type="stmt"/>
+        <line num="349" count="0" type="stmt"/>
+        <line num="383" count="0" type="stmt"/>
+        <line num="417" count="0" type="stmt"/>
+        <line num="431" count="0" type="stmt"/>
+        <line num="461" count="0" type="stmt"/>
+        <line num="472" count="0" type="stmt"/>
+        <line num="512" count="0" type="stmt"/>
+        <line num="524" count="0" type="stmt"/>
+        <line num="555" count="0" type="stmt"/>
+        <line num="566" count="0" type="stmt"/>
+        <line num="621" count="0" type="stmt"/>
+        <line num="627" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.strategy.saas-design">
+      <metrics statements="25" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="14" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/strategy/saas-design/page.tsx">
+        <metrics statements="25" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="14" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="215" count="0" type="stmt"/>
+        <line num="216" count="0" type="stmt"/>
+        <line num="219" count="0" type="stmt"/>
+        <line num="324" count="0" type="stmt"/>
+        <line num="340" count="0" type="stmt"/>
+        <line num="378" count="0" type="stmt"/>
+        <line num="394" count="0" type="stmt"/>
+        <line num="457" count="0" type="stmt"/>
+        <line num="510" count="0" type="stmt"/>
+        <line num="520" count="0" type="stmt"/>
+        <line num="536" count="0" type="stmt"/>
+        <line num="571" count="0" type="stmt"/>
+        <line num="580" count="0" type="stmt"/>
+        <line num="629" count="0" type="stmt"/>
+        <line num="648" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.strategy.user-research">
+      <metrics statements="28" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="16" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/strategy/user-research/page.tsx">
+        <metrics statements="28" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="16" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="180" count="0" type="stmt"/>
+        <line num="228" count="0" type="stmt"/>
+        <line num="301" count="0" type="stmt"/>
+        <line num="302" count="0" type="stmt"/>
+        <line num="409" count="0" type="stmt"/>
+        <line num="415" count="0" type="stmt"/>
+        <line num="467" count="0" type="stmt"/>
+        <line num="481" count="0" type="stmt"/>
+        <line num="513" count="0" type="stmt"/>
+        <line num="565" count="0" type="stmt"/>
+        <line num="573" count="0" type="stmt"/>
+        <line num="622" count="0" type="stmt"/>
+        <line num="636" count="0" type="stmt"/>
+        <line num="647" count="0" type="stmt"/>
+        <line num="655" count="0" type="stmt"/>
+        <line num="681" count="0" type="stmt"/>
+        <line num="692" count="0" type="stmt"/>
+        <line num="735" count="0" type="stmt"/>
+        <line num="769" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.strategy.web-platform">
+      <metrics statements="24" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="14" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/strategy/web-platform/page.tsx">
+        <metrics statements="24" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="14" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="190" count="0" type="stmt"/>
+        <line num="218" count="0" type="stmt"/>
+        <line num="261" count="0" type="stmt"/>
+        <line num="262" count="0" type="stmt"/>
+        <line num="363" count="0" type="stmt"/>
+        <line num="392" count="0" type="stmt"/>
+        <line num="404" count="0" type="stmt"/>
+        <line num="426" count="0" type="stmt"/>
+        <line num="459" count="0" type="stmt"/>
+        <line num="465" count="0" type="stmt"/>
+        <line num="469" count="0" type="stmt"/>
+        <line num="497" count="0" type="stmt"/>
+        <line num="503" count="0" type="stmt"/>
+        <line num="549" count="0" type="stmt"/>
+        <line num="564" count="0" type="stmt"/>
+        <line num="602" count="0" type="stmt"/>
+        <line num="619" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.support">
+      <metrics statements="19" coveredstatements="19" conditionals="1" coveredconditionals="1" methods="10" coveredmethods="10"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/support/page.tsx">
+        <metrics statements="19" coveredstatements="19" conditionals="1" coveredconditionals="1" methods="10" coveredmethods="10"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="149" count="1" type="stmt"/>
+        <line num="196" count="4" type="stmt"/>
+        <line num="226" count="3" type="stmt"/>
+        <line num="239" count="12" type="stmt"/>
+        <line num="274" count="4" type="stmt"/>
+        <line num="286" count="11" type="stmt"/>
+        <line num="319" count="3" type="stmt"/>
+        <line num="330" count="12" type="stmt"/>
+        <line num="370" count="4" type="stmt"/>
+        <line num="380" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.team">
+      <metrics statements="10" coveredstatements="10" conditionals="18" coveredconditionals="15" methods="5" coveredmethods="5"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/team/page.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="18" coveredconditionals="15" methods="5" coveredmethods="5"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="109" count="3" type="stmt"/>
+        <line num="148" count="13" type="stmt"/>
+        <line num="178" count="4" type="stmt"/>
+        <line num="213" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.technical.architecture">
+      <metrics statements="25" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="13" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/technical/architecture/page.tsx">
+        <metrics statements="25" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="176" count="0" type="stmt"/>
+        <line num="196" count="0" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="204" count="0" type="stmt"/>
+        <line num="270" count="0" type="stmt"/>
+        <line num="280" count="0" type="stmt"/>
+        <line num="317" count="0" type="stmt"/>
+        <line num="334" count="0" type="stmt"/>
+        <line num="387" count="0" type="stmt"/>
+        <line num="452" count="0" type="stmt"/>
+        <line num="459" count="0" type="stmt"/>
+        <line num="471" count="0" type="stmt"/>
+        <line num="495" count="0" type="stmt"/>
+        <line num="527" count="0" type="stmt"/>
+        <line num="533" count="0" type="stmt"/>
+        <line num="582" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.technical.pipeline">
+      <metrics statements="32" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="17" coveredmethods="0"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/technical/pipeline/page.tsx">
+        <metrics statements="32" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="17" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
         <line num="205" count="0" type="stmt"/>
-        <line num="239" count="0" type="stmt"/>
-        <line num="271" count="0" type="stmt"/>
-        <line num="322" count="0" type="stmt"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="213" count="0" type="stmt"/>
+        <line num="304" count="0" type="stmt"/>
+        <line num="342" count="0" type="stmt"/>
+        <line num="352" count="0" type="stmt"/>
+        <line num="367" count="0" type="stmt"/>
+        <line num="391" count="0" type="stmt"/>
+        <line num="403" count="0" type="stmt"/>
+        <line num="418" count="0" type="stmt"/>
+        <line num="424" count="0" type="stmt"/>
+        <line num="497" count="0" type="stmt"/>
+        <line num="507" count="0" type="stmt"/>
+        <line num="532" count="0" type="stmt"/>
+        <line num="541" count="0" type="stmt"/>
+        <line num="628" count="0" type="stmt"/>
+        <line num="640" count="0" type="stmt"/>
+        <line num="655" count="0" type="stmt"/>
+        <line num="711" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.testing-guidelines">
+      <metrics statements="25" coveredstatements="19" conditionals="3" coveredconditionals="1" methods="9" coveredmethods="6"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/testing-guidelines/page.tsx">
+        <metrics statements="25" coveredstatements="19" conditionals="3" coveredconditionals="1" methods="9" coveredmethods="6"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="96" count="3" type="stmt"/>
+        <line num="107" count="9" type="stmt"/>
+        <line num="276" count="1" type="stmt"/>
+        <line num="288" count="1" type="stmt"/>
+        <line num="315" count="1" type="stmt"/>
+        <line num="342" count="1" type="stmt"/>
+        <line num="445" count="4" type="stmt"/>
+        <line num="467" count="3" type="stmt"/>
+        <line num="478" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="app.(product).docs.updates">
+      <metrics statements="22" coveredstatements="22" conditionals="24" coveredconditionals="21" methods="14" coveredmethods="14"/>
+      <file name="page.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/(product)/docs/updates/page.tsx">
+        <metrics statements="22" coveredstatements="22" conditionals="24" coveredconditionals="21" methods="14" coveredmethods="14"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="149" count="1" type="stmt"/>
+        <line num="211" count="3" type="stmt"/>
+        <line num="230" count="3" type="stmt"/>
+        <line num="248" count="4" type="stmt"/>
+        <line num="279" count="4" type="stmt"/>
+        <line num="292" count="3" type="stmt"/>
+        <line num="319" count="3" type="stmt"/>
+        <line num="340" count="3" type="stmt"/>
+        <line num="363" count="3" type="stmt"/>
+        <line num="377" count="3" type="stmt"/>
+        <line num="395" count="4" type="stmt"/>
+        <line num="401" count="14" type="stmt"/>
+        <line num="427" count="3" type="stmt"/>
+        <line num="436" count="9" type="stmt"/>
       </file>
     </package>
     <package name="app.(product).products">
@@ -220,79 +1160,122 @@
       </file>
     </package>
     <package name="app.api.careers">
-      <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="route.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/api/careers/route.ts">
-        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="10" count="12" type="stmt"/>
+        <line num="11" count="12" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="28" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
       </file>
     </package>
     <package name="app.api.contact">
-      <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="route.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/api/contact/route.ts">
-        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="24" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="24" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
       </file>
     </package>
     <package name="app.api.product-request">
-      <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="route.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/api/product-request/route.ts">
-        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="26" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
+        <line num="10" count="11" type="stmt"/>
+        <line num="11" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="18" count="10" type="stmt"/>
+        <line num="26" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
       </file>
     </package>
     <package name="app.api.waitlist">
-      <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="route.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/app/api/waitlist/route.ts">
-        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="30" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="30" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.forms">
-      <metrics statements="44" coveredstatements="44" conditionals="13" coveredconditionals="13" methods="9" coveredmethods="9"/>
+      <metrics statements="75" coveredstatements="44" conditionals="14" coveredconditionals="13" methods="23" coveredmethods="9"/>
+      <file name="ApplicationForm.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/forms/ApplicationForm.tsx">
+        <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+      <file name="ContactForm.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/forms/ContactForm.tsx">
+        <metrics statements="9" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+      </file>
+      <file name="SupportForm.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/forms/SupportForm.tsx">
+        <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+      <file name="SupportSearchForm.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/forms/SupportSearchForm.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
       <file name="WaitlistForm.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/forms/WaitlistForm.tsx">
         <metrics statements="44" coveredstatements="44" conditionals="13" coveredconditionals="13" methods="9" coveredmethods="9"/>
         <line num="3" count="4" type="stmt"/>
@@ -327,18 +1310,85 @@
         <line num="70" count="8" type="stmt"/>
         <line num="73" count="14" type="stmt"/>
         <line num="76" count="14" type="stmt"/>
+        <line num="78" count="14" type="stmt"/>
         <line num="81" count="14" type="stmt"/>
-        <line num="84" count="14" type="stmt"/>
-        <line num="90" count="10" type="stmt"/>
-        <line num="92" count="24" type="stmt"/>
-        <line num="96" count="850" type="stmt"/>
-        <line num="97" count="758" type="stmt"/>
-        <line num="98" count="758" type="cond" truecount="1" falsecount="0"/>
-        <line num="99" count="6" type="stmt"/>
-        <line num="103" count="850" type="cond" truecount="1" falsecount="0"/>
-        <line num="128" count="534" type="stmt"/>
-        <line num="147" count="216" type="stmt"/>
-        <line num="165" count="8" type="stmt"/>
+        <line num="87" count="10" type="stmt"/>
+        <line num="89" count="24" type="stmt"/>
+        <line num="93" count="850" type="stmt"/>
+        <line num="94" count="758" type="stmt"/>
+        <line num="95" count="758" type="cond" truecount="1" falsecount="0"/>
+        <line num="96" count="6" type="stmt"/>
+        <line num="100" count="850" type="cond" truecount="1" falsecount="0"/>
+        <line num="125" count="534" type="stmt"/>
+        <line num="144" count="216" type="stmt"/>
+        <line num="162" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.interactive">
+      <metrics statements="15" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="FilterButtons.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/interactive/FilterButtons.tsx">
+        <metrics statements="5" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="NoResults.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/interactive/NoResults.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="SearchInput.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/interactive/SearchInput.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+      </file>
+      <file name="StatsGrid.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/interactive/StatsGrid.tsx">
+        <metrics statements="5" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.layout">
+      <metrics statements="28" coveredstatements="28" conditionals="18" coveredconditionals="17" methods="14" coveredmethods="14"/>
+      <file name="DocsLayout.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/layout/DocsLayout.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="12" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+      </file>
+      <file name="DocsSidebar.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/layout/DocsSidebar.tsx">
+        <metrics statements="22" coveredstatements="22" conditionals="15" coveredconditionals="14" methods="11" coveredmethods="11"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="92" count="14" type="cond" truecount="1" falsecount="0"/>
+        <line num="93" count="18" type="stmt"/>
+        <line num="94" count="18" type="stmt"/>
+        <line num="96" count="14" type="stmt"/>
+        <line num="97" count="14" type="stmt"/>
+        <line num="98" count="448" type="cond" truecount="1" falsecount="0"/>
+        <line num="99" count="14" type="stmt"/>
+        <line num="102" count="14" type="stmt"/>
+        <line num="105" count="18" type="stmt"/>
+        <line num="106" count="4" type="stmt"/>
+        <line num="107" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="108" count="2" type="stmt"/>
+        <line num="123" count="126" type="stmt"/>
+        <line num="124" count="576" type="stmt"/>
+        <line num="126" count="126" type="stmt"/>
+        <line num="129" count="4" type="stmt"/>
+        <line num="155" count="92" type="stmt"/>
+        <line num="157" count="92" type="stmt"/>
       </file>
     </package>
     <package name="components.sections">
@@ -351,22 +1401,29 @@
       </file>
     </package>
     <package name="components.ui">
-      <metrics statements="88" coveredstatements="7" conditionals="102" coveredconditionals="0" methods="35" coveredmethods="1"/>
+      <metrics statements="77" coveredstatements="7" conditionals="80" coveredconditionals="0" methods="30" coveredmethods="1"/>
       <file name="Accordion.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/Accordion.tsx">
-        <metrics statements="13" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="14" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+      </file>
+      <file name="Breadcrumb.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/Breadcrumb.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
       </file>
       <file name="Button.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/Button.tsx">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -377,14 +1434,6 @@
         <line num="35" count="6" type="stmt"/>
         <line num="46" count="6" type="stmt"/>
         <line num="48" count="854" type="stmt"/>
-      </file>
-      <file name="FilterButtons.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/FilterButtons.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
       </file>
       <file name="Modal.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/Modal.tsx">
         <metrics statements="22" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="8" coveredmethods="0"/>
@@ -418,25 +1467,6 @@
         <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
-      <file name="NoResults.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/NoResults.tsx">
-        <metrics statements="2" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-      </file>
-      <file name="SearchInput.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/SearchInput.tsx">
-        <metrics statements="3" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-      </file>
-      <file name="StatsGrid.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/StatsGrid.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-      </file>
       <file name="Tabs.tsx" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/components/ui/Tabs.tsx">
         <metrics statements="27" coveredstatements="0" conditionals="36" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
@@ -469,18 +1499,18 @@
       </file>
     </package>
     <package name="config">
-      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="constants.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/config/constants.ts">
-        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="80" type="stmt"/>
+        <line num="18" count="10" type="stmt"/>
+        <line num="32" count="11" type="stmt"/>
+        <line num="49" count="4" type="stmt"/>
+        <line num="57" count="8" type="stmt"/>
       </file>
     </package>
     <package name="data">
-      <metrics statements="28" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <metrics statements="28" coveredstatements="3" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="0"/>
       <file name="company.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/data/company.ts">
         <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="55" count="0" type="stmt"/>
@@ -493,12 +1523,12 @@
         <line num="236" count="0" type="stmt"/>
       </file>
       <file name="faq.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/data/faq.ts">
-        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
+        <metrics statements="9" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="89" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
@@ -520,26 +1550,26 @@
       </file>
     </package>
     <package name="hooks">
-      <metrics statements="46" coveredstatements="11" conditionals="9" coveredconditionals="2" methods="14" coveredmethods="2"/>
+      <metrics statements="58" coveredstatements="17" conditionals="9" coveredconditionals="4" methods="18" coveredmethods="5"/>
       <file name="useAnalytics.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/useAnalytics.ts">
-        <metrics statements="17" coveredstatements="11" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="2"/>
+        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="11" count="12" type="stmt"/>
-        <line num="12" count="12" type="stmt"/>
-        <line num="14" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="29" count="12" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="14" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="18" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="29" count="10" type="stmt"/>
         <line num="30" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="31" count="2" type="stmt"/>
         <line num="33" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="34" count="2" type="stmt"/>
-        <line num="42" count="12" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="51" count="12" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="59" count="12" type="stmt"/>
+        <line num="42" count="10" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="51" count="10" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="59" count="10" type="stmt"/>
       </file>
       <file name="useFilter.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/useFilter.ts">
         <metrics statements="16" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="5" coveredmethods="0"/>
@@ -560,6 +1590,21 @@
         <line num="30" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
       </file>
+      <file name="useNavigation.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/useNavigation.ts">
+        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+      </file>
       <file name="useSearch.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/useSearch.ts">
         <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -575,91 +1620,6 @@
         <line num="20" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="hooks.use-analytics">
-      <metrics statements="21" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="8" coveredmethods="0"/>
-      <file name="useAnalytics.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/use-analytics/useAnalytics.ts">
-        <metrics statements="21" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="10" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="hooks.use-filter">
-      <metrics statements="12" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="useFilter.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/use-filter/useFilter.ts">
-        <metrics statements="12" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="23" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="hooks.use-navigation">
-      <metrics statements="10" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="useNavigation.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/use-navigation/useNavigation.ts">
-        <metrics statements="10" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="123" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="hooks.use-search">
-      <metrics statements="18" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="useSearch.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/hooks/use-search/useSearch.ts">
-        <metrics statements="18" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="44" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
       </file>
     </package>
     <package name="lib">
@@ -720,10 +1680,10 @@
       </file>
     </package>
     <package name="lib.validation">
-      <metrics statements="55" coveredstatements="0" conditionals="21" coveredconditionals="0" methods="12" coveredmethods="0"/>
+      <metrics statements="52" coveredstatements="33" conditionals="21" coveredconditionals="12" methods="11" coveredmethods="5"/>
       <file name="forms.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/lib/validation/forms.ts">
-        <metrics statements="26" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="7" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
+        <metrics statements="23" coveredstatements="4" conditionals="9" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="6" count="4" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -731,56 +1691,53 @@
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="36" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="38" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <line num="48" count="4" type="stmt"/>
         <line num="49" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="51" count="0" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
+        <line num="62" count="4" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
       </file>
       <file name="validation.ts" path="/Users/unson/Documents/Github/Unson-LLC/unson_os/src/lib/validation/validation.ts">
-        <metrics statements="29" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="32" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="47" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="51" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="65" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
+        <metrics statements="29" coveredstatements="29" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
+        <line num="6" count="35" type="stmt"/>
+        <line num="7" count="35" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="11" count="31" type="stmt"/>
+        <line num="12" count="31" type="cond" truecount="1" falsecount="0"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="16" count="27" type="stmt"/>
+        <line num="22" count="102" type="stmt"/>
+        <line num="28" count="102" type="cond" truecount="3" falsecount="0"/>
+        <line num="29" count="11" type="stmt"/>
+        <line num="32" count="91" type="cond" truecount="1" falsecount="0"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="36" count="85" type="stmt"/>
+        <line num="42" count="21" type="stmt"/>
+        <line num="47" count="21" type="cond" truecount="1" falsecount="0"/>
+        <line num="51" count="13" type="cond" truecount="1" falsecount="0"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="55" count="11" type="stmt"/>
+        <line num="61" count="11" type="stmt"/>
+        <line num="65" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="69" count="3" type="stmt"/>
+        <line num="70" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="80" count="35" type="stmt"/>
+        <line num="83" count="35" type="stmt"/>
+        <line num="84" count="112" type="cond" truecount="1" falsecount="0"/>
+        <line num="85" count="27" type="stmt"/>
+        <line num="88" count="8" type="stmt"/>
       </file>
     </package>
   </project>

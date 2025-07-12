@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -132,7 +132,13 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,6 +155,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -206,7 +218,7 @@
 import { useState } from <span class="cstat-no" title="statement not covered" >'react'</span>
 &nbsp;
 interface AccordionItem {
-  id: string
+  id?: string
   title: string
   content: React.ReactNode
 }
@@ -218,6 +230,12 @@ interface AccordionProps {
 }
 &nbsp;
 export function <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Accordion({</span></span> items, allowMultiple = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span> defaultOpenItems = <span class="branch-0 cbranch-no" title="branch not covered" >[] </span>}: AccordionProps) {
+  // idがない場合は自動生成
+  const processedItems = <span class="cstat-no" title="statement not covered" >items.map(<span class="fstat-no" title="function not covered" >(i</span>tem, index) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+    ...item,
+    id: item.id || `accordion-item-${index}`
+  }))
+  
   const [openItems, setOpenItems] = <span class="cstat-no" title="statement not covered" >useState&lt;string[]&gt;(defaultOpenItems)</span>
 &nbsp;
   const toggleItem = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>temId: string) =&gt; {</span>
@@ -236,13 +254,13 @@ export function <span class="cstat-no" title="statement not covered" ><span clas
 &nbsp;
   return (
     &lt;div className="space-y-2"&gt;
-      {items.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {
-        const isOpen = <span class="cstat-no" title="statement not covered" >openItems.includes(item.id)</span>
+      {processedItems.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {
+        const isOpen = <span class="cstat-no" title="statement not covered" >openItems.includes(item.id!)</span>
         
 <span class="cstat-no" title="statement not covered" >        return (</span>
           &lt;div key={item.id} className="border border-gray-200 rounded-lg"&gt;
             &lt;button
-              onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >t</span>oggleItem(item.id)}</span>
+              onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >t</span>oggleItem(item.id!)}</span>
               className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
             &gt;
               &lt;span className="font-medium text-gray-900"&gt;{item.title}&lt;/span&gt;
@@ -277,7 +295,7 @@ export function <span class="cstat-no" title="statement not covered" ><span clas
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-12T13:21:57.235Z
+                at 2025-07-12T16:50:48.663Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
