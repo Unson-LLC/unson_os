@@ -75,8 +75,8 @@ const documentationSections = [
     items: [
       { title: 'チームメンバー', url: '/docs/team', type: 'guide' },
       { title: '最新更新情報', url: '/docs/updates', type: 'guide' },
-      { title: 'DAO参加ガイド', url: '/docs/dao/guide', type: 'guide' },
-      { title: 'DAO概要', url: '/docs/dao/overview', type: 'guide' }
+      { title: '設計仕様書', url: '/docs/design/specification', type: 'technical' },
+      { title: 'コミュニティ参加', url: '/community', type: 'guide' }
     ]
   },
   {
