@@ -633,7 +633,7 @@ export default function TokenomicsPage() {
         subtitle="公平で透明性のある収益分配モデルで、あなたの貢献が適切に評価される新しい組織に参加しませんか？"
         actions={[
           { label: 'コミュニティ参加', href: '/waitlist' },
-          { label: 'DAO概要を見る', href: '/docs/dao/overview', variant: 'outline' as const }
+          { label: 'DAO概要を見る', href: '/docs/dao/overview', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-indigo-600 to-purple-600"
       />

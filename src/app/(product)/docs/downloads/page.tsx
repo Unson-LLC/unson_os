@@ -587,7 +587,7 @@ unson deploy`}
         subtitle="必要なツールをダウンロードして、Unson OSでマイクロSaaS開発を体験してください。"
         actions={[
           { label: 'CLI をダウンロード', href: '/downloads/unson-cli-1.5.1' },
-          { label: 'チュートリアルを見る', href: '/docs/quickstart', variant: 'outline' as const }
+          { label: 'チュートリアルを見る', href: '/docs/quickstart', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-blue-600 to-indigo-600"
       />

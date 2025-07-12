@@ -264,14 +264,14 @@ export default function SecurityPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <NavigationLink 
                 href="#architecture" 
-                variant="default" as const
+                variant="default"
                 size="lg"
               >
                 セキュリティアーキテクチャ
               </NavigationLink>
               <NavigationLink 
                 href="#compliance" 
-                variant="outline" as const
+                variant="outline"
                 size="lg"
               >
                 コンプライアンス対応
@@ -777,7 +777,7 @@ export default function SecurityPage() {
         subtitle="エンタープライズレベルのセキュリティ環境で、安心してマイクロSaaS開発に取り組みませんか？"
         actions={[
           { label: '開発を始める', href: '/waitlist' },
-          { label: 'セキュリティ詳細', href: '/docs/security/overview', variant: 'outline' as const }
+          { label: 'セキュリティ詳細', href: '/docs/security/overview', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-red-600 to-orange-600"
       />

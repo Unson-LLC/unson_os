@@ -420,7 +420,7 @@ export default function SupportPage() {
         subtitle="活発なコミュニティで質問・回答を通じて一緒に成長しましょう"
         actions={[
           { label: 'Discord 参加', href: '/community' },
-          { label: 'ドキュメント一覧', href: '/docs', variant: 'outline' as const }
+          { label: 'ドキュメント一覧', href: '/docs', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-purple-600 to-blue-600"
       />

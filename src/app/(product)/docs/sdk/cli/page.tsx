@@ -599,7 +599,7 @@ CMD ["/deploy.sh"]`}</code></pre>
         subtitle="ターミナルから Unson OS のすべての機能にアクセスして、開発ワークフローを最適化しませんか？"
         actions={[
           { label: '開発を始める', href: '/docs/development/setup' },
-          { label: 'API ドキュメント', href: '/docs/api', variant: 'outline' as const }
+          { label: 'API ドキュメント', href: '/docs/api', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-gray-600 to-blue-600"
       />

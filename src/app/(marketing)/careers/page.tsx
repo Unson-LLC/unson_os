@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Button } from '@/components/ui/Button'
+import { ApplicationForm } from '@/components/forms/ApplicationForm'
 import { jobPositions, benefits, companyValues } from '@/data/company'
 
 export const metadata: Metadata = {
@@ -270,71 +271,7 @@ export default function CareersPage() {
           </div>
           
           <div className="max-w-2xl mx-auto">
-            <form className="space-y-6" onSubmit={(e) => {
-              e.preventDefault()
-              alert('応募を受け付けました。ご連絡をお待ちください。')
-            }}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
-                    お名前 *
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="山田太郎"
-                    className="w-full px-4 py-3 rounded-lg border border-blue-300 bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
-                    メールアドレス *
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="yamada@example.com"
-                    className="w-full px-4 py-3 rounded-lg border border-blue-300 bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-blue-100 mb-2">
-                  希望ポジション *
-                </label>
-                <select className="w-full px-4 py-3 rounded-lg border border-blue-300 bg-white text-gray-900 focus:ring-2 focus:ring-blue-400 focus:border-transparent" required>
-                  <option value="">ポジションを選択してください</option>
-                  <option value="ai-engineer">AIエンジニア</option>
-                  <option value="fullstack-developer">フルスタックデベロッパー</option>
-                  <option value="product-manager">プロダクトマネージャー</option>
-                  <option value="ui-ux-designer">UI/UXデザイナー</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-blue-100 mb-2">
-                  志望動機・自己PR *
-                </label>
-                <textarea
-                  rows={6}
-                  placeholder="Unson OSに興味を持った理由や、これまでの経験・スキルについて教えてください。"
-                  className="w-full px-4 py-3 rounded-lg border border-blue-300 bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent resize-none"
-                  required
-                ></textarea>
-              </div>
-              
-              <div className="text-center">
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8"
-                >
-                  応募する
-                </Button>
-              </div>
-            </form>
+            <ApplicationForm />
           </div>
         </div>
       </section>

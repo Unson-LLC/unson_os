@@ -356,7 +356,7 @@ export default function AboutPage() {
         title="一緒に未来を創造しませんか？"
         subtitle="Unson OSチームの一員として、SaaS開発の革新に参加してください。"
         actions={[
-          { label: 'チームに参加', href: '/careers', variant: 'secondary' as const },
+          { label: 'チームに参加', href: '/careers', variant: 'secondary' },
           { label: 'お問い合わせ', href: '/contact' }
         ]}
         backgroundColor="bg-gradient-to-r from-indigo-600 to-purple-600"

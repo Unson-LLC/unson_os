@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Button } from '@/components/ui/Button'
+import { SupportForm } from '@/components/forms/SupportForm'
+import { SupportSearchForm } from '@/components/forms/SupportSearchForm'
 import { faqCategories } from '@/data/faq'
 
 export const metadata: Metadata = {
@@ -36,6 +38,7 @@ const supportOptions = [
   }
 ]
 
+
 export default function SupportPage() {
   return (
     <div className="min-h-screen">
@@ -59,17 +62,7 @@ export default function SupportPage() {
       <section className="py-8 bg-white">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto">
-            <form className="flex gap-2" onSubmit={(e) => {
-              e.preventDefault()
-              alert('検索機能は近日実装予定です')
-            }}>
-              <input
-                type="text"
-                placeholder="FAQを検索..."
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <Button type="submit">検索</Button>
-            </form>
+            <SupportSearchForm />
           </div>
         </div>
       </section>
@@ -152,69 +145,7 @@ export default function SupportPage() {
           </div>
           
           <div className="max-w-2xl mx-auto">
-            <form className="space-y-6" onSubmit={(e) => {
-              e.preventDefault()
-              alert('お問い合わせを受け付けました。24時間以内にご連絡いたします。')
-            }}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    お名前 *
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="山田太郎"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    メールアドレス *
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="yamada@example.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  お問い合わせ種別 *
-                </label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                  <option value="">選択してください</option>
-                  <option value="general">一般的な質問</option>
-                  <option value="technical">技術的な問題</option>
-                  <option value="billing">料金・請求について</option>
-                  <option value="feature">機能要望</option>
-                  <option value="dao">DAO・トークンについて</option>
-                  <option value="partnership">パートナーシップ</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  お問い合わせ内容 *
-                </label>
-                <textarea
-                  rows={6}
-                  placeholder="お問い合わせ内容をできるだけ詳しくお書きください。"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  required
-                ></textarea>
-              </div>
-              
-              <div className="text-center">
-                <Button type="submit" size="lg">
-                  お問い合わせを送信
-                </Button>
-              </div>
-            </form>
+            <SupportForm />
           </div>
         </div>
       </section>

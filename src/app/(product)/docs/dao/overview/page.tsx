@@ -350,7 +350,7 @@ export default function DAOOverviewPage() {
         subtitle="あなたのスキルと情熱でUnson OSの未来を一緒に作りませんか？"
         actions={[
           { label: 'コミュニティ参加', href: '/waitlist' },
-          { label: 'ガバナンス詳細', href: '/docs/governance', variant: 'outline' as const }
+          { label: 'ガバナンス詳細', href: '/docs/governance', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-blue-600 to-purple-600"
       />

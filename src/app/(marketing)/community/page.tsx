@@ -136,13 +136,13 @@ export default function CommunityPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {[
-                { label: 'コミュニティ参加', href: '/waitlist', variant: 'default' as const },
-                { label: 'DAO詳細', href: '/docs/dao/overview', variant: 'outline' as const }
+                { label: 'コミュニティ参加', href: '/waitlist', variant: 'default' },
+                { label: 'DAO詳細', href: '/docs/dao/overview', variant: 'outline' }
               ].map((action, index) => (
                 <NavigationLink
                   key={index}
                   href={action.href}
-                  variant={action.variant}
+                  variant={(action.variant as "default" | "outline" | "secondary") || 'default'}
                   size="lg"
                   external={(action as any).external || false}
                 >

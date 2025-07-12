@@ -358,7 +358,7 @@ export default function QuickstartPage() {
         subtitle="ウェイトリスト登録で最新情報をいち早くキャッチアップ"
         actions={[
           { label: 'ウェイトリスト登録', href: '/waitlist' },
-          { label: 'プロダクト一覧', href: '/products', variant: 'outline' as const }
+          { label: 'プロダクト一覧', href: '/products', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-green-600 to-blue-600"
       />

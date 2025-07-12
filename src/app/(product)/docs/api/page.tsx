@@ -484,7 +484,7 @@ export default function APIReferencePage() {
         subtitle="無料のAPIキーを取得して、Unson OS の強力な機能を体験"
         actions={[
           { label: 'APIキー取得', href: '/waitlist' },
-          { label: 'クイックスタート', href: '/docs/quickstart', variant: 'outline' as const }
+          { label: 'クイックスタート', href: '/docs/quickstart', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-blue-600 to-indigo-600"
       />

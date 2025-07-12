@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Private development site
+# Not intended for public indexing

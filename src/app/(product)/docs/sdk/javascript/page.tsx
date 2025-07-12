@@ -315,17 +315,11 @@ export function ProductList() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {productList.map((product) => (
-        <div key={product.id} className="card">
-          <h3 className="font-semibold">{product.name}</h3>
-          <p className="text-gray-600">{product.description}</p>
-          <div className="mt-4">
-            <span className="text-sm text-blue-600">
-              MRR: ${product.mrr}
-            </span>
-          </div>
-        </div>
-      ))}
+      {/* プロダクトリスト - 一時的にコメントアウト */}
+      <div className="card">
+        <h3 className="font-semibold">プロダクト一覧</h3>
+        <p className="text-gray-600">JavaScript SDKで作成されたプロダクト一覧を表示します。</p>
+      </div>
     </div>
   )
 }`}</code></pre>
@@ -612,7 +606,7 @@ NEXT_PUBLIC_UNSON_REGION=us-east-1`}</code></pre>
         subtitle="Unson OS の機能を活用して、革新的なプロダクトを作成しませんか？"
         actions={[
           { label: '開発を始める', href: '/docs/development/setup' },
-          { label: 'API ドキュメント', href: '/docs/api', variant: 'outline' as const }
+          { label: 'API ドキュメント', href: '/docs/api', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-green-600 to-blue-600"
       />

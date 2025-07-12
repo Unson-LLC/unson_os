@@ -486,7 +486,7 @@ export default function DevelopmentProcessPage() {
         subtitle="SDK とツールを活用して、Unson OS の開発に参加しませんか？"
         actions={[
           { label: '開発環境構築', href: '/docs/development/setup' },
-          { label: 'SDK ドキュメント', href: '/docs/sdk', variant: 'outline' as const }
+          { label: 'SDK ドキュメント', href: '/docs/sdk', variant: 'outline' }
         ]}
         backgroundColor="bg-gradient-to-r from-blue-600 to-indigo-600"
       />

@@ -22,13 +22,13 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {[
-                { label: '無料で始める', href: '/waitlist', variant: 'default' as const },
-                { label: 'デモを見る', href: '/products', variant: 'outline' as const }
+                { label: '無料で始める', href: '/waitlist', variant: 'default' },
+                { label: 'デモを見る', href: '/products', variant: 'outline' }
               ].map((action, index) => (
                 <NavigationLink
                   key={index}
                   href={action.href}
-                  variant={action.variant}
+                  variant={(action.variant as "default" | "outline" | "secondary") || 'default'}
                   size="lg"
                   external={(action as any).external || false}
                 >
@@ -134,7 +134,7 @@ export default function HomePage() {
         subtitle="「Company-as-a-Product」アプローチで、新しいビジネスの未来を共に創造しましょう。"
         actions={[
           { label: '無料で始める', href: '/waitlist' },
-          { label: '料金プラン', href: '/pricing', variant: 'outline' as const }
+          { label: '料金プラン', href: '/pricing', variant: 'outline' }
         ]}
       />
     </div>
