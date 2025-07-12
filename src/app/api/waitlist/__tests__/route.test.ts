@@ -1,6 +1,37 @@
 import { POST } from '../route'
 import { NextRequest } from 'next/server'
 
+// api-utils mock
+jest.mock('@/lib/api/api-utils', () => ({
+  createSuccessResponse: jest.fn((message, id, status = 201) => ({
+    status,
+    json: async () => ({ message, id })
+  })),
+  createErrorResponse: jest.fn((error, status = 400) => ({
+    status,
+    json: async () => ({ error })
+  })),
+  generateId: jest.fn(() => 'mock-id'),
+  handleApiError: jest.fn(() => ({
+    status: 400,
+    json: async () => ({ error: 'Invalid JSON' })
+  })),
+  safeParseJson: jest.fn(async (request) => {
+    try {
+      const data = await request.json()
+      return { success: true, data }
+    } catch (error) {
+      return {
+        success: false,
+        response: {
+          status: 400,
+          json: async () => ({ error: 'Invalid JSON' })
+        }
+      }
+    }
+  })
+}))
+
 describe('/api/waitlist', () => {
   it('should successfully add email to waitlist', async () => {
     const mockRequest = new NextRequest('http://localhost:3000/api/waitlist', {

@@ -74,7 +74,7 @@ describe('Form-API Integration Tests', () => {
       })
 
       // Analytics追跡の確認
-      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('successful@example.com')
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('user@example.com')
     })
 
     it('should handle form validation and API error recovery', async () => {
@@ -241,7 +241,7 @@ describe('Form-API Integration Tests', () => {
       })
 
       // Analytics追跡の詳細確認
-      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('data-flow@example.com')
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('dataflow@example.com')
     })
 
     it('should handle optional fields correctly', async () => {

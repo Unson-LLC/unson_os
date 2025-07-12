@@ -145,11 +145,7 @@ describe('WaitlistForm Component', () => {
     await user.click(screen.getByRole('button', { name: /登録/i }))
     
     await waitFor(() => {
-      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith({
-        email: 'test@example.com',
-        name: 'テストユーザー',
-        role: 'developer',
-      })
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('test@example.com')
     })
   })
 

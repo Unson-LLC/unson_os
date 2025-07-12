@@ -3,10 +3,17 @@ import userEvent from '@testing-library/user-event'
 import { WaitlistForm } from '@/components/forms/WaitlistForm'
 
 // useAnalytics のモック
-const mockTrack = jest.fn()
+const mockTrackEvent = jest.fn()
+const mockTrackWaitlistSignup = jest.fn()
+const mockTrackContactForm = jest.fn()
+const mockTrackPageView = jest.fn()
+
 jest.mock('@/hooks/useAnalytics', () => ({
   useAnalytics: () => ({
-    track: mockTrack,
+    trackEvent: mockTrackEvent,
+    trackWaitlistSignup: mockTrackWaitlistSignup,
+    trackContactForm: mockTrackContactForm,
+    trackPageView: mockTrackPageView,
   }),
 }))
 
@@ -128,7 +135,7 @@ describe('WaitlistForm Component', () => {
   })
 
   it('should track analytics on form submission', async () => {
-    mockTrack.mockClear()
+    mockTrackWaitlistSignup.mockClear()
 
     render(<WaitlistForm />)
     
@@ -138,10 +145,7 @@ describe('WaitlistForm Component', () => {
     await user.click(screen.getByRole('button', { name: /登録/i }))
     
     await waitFor(() => {
-      expect(mockTrack).toHaveBeenCalledWith('waitlist_form_submitted', {
-        role: 'developer',
-        hasName: true,
-      })
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith('test@example.com')
     })
   })
 
