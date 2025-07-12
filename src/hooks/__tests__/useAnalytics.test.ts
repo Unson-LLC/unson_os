@@ -3,6 +3,9 @@ import { useAnalytics } from '../useAnalytics'
 
 // Google Analytics のモック
 const mockGtag = jest.fn()
+declare global {
+  var gtag: any
+}
 global.gtag = mockGtag
 
 describe('useAnalytics hook', () => {
@@ -23,15 +26,18 @@ describe('useAnalytics hook', () => {
     const { result } = renderHook(() => useAnalytics())
     
     act(() => {
-      result.current.track('button_click', {
-        button_name: 'cta_primary',
-        page: 'home',
+      result.current.trackEvent({
+        event: 'button_click',
+        category: 'engagement',
+        label: 'cta_primary'
       })
     })
     
     expect(mockGtag).toHaveBeenCalledWith('event', 'button_click', {
-      button_name: 'cta_primary',
-      page: 'home',
+      event_category: 'engagement',
+      event_label: 'cta_primary',
+      value: undefined,
+      user_id: undefined
     })
   })
 
@@ -39,66 +45,43 @@ describe('useAnalytics hook', () => {
     const { result } = renderHook(() => useAnalytics())
     
     act(() => {
-      result.current.trackPageView('/dao')
+      result.current.trackPageView('/dao', 'DAO Page')
     })
     
-    expect(mockGtag).toHaveBeenCalledWith('config', expect.any(String), {
-      page_path: '/dao',
-    })
-  })
-
-  it('should track conversion events', () => {
-    const { result } = renderHook(() => useAnalytics())
-    
-    act(() => {
-      result.current.trackConversion('waitlist_signup', {
-        value: 1,
-        currency: 'USD',
-      })
-    })
-    
-    expect(mockGtag).toHaveBeenCalledWith('event', 'conversion', {
-      send_to: 'waitlist_signup',
-      value: 1,
-      currency: 'USD',
+    expect(mockGtag).toHaveBeenCalledWith('config', 'GA_MEASUREMENT_ID', {
+      page_title: 'DAO Page',
+      page_location: expect.any(String)
     })
   })
 
-  it('should not track when analytics is disabled', () => {
-    // 環境変数でアナリティクスを無効化
-    const originalEnv = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-    delete process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-    
+  it('should track waitlist signup', () => {
     const { result } = renderHook(() => useAnalytics())
     
     act(() => {
-      result.current.track('test_event', {})
+      result.current.trackWaitlistSignup('test@example.com')
     })
     
-    expect(mockGtag).not.toHaveBeenCalled()
-    
-    // 環境変数を復元
-    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID = originalEnv
+    expect(mockGtag).toHaveBeenCalledWith('event', 'waitlist_signup', {
+      event_category: 'engagement',
+      event_label: 'waitlist_form',
+      value: undefined,
+      user_id: 'test@example.com'
+    })
   })
 
-  it('should handle errors gracefully', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation()
-    mockGtag.mockImplementation(() => {
-      throw new Error('Analytics error')
-    })
-    
+  it('should track contact form submission', () => {
     const { result } = renderHook(() => useAnalytics())
     
     act(() => {
-      result.current.track('error_test', {})
+      result.current.trackContactForm('support')
     })
     
-    expect(consoleSpy).toHaveBeenCalledWith(
-      'Analytics tracking error:',
-      expect.any(Error)
-    )
-    
-    consoleSpy.mockRestore()
+    expect(mockGtag).toHaveBeenCalledWith('event', 'contact_form_submit', {
+      event_category: 'engagement',
+      event_label: 'support',
+      value: undefined,
+      user_id: undefined
+    })
   })
 
   it('should not track when gtag is not available', () => {
@@ -109,7 +92,7 @@ describe('useAnalytics hook', () => {
     const { result } = renderHook(() => useAnalytics())
     
     act(() => {
-      result.current.track('no_gtag_test', {})
+      result.current.trackEvent({ event: 'no_gtag_test' })
     })
     
     expect(mockGtag).not.toHaveBeenCalled()

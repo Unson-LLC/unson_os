@@ -281,8 +281,8 @@ test.describe('動的CTAシステム E2E', () => {
       })
       
       await page.addInitScript(() => {
-        window.gtag = (...args) => {
-          window.trackAnalytics(args)
+        window.gtag = (...args: any[]) => {
+          window.trackAnalytics?.(args)
         }
       })
       

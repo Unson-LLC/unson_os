@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'DAOでできること - Unson OS ドキュメント',
@@ -339,7 +340,7 @@ const testimonials = [
 
 export default function DAOCapabilitiesPage() {
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       <section className="section-padding bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
@@ -894,6 +895,6 @@ export default function DAOCapabilitiesPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

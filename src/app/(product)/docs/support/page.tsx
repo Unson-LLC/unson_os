@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
 import { faqCategories } from '@/data/faq'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'サポート・FAQ - Unson OS ドキュメント',
@@ -147,7 +148,7 @@ const supportStats = [
 
 export default function SupportPage() {
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="container-custom">
@@ -439,6 +440,6 @@ export default function SupportPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'DAO構造とガバナンス - Unson OS ドキュメント',
@@ -226,7 +227,7 @@ const legalStructure = [
 
 export default function DAOStructurePage() {
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
@@ -800,6 +801,6 @@ export default function DAOStructurePage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

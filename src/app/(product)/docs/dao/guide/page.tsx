@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'DAOの分かりやすいガイド - Unson OS ドキュメント',
@@ -227,7 +228,7 @@ const gettingStarted = {
 
 export default function DAOGuidePage() {
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       <section className="section-padding bg-gradient-to-br from-green-50 to-blue-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
@@ -616,6 +617,6 @@ export default function DAOGuidePage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

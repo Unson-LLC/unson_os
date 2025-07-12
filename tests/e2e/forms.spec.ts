@@ -168,8 +168,8 @@ test.describe('フォーム機能 E2E', () => {
     
     await page.addInitScript(() => {
       // アナリティクス関数をモック
-      window.gtag = (...args) => {
-        window.trackAnalytics(args)
+      window.gtag = (...args: any[]) => {
+        window.trackAnalytics?.(args)
       }
     })
     

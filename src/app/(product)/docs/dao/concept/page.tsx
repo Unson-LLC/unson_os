@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'DAOコンセプト設計書 - Unson OS ドキュメント',
@@ -365,7 +366,7 @@ const permissionLevels = [
 
 export default function DAOConceptPage() {
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       <section className="section-padding bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
@@ -1265,6 +1266,6 @@ export default function DAOConceptPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
+import { DocsLayout } from '@/components/layout/DocsLayout'
 
 export const metadata: Metadata = {
   title: 'マイクロビジネス戦略 - Unson OS ドキュメント',
@@ -149,7 +150,7 @@ export default function MicroBusinessStrategyPage() {
   const readingTime = '約15分'
   
   return (
-    <div className="min-h-screen">
+    <DocsLayout>
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-green-50 to-blue-50">
         <div className="container-custom">
@@ -583,6 +584,6 @@ export default function MicroBusinessStrategyPage() {
           </div>
         </div>
       </section>
-    </div>
+    </DocsLayout>
   )
 }
