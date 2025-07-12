@@ -16,29 +16,43 @@ const documentationSections = [
       { title: 'Unson OSとは', url: '/docs/introduction', type: 'guide' },
       { title: 'クイックスタート', url: '/docs/quickstart', type: 'guide' },
       { title: 'プラットフォーム概要', url: '/docs/platform-overview', type: 'guide' },
-      { title: 'アーキテクチャ', url: '/docs/architecture', type: 'technical' }
+      { title: '技術アーキテクチャ', url: '/docs/technical/architecture', type: 'technical' }
     ]
   },
   {
     title: 'プロダクト開発',
-    description: 'SaaS自動生成システムの使用方法',
+    description: '開発プロセスと戦略的アプローチ',
     icon: '⚡',
     items: [
-      { title: '開発プロセス', url: '/docs/development-process', type: 'guide' },
-      { title: 'アイデア投稿', url: '/docs/idea-submission', type: 'guide' },
-      { title: 'プロトタイプ生成', url: '/docs/prototype-generation', type: 'technical' },
-      { title: 'デプロイメント', url: '/docs/deployment', type: 'technical' }
+      { title: '開発プロセス', url: '/docs/development/process', type: 'guide' },
+      { title: '戦略ドキュメント', url: '/docs/strategy/micro-business', type: 'guide' },
+      { title: '技術アーキテクチャ', url: '/docs/technical/architecture', type: 'technical' },
+      { title: 'DAO参加方法', url: '/docs/dao/guide', type: 'guide' }
     ]
   },
   {
-    title: 'API リファレンス',
-    description: 'REST API、GraphQL、WebSocketの仕様',
-    icon: '📡',
+    title: '開発・技術',
+    description: '開発環境構築とテスト・品質管理',
+    icon: '🔧',
     items: [
-      { title: 'REST API', url: '/docs/api/rest', type: 'api' },
-      { title: 'GraphQL API', url: '/docs/api/graphql', type: 'api' },
-      { title: 'WebSocket', url: '/docs/api/websocket', type: 'api' },
-      { title: '認証・認可', url: '/docs/api/authentication', type: 'api' }
+      { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical' },
+      { title: 'フロントエンド構造', url: '/docs/development/frontend-structure', type: 'technical' },
+      { title: 'フォルダ構造ガイド', url: '/docs/development/folder-structure-guide', type: 'technical' },
+      { title: 'テストガイドライン', url: '/docs/testing-guidelines', type: 'technical' },
+      { title: 'API テスト完全ガイド', url: '/docs/development/api-tests-complete', type: 'technical' },
+      { title: 'Node.js バージョン管理', url: '/docs/development/node-version-management', type: 'technical' }
+    ]
+  },
+  {
+    title: '戦略・企画',
+    description: 'ビジネス戦略とプロダクト企画手法',
+    icon: '🎯',
+    items: [
+      { title: 'マイクロビジネス戦略', url: '/docs/strategy/micro-business', type: 'guide' },
+      { title: 'MVP検証フレームワーク', url: '/docs/strategy/mvp-validation', type: 'guide' },
+      { title: 'SaaS設計プロセス', url: '/docs/strategy/saas-design', type: 'technical' },
+      { title: 'サービス生成パイプライン', url: '/docs/technical/pipeline', type: 'technical' },
+      { title: '設計仕様書', url: '/docs/design/specification', type: 'technical' }
     ]
   },
   {
@@ -46,32 +60,34 @@ const documentationSections = [
     description: '分散型自律組織の参加と運営',
     icon: '🗳️',
     items: [
-      { title: 'DAOの仕組み', url: '/docs/dao/overview', type: 'guide' },
-      { title: '提案と投票', url: '/docs/dao/proposals', type: 'guide' },
-      { title: 'トークノミクス', url: '/docs/dao/tokenomics', type: 'guide' },
-      { title: '収益分配', url: '/docs/dao/revenue-sharing', type: 'guide' }
+      { title: 'はじめてのDAO（超初心者向け）', url: '/docs/dao/guide', type: 'guide' },
+      { title: 'DAO完全ガイド', url: '/docs/dao/overview', type: 'guide' },
+      { title: 'DAOでできること', url: '/docs/dao/capabilities', type: 'guide' },
+      { title: 'DAO構造とガバナンス', url: '/docs/dao/structure', type: 'technical' },
+      { title: 'DAOコンセプト設計書', url: '/docs/dao/concept', type: 'technical' },
+      { title: 'トークノミクス（YGG参考モデル）', url: '/docs/dao/unified-tokenomics', type: 'technical' }
     ]
   },
   {
-    title: 'セキュリティ',
-    description: 'セキュリティガイドラインとベストプラクティス',
-    icon: '🔒',
+    title: 'チーム・組織',
+    description: '雲孫チームの構成と最新の組織情報',
+    icon: '👥',
     items: [
-      { title: 'セキュリティ概要', url: '/docs/security/overview', type: 'guide' },
-      { title: 'API セキュリティ', url: '/docs/security/api', type: 'technical' },
-      { title: 'データ保護', url: '/docs/security/data-protection', type: 'technical' },
-      { title: '脆弱性報告', url: '/docs/security/vulnerability-reporting', type: 'guide' }
+      { title: 'チームメンバー', url: '/docs/team', type: 'guide' },
+      { title: '最新更新情報', url: '/docs/updates', type: 'guide' },
+      { title: 'DAO参加ガイド', url: '/docs/dao/guide', type: 'guide' },
+      { title: 'DAO概要', url: '/docs/dao/overview', type: 'guide' }
     ]
   },
   {
     title: 'サポート',
-    description: 'トラブルシューティングとよくある質問',
+    description: 'ヘルプとコミュニティ情報',
     icon: '❓',
     items: [
-      { title: 'よくある質問', url: '/docs/faq', type: 'guide' },
-      { title: 'トラブルシューティング', url: '/docs/troubleshooting', type: 'guide' },
       { title: 'サポート連絡先', url: '/docs/support', type: 'guide' },
-      { title: 'コミュニティフォーラム', url: '/docs/community-forum', type: 'guide' }
+      { title: 'テストガイドライン', url: '/docs/testing-guidelines', type: 'technical' },
+      { title: 'DAO機能説明', url: '/docs/dao/capabilities', type: 'guide' },
+      { title: 'ダウンロード', url: '/docs/downloads', type: 'guide' }
     ]
   }
 ]
@@ -86,25 +102,39 @@ const popularDocs = [
     url: '/docs/quickstart'
   },
   {
-    title: 'REST API リファレンス',
-    description: 'プロダクト管理、ユーザー認証、データ取得のAPI仕様',
+    title: 'Unson OS 技術アーキテクチャ',
+    description: 'AIエージェント主導のマイクロサービス自動生成プラットフォーム',
     readTime: '15分',
-    category: 'API',
-    url: '/docs/api/rest'
+    category: '技術',
+    url: '/docs/technical/architecture'
   },
   {
-    title: 'DAOトークノミクス解説',
-    description: '45-15-40収益分配モデルとトークン獲得方法',
-    readTime: '8分',
-    category: 'DAO',
-    url: '/docs/dao/tokenomics'
+    title: '自動サービス生成パイプライン',
+    description: 'アイデアから収益化まで自動化するパイプラインの詳細仕様',
+    readTime: '18分',
+    category: '技術',
+    url: '/docs/technical/pipeline'
   },
   {
     title: 'プロダクト開発プロセス',
     description: 'アイデアから24-48時間でのSaaS生成までの完全ガイド',
     readTime: '12分',
     category: '開発',
-    url: '/docs/development-process'
+    url: '/docs/development/process'
+  },
+  {
+    title: 'セットアップガイド',
+    description: 'Next.js 14環境の構築からデプロイまでを網羅した完全ガイド',
+    readTime: '15分',
+    category: '技術',
+    url: '/docs/development/setup-guide'
+  },
+  {
+    title: 'テストガイドライン',
+    description: 't_wada方式のTDDによる品質保証とMVP開発戦略',
+    readTime: '10分',
+    category: '技術',
+    url: '/docs/testing-guidelines'
   }
 ]
 
@@ -129,14 +159,14 @@ const sdksAndTools = [
     description: 'コマンドライン開発ツール',
     version: 'v1.5.1',
     language: 'CLI',
-    url: '/docs/tools/cli'
+    url: '/docs/sdk/cli'
   },
   {
-    name: 'VS Code拡張',
-    description: 'Visual Studio Code統合',
-    version: 'v1.2.0',
-    language: 'Extension',
-    url: '/docs/tools/vscode'
+    name: '開発ガイド',
+    description: 'セットアップと開発手順',
+    version: 'v1.0.0',
+    language: 'Guide',
+    url: '/docs/development/setup-guide'
   }
 ]
 
@@ -274,21 +304,21 @@ export default function DocsPage() {
                 </div>
                 <div className="space-y-2">
                   {section.items.map((item: any, itemIndex: number) => (
-                    <div key={itemIndex} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded transition-colors">
+                    <a key={itemIndex} href={item.url} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded transition-colors">
                       <div className="flex items-center">
                         <div className={`w-2 h-2 rounded-full mr-3 ${
                           item.type === 'guide' ? 'bg-blue-400' :
                           item.type === 'technical' ? 'bg-purple-400' :
                           'bg-green-400'
                         }`}></div>
-                        <span className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                        <span className="text-gray-700 hover:text-blue-600">
                           {item.title}
                         </span>
                       </div>
                       <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -370,13 +400,11 @@ export default function DocsPage() {
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <a href="/docs/quickstart" className="text-blue-600 hover:text-blue-800">クイックスタート</a>
             <span className="text-gray-300">|</span>
-            <a href="/docs/api" className="text-blue-600 hover:text-blue-800">API リファレンス</a>
-            <span className="text-gray-300">|</span>
-            <a href="/docs/sdk" className="text-blue-600 hover:text-blue-800">SDK</a>
+            <a href="/docs/sdk/javascript" className="text-blue-600 hover:text-blue-800">SDK</a>
             <span className="text-gray-300">|</span>
             <a href="/docs/support" className="text-blue-600 hover:text-blue-800">サポート</a>
             <span className="text-gray-300">|</span>
-            <a href="/docs/faq" className="text-blue-600 hover:text-blue-800">FAQ</a>
+            <a href="/docs/dao/guide" className="text-blue-600 hover:text-blue-800">DAO参加</a>
           </div>
         </div>
       </section>
