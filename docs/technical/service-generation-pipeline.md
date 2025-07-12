@@ -124,7 +124,7 @@ interface MVPTemplate {
   },
   backend: {
     runtime: "Convex",
-    database: "Neon",
+    database: "Convex",
     auth: "Clerk"
   },
   features: {

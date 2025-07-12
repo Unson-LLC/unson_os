@@ -7,90 +7,93 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **重要**: このプロジェクトで作業する際は、必ず日本語で応答してください。
 **IMPORTANT**: When working on this project, always respond in Japanese.
 
+## 🔧 開発４大原則
+
+**作業開始前に必ず確認・出力する原則：**
+
+- **YAGNI（You Aren't Gonna Need It）**：今必要じゃない機能は作らない
+- **DRY（Don't Repeat Yourself）**：同じコードを繰り返さない  
+- **KISS（Keep It Simple Stupid）**：シンプルに保つ
+- **Git Worktree活用**：機能別ブランチでの並列開発を最大化する
+
 ## Project Overview
 
-"Unson OS" - 100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステムの戦略立案リポジトリです。従来のソースコードではなく、日本語で書かれた戦略ドキュメントを中心に構成されています。
+"Unson OS" - 100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステムの戦略立案リポジトリです。
 
-## プロジェクトコンセプト
-
-Unson OSは以下の核心的概念を持つ自動SaaS生成プラットフォームです：
+### プロジェクトコンセプト
 - 100-200個のマイクロビジネスの高速作成・デプロイ
 - 24-48時間のプロダクトライフサイクル自動化
 - DAO型の利益共有によるコミュニティ主導開発
 - "Company-as-a-Product" アプローチ
 
-## リポジトリ構成
-
-```
-unson_os/
-├── README.md                                   # プロジェクト概要
-├── CLAUDE.md                                   # Claude Code設定
-├── docs/
-│   ├── executive-strategy-report.md            # 包括的戦略レポート
-│   ├── testing-guidelines.md                   # TDDガイドライン
-│   └── strategy/
-│       ├── saas-design-process.md              # SaaS設計プロセス
-│       ├── micro-business-strategy.md          # マイクロビジネス戦略
-│       ├── user-assumption-research.md         # ユーザーの思い込み調査手法
-│       └── mvp-validation-framework.md         # MVP検証フレームワーク
-└── .claude/                                    # Claude固有の設定
-```
-
-## 主要ドキュメント
-
-- **docs/executive-strategy-report.md**: 自動SaaS生成プラットフォームのエグゼクティブサマリーと包括的戦略
-- **docs/strategy/saas-design-process.md**: 問題特定と決済システムを含むテックタッチSaaSソリューション設計
-- **docs/strategy/micro-business-strategy.md**: 1-2個の大型ビジネスから100-200個の小規模収益性ビジネスへの転換
-- **docs/strategy/user-assumption-research.md**: 「破壊すべきユーザーの思い込み」を発見する調査手法
-- **docs/strategy/mvp-validation-framework.md**: 開発前のランディングページとユーザーテストによるSaaSアイデア検証プロセス
-- **docs/strategy/tokenomics-unified.md**: 統一されたトークノミクスと収益分配モデル（45-15-40）
-- **docs/strategy/dao-capabilities.md**: DAOメンバーができることの具体的な説明
+### 主要ドキュメント
+- **docs/executive-strategy-report.md**: エグゼクティブサマリーと包括的戦略
+- **docs/strategy/saas-design-process.md**: テックタッチSaaSソリューション設計
+- **docs/strategy/mvp-validation-framework.md**: MVP検証プロセス
+- **docs/testing-guidelines.md**: TDDガイドライン
 
 ## 開発方針
 
-### 戦略フェーズのガイドライン
+### 戦略フェーズ（現在）
+1. コード作成前にMVP検証から開始
+2. 戦略ドキュメントを参照して方針決定
+3. 日本語でのコンテンツ作成維持
+4. 迅速な実験と検証に焦点
 
-現在は戦略立案フェーズのため：
-1. 実装について問われた場合、ビジョンとアプローチについて戦略ドキュメントを参照
-2. コード作成を求められた場合、プロジェクトがアイデア段階であることを理解し、mvp-validation-framework.mdに記載のMVP検証から開始することを提案
-3. すべてのコンテンツは日本語で記載 - ドキュメント編集時は言語の一貫性を維持
-4. 構築前の迅速な実験と検証に焦点を当てる
+### 開発フェーズ（準備完了時）
+1. ユーザーの思い込みを特定
+2. ランディングページでアイデア検証
+3. 2週間サイクルでMVP構築
+4. テックタッチ運用（最小限の人的サポート）
+5. 月額定期収入をターゲット
 
-### 開発フェーズのアプローチ（準備完了時）
+## コード規約
 
-戦略ドキュメントに基づき、将来の開発は以下に従うべき：
-1. 破壊すべきユーザーの思い込みを特定（user-assumption-research.mdの手法）
-2. まずランディングページでアイデアを検証（mvp-validation-framework.mdのプロセス）
-3. 2週間サイクルでMVPを構築
-4. テックタッチ運用を目指す（最小限の人的サポート）
-5. 迅速な検証サイクルで月額定期収入をターゲット
-
-## コード規約（開発開始時）
-
-- コメントは追加しない（ユーザーが明示的に要求した場合を除く）
-- 既存のコーディングスタイルに従う
-- ライブラリの使用前に必ずpackage.jsonを確認（プロジェクト作成時）
+- コメントは追加しない（明示的要求時を除く）
+- 既存コーディングスタイルに従う
+- ライブラリ使用前にpackage.json確認
 
 ### Test-Driven Development (TDD)
-**必須**: t_wada方式のTDDに従ってください。テストを先に書き、Red-Green-Refactorサイクルを守ること。
+**必須**: t_wada方式のTDD、Red-Green-Refactorサイクル
 
-**重要なルール**:
-- Greenフェーズではベタ書き・ハードコードを許容する
-- **Refactorフェーズで必ずベタ書き・ハードコードを除去すること**
-- 最終的なコードにベタ書き・ハードコードが残ることは許されない
+**重要ルール**:
+- Greenフェーズ：ベタ書き・ハードコード許容
+- **Refactorフェーズ：ベタ書き・ハードコード必須除去**
+- 最終コードにハードコード残存禁止
 
-詳細: → `docs/testing-guidelines.md`
-
-## 重要な開発指針
-
-### MVP開発時の注意点
-- 2週間でMVP完成を目標
-- Stripe決済の早期実装
-- ユーザーフィードバックの継続的収集
-- DAU・転換率・継続率の計測
-
-### 検証指標
+## 検証指標
 - LP登録率：10%以上
 - 有料転換率：10%以上  
 - 7日後継続率：50%以上
 - MRR成長率：20%/月以上
+
+## 🔄 Claude Code ベストプラクティス
+
+### 基本ワークフロー
+1. **探索** → **計画** → **実装** → **コミット**
+2. **Git Worktree活用**: 並行開発の最大化
+3. **TDDサイクル**: Red-Green-Refactor厳守
+
+### ⚡ 頻用コマンド
+```bash
+# 開発・テスト
+npm run dev build test
+npx playwright test
+npm test -- --watch
+
+# Git Worktree
+git worktree add ../feature-branch -b feature/new-feature
+git worktree list
+git worktree remove ../feature-branch
+
+# 品質チェック
+npm run lint typecheck
+npm audit fix
+```
+
+### 📋 コミット前チェックリスト
+- [ ] テスト全通過
+- [ ] TypeScript・ESLintエラーなし
+- [ ] ビルド成功
+- [ ] 開発４大原則準拠
+- [ ] ベタ書き・ハードコード除去完了
