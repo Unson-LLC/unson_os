@@ -135,7 +135,7 @@ describe('WaitlistForm Component', () => {
   })
 
   it('should track analytics on form submission', async () => {
-    mockTrack.mockClear()
+    mockTrackWaitlistSignup.mockClear()
 
     render(<WaitlistForm />)
     
@@ -145,9 +145,10 @@ describe('WaitlistForm Component', () => {
     await user.click(screen.getByRole('button', { name: /登録/i }))
     
     await waitFor(() => {
-      expect(mockTrack).toHaveBeenCalledWith('waitlist_form_submitted', {
+      expect(mockTrackWaitlistSignup).toHaveBeenCalledWith({
+        email: 'test@example.com',
+        name: 'テストユーザー',
         role: 'developer',
-        hasName: true,
       })
     })
   })
