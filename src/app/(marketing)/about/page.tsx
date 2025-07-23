@@ -4,10 +4,10 @@ import { CTASection } from '@/components/sections/CTASection'
 
 export const metadata: Metadata = {
   title: 'Unson OSについて - 革新的SaaS自動生成プラットフォーム',
-  description: 'Unson OSのビジョン、ミッション、創設の背景。100-200個のマイクロSaaSを24-48時間で自動生成する革新的なプラットフォームの物語。',
+  description: 'Unson OSのビジョン、ミッション、創設の背景。100-200個のマイクロSaaSを2週間サイクルで自動生成する革新的なプラットフォームの物語。',
   openGraph: {
     title: 'Unson OSについて - 革新的SaaS自動生成プラットフォーム',
-    description: 'Unson OSのビジョン、ミッション、創設の背景。100-200個のマイクロSaaSを24-48時間で自動生成する革新的なプラットフォームの物語。',
+    description: 'Unson OSのビジョン、ミッション、創設の背景。100-200個のマイクロSaaSを2週間サイクルで自動生成する革新的なプラットフォームの物語。',
   },
 }
 
@@ -77,7 +77,7 @@ const milestones = [
   {
     date: '2024年3月',
     title: 'プロトタイプ完成',
-    description: '最初の自動生成SaaSプロトタイプが24時間で完成'
+    description: '最初の自動生成SaaSプロトタイプが2週間で完成'
   },
   {
     date: '2024年5月',
@@ -121,7 +121,7 @@ export default function AboutPage() {
             <p className="text-large max-w-4xl mx-auto mb-8">
               私たちは「Company-as-a-Product」というビジョンのもと、
               AIとDAOの力を組み合わせて、100-200個のマイクロSaaSプロダクトを
-              24-48時間で自動生成する革新的なプラットフォームを開発しています。
+              2週間サイクルで自動生成する革新的なプラットフォームを開発しています。
             </p>
           </div>
         </div>
@@ -141,7 +141,7 @@ export default function AboutPage() {
               <p className="text-gray-600 mb-4">
                 従来のSaaS開発には数ヶ月から数年の期間が必要でした。
                 しかし、私たちは大部分のプロセスを自動化することで、
-                アイデアからローンチまでを24-48時間に短縮できると信じています。
+                アイデアからローンチまでを2週間サイクルに短縮できると信じています。
               </p>
               <p className="text-gray-600">
                 この革新により、より多くの課題が解決され、

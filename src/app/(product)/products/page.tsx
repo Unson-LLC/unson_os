@@ -40,7 +40,7 @@ export default function ProductsPage() {
     },
     {
       label: '平均開発時間',
-      value: '24h',
+      value: '2週間',
       color: 'blue' as const
     },
     {
@@ -68,7 +68,7 @@ export default function ProductsPage() {
               </span>
             </h1>
             <p className="text-large max-w-3xl mx-auto mb-8">
-              Unson OSが24-48時間で自動生成する革新的なマイクロSaaSプロダクト。
+              Unson OSが2週間サイクルで自動生成する革新的なマイクロSaaSプロダクト。
               あらゆる業界の課題を解決する多様なソリューションをご覧ください。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -222,7 +222,7 @@ export default function ProductsPage() {
               </div>
               <h3 className="text-lg font-semibold mb-2">開発実行</h3>
               <p className="text-sm text-gray-600">
-                24-48時間でフル機能のSaaSプロダクトを自動構築
+                2週間サイクルでフル機能のSaaSプロダクトを自動構築
               </p>
             </div>
             

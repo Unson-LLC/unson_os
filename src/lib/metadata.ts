@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 const defaultMetadata = {
   siteName: 'Unson OS',
   defaultTitle: 'Unson OS - 自動SaaS生成プラットフォーム',
-  defaultDescription: '24-48時間で100-200個のマイクロSaaSを自動生成する革新的なプラットフォーム。DAOコミュニティと共に新しい価値を創造します。',
+  defaultDescription: '2週間サイクルで100-200個のマイクロSaaSを自動生成する革新的なプラットフォーム。DAOコミュニティと共に新しい価値を創造します。',
   url: 'https://unson.com',
   image: '/og-image.png'
 }

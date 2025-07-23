@@ -117,7 +117,7 @@ const popularDocs = [
   },
   {
     title: 'プロダクト開発プロセス',
-    description: 'アイデアから24-48時間でのSaaS生成までの完全ガイド',
+    description: 'アイデアから2週間サイクルでのSaaS生成までの完全ガイド',
     readTime: '12分',
     category: '開発',
     url: '/docs/development/process'

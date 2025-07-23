@@ -17,7 +17,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Unson OSは100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステムです。DAOコミュニティ主導で24-48時間のプロダクトライフサイクル自動化を実現します。" />
+        <meta name="description" content="Unson OSは100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステムです。DAOコミュニティ主導で2週間サイクルのプロダクトライフサイクル自動化を実現します。" />
         <meta name="keywords" content="SaaS,自動生成,マイクロビジネス,DAO,プラットフォーム,Unson OS" />
         <script
           type="application/ld+json"

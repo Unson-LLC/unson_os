@@ -462,7 +462,7 @@ export default function DevelopmentProcessPage() {
                 <div>
                   <strong className="text-gray-900">最低収集期間</strong>
                   <ul className="mt-2 space-y-1 text-gray-600">
-                    <li>• 初期トラフィック獲得：24-48時間</li>
+                    <li>• 初期トラフィック獲得：2-3日</li>
                     <li>• 統計的有意性確保：72-168時間（3-7日）</li>
                     <li>• 季節性・曜日効果考慮：最低1週間</li>
                   </ul>

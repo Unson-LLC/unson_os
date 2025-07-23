@@ -17,8 +17,8 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="text-large max-w-3xl mx-auto mb-8">
-              100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステム。
-              DAOコミュニティ主導で24-48時間のプロダクトライフサイクル自動化を実現します。
+              AIが市場の超ニッチなニーズを発見し、特定のペルソナ専用の専門特化型SaaSを2週間サイクルで自動生成。
+              営業ゼロで100-200個のマイクロビジネスを同時運営する革新的な自律企業OSです。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {[
@@ -53,9 +53,9 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3">高速自動生成</h3>
+              <h3 className="text-xl font-semibold mb-3">2週間自動化サイクル</h3>
               <p className="text-gray-600">
-                24-48時間でマイクロSaaSプロダクトを自動生成。アイデアから収益化まで最短経路を実現。
+                課題検知→LP作成→MVP開発→課金開始を2週間サイクルで実現。AIが超ニッチなニーズを発見し、特定のペルソナ専用SaaSを自動生成。
               </p>
             </div>
             
@@ -77,9 +77,64 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3">スケーラブル収益</h3>
+              <h3 className="text-xl font-semibold mb-3">営業ゼロドクトリン</h3>
               <p className="text-gray-600">
-                100-200個の小規模ビジネスで分散リスク。多様な収益源による安定した成長モデル。
+                人的な営業組織を一切持たず、マーケティングから顧客サポートまですべてを自動化・コード化。100-200個の小規模ビジネスで分散リスク。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 背景・コンセプトセクション */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="heading-secondary text-center mb-8">
+              AI時代の新しい働き方への転換
+            </h2>
+            <div className="text-center mb-12">
+              <p className="text-large mb-6">
+                生成AIの圧倒的な進化により、従来の「人間が働いて収益を得る」構造から、
+                「AIに働いてもらい、人間は仕組みを構築してその活動から継続的な収益を得る」
+                新しいパラダイムへの転換が急務となっています。
+              </p>
+              <p className="text-gray-600">
+                Unson OSは、AIの活動そのものが価値を創出し、その価値から継続的に収益を分配する仕組みを実現。
+                AIの進化が人間の雇用を奪うのではなく、新しい形の協働と価値創造を可能にします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 生成されるSaaS例セクション */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <h2 className="heading-secondary text-center mb-8">
+            生成される専門特化型SaaS例
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            AIが特定の人物像の深いニーズを発見し、その人だけが抱える課題を解決するために設計された
+            超専門特化型のアプリケーションです。
+          </p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-3 text-blue-600">
+                「週3リモートの30代エンジニア男性向け」恋愛コーチングアプリ
+              </h3>
+              <p className="text-gray-600 mb-4">
+                内向的で技術力は高いが対人関係が苦手という極めて限定的なペルソナ専用。
+                技術者の思考パターンに合わせた論理的なアプローチで恋愛スキルを体系化。
+              </p>
+            </div>
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-3 text-green-600">
+                「小学生2人を育てる時短勤務ワーママ向け」キャリア再構築サービス
+              </h3>
+              <p className="text-gray-600 mb-4">
+                育児と仕事の狭間で自分のキャリアに悩む特定の状況にある女性のみをターゲット。
+                その人生ステージ特有の制約条件下での最適なキャリア戦略を提案。
               </p>
             </div>
           </div>
@@ -113,8 +168,8 @@ export default function HomePage() {
               <div className="text-gray-600">マイクロSaaSプロダクト</div>
             </div>
             <div className="animate-fade-in">
-              <div className="text-3xl font-bold text-green-600 mb-2">24-48h</div>
-              <div className="text-gray-600">プロダクト生成時間</div>
+              <div className="text-3xl font-bold text-green-600 mb-2">2週間</div>
+              <div className="text-gray-600">自動化サイクル</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-3xl font-bold text-purple-600 mb-2">45-15-40</div>
@@ -130,11 +185,11 @@ export default function HomePage() {
 
       {/* CTAセクション */}
       <CTASection
-        title="革新的なSaaSエコシステムに参加"
-        subtitle="「Company-as-a-Product」アプローチで、新しいビジネスの未来を共に創造しましょう。"
+        title="次世代のSaaSエコシステムに参加"
+        subtitle="営業ゼロで自動運営される100-200個のマイクロビジネス。AIと人間の新しい協働モデルを共に創造しましょう。"
         actions={[
-          { label: '無料で始める', href: '/waitlist' },
-          { label: '料金プラン', href: '/pricing', variant: 'outline' }
+          { label: 'コミュニティに参加', href: '/community' },
+          { label: 'ウェイトリスト登録', href: '/waitlist', variant: 'outline' }
         ]}
       />
     </div>

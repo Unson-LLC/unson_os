@@ -586,7 +586,7 @@ export default function MVPValidationFrameworkPage() {
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">データ収集時間</h4>
                 <ul className="space-y-1 text-gray-600">
-                  <li>• 初期トラフィック獲得：24-48時間</li>
+                  <li>• 初期トラフィック獲得：2-3日</li>
                   <li>• 統計的有意性確保：72-168時間（3-7日）</li>
                   <li>• 季節性・曜日効果考慮：最低1週間</li>
                 </ul>

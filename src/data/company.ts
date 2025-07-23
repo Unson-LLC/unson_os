@@ -115,7 +115,7 @@ export const milestones: Milestone[] = [
   {
     date: '2024年3月',
     title: 'プロトタイプ完成',
-    description: '最初の自動生成SaaSプロトタイプが24時間で完成'
+    description: '最初の自動生成SaaSプロトタイプが2週間で完成'
   },
   {
     date: '2024年5月',
