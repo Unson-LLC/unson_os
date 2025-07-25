@@ -5,6 +5,8 @@ import { DocsLayout } from '@/components/layout/DocsLayout'
 import { Button } from '@/components/ui/Button'
 import { Tabs } from '@/components/ui/Tabs'
 import { Accordion } from '@/components/ui/Accordion'
+import { StatusBadge } from '@/components/docs/StatusBadge'
+import { ExpectationBanner } from '@/components/docs/ExpectationBanner'
 
 export default function SetupGuidePage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
@@ -251,6 +253,9 @@ npm run build --verbose`}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
           <div className="text-center animate-fade-in">
+            <div className="flex justify-center items-center gap-3 mb-4">
+              <StatusBadge status="available" size="lg" />
+            </div>
             <h1 className="heading-primary text-gray-900 mb-6">
               UnsonOS LP 
               <span className="block text-blue-600 mt-2">

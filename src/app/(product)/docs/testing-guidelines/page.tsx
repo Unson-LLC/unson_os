@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button'
 import { Tabs } from '@/components/ui/Tabs'
 import { Accordion } from '@/components/ui/Accordion'
 import { DocsLayout } from '@/components/layout/DocsLayout'
+import { StatusBadge } from '@/components/docs/StatusBadge'
 
 export default function TestingGuidelinesPage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
@@ -386,6 +387,9 @@ npm run test:e2e`}
       <section className="section-padding bg-gradient-to-br from-green-50 to-blue-50">
         <div className="container-custom">
           <div className="text-center animate-fade-in">
+            <div className="flex justify-center items-center gap-3 mb-4">
+              <StatusBadge status="available" size="lg" />
+            </div>
             <h1 className="heading-primary text-gray-900 mb-6">
               テスト
               <span className="block text-green-600 mt-2">

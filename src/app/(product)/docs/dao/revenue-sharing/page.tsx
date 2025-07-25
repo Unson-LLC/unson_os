@@ -2,14 +2,26 @@
 
 import { Button } from '@/components/ui/Button'
 import { DocsLayout } from '@/components/layout/DocsLayout'
+import { StatusBadge } from '@/components/docs/StatusBadge'
+import { ExpectationBanner } from '@/components/docs/ExpectationBanner'
 
 export default function RevenueSharing() {
   return (
     <DocsLayout>
+      {/* 期待値管理バナー */}
+      <ExpectationBanner 
+        status="future" 
+        estimatedLaunch="2025年後半〜2026年"
+        className="mb-6"
+      />
+      
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-green-50 to-emerald-50">
         <div className="container-custom">
           <div className="text-center animate-fade-in">
+            <div className="flex justify-center items-center gap-3 mb-4">
+              <StatusBadge status="future" size="lg" />
+            </div>
             <h1 className="heading-primary text-gray-900 mb-6">
               DAO収益分配システム
               <span className="block text-green-600 mt-2">

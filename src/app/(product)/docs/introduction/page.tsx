@@ -2,33 +2,48 @@
 
 import { Button } from '@/components/ui/Button'
 import { DocsLayout } from '@/components/layout/DocsLayout'
+import { StatusBadge } from '@/components/docs/StatusBadge'
+import { ExpectationBanner } from '@/components/docs/ExpectationBanner'
 
 export default function IntroductionPage() {
   return (
     <DocsLayout>
+      {/* 期待値管理バナー */}
+      <ExpectationBanner 
+        status="future" 
+        estimatedLaunch="2025年中頃"
+        className="mb-6"
+      />
+      
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
           <div className="text-center animate-fade-in">
+            <div className="flex justify-center items-center gap-3 mb-4">
+              <StatusBadge status="future" size="lg" />
+            </div>
             <h1 className="heading-primary text-gray-900 mb-6">
-              Unson OS へようこそ
+              Unson OS 構想
               <span className="block text-blue-600 mt-2">
-                営業ゼロで価値を連続出荷する自律企業OS
+                AIに仕事を奪われる、ではなくAIが稼ぐ時代へ
               </span>
             </h1>
             <p className="text-large max-w-4xl mx-auto mb-8">
-              人間とAIが協働し、100個のマイクロSaaSを自動生成・運営する革新的なプラットフォーム。
-              2週間サイクルで課題を発見し、MVPから課金まで完全自動化します。
+              UnsonOSは、AIを使って100個のマイクロSaaSを自動生成・運営するプラットフォーム構想です。<br />
+              AIの進化を恐れるのではなく、AIと共に豊かになる仕組みを作ります。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/docs/quickstart">
-                <Button size="lg" className="w-full sm:w-auto">
-                  クイックスタート 【執筆中】
+              <a href="https://discord.gg/unsonos" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="w-full sm:w-auto bg-[#5865F2] hover:bg-[#4752C4]">
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                  </svg>
+                  Discordで構想に参加
                 </Button>
               </a>
-              <a href="/docs/platform-overview">
+              <a href="/docs/dao/overview">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  プラットフォーム概要 【執筆中】
+                  将来のDAO構想を見る
                 </Button>
               </a>
             </div>
@@ -136,21 +151,26 @@ export default function IntroductionPage() {
         </div>
       </section>
 
-      {/* 雲孫OS構想 */}
+      {/* UnsonOS構想 */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <h2 className="heading-secondary text-center mb-12">雲孫OS構想</h2>
+          <h2 className="heading-secondary text-center mb-12">UnsonOS構想</h2>
           <div className="max-w-4xl mx-auto">
             <div className="card">
               <div className="text-center mb-8">
                 <span className="text-6xl mb-4 block">🏭</span>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                  3年で100個のマイクロサービスを自動生成
+                  100個のSaaSビジネスをAIが自動運営
                 </h3>
                 <p className="text-large">
-                  世界標準の自律企業OSプラットフォームを構築し、
-                  Company-as-a-Productアプローチで革新的なビジネスモデルを確立
+                  あなたがアイデアを提供し、AIがビジネスを運営。<br />
+                  収益はコミュニティ全体で分配する新しい仕組みを構想中
                 </p>
+                <div className="bg-blue-50 rounded-lg p-4 mt-6">
+                  <p className="text-blue-800 text-sm">
+                    💡 この構想を実現するための技術選定、アーキテクチャ設計、ビジネスモデル検討を一緒に行ってくださる方を募集中です。
+                  </p>
+                </div>
               </div>
               
               <div className="grid md:grid-cols-2 gap-8">
@@ -199,15 +219,20 @@ export default function IntroductionPage() {
         </div>
       </section>
 
-      {/* 3年間ロードマップ */}
+      {/* ロードマップ（構想） */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
-          <h2 className="heading-secondary text-center mb-12">3年間のロードマップ</h2>
+          <h2 className="heading-secondary text-center mb-12">ロードマップ（構想）</h2>
+          <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4 max-w-2xl mx-auto mb-8">
+            <p className="text-yellow-800 text-sm text-center">
+              ⚠️ 以下は目指すべきマイルストーンであり、現在の開発状況によって変更される可能性があります。
+            </p>
+          </div>
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="card">
               <div className="text-center mb-4">
                 <span className="text-4xl mb-2 block">📋</span>
-                <h3 className="text-xl font-semibold text-gray-900">Year 1: 基盤構築</h3>
+                <h3 className="text-xl font-semibold text-gray-900">2025年: 基盤構築</h3>
               </div>
               <div className="space-y-2 text-gray-600">
                 <div className="flex items-center">
@@ -232,7 +257,7 @@ export default function IntroductionPage() {
             <div className="card">
               <div className="text-center mb-4">
                 <span className="text-4xl mb-2 block">📈</span>
-                <h3 className="text-xl font-semibold text-gray-900">Year 2: スケール</h3>
+                <h3 className="text-xl font-semibold text-gray-900">2026年: スケール</h3>
               </div>
               <div className="space-y-2 text-gray-600">
                 <div className="flex items-center">
@@ -257,7 +282,7 @@ export default function IntroductionPage() {
             <div className="card">
               <div className="text-center mb-4">
                 <span className="text-4xl mb-2 block">🌐</span>
-                <h3 className="text-xl font-semibold text-gray-900">Year 3: エコシステム</h3>
+                <h3 className="text-xl font-semibold text-gray-900">2027年: エコシステム</h3>
               </div>
               <div className="space-y-2 text-gray-600">
                 <div className="flex items-center">
@@ -348,26 +373,35 @@ export default function IntroductionPage() {
       </section>
 
       {/* 次のステップ */}
-      <section className="section-padding bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="container-custom text-center">
-          <h2 className="heading-secondary mb-6">さあ、始めましょう</h2>
-          <p className="text-large mb-8 text-blue-100">
-            Unson OSプラットフォームで、あなたのアイデアを収益性のあるSaaSに変えてみませんか？
+          <h2 className="heading-secondary mb-6">一緒に未来を作りませんか？</h2>
+          <p className="text-large mb-8 text-gray-300">
+            AIに仕事を奪われる恐怖から、AIと共に豊かになる希望へ。<br />
+            UnsonOS構想を一緒に実現する共創メンバーを募集中です。
           </p>
+          <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-8">
+            <p className="text-yellow-200 text-sm">
+              ⚠️ 現在は構想・設計段階です。実際の収益分配は2025年後半以降を予定しています。
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/docs/quickstart">
-              <Button variant="secondary" size="lg">
-                クイックスタート 【執筆中】
+            <a href="https://discord.gg/unsonos" target="_blank" rel="noopener noreferrer">
+              <Button variant="secondary" size="lg" className="bg-[#5865F2] hover:bg-[#4752C4] border-0">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                </svg>
+                Discordで議論に参加 →
               </Button>
             </a>
-            <a href="/docs/platform-overview">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600">
-                プラットフォーム概要 【執筆中】
+            <a href="/docs/dao/overview">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-gray-900">
+                DAO構想を見る
               </Button>
             </a>
-            <a href="/docs/architecture">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600">
-                アーキテクチャ 【執筆中】
+            <a href="/">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-gray-900">
+                ホームに戻る
               </Button>
             </a>
           </div>
@@ -378,15 +412,15 @@ export default function IntroductionPage() {
       <section className="py-8 bg-gray-50">
         <div className="container-custom">
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <a href="/docs/quickstart" className="text-blue-600 hover:text-blue-800">クイックスタート</a>
+            <a href="/docs/dao/overview" className="text-blue-600 hover:text-blue-800">DAO構想</a>
             <span className="text-gray-300">|</span>
-            <a href="/docs/platform-overview" className="text-blue-600 hover:text-blue-800">プラットフォーム概要</a>
+            <a href="/docs/technical/architecture" className="text-blue-600 hover:text-blue-800">技術設計</a>
             <span className="text-gray-300">|</span>
-            <a href="/docs/architecture" className="text-blue-600 hover:text-blue-800">アーキテクチャ</a>
+            <a href="/docs/strategy/mvp-validation" className="text-blue-600 hover:text-blue-800">MVP検証</a>
             <span className="text-gray-300">|</span>
-            <a href="/docs/development-process" className="text-blue-600 hover:text-blue-800">開発プロセス</a>
+            <a href="https://discord.gg/unsonos" className="text-blue-600 hover:text-blue-800">Discord</a>
             <span className="text-gray-300">|</span>
-            <a href="/docs/dao/overview" className="text-blue-600 hover:text-blue-800">DAO ガバナンス</a>
+            <a href="/community" className="text-blue-600 hover:text-blue-800">コミュニティ</a>
           </div>
         </div>
       </section>

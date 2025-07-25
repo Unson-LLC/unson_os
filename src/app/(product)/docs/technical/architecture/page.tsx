@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
 import { CTASection } from '@/components/sections/CTASection'
 import { DocsLayout } from '@/components/layout/DocsLayout'
+import { StatusBadge } from '@/components/docs/StatusBadge'
+import { ExpectationBanner } from '@/components/docs/ExpectationBanner'
 
 export const metadata: Metadata = {
   title: 'Unson OS 技術アーキテクチャ - Unson OS ドキュメント',
@@ -205,11 +207,19 @@ export default function UnsonOSArchitecturePage() {
   
   return (
     <DocsLayout>
+      {/* 期待値管理バナー */}
+      <ExpectationBanner 
+        status="in-discussion" 
+        className="mb-6"
+      />
+      
       {/* ヒーローセクション */}
       <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center items-center gap-2 text-sm text-blue-600 mb-4">
+              <StatusBadge status="in-discussion" size="md" />
+              <span>•</span>
               <span>📖 読み時間：{readingTime}</span>
               <span>•</span>
               <span>🔄 最終更新：2025年7月</span>

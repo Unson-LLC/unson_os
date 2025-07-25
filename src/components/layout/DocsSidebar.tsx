@@ -3,84 +3,113 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { getStatusIcon } from '@/components/docs/StatusBadge'
+import type { DocStatus } from '@/components/docs/StatusBadge'
+
+// ドキュメントアイテムの型定義
+interface DocItem {
+  title: string
+  url: string
+  type: 'guide' | 'technical'
+  status: DocStatus
+}
+
+interface DocSection {
+  title: string
+  icon: string
+  items: DocItem[]
+  priority?: 'high' | 'normal'
+}
 
 // ドキュメント構造データ
-const documentationSections = [
+const documentationSections: DocSection[] = [
+  {
+    title: '🟢 今すぐできること',
+    icon: '⚡',
+    priority: 'high',
+    items: [
+      { title: 'Discord参加', url: 'https://discord.gg/unsonos', type: 'guide', status: 'available' },
+      { title: 'GitHub Issues', url: 'https://github.com/Unson-LLC/unson_os/issues', type: 'guide', status: 'available' },
+      { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical', status: 'available' },
+      { title: 'テストガイドライン', url: '/docs/testing-guidelines', type: 'technical', status: 'available' },
+      { title: 'コミュニティ参加', url: '/community', type: 'guide', status: 'available' }
+    ]
+  },
   {
     title: 'はじめに',
     icon: '🚀',
     items: [
-      { title: 'Unson OSとは', url: '/docs/introduction', type: 'guide' },
-      { title: 'クイックスタート', url: '/docs/quickstart', type: 'guide' },
-      { title: 'プラットフォーム概要', url: '/docs/platform-overview', type: 'guide' },
-      { title: '技術アーキテクチャ', url: '/docs/technical/architecture', type: 'technical' }
+      { title: 'Unson OSとは', url: '/docs/introduction', type: 'guide', status: 'future' },
+      { title: 'クイックスタート', url: '/docs/quickstart', type: 'guide', status: 'available' },
+      { title: 'プラットフォーム概要', url: '/docs/platform-overview', type: 'guide', status: 'in-discussion' },
+      { title: '技術アーキテクチャ', url: '/docs/technical/architecture', type: 'technical', status: 'in-discussion' }
     ]
   },
   {
     title: 'プロダクト開発',
     icon: '⚡',
     items: [
-      { title: '開発プロセス', url: '/docs/development/process', type: 'guide' },
-      { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical' },
-      { title: 'API仕様書', url: '/docs/api', type: 'technical' },
-      { title: 'SDK & ツール', url: '/docs/sdk', type: 'technical' }
+      { title: '開発プロセス', url: '/docs/development/process', type: 'guide', status: 'in-discussion' },
+      { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical', status: 'available' },
+      { title: 'API仕様書', url: '/docs/api', type: 'technical', status: 'future' },
+      { title: 'SDK & ツール', url: '/docs/sdk', type: 'technical', status: 'future' }
     ]
   },
   {
     title: '開発・技術',
     icon: '🔧',
     items: [
-      { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical' },
-      { title: 'フロントエンド構造', url: '/docs/development/frontend-structure', type: 'technical' },
-      { title: 'フォルダ構造ガイド', url: '/docs/development/folder-structure-guide', type: 'technical' },
-      { title: 'テストガイドライン', url: '/docs/testing-guidelines', type: 'technical' },
-      { title: 'API テスト完全ガイド', url: '/docs/development/api-tests-complete', type: 'technical' },
-      { title: 'Node.js バージョン管理', url: '/docs/development/node-version-management', type: 'technical' }
+      { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical', status: 'available' },
+      { title: 'フロントエンド構造', url: '/docs/development/frontend-structure', type: 'technical', status: 'available' },
+      { title: 'フォルダ構造ガイド', url: '/docs/development/folder-structure-guide', type: 'technical', status: 'available' },
+      { title: 'テストガイドライン', url: '/docs/testing-guidelines', type: 'technical', status: 'available' },
+      { title: 'API テスト完全ガイド', url: '/docs/development/api-tests-complete', type: 'technical', status: 'available' },
+      { title: 'Node.js バージョン管理', url: '/docs/development/node-version-management', type: 'technical', status: 'available' }
     ]
   },
   {
     title: '戦略・企画',
     icon: '🎯',
     items: [
-      { title: 'マイクロビジネス戦略', url: '/docs/strategy/micro-business', type: 'guide' },
-      { title: 'MVP検証フレームワーク', url: '/docs/strategy/mvp-validation', type: 'guide' },
-      { title: 'SaaS設計プロセス', url: '/docs/strategy/saas-design', type: 'technical' },
-      { title: 'サービス生成パイプライン', url: '/docs/technical/pipeline', type: 'technical' },
-      { title: '設計仕様書', url: '/docs/design/specification', type: 'technical' }
+      { title: 'マイクロビジネス戦略', url: '/docs/strategy/micro-business', type: 'guide', status: 'future' },
+      { title: 'MVP検証フレームワーク', url: '/docs/strategy/mvp-validation', type: 'guide', status: 'future' },
+      { title: 'SaaS設計プロセス', url: '/docs/strategy/saas-design', type: 'technical', status: 'future' },
+      { title: 'サービス生成パイプライン', url: '/docs/technical/pipeline', type: 'technical', status: 'in-discussion' },
+      { title: '設計仕様書', url: '/docs/design/specification', type: 'technical', status: 'in-discussion' }
     ]
   },
   {
     title: 'DAOガバナンス',
     icon: '🗳️',
     items: [
-      { title: 'はじめてのDAO（超初心者向け）', url: '/docs/dao/guide', type: 'guide' },
-      { title: 'DAO完全ガイド', url: '/docs/dao/overview', type: 'guide' },
-      { title: '提案と投票', url: '/docs/dao/proposals', type: 'guide' },
-      { title: '収益分配', url: '/docs/dao/revenue-sharing', type: 'guide' },
-      { title: 'DAOでできること', url: '/docs/dao/capabilities', type: 'guide' },
-      { title: 'DAO構造とガバナンス', url: '/docs/dao/structure', type: 'technical' },
-      { title: 'DAOコンセプト設計書', url: '/docs/dao/concept', type: 'technical' },
-      { title: 'トークノミクス（YGG参考モデル）', url: '/docs/dao/unified-tokenomics', type: 'technical' }
+      { title: 'はじめてのDAO（超初心者向け）', url: '/docs/dao/guide', type: 'guide', status: 'future' },
+      { title: 'DAO完全ガイド', url: '/docs/dao/overview', type: 'guide', status: 'future' },
+      { title: '提案と投票', url: '/docs/dao/proposals', type: 'guide', status: 'future' },
+      { title: '収益分配', url: '/docs/dao/revenue-sharing', type: 'guide', status: 'future' },
+      { title: 'DAOでできること', url: '/docs/dao/capabilities', type: 'guide', status: 'future' },
+      { title: 'DAO構造とガバナンス', url: '/docs/dao/structure', type: 'technical', status: 'future' },
+      { title: 'DAOコンセプト設計書', url: '/docs/dao/concept', type: 'technical', status: 'future' },
+      { title: 'トークノミクス（YGG参考モデル）', url: '/docs/dao/unified-tokenomics', type: 'technical', status: 'future' }
     ]
   },
   {
     title: 'チーム・組織',
     icon: '👥',
     items: [
-      { title: 'チームメンバー', url: '/docs/team', type: 'guide' },
-      { title: '最新更新情報', url: '/docs/updates', type: 'guide' },
-      { title: '組織文化とバリュー', url: '/docs/culture', type: 'guide' },
-      { title: '参加方法', url: '/docs/join', type: 'guide' }
+      { title: 'チームメンバー', url: '/docs/team', type: 'guide', status: 'available' },
+      { title: '最新更新情報', url: '/docs/updates', type: 'guide', status: 'available' },
+      { title: '組織文化とバリュー', url: '/docs/culture', type: 'guide', status: 'in-discussion' },
+      { title: '参加方法', url: '/docs/join', type: 'guide', status: 'available' }
     ]
   },
   {
     title: 'サポート',
     icon: '❓',
     items: [
-      { title: 'よくある質問', url: '/docs/faq', type: 'guide' },
-      { title: 'トラブルシューティング', url: '/docs/troubleshooting', type: 'guide' },
-      { title: 'サポート連絡先', url: '/docs/support', type: 'guide' },
-      { title: 'コミュニティフォーラム', url: '/docs/community-forum', type: 'guide' }
+      { title: 'よくある質問', url: '/docs/faq', type: 'guide', status: 'available' },
+      { title: 'トラブルシューティング', url: '/docs/troubleshooting', type: 'guide', status: 'available' },
+      { title: 'サポート連絡先', url: '/docs/support', type: 'guide', status: 'available' },
+      { title: 'コミュニティフォーラム', url: '/docs/community-forum', type: 'guide', status: 'future' }
     ]
   }
 ]
@@ -95,6 +124,11 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
     // 現在のパスに基づいて関連セクションを自動展開
     const expanded: number[] = []
     documentationSections.forEach((section, sectionIndex) => {
+      // 高優先度セクション（今すぐできること）は常に展開
+      if (section.priority === 'high') {
+        expanded.push(sectionIndex)
+      }
+      // 現在のパスに該当するセクションも展開
       if (section.items.some(item => pathname === item.url)) {
         expanded.push(sectionIndex)
       }
@@ -128,9 +162,11 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
                 <button
                   onClick={() => toggleSection(sectionIndex)}
                   className={`w-full flex items-center justify-between p-2 text-left rounded-md transition-colors ${
-                    hasActiveItem 
-                      ? 'bg-blue-50 text-blue-900' 
-                      : 'text-gray-700 hover:bg-gray-50'
+                    section.priority === 'high'
+                      ? 'bg-green-50 text-green-900 font-medium border border-green-200'
+                      : hasActiveItem 
+                        ? 'bg-blue-50 text-blue-900' 
+                        : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   <div className="flex items-center space-x-2">
@@ -153,25 +189,49 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
                   <div className="ml-6 mt-1 space-y-1">
                     {section.items.map((item, itemIndex) => {
                       const isActive = pathname === item.url
+                      const isExternal = item.url.startsWith('http')
+                      
+                      const linkContent = (
+                        <>
+                          <span className="text-base mr-2">{getStatusIcon(item.status)}</span>
+                          <span className="flex-1">{item.title}</span>
+                          {isExternal && (
+                            <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          )}
+                        </>
+                      )
+                      
+                      if (isExternal) {
+                        return (
+                          <a
+                            key={itemIndex}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center p-2 text-sm rounded-md transition-colors ${
+                              isActive
+                                ? 'bg-blue-100 text-blue-800 font-medium'
+                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                            }`}
+                          >
+                            {linkContent}
+                          </a>
+                        )
+                      }
                       
                       return (
                         <Link
                           key={itemIndex}
                           href={item.url}
-                          className={`flex items-center space-x-2 p-2 text-sm rounded-md transition-colors ${
+                          className={`flex items-center p-2 text-sm rounded-md transition-colors ${
                             isActive
                               ? 'bg-blue-100 text-blue-800 font-medium'
                               : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                           }`}
                         >
-                          <div
-                            className={`w-2 h-2 rounded-full ${
-                              item.type === 'guide' ? 'bg-blue-400' :
-                              item.type === 'technical' ? 'bg-purple-400' :
-                              'bg-green-400'
-                            }`}
-                          />
-                          <span>{item.title}</span>
+                          {linkContent}
                         </Link>
                       )
                     })}

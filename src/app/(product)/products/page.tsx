@@ -58,28 +58,33 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="section-padding bg-gradient-to-br from-purple-50 to-blue-50">
+      <section className="section-padding bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="container-custom">
           <div className="text-center animate-fade-in">
-            <h1 className="heading-primary text-gray-900 mb-6">
-              自動生成プロダクト
-              <span className="block text-purple-600 mt-2">
-                100-200のマイクロSaaS
+            <h1 className="heading-primary text-white mb-6">
+              AIが生み出す
+              <span className="block text-blue-400 mt-2">
+                100個のSaaSビジネス
               </span>
             </h1>
-            <p className="text-large max-w-3xl mx-auto mb-8">
-              Unson OSが2週間サイクルで自動生成する革新的なマイクロSaaSプロダクト。
-              あらゆる業界の課題を解決する多様なソリューションをご覧ください。
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              これらは構想段階のプロダクト例です。UnsonOSが完成すれば、
+              AIが市場の超ニッチなニーズを発見し、24時間でこのようなSaaSを自動生成します。
             </p>
+            <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-8">
+              <p className="text-yellow-200 text-sm">
+                ⚠️ 注意：以下は将来生成予定のプロダクト例です。現在は構想・設計段階のため、実際には利用できません。
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#products-list">
-                <Button variant="default" size="lg">
-                  プロダクトを探索
+              <a href="https://discord.gg/unsonos">
+                <Button className="bg-[#5865F2] hover:bg-[#4752C4] text-white">
+                  💬 Discordで開発状況を確認
                 </Button>
               </a>
-              <a href="/contact?type=custom-product">
-                <Button variant="outline" size="lg">
-                  カスタムプロダクト依頼
+              <a href="#products-list">
+                <Button variant="outline" className="border-gray-300 text-white">
+                  プロダクト例を見る
                 </Button>
               </a>
             </div>
@@ -143,39 +148,25 @@ export default function ProductsPage() {
                 
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <div className="text-lg font-semibold text-gray-900">{product.price}</div>
-                    <div className="text-xs text-gray-500">{product.users} ユーザー</div>
+                    <div className="text-lg font-semibold text-gray-900">予定価格: {product.price}</div>
+                    <div className="text-xs text-gray-500">想定ユーザー: {product.users}</div>
                   </div>
                   <div>
-                    {product.status === 'active' && (
-                      <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
-                        利用可能
-                      </span>
-                    )}
-                    {product.status === 'beta' && (
-                      <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full">
-                        ベータ版
-                      </span>
-                    )}
-                    {product.status === 'coming-soon' && (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                        準備中
-                      </span>
-                    )}
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                      構想段階
+                    </span>
                   </div>
                 </div>
                 
                 <div className="flex gap-2">
                   <a href={`/products/${product.id}`} className="flex-1">
                     <Button size="sm" className="w-full">
-                      詳細を見る
+                      コンセプト詳細
                     </Button>
                   </a>
-                  <a href={`/trial/${product.id}`} className="flex-1">
-                    <Button variant="outline" size="sm" className="w-full">
-                      試用開始
-                    </Button>
-                  </a>
+                  <Button variant="outline" size="sm" className="w-full flex-1" disabled>
+                    開発予定
+                  </Button>
                 </div>
               </div>
             ))}
@@ -188,10 +179,10 @@ export default function ProductsPage() {
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="heading-secondary mb-6">
-              自動プロダクト生成プロセス
+              将来の自動プロダクト生成プロセス（構想）
             </h2>
             <p className="text-large max-w-2xl mx-auto text-gray-600">
-              AIとDAOコミュニティの力を組み合わせた革新的な開発プロセス
+              UnsonOS完成後に実現予定の革新的な開発プロセス
             </p>
           </div>
           
@@ -240,23 +231,27 @@ export default function ProductsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="container-custom text-center">
           <h2 className="heading-secondary mb-6">
-            あなたのアイデアをプロダクトに
+            一緒にUnsonOSを作りませんか？
           </h2>
-          <p className="text-large mb-8 text-purple-100">
-            Unson OSでカスタムSaaSプロダクトの開発をリクエストできます
+          <p className="text-large mb-8 text-gray-300">
+            これらのプロダクトを実現するため、初期メンバーとして開発に参加しませんか？
+            アイデア出し、設計、開発、テストなど様々な形で貢献いただけます。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact?type=product-request">
-              <Button variant="secondary" size="lg">
-                プロダクト開発をリクエスト
+            <a href="https://discord.gg/unsonos">
+              <Button className="bg-[#5865F2] hover:bg-[#4752C4] text-white" size="lg">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                </svg>
+                共創メンバーとして参加
               </Button>
             </a>
-            <a href="/contact?type=partnership">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-purple-600">
-                パートナーシップを相談
+            <a href="/">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-gray-900">
+                UnsonOSについて詳しく
               </Button>
             </a>
           </div>
