@@ -19,8 +19,30 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Unson OSは100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステムです。DAOコミュニティ主導で2週間サイクルのプロダクトライフサイクル自動化を実現します。" />
-        <meta name="keywords" content="SaaS,自動生成,マイクロビジネス,DAO,プラットフォーム,Unson OS" />
+        <meta name="description" content="AIに仕事を奪われる恐怖から、AIと共に豊かになる希望へ。Unson OSは100個のマイクロSaaSを自動生成・運営し、収益を分配する革新的なプラットフォームです。" />
+        <meta name="keywords" content="AI,SaaS,自動化,DAO,マイクロビジネス,収益分配,Unson OS" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://os.unson.jp/" />
+        <meta property="og:title" content="Unson OS - AIが100個のSaaSビジネスを自動運営" />
+        <meta property="og:description" content="AIに仕事を奪われる恐怖から、AIと共に豊かになる希望へ。100個のマイクロSaaSを自動生成・運営する革新的プラットフォーム。" />
+        <meta property="og:image" content="https://os.unson.jp/og-image.png" />
+        <meta property="og:locale" content="ja_JP" />
+        <meta property="og:site_name" content="Unson OS" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://os.unson.jp/" />
+        <meta name="twitter:title" content="Unson OS - AIが100個のSaaSビジネスを自動運営" />
+        <meta name="twitter:description" content="AIに仕事を奪われる恐怖から、AIと共に豊かになる希望へ。収益分配型の革新的プラットフォーム。" />
+        <meta name="twitter:image" content="https://os.unson.jp/twitter-image.png" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -28,7 +50,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'SoftwareApplication',
               'name': 'Unson OS',
-              'description': 'Unson OSは100-200個のマイクロSaaSプロダクトを自動生成・管理する革新的なシステムです。',
+              'description': 'AIが100個のマイクロSaaSを自動生成・運営し、収益を分配する革新的なプラットフォーム',
               'applicationCategory': 'BusinessApplication',
               'operatingSystem': 'Web',
               'offers': {
