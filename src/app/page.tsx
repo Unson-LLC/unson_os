@@ -23,7 +23,7 @@ export default function HomePage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/social_mikado310135_httpss.mj.run4QOOEvgOE5A_--ar_256143_--video_1_-_e0a1906f-3512-43de-b991-8451f22da338_2.mp4" type="video/mp4" />
+          <source src="/hero-home-ai-future.mp4" type="video/mp4" />
         </video>
         
         {/* オーバーレイ */}

@@ -121,7 +121,7 @@ export default function DAOOverviewPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/social_mikado310135_httpss.mj.run4AlJOM-_IG4_--ar_256143_--video_1_-_82e1a8db-a33d-4f4e-a78b-ebdd17594f06_3.mp4" type="video/mp4" />
+          <source src="/hero-dao-community.mp4" type="video/mp4" />
         </video>
         
         {/* オーバーレイ */}
