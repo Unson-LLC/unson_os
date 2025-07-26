@@ -76,6 +76,7 @@ const timeCommitmentLabels: Record<string, string> = {
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
+const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@unson.jp'
 
 export async function POST(request: NextRequest) {
   try {
@@ -190,7 +191,7 @@ export async function POST(request: NextRequest) {
 
     // 管理者向け通知メールの準備
     const adminEmailData = {
-      to: process.env.ADMIN_EMAIL || 'admin@unson-os.com',
+      to: process.env.ADMIN_EMAIL || 'admin@unson.jp',
       subject: `[Unson OS] 新規Discord参加申請: ${body.name} (${occupationLabels[body.occupation || ''] || '職業未記入'})`,
       html: `
         <div style="font-family: sans-serif; max-width: 800px; margin: 0 auto;">
@@ -277,7 +278,7 @@ export async function POST(request: NextRequest) {
     
     // 申請者へのメール
     await resend.emails.send({
-      from: 'Unson OS <noreply@unson-os.com>',
+      from: `Unson OS <${fromEmail}>`,
       to: body.email,
       subject: emailData.subject,
       html: emailData.html.replace('https://discord.gg/unsonos', discordInviteLink),
@@ -286,7 +287,7 @@ export async function POST(request: NextRequest) {
     // 管理者への通知メール
     if (process.env.ADMIN_EMAIL) {
       await resend.emails.send({
-        from: 'Unson OS <noreply@unson-os.com>',
+        from: `Unson OS <${fromEmail}>`,
         to: process.env.ADMIN_EMAIL,
         subject: adminEmailData.subject,
         html: adminEmailData.html,
