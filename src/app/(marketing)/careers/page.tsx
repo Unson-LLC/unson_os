@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Button } from '@/components/ui/Button'
 import { ApplicationForm } from '@/components/forms/ApplicationForm'
 import { jobPositions, benefits, companyValues } from '@/data/company'
+import { Rocket, Scale, Globe } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '採用情報 - Unson OS',
@@ -82,7 +83,7 @@ export default function CareersPage() {
           
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
             <div className="card text-center">
-              <div className="text-4xl mb-4">🚀</div>
+              <Rocket className="w-12 h-12 mb-4 mx-auto text-blue-600" />
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 革新的技術
               </h3>
@@ -92,7 +93,7 @@ export default function CareersPage() {
             </div>
             
             <div className="card text-center">
-              <div className="text-4xl mb-4">⚖️</div>
+              <Scale className="w-12 h-12 mb-4 mx-auto text-green-600" />
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 公正な分配
               </h3>
@@ -102,7 +103,7 @@ export default function CareersPage() {
             </div>
             
             <div className="card text-center">
-              <div className="text-4xl mb-4">🌍</div>
+              <Globe className="w-12 h-12 mb-4 mx-auto text-purple-600" />
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 グローバル影響
               </h3>

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button'
 import { SupportForm } from '@/components/forms/SupportForm'
 import { SupportSearchForm } from '@/components/forms/SupportSearchForm'
 import { faqCategories } from '@/data/faq'
+import { Mail, MessageCircle, Users } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'サポート・FAQ - Unson OS',
@@ -18,21 +19,21 @@ const supportOptions = [
   {
     title: 'メールサポート',
     description: '24時間以内に返信します',
-    icon: '📧',
+    Icon: Mail,
     action: 'メール送信',
     href: 'mailto:support@unson.com'
   },
   {
     title: 'チャットサポート',
     description: '平日9:00-18:00 (JST)',
-    icon: '💬',
+    Icon: MessageCircle,
     action: 'チャット開始',
     href: '#chat'
   },
   {
     title: 'コミュニティフォーラム',
     description: 'ユーザー同士で情報交換',
-    icon: '👥',
+    Icon: Users,
     action: 'フォーラムへ',
     href: '/community'
   }
@@ -117,7 +118,7 @@ export default function SupportPage() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {supportOptions.map((option, index) => (
               <div key={index} className="card text-center hover:shadow-lg transition-shadow duration-200">
-                <div className="text-4xl mb-4">{option.icon}</div>
+                <option.Icon className="w-12 h-12 mb-4 mx-auto text-gray-700" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {option.title}
                 </h3>

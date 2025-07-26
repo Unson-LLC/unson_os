@@ -5,6 +5,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { getStatusIcon } from '@/components/docs/StatusBadge'
 import type { DocStatus } from '@/components/docs/StatusBadge'
+import { 
+  Zap, Rocket, Package, Wrench, Target, Vote, Users, HelpCircle,
+  ExternalLink, ChevronRight, Book
+} from 'lucide-react'
 
 // ドキュメントアイテムの型定義
 interface DocItem {
@@ -16,7 +20,7 @@ interface DocItem {
 
 interface DocSection {
   title: string
-  icon: string
+  Icon: React.FC<{ className?: string }>
   items: DocItem[]
   priority?: 'high' | 'normal'
 }
@@ -24,8 +28,8 @@ interface DocSection {
 // ドキュメント構造データ
 const documentationSections: DocSection[] = [
   {
-    title: '🟢 今すぐできること',
-    icon: '⚡',
+    title: '今すぐできること',
+    Icon: Zap,
     priority: 'high',
     items: [
       { title: 'Discord参加', url: 'https://discord.gg/unsonos', type: 'guide', status: 'available' },
@@ -37,7 +41,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: 'はじめに',
-    icon: '🚀',
+    Icon: Rocket,
     items: [
       { title: 'Unson OSとは', url: '/docs/introduction', type: 'guide', status: 'future' },
       { title: 'クイックスタート', url: '/docs/quickstart', type: 'guide', status: 'available' },
@@ -47,7 +51,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: 'プロダクト開発',
-    icon: '⚡',
+    Icon: Package,
     items: [
       { title: '開発プロセス', url: '/docs/development/process', type: 'guide', status: 'in-discussion' },
       { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical', status: 'available' },
@@ -57,7 +61,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: '開発・技術',
-    icon: '🔧',
+    Icon: Wrench,
     items: [
       { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical', status: 'available' },
       { title: 'フロントエンド構造', url: '/docs/development/frontend-structure', type: 'technical', status: 'available' },
@@ -69,7 +73,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: '戦略・企画',
-    icon: '🎯',
+    Icon: Target,
     items: [
       { title: 'マイクロビジネス戦略', url: '/docs/strategy/micro-business', type: 'guide', status: 'future' },
       { title: 'MVP検証フレームワーク', url: '/docs/strategy/mvp-validation', type: 'guide', status: 'future' },
@@ -80,7 +84,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: 'DAOガバナンス',
-    icon: '🗳️',
+    Icon: Vote,
     items: [
       { title: 'はじめてのDAO（超初心者向け）', url: '/docs/dao/guide', type: 'guide', status: 'future' },
       { title: 'DAO完全ガイド', url: '/docs/dao/overview', type: 'guide', status: 'future' },
@@ -94,7 +98,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: 'チーム・組織',
-    icon: '👥',
+    Icon: Users,
     items: [
       { title: 'チームメンバー', url: '/docs/team', type: 'guide', status: 'available' },
       { title: '最新更新情報', url: '/docs/updates', type: 'guide', status: 'available' },
@@ -104,7 +108,7 @@ const documentationSections: DocSection[] = [
   },
   {
     title: 'サポート',
-    icon: '❓',
+    Icon: HelpCircle,
     items: [
       { title: 'よくある質問', url: '/docs/faq', type: 'guide', status: 'available' },
       { title: 'トラブルシューティング', url: '/docs/troubleshooting', type: 'guide', status: 'available' },
@@ -148,7 +152,7 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
     <div className={`bg-white border-r border-gray-200 overflow-y-auto ${className}`}>
       <div className="p-4">
         <Link href="/docs" className="flex items-center space-x-2 mb-6">
-          <span className="text-2xl">📚</span>
+          <Book className="w-6 h-6 text-gray-700" />
           <h2 className="text-lg font-semibold text-gray-900">ドキュメント</h2>
         </Link>
         
@@ -170,7 +174,7 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
                   }`}
                 >
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm">{section.icon}</span>
+                    <section.Icon className="w-4 h-4" />
                     <span className="text-sm font-medium">{section.title}</span>
                   </div>
                   <svg
@@ -193,12 +197,13 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
                       
                       const linkContent = (
                         <>
-                          <span className="text-base mr-2">{getStatusIcon(item.status)}</span>
+                          {(() => {
+                            const StatusIcon = getStatusIcon(item.status)
+                            return <StatusIcon className="w-4 h-4 mr-2" />
+                          })()}
                           <span className="flex-1">{item.title}</span>
                           {isExternal && (
-                            <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
+                            <ExternalLink className="w-3 h-3 opacity-50" />
                           )}
                         </>
                       )
@@ -245,14 +250,17 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
         {/* フッター */}
         <div className="mt-8 pt-4 border-t border-gray-200">
           <div className="text-xs text-gray-500 space-y-1">
-            <Link href="/docs/quickstart" className="block hover:text-blue-600">
-              🚀 クイックスタート
+            <Link href="/docs/quickstart" className="flex items-center gap-1.5 hover:text-blue-600">
+              <Rocket className="w-3 h-3" />
+              <span>クイックスタート</span>
             </Link>
-            <Link href="/docs/dao/guide" className="block hover:text-blue-600">
-              🏛️ DAO参加ガイド
+            <Link href="/docs/dao/guide" className="flex items-center gap-1.5 hover:text-blue-600">
+              <Vote className="w-3 h-3" />
+              <span>DAO参加ガイド</span>
             </Link>
-            <Link href="/docs/support" className="block hover:text-blue-600">
-              💬 サポート
+            <Link href="/docs/support" className="flex items-center gap-1.5 hover:text-blue-600">
+              <HelpCircle className="w-3 h-3" />
+              <span>サポート</span>
             </Link>
           </div>
         </div>
