@@ -47,6 +47,9 @@ export async function POST(request: NextRequest) {
     // 現在の日時
     const now = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
 
+    // Discord招待リンク
+    const discordInviteLink = process.env.DISCORD_INVITE_LINK || 'https://discord.gg/unsonos'
+
     // TODO: Convexに保存
     // try {
     //   await convex.mutation(api.discordApplications.create, {
@@ -164,7 +167,6 @@ export async function POST(request: NextRequest) {
     }
 
     // メール送信
-    const discordInviteLink = process.env.DISCORD_INVITE_LINK || 'https://discord.gg/unsonos'
     
     // 申請者へのメール
     await resend.emails.send({
