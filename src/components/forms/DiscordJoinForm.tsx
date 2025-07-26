@@ -94,6 +94,7 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
   ]
 
   const timeCommitmentOptions = [
+    { id: 'undecided', label: '未定（まずはコミュニティの様子を見たい）' },
     { id: 'casual', label: '週1-2時間（カジュアル参加）' },
     { id: 'regular', label: '週3-5時間（定期的参加）' },
     { id: 'active', label: '週6-10時間（積極的参加）' },
@@ -657,50 +658,57 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
         )}
 
         {/* ナビゲーションボタン */}
-        <div className="flex justify-between items-center pt-6 border-t border-gray-200">
-          <div>
-            {currentStep > 1 && (
+        <div className="flex items-center justify-between pt-8 border-t border-gray-200">
+          {/* 左側：前へボタン */}
+          <div className="flex-1">
+            {currentStep > 1 ? (
               <Button
                 type="button"
                 variant="outline"
                 onClick={handlePrev}
                 disabled={isSubmitting}
-                className="flex items-center px-6 py-3"
+                className="flex items-center px-4 py-2 text-gray-600 border-gray-300 hover:bg-gray-50"
               >
-                <ChevronLeft className="w-4 h-4 mr-2" />
+                <ChevronLeft className="w-4 h-4 mr-1" />
                 前へ
               </Button>
+            ) : (
+              <div></div>
             )}
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* 中央：キャンセルボタン */}
+          <div className="flex-shrink-0 mx-4">
             {onClose && (
               <Button
                 type="button"
                 variant="outline"
                 onClick={onClose}
                 disabled={isSubmitting}
-                className="px-6 py-3"
+                className="px-4 py-2 text-gray-500 border-gray-300 hover:bg-gray-50 text-sm"
               >
                 キャンセル
               </Button>
             )}
+          </div>
 
+          {/* 右側：次へ/送信ボタン */}
+          <div className="flex-1 flex justify-end">
             {currentStep < totalSteps ? (
               <Button
                 type="button"
                 onClick={handleNext}
                 disabled={!canProceedToNext() || isSubmitting}
-                className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
+                className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 次へ
-                <ChevronRight className="w-4 h-4 ml-2" />
+                <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             ) : (
               <Button
                 type="submit"
                 disabled={!canProceedToNext() || isSubmitting}
-                className="flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white"
+                className="flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 {isSubmitting ? (
                   <>

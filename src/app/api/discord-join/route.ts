@@ -67,6 +67,7 @@ const motivationLabels: Record<string, string> = {
 }
 
 const timeCommitmentLabels: Record<string, string> = {
+  undecided: '未定（まずはコミュニティの様子を見たい）',
   casual: '週1-2時間（カジュアル参加）',
   regular: '週3-5時間（定期的参加）',
   active: '週6-10時間（積極的参加）',
