@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button'
 import { useSearch } from '@/hooks/useSearch'
 import { SearchInput, NoResults } from '@/components/interactive'
 import Link from 'next/link'
-import { Code, Briefcase, Star, Target, CheckCircle2, MessageCircle, Clock, AlertTriangle } from 'lucide-react'
+import { Code, Briefcase, Star, Target, CheckCircle2, MessageCircle, Clock, AlertTriangle, HelpCircle, DollarSign, Calendar } from 'lucide-react'
 
 // ユーザータイプ別ガイド
 const userTypeGuides = [
@@ -319,7 +319,7 @@ export default function DocsPage() {
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div className="card">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="text-2xl mr-3">🤔</span>
+                    <HelpCircle className="w-6 h-6 mr-3 text-blue-600" />
                     なぜ必要？
                   </h3>
                   <ul className="space-y-2">
@@ -334,7 +334,7 @@ export default function DocsPage() {
                 
                 <div className="card">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="text-2xl mr-3">💰</span>
+                    <DollarSign className="w-6 h-6 mr-3 text-green-600" />
                     どうやって稼ぐ？
                   </h3>
                   <ol className="space-y-2">
@@ -350,7 +350,7 @@ export default function DocsPage() {
               
               <div className="card">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                  <span className="text-2xl mr-3">📅</span>
+                  <Calendar className="w-6 h-6 mr-3 text-purple-600" />
                   いつから？
                 </h3>
                 <div className="space-y-3">
@@ -408,7 +408,7 @@ export default function DocsPage() {
           <div className="max-w-3xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div>
-                <div className="text-3xl mb-3">1️⃣</div>
+                <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-3">1</div>
                 <h3 className="text-lg font-semibold mb-2">まず最初に（5分）</h3>
                 <p className="text-gray-300 text-sm">
                   UnsonOS構想概要を読む<br />
@@ -416,7 +416,7 @@ export default function DocsPage() {
                 </p>
               </div>
               <div>
-                <div className="text-3xl mb-3">2️⃣</div>
+                <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-3">2</div>
                 <h3 className="text-lg font-semibold mb-2">興味を持ったら（10分）</h3>
                 <p className="text-gray-300 text-sm">
                   Discordに参加<br />
@@ -424,7 +424,7 @@ export default function DocsPage() {
                 </p>
               </div>
               <div>
-                <div className="text-3xl mb-3">3️⃣</div>
+                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-3">3</div>
                 <h3 className="text-lg font-semibold mb-2">貢献を始める（随時）</h3>
                 <p className="text-gray-300 text-sm">
                   GitHubでIssueを立てる<br />
