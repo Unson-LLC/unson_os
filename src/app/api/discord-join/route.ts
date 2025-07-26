@@ -10,6 +10,15 @@ interface DiscordJoinRequest {
   otherReason: string
   skills: string
   expectations: string
+  // 新しいペルソナ関連フィールド
+  occupation?: string
+  experienceLevel?: string
+  currentRole?: string
+  interests?: string[]
+  motivations?: string[]
+  timeCommitment?: string
+  learningGoals?: string[]
+  contributionAreas?: string[]
 }
 
 // 理由のラベルマッピング
@@ -19,6 +28,49 @@ const reasonLabels: Record<string, string> = {
   dao: 'DAOコミュニティに興味がある',
   revenue: '収益分配モデルに興味がある',
   other: 'その他'
+}
+
+// 新しいフィールドのラベルマッピング
+const occupationLabels: Record<string, string> = {
+  engineer: 'エンジニア・開発者',
+  designer: 'デザイナー',
+  marketer: 'マーケター・営業',
+  pm: 'プロダクトマネージャー',
+  executive: '経営者・起業家',
+  student: '学生',
+  other_job: 'その他の職業'
+}
+
+const experienceLabels: Record<string, string> = {
+  beginner: '初心者（0-1年）',
+  intermediate: '中級者（2-5年）',
+  advanced: '上級者（5-10年）',
+  expert: 'エキスパート（10年以上）'
+}
+
+const interestLabels: Record<string, string> = {
+  technical: '技術・開発',
+  business: 'ビジネス・戦略',
+  design: 'デザイン・UX',
+  marketing: 'マーケティング',
+  investment: '投資・資金調達',
+  community: 'コミュニティ運営',
+  education: '教育・メンタリング'
+}
+
+const motivationLabels: Record<string, string> = {
+  learn: '新しいスキルを学びたい',
+  network: '人脈を広げたい',
+  contribute: 'プロジェクトに貢献したい',
+  earn: '収益を得たい',
+  challenge: '新しい挑戦をしたい'
+}
+
+const timeCommitmentLabels: Record<string, string> = {
+  casual: '週1-2時間（カジュアル参加）',
+  regular: '週3-5時間（定期的参加）',
+  active: '週6-10時間（積極的参加）',
+  dedicated: '週10時間以上（本格参加）'
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -130,38 +182,92 @@ export async function POST(request: NextRequest) {
       `
     }
 
+    // 新しいフィールドのフォーマット
+    const formatArrayField = (field: string[] | undefined, labels: Record<string, string>) => {
+      return field?.map(item => labels[item] || item).join('、') || 'なし'
+    }
+
     // 管理者向け通知メールの準備
     const adminEmailData = {
       to: process.env.ADMIN_EMAIL || 'admin@unson-os.com',
-      subject: `[Unson OS] 新規Discord参加申請: ${body.name}`,
+      subject: `[Unson OS] 新規Discord参加申請: ${body.name} (${occupationLabels[body.occupation || ''] || '職業未記入'})`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>新規Discord参加申請</h2>
+        <div style="font-family: sans-serif; max-width: 800px; margin: 0 auto;">
+          <h2 style="color: #1a1a1a; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">新規Discord参加申請</h2>
           <p><strong>申請日時:</strong> ${now}</p>
           
-          <h3>申請者情報</h3>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>名前:</strong></td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${body.name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>メール:</strong></td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${body.email}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;"><strong>参加理由:</strong></td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd; white-space: pre-line;">${formattedReasons}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd; vertical-align: top;"><strong>スキル・経験:</strong></td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${body.skills || 'なし'}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px; vertical-align: top;"><strong>期待すること:</strong></td>
-              <td style="padding: 8px;">${body.expectations}</td>
-            </tr>
-          </table>
+          <div style="display: grid; gap: 24px;">
+            <div>
+              <h3 style="color: #3b82f6; margin-bottom: 12px;">🧑‍💼 基本情報</h3>
+              <table style="width: 100%; border-collapse: collapse; background: #f8fafc; border-radius: 8px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; background: #f1f5f9; font-weight: bold; width: 30%;">名前</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${body.name}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; background: #f1f5f9; font-weight: bold;">メール</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${body.email}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; background: #f1f5f9; font-weight: bold;">職業</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${occupationLabels[body.occupation || ''] || 'なし'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; background: #f1f5f9; font-weight: bold;">経験レベル</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${experienceLabels[body.experienceLevel || ''] || 'なし'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; background: #f1f5f9; font-weight: bold;">現在の役割</td>
+                  <td style="padding: 12px;">${body.currentRole || 'なし'}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div>
+              <h3 style="color: #10b981; margin-bottom: 12px;">💡 興味・動機</h3>
+              <table style="width: 100%; border-collapse: collapse; background: #f0fdf4; border-radius: 8px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #bbf7d0; background: #dcfce7; font-weight: bold; width: 30%;">参加理由</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #bbf7d0; white-space: pre-line;">${formattedReasons}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #bbf7d0; background: #dcfce7; font-weight: bold;">興味分野</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #bbf7d0;">${formatArrayField(body.interests, interestLabels)}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; background: #dcfce7; font-weight: bold;">参加動機</td>
+                  <td style="padding: 12px;">${formatArrayField(body.motivations, motivationLabels)}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div>
+              <h3 style="color: #f59e0b; margin-bottom: 12px;">⏰ 参加詳細</h3>
+              <table style="width: 100%; border-collapse: collapse; background: #fffbeb; border-radius: 8px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #fde68a; background: #fef3c7; font-weight: bold; width: 30%;">時間コミット</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #fde68a;">${timeCommitmentLabels[body.timeCommitment || ''] || 'なし'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border-bottom: 1px solid #fde68a; background: #fef3c7; font-weight: bold; vertical-align: top;">スキル・経験</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #fde68a;">${body.skills || 'なし'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; background: #fef3c7; font-weight: bold; vertical-align: top;">期待すること</td>
+                  <td style="padding: 12px;">${body.expectations}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; padding: 16px; background: #eff6ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+            <h4 style="margin: 0 0 8px 0; color: #1e40af;">💬 管理者メモ</h4>
+            <p style="margin: 0; color: #1e40af; font-size: 14px;">
+              この申請者は「${occupationLabels[body.occupation || '']}」で「${experienceLabels[body.experienceLevel || '']}」レベル。
+              「${formatArrayField(body.interests, interestLabels)}」に興味があり、
+              「${timeCommitmentLabels[body.timeCommitment || '']}」で参加予定。
+            </p>
+          </div>
         </div>
       `
     }
