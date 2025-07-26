@@ -3,6 +3,7 @@
 import './globals.css'
 import { useEffect } from 'react'
 import Logo from '@/components/ui/Logo'
+import { GitHubStarButton } from '@/components/ui/GitHubStarButton'
 
 export default function RootLayout({
   children,
@@ -62,25 +63,30 @@ export default function RootLayout({
                   </a>
                 </div>
               </div>
-              <div className="md:hidden flex items-center">
-                <button 
-                  type="button" 
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-                  data-testid="mobile-menu-button"
-                  aria-label="メニューを開く"
-                  onClick={() => {
-                    const menu = document.getElementById('mobile-menu');
-                    if (menu) {
-                      menu.classList.toggle('hidden');
-                      menu.setAttribute('aria-expanded', menu.classList.contains('hidden') ? 'false' : 'true');
-                    }
-                  }}
-                >
-                  <span className="sr-only">メニューを開く</span>
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
+              <div className="flex items-center gap-4">
+                <div className="hidden md:block">
+                  <GitHubStarButton />
+                </div>
+                <div className="md:hidden flex items-center">
+                  <button 
+                    type="button" 
+                    className="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                    data-testid="mobile-menu-button"
+                    aria-label="メニューを開く"
+                    onClick={() => {
+                      const menu = document.getElementById('mobile-menu');
+                      if (menu) {
+                        menu.classList.toggle('hidden');
+                        menu.setAttribute('aria-expanded', menu.classList.contains('hidden') ? 'false' : 'true');
+                      }
+                    }}
+                  >
+                    <span className="sr-only">メニューを開く</span>
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
