@@ -133,7 +133,7 @@ export default function CommunityPage() {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[600px] py-20 flex items-center justify-center overflow-hidden">
         {/* 背景動画 */}
         <video
           autoPlay
