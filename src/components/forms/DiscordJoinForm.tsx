@@ -69,10 +69,10 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
   ]
 
   const experienceLevelOptions = [
-    { id: 'beginner', label: '初心者（0-1年）', color: 'bg-green-50 border-green-200 text-green-800' },
-    { id: 'intermediate', label: '中級者（2-5年）', color: 'bg-blue-50 border-blue-200 text-blue-800' },
-    { id: 'advanced', label: '上級者（5-10年）', color: 'bg-purple-50 border-purple-200 text-purple-800' },
-    { id: 'expert', label: 'エキスパート（10年以上）', color: 'bg-orange-50 border-orange-200 text-orange-800' }
+    { id: 'student', label: '学生・未経験', color: 'bg-green-50 border-green-200 text-green-800' },
+    { id: 'junior', label: '1-3年', color: 'bg-blue-50 border-blue-200 text-blue-800' },
+    { id: 'mid', label: '3-7年', color: 'bg-purple-50 border-purple-200 text-purple-800' },
+    { id: 'senior', label: '7年以上', color: 'bg-orange-50 border-orange-200 text-orange-800' }
   ]
 
   const interestOptions = [
@@ -384,10 +384,10 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
         </div>
       </div>
 
-      {/* 経験レベル */}
+      {/* 実務経験 */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">
-          経験レベル <span className="text-red-500">*</span>
+          実務経験 <span className="text-red-500">*</span>
         </label>
         <div className="space-y-3">
           {experienceLevelOptions.map((level) => {

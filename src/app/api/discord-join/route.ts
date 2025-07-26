@@ -42,10 +42,10 @@ const occupationLabels: Record<string, string> = {
 }
 
 const experienceLabels: Record<string, string> = {
-  beginner: '初心者（0-1年）',
-  intermediate: '中級者（2-5年）',
-  advanced: '上級者（5-10年）',
-  expert: 'エキスパート（10年以上）'
+  student: '学生・未経験',
+  junior: '1-3年',
+  mid: '3-7年',
+  senior: '7年以上'
 }
 
 const interestLabels: Record<string, string> = {
@@ -213,7 +213,7 @@ export async function POST(request: NextRequest) {
                   <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${occupationLabels[body.occupation || ''] || 'なし'}</td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; background: #f1f5f9; font-weight: bold;">経験レベル</td>
+                  <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; background: #f1f5f9; font-weight: bold;">実務経験</td>
                   <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${experienceLabels[body.experienceLevel || ''] || 'なし'}</td>
                 </tr>
                 <tr>
