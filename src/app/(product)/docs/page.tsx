@@ -150,7 +150,7 @@ export default function DocsPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/social_mikado310135_httpss.mj.runV_RQl3GqaR4_--ar_256143_--video_1_-_4eac8ef2-1f3a-4136-a9be-62edf93ac7e4_1.mp4" type="video/mp4" />
+          <source src="/hero-docs-guide.mp4" type="video/mp4" />
         </video>
         
         {/* オーバーレイ */}

@@ -68,7 +68,7 @@ export default function ProductsPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/social_mikado310135_httpss.mj.run3khwUq1-EGo_--ar_256143_--video_1_-_41484830-c2da-443e-a2f7-ed4e890eee1d_2.mp4" type="video/mp4" />
+          <source src="/hero-products-saas.mp4" type="video/mp4" />
         </video>
         
         {/* オーバーレイ */}
