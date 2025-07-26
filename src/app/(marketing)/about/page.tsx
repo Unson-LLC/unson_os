@@ -1,6 +1,7 @@
 // Refactor Phase: ベタ書き・ハードコードを除去
 import type { Metadata } from 'next'
 import { CTASection } from '@/components/sections/CTASection'
+import { Target, Globe, Users, Brain, Zap, Network } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Unson OSについて - 革新的SaaS自動生成プラットフォーム',
@@ -152,21 +153,21 @@ export default function AboutPage() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">ビジョン</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <span className="text-blue-600 mr-3">🎯</span>
+                  <Target className="w-5 h-5 text-blue-600 mr-3" />
                   <div>
                     <div className="font-medium text-gray-900">2030年まで</div>
                     <div className="text-gray-600 text-sm">10,000個のマイクロSaaSを自動生成</div>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-green-600 mr-3">🌍</span>
+                  <Globe className="w-5 h-5 text-green-600 mr-3" />
                   <div>
                     <div className="font-medium text-gray-900">グローバル展開</div>
                     <div className="text-gray-600 text-sm">50カ国以上での利用実現</div>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-purple-600 mr-3">👥</span>
+                  <Users className="w-5 h-5 text-purple-600 mr-3" />
                   <div>
                     <div className="font-medium text-gray-900">コミュニティ拡大</div>
                     <div className="text-gray-600 text-sm">100,000人のDAOメンバー</div>
@@ -316,7 +317,7 @@ export default function AboutPage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="card text-center">
-              <div className="text-3xl mb-4">🧠</div>
+              <Brain className="w-12 h-12 mb-4 mx-auto text-indigo-600" />
               <h3 className="text-lg font-semibold text-gray-900 mb-3">AI/ML</h3>
               <div className="space-y-1 text-sm text-gray-600">
                 <div>OpenAI GPT-4</div>
@@ -327,7 +328,7 @@ export default function AboutPage() {
             </div>
             
             <div className="card text-center">
-              <div className="text-3xl mb-4">⚡</div>
+              <Zap className="w-12 h-12 mb-4 mx-auto text-yellow-600" />
               <h3 className="text-lg font-semibold text-gray-900 mb-3">バックエンド</h3>
               <div className="space-y-1 text-sm text-gray-600">
                 <div>Node.js</div>
@@ -338,7 +339,7 @@ export default function AboutPage() {
             </div>
             
             <div className="card text-center">
-              <div className="text-3xl mb-4">🌐</div>
+              <Network className="w-12 h-12 mb-4 mx-auto text-blue-600" />
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Web3/DAO</h3>
               <div className="space-y-1 text-sm text-gray-600">
                 <div>Ethereum</div>

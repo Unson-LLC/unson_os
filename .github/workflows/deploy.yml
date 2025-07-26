@@ -95,35 +95,4 @@ jobs:
         run: |
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
           echo "PRODUCTION_URL=$(cat deployment-url.txt)" >> $GITHUB_ENV
-
-      - name: Create Deployment Status
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const production_url = process.env.PRODUCTION_URL;
-            
-            // 最新のコミットSHAを取得
-            const sha = context.sha;
-            
-            // デプロイメントを作成
-            const deployment = await github.rest.repos.createDeployment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: sha,
-              required_contexts: [],
-              environment: 'production',
-              description: 'Vercel Production Deployment',
-              auto_merge: false
-            });
-            
-            // デプロイメントステータスを作成
-            await github.rest.repos.createDeploymentStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              deployment_id: deployment.data.id,
-              state: 'success',
-              target_url: production_url,
-              environment_url: production_url,
-              description: 'Deployment completed successfully'
-            });
+          echo "✅ Deployed to: $(cat deployment-url.txt)"

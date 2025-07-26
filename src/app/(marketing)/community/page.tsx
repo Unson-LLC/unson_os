@@ -1,6 +1,7 @@
 // Refactor Phase: ベタ書き・ハードコードを除去
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/NavigationLink'
+import { Lightbulb, Zap, DollarSign, Vote, GraduationCap, Crown, AlertTriangle } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'コミュニティ - Unson OS',
@@ -55,41 +56,45 @@ const communityMembers = [
   }
 ]
 
+// アイコンマッピング
+const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
+  'プロダクト提案': Lightbulb,
+  '開発参加': Zap,
+  '収益分配': DollarSign,
+  'ガバナンス投票': Vote,
+  'メンタリング': GraduationCap,
+  'リーダーシップ': Crown
+}
+
 const daoCapabilities = [
   {
     title: 'プロダクト提案',
     description: '新しいSaaSアイデアを提案し、コミュニティの投票で開発決定',
-    icon: '💡',
     privilege: 'All Members'
   },
   {
     title: '開発参加',
     description: 'スキルに応じて実際のプロダクト開発に参加',
-    icon: '⚡',
     privilege: 'Developers'
   },
   {
     title: '収益分配',
     description: 'プロダクトの成功に応じて自動的に収益を受け取る',
-    icon: '💰',
     privilege: 'All Contributors'
   },
   {
     title: 'ガバナンス投票',
     description: 'プラットフォームの重要な決定に投票で参加',
-    icon: '🗳️',
     privilege: 'Token Holders'
   },
   {
     title: 'メンタリング',
     description: '新しいメンバーのサポートとスキルシェア',
-    icon: '🎓',
     privilege: 'Senior Members'
   },
   {
     title: 'リーダーシップ',
     description: 'プロジェクトチームのリードとマネジメント',
-    icon: '👑',
     privilege: 'Core Team'
   }
 ]
@@ -134,9 +139,12 @@ export default function CommunityPage() {
               <br />AIと共に豊かになる未来を、一緒に実現しませんか？
             </p>
             <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-8">
-              <p className="text-yellow-200 text-sm">
-                ⚠️ 現在は初期メンバー募集段階です。実際の収益分配やDAO機能は2025年後半以降の予定です。
-              </p>
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
+                <p className="text-yellow-200 text-sm">
+                  現在は初期メンバー募集段階です。実際の収益分配やDAO機能は2025年後半以降の予定です。
+                </p>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <NavigationLink
@@ -205,7 +213,10 @@ export default function CommunityPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {daoCapabilities.map((capability, index) => (
               <div key={index} className="card hover:shadow-lg transition-shadow duration-200">
-                <div className="text-3xl mb-4">{capability.icon}</div>
+                {(() => {
+                  const Icon = iconMap[capability.title] || Lightbulb
+                  return <Icon className="w-12 h-12 mb-4 mx-auto text-blue-600" />
+                })()}
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {capability.title}
                 </h3>
@@ -374,9 +385,12 @@ export default function CommunityPage() {
               一緒にその未来を作り上げませんか？
             </p>
             <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-8">
-              <p className="text-yellow-200 text-sm">
-                ⚠️ 現在は構想・設計段階です。実際の収益分配は2025年後半以降を予定しています。
-              </p>
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
+                <p className="text-yellow-200 text-sm">
+                  現在は構想・設計段階です。実際の収益分配は2025年後半以降を予定しています。
+                </p>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <NavigationLink

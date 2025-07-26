@@ -5,12 +5,13 @@ import { Button } from '@/components/ui/Button'
 import { useSearch } from '@/hooks/useSearch'
 import { SearchInput, NoResults } from '@/components/interactive'
 import Link from 'next/link'
+import { Code, Briefcase, Star, Target, CheckCircle2, MessageCircle, Clock, AlertTriangle } from 'lucide-react'
 
 // ユーザータイプ別ガイド
 const userTypeGuides = [
   {
     type: 'エンジニア・技術者',
-    icon: '💻',
+    Icon: Code,
     description: 'コードで未来を作る',
     color: 'blue',
     guides: [
@@ -22,7 +23,7 @@ const userTypeGuides = [
   },
   {
     type: 'ビジネス・投資家',
-    icon: '💼',
+    Icon: Briefcase,
     description: '新しい収益モデルを理解する',
     color: 'green',
     guides: [
@@ -34,7 +35,7 @@ const userTypeGuides = [
   },
   {
     type: 'アーリーアダプター',
-    icon: '🌟',
+    Icon: Star,
     description: '共に未来を創る',
     color: 'purple',
     guides: [
@@ -118,13 +119,13 @@ const essentialDocs = [
 const getStatusIcon = (status: string) => {
   switch (status) {
     case 'available':
-      return '🟢'
+      return CheckCircle2
     case 'in-discussion':
-      return '🟡'
+      return MessageCircle
     case 'future':
-      return '🔴'
+      return Clock
     default:
-      return '⚪'
+      return Clock
   }
 }
 
@@ -154,9 +155,12 @@ export default function DocsPage() {
               UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作ります。
             </p>
             <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4 max-w-2xl mx-auto mb-6">
-              <p className="text-yellow-800 text-sm">
-                ⚠️ UnsonOSは現在構想段階です。記載されている機能の多くは2025年以降の実装予定です。
-              </p>
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                <p className="text-yellow-800 text-sm">
+                  UnsonOSは現在構想段階です。記載されている機能の多くは2025年以降の実装予定です。
+                </p>
+              </div>
             </div>
             <div className="max-w-md mx-auto">
               <SearchInput
@@ -192,7 +196,7 @@ export default function DocsPage() {
               {userTypeGuides.map((guide, index) => (
                 <div key={index} className={`card border-2 border-${guide.color}-100 hover:border-${guide.color}-300 transition-all duration-200`}>
                   <div className="text-center mb-6">
-                    <span className="text-5xl mb-4 block">{guide.icon}</span>
+                    <guide.Icon className="w-16 h-16 mb-4 mx-auto text-{guide.color}-600" />
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {guide.type}
                     </h3>
@@ -210,7 +214,10 @@ export default function DocsPage() {
                         className="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
                       >
                         <div className="flex items-center">
-                          <span className="text-lg mr-3">{getStatusIcon(item.status)}</span>
+                          {(() => {
+                            const StatusIcon = getStatusIcon(item.status)
+                            return <StatusIcon className="w-5 h-5 mr-3" />
+                          })()}
                           <span className="text-gray-700 font-medium">
                             {item.title}
                           </span>
@@ -238,7 +245,7 @@ export default function DocsPage() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="card">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <span className="text-2xl mr-2">🟢</span>
+                  <CheckCircle2 className="w-6 h-6 mr-2 text-green-600" />
                   今すぐできること
                 </h3>
                 <div className="space-y-3">
@@ -259,7 +266,7 @@ export default function DocsPage() {
               
               <div className="card">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <span className="text-2xl mr-2">🟡</span>
+                  <MessageCircle className="w-6 h-6 mr-2 text-yellow-600" />
                   現在進行中
                 </h3>
                 <div className="space-y-3">
@@ -274,7 +281,7 @@ export default function DocsPage() {
               
               <div className="card">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <span className="text-2xl mr-2">🔴</span>
+                  <Clock className="w-6 h-6 mr-2 text-red-600" />
                   将来の構想
                 </h3>
                 <div className="space-y-3">
@@ -301,7 +308,7 @@ export default function DocsPage() {
             <div className="max-w-4xl mx-auto">
               <div className="card mb-8">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                  <span className="text-2xl mr-3">🎯</span>
+                  <Target className="w-6 h-6 mr-3 text-blue-600" />
                   一言で言うと？
                 </h3>
                 <p className="text-lg text-gray-700">
@@ -374,7 +381,10 @@ export default function DocsPage() {
                 className="card hover:shadow-lg transition-all duration-200 border-2 border-transparent hover:border-blue-200"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <span className="text-3xl">{getStatusIcon(doc.status)}</span>
+                  {(() => {
+                    const StatusIcon = getStatusIcon(doc.status)
+                    return <StatusIcon className="w-8 h-8 text-gray-700" />
+                  })()}
                   <span className="text-sm text-gray-500">{doc.readTime}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">

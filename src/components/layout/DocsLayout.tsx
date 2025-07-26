@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { DocsSidebar } from './DocsSidebar'
+import { Book, Rocket, MessageCircle, Menu } from 'lucide-react'
 
 interface DocsLayoutProps {
   children: React.ReactNode
@@ -37,11 +38,12 @@ export function DocsLayout({ children }: DocsLayoutProps) {
                 onClick={() => setSidebarOpen(true)}
                 className="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <Menu className="w-6 h-6" />
               </button>
-              <h1 className="text-lg font-semibold text-gray-900">📚 ドキュメント</h1>
+              <h1 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                <Book className="w-5 h-5" />
+                <span>ドキュメント</span>
+              </h1>
               <div className="w-10" /> {/* スペーサー */}
             </div>
           </header>
@@ -72,14 +74,17 @@ export function DocsLayout({ children }: DocsLayoutProps) {
                 </div>
                 
                 <div className="flex space-x-4 text-sm">
-                  <a href="/docs" className="text-gray-600 hover:text-blue-600">
-                    📚 ドキュメント一覧
+                  <a href="/docs" className="flex items-center gap-1 text-gray-600 hover:text-blue-600">
+                    <Book className="w-4 h-4" />
+                    <span>ドキュメント一覧</span>
                   </a>
-                  <a href="/docs/quickstart" className="text-gray-600 hover:text-blue-600">
-                    🚀 クイックスタート
+                  <a href="/docs/quickstart" className="flex items-center gap-1 text-gray-600 hover:text-blue-600">
+                    <Rocket className="w-4 h-4" />
+                    <span>クイックスタート</span>
                   </a>
-                  <a href="/docs/support" className="text-gray-600 hover:text-blue-600">
-                    💬 サポート
+                  <a href="/docs/support" className="flex items-center gap-1 text-gray-600 hover:text-blue-600">
+                    <MessageCircle className="w-4 h-4" />
+                    <span>サポート</span>
                   </a>
                 </div>
               </div>

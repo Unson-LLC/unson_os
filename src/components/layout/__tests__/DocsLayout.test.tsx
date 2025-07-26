@@ -140,9 +140,9 @@ describe('DocsLayout', () => {
     )
 
     // フッターのリンクを確認
-    expect(screen.getByText('📚 ドキュメント一覧')).toBeInTheDocument()
-    expect(screen.getByText('🚀 クイックスタート')).toBeInTheDocument()
-    expect(screen.getByText('💬 サポート')).toBeInTheDocument()
+    expect(screen.getByText('ドキュメント一覧')).toBeInTheDocument()
+    expect(screen.getByText('クイックスタート')).toBeInTheDocument()
+    expect(screen.getAllByText('サポート').length).toBeGreaterThan(0)
     
     // GitHubリンクも確認
     expect(screen.getByText('GitHubで報告 →')).toBeInTheDocument()
@@ -156,7 +156,7 @@ describe('DocsLayout', () => {
     )
 
     // モバイル用ヘッダーのタイトル
-    expect(screen.getByText('📚 ドキュメント')).toBeInTheDocument()
+    expect(screen.getByText('ドキュメント')).toBeInTheDocument()
   })
 
   it('子コンポーネントが正しくレンダリングされる', () => {
