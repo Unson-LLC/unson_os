@@ -1,5 +1,6 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { CheckCircle, Construction, AlertCircle } from 'lucide-react'
 import { DocStatus } from './StatusBadge'
 
 interface ExpectationBannerProps {
@@ -21,16 +22,22 @@ interface BannerConfigItem {
   }
 }
 
-const bannerConfig: Record<DocStatus, BannerConfigItem> = {
+interface BannerConfigItemExtended extends BannerConfigItem {
+  Icon: React.FC<{ className?: string }>
+}
+
+const bannerConfig: Record<DocStatus, BannerConfigItemExtended> = {
   available: {
-    title: '✅ このドキュメントは利用可能です',
+    Icon: CheckCircle,
+    title: 'このドキュメントは利用可能です',
     description: 'ここに記載されている内容は、現在実際に利用できる機能です。',
     bgColor: 'bg-green-50 border-green-200',
     darkBgColor: 'dark:bg-green-900/20 dark:border-green-800',
     textColor: 'text-green-800 dark:text-green-200'
   },
   'in-discussion': {
-    title: '🔨 このドキュメントは設計・議論中です',
+    Icon: Construction,
+    title: 'このドキュメントは設計・議論中です',
     description: '記載内容は変更される可能性があります。ぜひDiscordやGitHubで議論に参加してください。',
     bgColor: 'bg-yellow-50 border-yellow-200',
     darkBgColor: 'dark:bg-yellow-900/20 dark:border-yellow-800',
@@ -44,7 +51,8 @@ const bannerConfig: Record<DocStatus, BannerConfigItem> = {
     }
   },
   future: {
-    title: '⚠️ このドキュメントは構想段階です',
+    Icon: AlertCircle,
+    title: 'このドキュメントは構想段階です',
     description: 'ここに記載されている内容は将来の構想であり、実装時期は未定です。',
     bgColor: 'bg-red-50 border-red-200',
     darkBgColor: 'dark:bg-red-900/20 dark:border-red-800',
@@ -73,7 +81,8 @@ export function ExpectationBanner({
       className
     )}>
       <div className={config.textColor}>
-        <h3 className="font-semibold text-sm mb-1">
+        <h3 className="font-semibold text-sm mb-1 flex items-center gap-2">
+          <config.Icon className="w-4 h-4" />
           {config.title}
         </h3>
         <p className="text-sm">
@@ -122,8 +131,8 @@ export function ExpectationBannerCompact({
   }
   
   const messages = {
-    'in-discussion': '⚡ このページの内容は現在議論・設計中です',
-    'future': '🚧 このページの内容は将来の構想です（2025年以降実装予定）'
+    'in-discussion': 'このページの内容は現在議論・設計中です',
+    'future': 'このページの内容は将来の構想です（2025年以降実装予定）'
   }
   
   const colors = {

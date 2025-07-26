@@ -28,37 +28,41 @@ describe('DocsSidebar', () => {
     jest.clearAllMocks()
   })
 
-  it('サイドバーのタイトルとロゴが表示される', () => {
+  it('サイドバーのタイトルが表示される', () => {
     render(<DocsSidebar />)
 
-    expect(screen.getByText('📚')).toBeInTheDocument()
+    // タイトルテキストが表示される
     expect(screen.getByText('ドキュメント')).toBeInTheDocument()
+    // アイコンのsvgが存在する
+    const link = screen.getByRole('link', { name: /ドキュメント/ })
+    expect(link.querySelector('svg')).toBeInTheDocument()
   })
 
   it('すべてのドキュメントセクションが表示される', () => {
     render(<DocsSidebar />)
 
     // メインセクションの確認
-    expect(screen.getByText('🟢 今すぐできること')).toBeInTheDocument()
+    expect(screen.getByText('今すぐできること')).toBeInTheDocument()
     expect(screen.getByText('はじめに')).toBeInTheDocument()
     expect(screen.getByText('プロダクト開発')).toBeInTheDocument()
     expect(screen.getByText('開発・技術')).toBeInTheDocument()
     expect(screen.getByText('戦略・企画')).toBeInTheDocument()
     expect(screen.getByText('DAOガバナンス')).toBeInTheDocument()
     expect(screen.getByText('チーム・組織')).toBeInTheDocument()
-    expect(screen.getByText('サポート')).toBeInTheDocument()
+    // サポートは複数あるため、セクションタイトルの存在を確認
+    const supportButtons = screen.getAllByText('サポート')
+    expect(supportButtons.length).toBeGreaterThan(0)
   })
 
-  it('セクションアイコンが正しく表示される', () => {
+  it('セクションにアイコンが表示される', () => {
     render(<DocsSidebar />)
 
-    expect(screen.getByText('🚀')).toBeInTheDocument() // はじめに
-    expect(screen.getAllByText('⚡').length).toBeGreaterThanOrEqual(2) // 今すぐできること + プロダクト開発
-    expect(screen.getByText('🔧')).toBeInTheDocument() // 開発・技術
-    expect(screen.getByText('🎯')).toBeInTheDocument() // 戦略・企画
-    expect(screen.getByText('🗳️')).toBeInTheDocument() // DAOガバナンス
-    expect(screen.getByText('👥')).toBeInTheDocument() // チーム・組織
-    expect(screen.getByText('❓')).toBeInTheDocument() // サポート
+    // 各セクションにアイコン（SVG）が表示されることを確認
+    const sectionButtons = screen.getAllByRole('button')
+    sectionButtons.forEach(button => {
+      const svg = button.querySelector('svg')
+      expect(svg).toBeInTheDocument()
+    })
   })
 
   it('現在のページに対応するセクションが自動展開される', () => {
@@ -67,7 +71,9 @@ describe('DocsSidebar', () => {
 
     // /docs/introduction は「はじめに」セクションなので展開されている
     expect(screen.getByText('Unson OSとは')).toBeInTheDocument()
-    expect(screen.getByText('クイックスタート')).toBeInTheDocument()
+    // クイックスタートは複数あるためgetAllByTextを使用
+    const quickstarts = screen.getAllByText('クイックスタート')
+    expect(quickstarts.length).toBeGreaterThan(0)
     expect(screen.getByText('プラットフォーム概要')).toBeInTheDocument()
     
     // 「今すぐできること」セクションも常に展開されている（高優先度）
@@ -102,22 +108,36 @@ describe('DocsSidebar', () => {
     expect(activeLink).toHaveClass('bg-blue-100', 'text-blue-800', 'font-medium')
   })
 
-  it('ページタイプに応じた色のインジケーターが表示される', () => {
+  it('ステータスアイコンが表示される', () => {
     render(<DocsSidebar />)
 
     // 「今すぐできること」と「はじめに」セクションは自動展開されている
-    // ステータスアイコンが表示されることを確認
-    expect(screen.getAllByText('🟢').length).toBeGreaterThan(0) // 利用可能
-    expect(screen.getAllByText('🟡').length).toBeGreaterThan(0) // 議論中
-    expect(screen.getAllByText('🔴').length).toBeGreaterThan(0) // 構想段階
+    // ステータスアイコン（SVG）が表示されることを確認
+    const links = screen.getAllByRole('link')
+    const statusIcons = links.filter(link => {
+      const svg = link.querySelector('svg')
+      return svg && svg.classList.contains('w-4') && svg.classList.contains('h-4')
+    })
+    expect(statusIcons.length).toBeGreaterThan(0)
   })
 
   it('フッターのクイックリンクが表示される', () => {
     render(<DocsSidebar />)
 
-    expect(screen.getByText('🚀 クイックスタート')).toBeInTheDocument()
-    expect(screen.getByText('🏛️ DAO参加ガイド')).toBeInTheDocument()
-    expect(screen.getByText('💬 サポート')).toBeInTheDocument()
+    // テキストとリンクが表示されることを確認（複数あるため getAllByText を使用）
+    const quickstarts = screen.getAllByText('クイックスタート')
+    expect(quickstarts.length).toBeGreaterThan(0)
+    
+    expect(screen.getByText('DAO参加ガイド')).toBeInTheDocument()
+    
+    const supports = screen.getAllByText('サポート')
+    expect(supports.length).toBeGreaterThan(0)
+    
+    // フッターリンクにアイコンがあることを確認
+    const footerSection = screen.getByText('DAO参加ガイド').closest('.border-t')
+    const footerLinks = footerSection?.querySelectorAll('a')
+    expect(footerLinks?.length).toBeGreaterThan(0)
+    expect(footerLinks?.[0].querySelector('svg')).toBeInTheDocument()
   })
 
   it('サイドバーにoverflow-y-autoが設定されている', () => {
@@ -148,7 +168,11 @@ describe('DocsSidebar', () => {
     render(<DocsSidebar />)
 
     const developmentSection = screen.getByText('開発・技術').closest('button')
-    const expandIcon = developmentSection?.querySelector('svg')
+    // チェブロンアイコンのsvgを探す（viewBox="0 0 24 24"のsvgの中でpath がd="M9 5l7 7-7 7"を持つもの）
+    const svgs = developmentSection?.querySelectorAll('svg')
+    const expandIcon = Array.from(svgs || []).find(svg => 
+      svg.querySelector('path[d="M9 5l7 7-7 7"]')
+    )
 
     // 初期状態（折りたたみ）
     expect(expandIcon).toHaveClass('rotate-0')
@@ -164,7 +188,12 @@ describe('DocsSidebar', () => {
 
       // はじめにセクションを展開（現在のページが含まれているので自動展開される）
       expect(screen.getByText('Unson OSとは')).toBeInTheDocument()
-      expect(screen.getByText('クイックスタート')).toBeInTheDocument()
+      
+      // クイックスタートはアイテムリンクにあることを確認
+      const allLinks = screen.getAllByRole('link')
+      const quickstartLink = allLinks.find(link => link.textContent?.includes('クイックスタート') && link.getAttribute('href') === '/docs/quickstart')
+      expect(quickstartLink).toBeTruthy()
+      
       expect(screen.getByText('プラットフォーム概要')).toBeInTheDocument()
       expect(screen.getByText('技術アーキテクチャ')).toBeInTheDocument()
     })

@@ -1,5 +1,6 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { CheckCircle2, MessageCircle, Clock } from 'lucide-react'
 
 export type DocStatus = 'available' | 'in-discussion' | 'future'
 
@@ -12,19 +13,19 @@ interface StatusBadgeProps {
 
 const statusConfig = {
   available: {
-    icon: '🟢',
+    Icon: CheckCircle2,
     text: '利用可能',
     color: 'text-green-700 bg-green-50 border-green-200',
     darkColor: 'dark:text-green-300 dark:bg-green-900/20 dark:border-green-800'
   },
   'in-discussion': {
-    icon: '🟡',
+    Icon: MessageCircle,
     text: '議論中',
     color: 'text-yellow-700 bg-yellow-50 border-yellow-200',
     darkColor: 'dark:text-yellow-300 dark:bg-yellow-900/20 dark:border-yellow-800'
   },
   future: {
-    icon: '🔴',
+    Icon: Clock,
     text: '構想段階',
     color: 'text-red-700 bg-red-50 border-red-200',
     darkColor: 'dark:text-red-300 dark:bg-red-900/20 dark:border-red-800'
@@ -37,6 +38,12 @@ const sizeClasses = {
   lg: 'text-base px-4 py-2'
 }
 
+const iconSizeClasses = {
+  sm: 'w-3 h-3',
+  md: 'w-4 h-4',
+  lg: 'w-5 h-5'
+}
+
 export function StatusBadge({ 
   status, 
   size = 'md', 
@@ -44,6 +51,7 @@ export function StatusBadge({
   className 
 }: StatusBadgeProps) {
   const config = statusConfig[status]
+  const IconComponent = config.Icon
   
   return (
     <div
@@ -55,13 +63,7 @@ export function StatusBadge({
         className
       )}
     >
-      <span className={cn(
-        size === 'sm' && 'text-sm',
-        size === 'md' && 'text-base',
-        size === 'lg' && 'text-lg'
-      )}>
-        {config.icon}
-      </span>
+      <IconComponent className={iconSizeClasses[size]} />
       {showText && (
         <span>{config.text}</span>
       )}
@@ -69,9 +71,9 @@ export function StatusBadge({
   )
 }
 
-// ステータスアイコンのみを返すヘルパー関数
-export function getStatusIcon(status: DocStatus): string {
-  return statusConfig[status].icon
+// ステータスアイコンコンポーネントを返すヘルパー関数
+export function getStatusIcon(status: DocStatus): React.FC<{ className?: string }> {
+  return statusConfig[status].Icon
 }
 
 // ステータステキストのみを返すヘルパー関数

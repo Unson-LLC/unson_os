@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button'
 import { products, categories, getProductsByCategory } from '@/data/products'
 import { useFilter } from '@/hooks/useFilter'
 import { FilterButtons, StatsGrid } from '@/components/interactive'
+import { AlertTriangle, MessageCircle } from 'lucide-react'
 
 export default function ProductsPage() {
   // 統計計算関数
@@ -72,14 +73,18 @@ export default function ProductsPage() {
               AIが市場の超ニッチなニーズを発見し、24時間でこのようなSaaSを自動生成します。
             </p>
             <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-8">
-              <p className="text-yellow-200 text-sm">
-                ⚠️ 注意：以下は将来生成予定のプロダクト例です。現在は構想・設計段階のため、実際には利用できません。
-              </p>
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
+                <p className="text-yellow-200 text-sm">
+                  注意：以下は将来生成予定のプロダクト例です。現在は構想・設計段階のため、実際には利用できません。
+                </p>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://discord.gg/unsonos">
                 <Button className="bg-[#5865F2] hover:bg-[#4752C4] text-white">
-                  💬 Discordで開発状況を確認
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Discordで開発状況を確認
                 </Button>
               </a>
               <a href="#products-list">
