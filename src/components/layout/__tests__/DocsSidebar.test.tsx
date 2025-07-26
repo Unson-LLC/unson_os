@@ -39,6 +39,7 @@ describe('DocsSidebar', () => {
     render(<DocsSidebar />)
 
     // メインセクションの確認
+    expect(screen.getByText('🟢 今すぐできること')).toBeInTheDocument()
     expect(screen.getByText('はじめに')).toBeInTheDocument()
     expect(screen.getByText('プロダクト開発')).toBeInTheDocument()
     expect(screen.getByText('開発・技術')).toBeInTheDocument()
@@ -52,7 +53,7 @@ describe('DocsSidebar', () => {
     render(<DocsSidebar />)
 
     expect(screen.getByText('🚀')).toBeInTheDocument() // はじめに
-    expect(screen.getByText('⚡')).toBeInTheDocument() // プロダクト開発
+    expect(screen.getAllByText('⚡').length).toBeGreaterThanOrEqual(2) // 今すぐできること + プロダクト開発
     expect(screen.getByText('🔧')).toBeInTheDocument() // 開発・技術
     expect(screen.getByText('🎯')).toBeInTheDocument() // 戦略・企画
     expect(screen.getByText('🗳️')).toBeInTheDocument() // DAOガバナンス
@@ -68,26 +69,29 @@ describe('DocsSidebar', () => {
     expect(screen.getByText('Unson OSとは')).toBeInTheDocument()
     expect(screen.getByText('クイックスタート')).toBeInTheDocument()
     expect(screen.getByText('プラットフォーム概要')).toBeInTheDocument()
+    
+    // 「今すぐできること」セクションも常に展開されている（高優先度）
+    expect(screen.getByText('Discord参加')).toBeInTheDocument()
   })
 
   it('セクションをクリックすると展開/折りたたみができる', () => {
     render(<DocsSidebar />)
 
-    // 「開発・技術」セクションのボタンを取得
-    const developmentSection = screen.getByText('開発・技術').closest('button')
-    expect(developmentSection).toBeInTheDocument()
+    // 「戦略・企画」セクションのボタンを取得（初期状態で折りたたまれている）
+    const strategySection = screen.getByText('戦略・企画').closest('button')
+    expect(strategySection).toBeInTheDocument()
 
-    // 初期状態では折りたたまれている（現在のページが含まれていないため）
-    expect(screen.queryByText('セットアップガイド')).not.toBeInTheDocument()
+    // 初期状態では折りたたまれている
+    expect(screen.queryByText('マイクロビジネス戦略')).not.toBeInTheDocument()
 
     // セクションをクリックして展開
-    fireEvent.click(developmentSection!)
-    expect(screen.getByText('セットアップガイド')).toBeInTheDocument()
-    expect(screen.getByText('フロントエンド構造')).toBeInTheDocument()
+    fireEvent.click(strategySection!)
+    expect(screen.getByText('マイクロビジネス戦略')).toBeInTheDocument()
+    expect(screen.getByText('MVP検証フレームワーク')).toBeInTheDocument()
 
     // 再度クリックして折りたたみ
-    fireEvent.click(developmentSection!)
-    expect(screen.queryByText('セットアップガイド')).not.toBeInTheDocument()
+    fireEvent.click(strategySection!)
+    expect(screen.queryByText('マイクロビジネス戦略')).not.toBeInTheDocument()
   })
 
   it('アクティブなページがハイライト表示される', () => {
@@ -101,18 +105,11 @@ describe('DocsSidebar', () => {
   it('ページタイプに応じた色のインジケーターが表示される', () => {
     render(<DocsSidebar />)
 
-    // 「はじめに」セクションは自動展開されているので、インジケーターを確認
-    // ガイド（青）と技術文書（紫）のインジケーターを確認
-    const indicators = document.querySelectorAll('.w-2.h-2.rounded-full')
-    expect(indicators.length).toBeGreaterThan(0)
-    
-    // ガイド文書（青）のインジケーター - はじめにセクションにある
-    const guideIndicators = document.querySelectorAll('.bg-blue-400')
-    expect(guideIndicators.length).toBeGreaterThan(0)
-
-    // 技術文書（紫）のインジケーター - はじめにセクションの技術アーキテクチャ
-    const technicalIndicators = document.querySelectorAll('.bg-purple-400')
-    expect(technicalIndicators.length).toBeGreaterThan(0)
+    // 「今すぐできること」と「はじめに」セクションは自動展開されている
+    // ステータスアイコンが表示されることを確認
+    expect(screen.getAllByText('🟢').length).toBeGreaterThan(0) // 利用可能
+    expect(screen.getAllByText('🟡').length).toBeGreaterThan(0) // 議論中
+    expect(screen.getAllByText('🔴').length).toBeGreaterThan(0) // 構想段階
   })
 
   it('フッターのクイックリンクが表示される', () => {
