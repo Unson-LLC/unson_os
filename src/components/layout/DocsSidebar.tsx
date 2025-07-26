@@ -9,6 +9,7 @@ import {
   Zap, Rocket, Package, Wrench, Target, Vote, Users, HelpCircle,
   ExternalLink, ChevronRight, Book
 } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 
 // ドキュメントアイテムの型定義
 interface DocItem {
@@ -151,10 +152,9 @@ export function DocsSidebar({ className = '' }: DocsSidebarProps) {
   return (
     <div className={`bg-white border-r border-gray-200 overflow-y-auto ${className}`}>
       <div className="p-4">
-        <Link href="/docs" className="flex items-center space-x-2 mb-6">
-          <Book className="w-6 h-6 text-gray-700" />
-          <h2 className="text-lg font-semibold text-gray-900">ドキュメント</h2>
-        </Link>
+        <div className="mb-6">
+          <Logo />
+        </div>
         
         <nav className="space-y-2">
           {documentationSections.map((section, sectionIndex) => {
