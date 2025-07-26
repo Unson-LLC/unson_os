@@ -125,12 +125,16 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
   const handleNext = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(prev => prev + 1)
+      // フォームの上部にスクロール
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
   const handlePrev = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1)
+      // フォームの上部にスクロール
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
@@ -708,7 +712,7 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
               <Button
                 type="submit"
                 disabled={!canProceedToNext() || isSubmitting}
-                className="flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+                className="flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
