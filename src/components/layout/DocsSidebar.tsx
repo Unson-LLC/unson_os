@@ -33,8 +33,9 @@ const documentationSections: DocSection[] = [
     Icon: Zap,
     priority: 'high',
     items: [
-      { title: 'Discord参加', url: 'https://discord.gg/unsonos', type: 'guide', status: 'available' },
-      { title: 'GitHub Issues', url: 'https://github.com/Unson-LLC/unson_os/issues', type: 'guide', status: 'available' },
+      { title: 'Discord参加', url: '/community', type: 'guide', status: 'available' },
+      { title: 'アイデア共有', url: '/contact', type: 'guide', status: 'available' },
+      { title: 'GitHub参加', url: 'https://github.com/Unson-LLC/unson_os', type: 'guide', status: 'available' },
       { title: 'セットアップガイド', url: '/docs/development/setup-guide', type: 'technical', status: 'available' },
       { title: 'テストガイドライン', url: '/docs/testing-guidelines', type: 'technical', status: 'available' },
       { title: 'コミュニティ参加', url: '/community', type: 'guide', status: 'available' }
