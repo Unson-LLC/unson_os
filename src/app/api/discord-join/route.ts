@@ -83,9 +83,14 @@ export async function POST(request: NextRequest) {
           <div style="background-color: #5865F2; color: white; padding: 24px; border-radius: 8px; margin: 24px 0;">
             <h2 style="margin-top: 0;">Discord参加方法</h2>
             <p>以下のボタンをクリックして、Discordサーバーに参加してください：</p>
-            <a href="https://discord.gg/unsonos" style="display: inline-block; background-color: white; color: #5865F2; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: bold; margin-top: 12px;">
+            <a href="${discordInviteLink}" style="display: inline-block; background-color: white; color: #5865F2; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: bold; margin-top: 12px;">
               Discordに参加する
             </a>
+          </div>
+          
+          <div style="background-color: #f5f5f5; padding: 16px; border-radius: 8px; margin: 24px 0;">
+            <h3 style="margin-top: 0;">または、以下のウィジェットから直接参加：</h3>
+            <iframe src="${discordInviteLink}&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" style="border-radius: 8px; display: block; margin: 0 auto;"></iframe>
           </div>
 
           <h3 style="color: #1a1a1a; margin-top: 32px;">参加後の流れ</h3>
