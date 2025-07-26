@@ -360,6 +360,27 @@ export default function CommunityPage() {
               フォーム送信後、メールでDiscord招待リンクをお送りします
             </p>
           </div>
+
+          {/* Discordウィジェット */}
+          <div className="mb-12 max-w-md mx-auto">
+            <div className="bg-gray-50 rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-4 text-center">Discordサーバーの状況</h3>
+              <div className="flex justify-center">
+                <iframe 
+                  src="https://discord.com/widget?id=1398489283513417911&theme=dark" 
+                  width="350" 
+                  height="400" 
+                  allowTransparency={true} 
+                  frameBorder="0" 
+                  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                  className="rounded-lg shadow-lg"
+                />
+              </div>
+              <p className="text-xs text-gray-500 text-center mt-2">
+                ※ウィジェットが表示されない場合は、Discordサーバーでウィジェット設定を有効化してください
+              </p>
+            </div>
+          </div>
           
           <div className="grid md:grid-cols-1 max-w-lg mx-auto">
             <div className="text-center">
