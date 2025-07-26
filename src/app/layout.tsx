@@ -2,6 +2,7 @@
 
 import './globals.css'
 import { useEffect } from 'react'
+import Logo from '@/components/ui/Logo'
 
 export default function RootLayout({
   children,
@@ -44,7 +45,7 @@ export default function RootLayout({
             <div className="flex justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <h2 className="text-xl font-bold text-gray-900">Unson OS</h2>
+                  <Logo />
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   <a href="/" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">

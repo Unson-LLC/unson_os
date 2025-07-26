@@ -42,13 +42,13 @@ export const list = query({
     if (args.position) {
       applications = await ctx.db
         .query("careerApplications")
-        .withIndex("by_position", (q) => q.eq("position", args.position))
+        .withIndex("by_position", (q) => q.eq("position", args.position!))
         .order("desc")
         .take(args.limit || 50);
     } else if (args.status) {
       applications = await ctx.db
         .query("careerApplications")
-        .withIndex("by_status", (q) => q.eq("status", args.status))
+        .withIndex("by_status", (q) => q.eq("status", args.status! as "submitted" | "screening" | "interview" | "rejected" | "hired"))
         .order("desc")
         .take(args.limit || 50);
     } else {

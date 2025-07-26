@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { DocsSidebar } from './DocsSidebar'
 import { Book, Rocket, MessageCircle, Menu } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
 
 interface DocsLayoutProps {
   children: React.ReactNode
@@ -40,10 +41,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
               >
                 <Menu className="w-6 h-6" />
               </button>
-              <h1 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
-                <Book className="w-5 h-5" />
-                <span>ドキュメント</span>
-              </h1>
+              <Logo width={32} height={32} showText={false} />
               <div className="w-10" /> {/* スペーサー */}
             </div>
           </header>
