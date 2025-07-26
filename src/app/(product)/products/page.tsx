@@ -59,65 +59,57 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="section-padding bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* 背景動画 */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/social_mikado310135_httpss.mj.run3khwUq1-EGo_--ar_256143_--video_1_-_41484830-c2da-443e-a2f7-ed4e890eee1d_2.mp4" type="video/mp4" />
+        </video>
+        
+        {/* オーバーレイ */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-purple-900/80"></div>
+        
+        {/* コンテンツ */}
         <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* 左側：コンテンツ */}
-            <div className="text-left animate-fade-in">
-              <h1 className="heading-primary text-white mb-6">
-                AIが生み出す
-                <span className="block text-blue-400 mt-2">
-                  100個のSaaSビジネス
-                </span>
-              </h1>
-              <p className="text-xl text-gray-300 mb-8">
-                これらは構想段階のプロダクト例です。UnsonOSが完成すれば、
-                AIが市場の超ニッチなニーズを発見し、24時間でこのようなSaaSを自動生成します。
-              </p>
-              <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 mb-8">
-                <div className="flex items-start gap-2">
-                  <AlertTriangle className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
-                  <p className="text-yellow-200 text-sm">
-                    注意：以下は将来生成予定のプロダクト例です。現在は構想・設計段階のため、実際には利用できません。
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://discord.gg/unsonos">
-                  <Button className="bg-[#5865F2] hover:bg-[#4752C4] text-white">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Discordで開発状況を確認
-                  </Button>
-                </a>
-                <a href="#products-list">
-                  <Button variant="outline" className="border-gray-300 text-white">
-                    プロダクト例を見る
-                  </Button>
-                </a>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="heading-primary text-white mb-6 drop-shadow-lg">
+              AIが生み出す
+              <span className="block text-purple-300 mt-2">
+                100個のSaaSビジネス
+              </span>
+            </h1>
+            <p className="text-xl text-gray-100 mb-8 drop-shadow-md">
+              これらは構想段階のプロダクト例です。UnsonOSが完成すれば、
+              AIが市場の超ニッチなニーズを発見し、24時間でこのようなSaaSを自動生成します。
+            </p>
+            <div className="bg-yellow-900/20 backdrop-blur-sm border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-8">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
+                <p className="text-yellow-200 text-sm">
+                  注意：以下は将来生成予定のプロダクト例です。現在は構想・設計段階のため、実際には利用できません。
+                </p>
               </div>
             </div>
-            
-            {/* 右側：ヒーロー動画 */}
-            <div className="relative">
-              <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                >
-                  <source src="/social_mikado310135_httpss.mj.run3khwUq1-EGo_--ar_256143_--video_1_-_41484830-c2da-443e-a2f7-ed4e890eee1d_2.mp4" type="video/mp4" />
-                </video>
-              </div>
-              {/* グラデーションオーバーレイ */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent rounded-2xl pointer-events-none"></div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="https://discord.gg/unsonos">
+                <Button className="bg-[#5865F2] hover:bg-[#4752C4] text-white shadow-2xl">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Discordで開発状況を確認
+                </Button>
+              </a>
+              <a href="#products-list">
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-purple-900 shadow-2xl">
+                  プロダクト例を見る
+                </Button>
+              </a>
             </div>
           </div>
         </div>
-        
-        {/* 背景装飾 */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-900/30 to-transparent pointer-events-none"></div>
       </section>
 
       {/* 統計セクション */}

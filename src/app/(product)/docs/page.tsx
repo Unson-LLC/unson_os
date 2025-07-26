@@ -141,23 +141,38 @@ export default function DocsPage() {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="container-custom">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* 背景動画 */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/social_mikado310135_httpss.mj.runV_RQl3GqaR4_--ar_256143_--video_1_-_4eac8ef2-1f3a-4136-a9be-62edf93ac7e4_1.mp4" type="video/mp4" />
+        </video>
+        
+        {/* オーバーレイ */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/80 to-blue-900/80"></div>
+        
+        {/* コンテンツ */}
+        <div className="container-custom relative z-10">
           <div className="text-center animate-fade-in">
-            <h1 className="heading-primary text-gray-900 mb-6">
+            <h1 className="heading-primary text-white mb-6 drop-shadow-lg">
               UnsonOS
-              <span className="block text-blue-600 mt-2">
+              <span className="block text-blue-300 mt-2">
                 ドキュメントガイド
               </span>
             </h1>
-            <p className="text-large max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-gray-100 mb-8 drop-shadow-md">
               AIに仕事を奪われる恐怖から、AIと共に豊かになる希望へ。<br />
               UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作ります。
             </p>
-            <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4 max-w-2xl mx-auto mb-6">
+            <div className="bg-yellow-900/20 backdrop-blur-sm border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto mb-6">
               <div className="flex items-start gap-2">
-                <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-                <p className="text-yellow-800 text-sm">
+                <AlertTriangle className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
+                <p className="text-yellow-200 text-sm">
                   UnsonOSは現在構想段階です。記載されている機能の多くは2025年以降の実装予定です。
                 </p>
               </div>
@@ -167,6 +182,7 @@ export default function DocsPage() {
                 value={essentialDocsSearch.searchTerm}
                 onChange={essentialDocsSearch.setSearchTerm}
                 placeholder="ドキュメントを検索..."
+                className="bg-white/90 backdrop-blur-sm"
               />
             </div>
           </div>

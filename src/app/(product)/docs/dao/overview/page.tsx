@@ -112,24 +112,39 @@ export default function DAOOverviewPage() {
   return (
     <DocsLayout>
       {/* ヒーローセクション */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="container-custom">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* 背景動画 */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/social_mikado310135_httpss.mj.run4AlJOM-_IG4_--ar_256143_--video_1_-_82e1a8db-a33d-4f4e-a78b-ebdd17594f06_3.mp4" type="video/mp4" />
+        </video>
+        
+        {/* オーバーレイ */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-purple-900/80"></div>
+        
+        {/* コンテンツ */}
+        <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="heading-primary text-gray-900 mb-6">
+            <h1 className="heading-primary text-white mb-6 drop-shadow-lg">
               Unson OS DAO
-              <span className="block text-blue-600 mt-2">
+              <span className="block text-blue-300 mt-2">
                 分散型自律組織の仕組み
               </span>
             </h1>
-            <p className="text-large text-gray-600 mb-8">
+            <p className="text-xl text-gray-100 mb-8 drop-shadow-md">
               従来の企業組織とは異なる、分散型で民主的な組織運営を実現。
               コミュニティメンバーが直接ガバナンスに参加し、透明性のある意思決定を行います。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <NavigationLink href="/community" variant="default" size="lg">
+              <NavigationLink href="/community" variant="default" size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
                 DAOに参加する
               </NavigationLink>
-              <NavigationLink href="/docs/dao/tokenomics" variant="outline" size="lg">
+              <NavigationLink href="/docs/dao/tokenomics" variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-900">
                 トークノミクスを見る
               </NavigationLink>
             </div>
