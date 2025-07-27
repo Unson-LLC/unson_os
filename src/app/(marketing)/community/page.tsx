@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
 import { DiscordJoinForm } from '@/components/forms/DiscordJoinForm'
 import { Button } from '@/components/ui/Button'
-import GitHubContributors from '@/components/sections/GitHubContributors'
+import SimpleGitHubContributors from '@/components/sections/SimpleGitHubContributors'
 
 // メタデータは別ファイルに移動
 // export const metadata: Metadata = {
@@ -266,7 +266,7 @@ export default function CommunityPage() {
       </section>
 
       {/* GitHub コントリビューター */}
-      <GitHubContributors />
+      <SimpleGitHubContributors />
 
       {/* 参加方法 */}
       <section className="section-padding">
