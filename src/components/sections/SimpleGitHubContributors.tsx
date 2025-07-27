@@ -22,17 +22,18 @@ const SimpleGitHubContributors = () => {
         </div>
         
         {/* contrib.rocksを使用した簡単な表示 */}
-        <div className="max-w-3xl mx-auto mb-12">
+        <div className="flex justify-center mb-12">
           <a 
             href="https://github.com/Unson-LLC/unson_os/graphs/contributors"
             target="_blank"
             rel="noopener noreferrer"
-            className="block hover:opacity-90 transition-opacity"
+            className="inline-block hover:opacity-90 transition-opacity"
           >
             <img 
-              src="https://contrib.rocks/image?repo=Unson-LLC/unson_os" 
+              src="https://contrib.rocks/image?repo=Unson-LLC/unson_os&max=12&columns=6" 
               alt="Contributors"
-              className="w-full rounded-lg shadow-md"
+              className="rounded-lg shadow-md"
+              style={{ maxWidth: '500px' }}
             />
           </a>
         </div>
