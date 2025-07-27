@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
 import { DiscordJoinForm } from '@/components/forms/DiscordJoinForm'
 import { Button } from '@/components/ui/Button'
+import GitHubContributors from '@/components/sections/GitHubContributors'
 
 // メタデータは別ファイルに移動
 // export const metadata: Metadata = {
@@ -19,49 +20,6 @@ import { Button } from '@/components/ui/Button'
 //   },
 // }
 
-// サンプルメンバーデータ
-const communityMembers = [
-  {
-    id: 1,
-    name: '田中 健太',
-    role: 'Core Developer',
-    avatar: '/avatars/tanaka.jpg',
-    contribution: 'Platform Architecture',
-    joinedDate: '2024年3月',
-    projects: 12,
-    tokens: '2,450 UNS'
-  },
-  {
-    id: 2,
-    name: 'Sarah Johnson',
-    role: 'Product Designer',
-    avatar: '/avatars/sarah.jpg',
-    contribution: 'UX/UI Design',
-    joinedDate: '2024年4月',
-    projects: 8,
-    tokens: '1,890 UNS'
-  },
-  {
-    id: 3,
-    name: '山田 美咲',
-    role: 'Growth Marketer',
-    avatar: '/avatars/yamada.jpg',
-    contribution: 'Community Growth',
-    joinedDate: '2024年2月',
-    projects: 15,
-    tokens: '3,210 UNS'
-  },
-  {
-    id: 4,
-    name: 'Alex Chen',
-    role: 'AI Engineer',
-    avatar: '/avatars/alex.jpg',
-    contribution: 'Auto-generation System',
-    joinedDate: '2024年1月',
-    projects: 6,
-    tokens: '1,650 UNS'
-  }
-]
 
 // アイコンマッピング
 const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
@@ -307,45 +265,8 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* コミュニティメンバー */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="heading-secondary mb-6">
-              仮想コアメンバー例
-            </h2>
-            <p className="text-large max-w-2xl mx-auto text-gray-600">
-              将来のUnsonOSで活躍するようなメンバーのイメージ例です。あなたもこの中の一人になれるかもしれません。
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {communityMembers.map((member) => (
-              <div key={member.id} className="card text-center hover:shadow-lg transition-shadow duration-200">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">
-                    {member.name.charAt(0)}
-                  </span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                  {member.name}
-                </h3>
-                <div className="text-blue-600 text-sm font-medium mb-2">
-                  {member.role}
-                </div>
-                <div className="text-gray-600 text-xs mb-3">
-                  {member.contribution}
-                </div>
-                <div className="space-y-1 text-xs text-gray-500">
-                  <div>参加: {member.joinedDate}</div>
-                  <div>プロジェクト: {member.projects}件</div>
-                  <div className="font-medium text-green-600">{member.tokens}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* GitHub コントリビューター */}
+      <GitHubContributors />
 
       {/* 参加方法 */}
       <section className="section-padding">
