@@ -114,7 +114,9 @@ export async function POST(request: NextRequest) {
         channelId: process.env.DISCORD_CHANNEL_ID,
         hasServerId: !!process.env.DISCORD_SERVER_ID,
         serverId: process.env.DISCORD_SERVER_ID,
-        nodeEnv: process.env.NODE_ENV
+        nodeEnv: process.env.NODE_ENV,
+        // 環境変数の再デプロイトリガー
+        deployTime: new Date().toISOString()
       })
       
       if (!process.env.DISCORD_BOT_TOKEN || !process.env.DISCORD_CHANNEL_ID) {
