@@ -107,6 +107,7 @@ export async function POST(request: NextRequest) {
     let discordInviteLink: string
     try {
       discordInviteLink = await createDiscordInvite()
+      console.log('生成された招待リンク:', discordInviteLink)
     } catch (error) {
       console.error('Discord招待リンク生成エラー:', error)
       // フォールバック: 環境変数の固定リンクを使用
