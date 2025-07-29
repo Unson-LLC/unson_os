@@ -159,8 +159,18 @@ export async function POST(request: NextRequest) {
 
     // 新しいReact Emailテンプレートを使用する場合
     const useNewTemplate = process.env.USE_NEW_EMAIL_TEMPLATE !== 'false' // デフォルトでtrue
+    console.log('テンプレート設定:', {
+      USE_NEW_EMAIL_TEMPLATE: process.env.USE_NEW_EMAIL_TEMPLATE,
+      useNewTemplate
+    })
     
     // メール送信データの準備
+    console.log('メール送信準備:', {
+      useNewTemplate,
+      discordInviteLink,
+      email: body.email
+    })
+    
     const emailData = useNewTemplate ? {
       to: body.email,
       subject: 'Discord 招待リンクのご案内',
