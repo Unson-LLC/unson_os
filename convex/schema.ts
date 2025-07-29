@@ -15,8 +15,7 @@ export default defineSchema({
     rejectionReason: v.optional(v.string()),
   })
     .index("by_email", ["email"])
-    .index("by_status", ["status"])
-    .index("by_creation_time", ["_creationTime"]),
+    .index("by_status", ["status"]),
     
   careerApplications: defineTable({
     name: v.string(),
@@ -92,6 +91,5 @@ export default defineSchema({
     invitedAt: v.optional(v.number()),
   })
     .index("by_email", ["email"])
-    .index("by_status", ["status"])
-    .index("by_creation_time", ["_creationTime"]),
+    .index("by_status", ["status"]),
 });
