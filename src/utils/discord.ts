@@ -7,7 +7,7 @@ export async function createDiscordInvite(): Promise<string> {
   }
 
   const res = await fetch(
-    `https://discord.com/api/v11/channels/${channelId}/invites`,
+    `https://discord.com/api/v10/channels/${channelId}/invites`,
     {
       method: 'POST',
       headers: {
@@ -27,5 +27,6 @@ export async function createDiscordInvite(): Promise<string> {
   }
   
   const data = await res.json()
-  return data.url as string
+  // Discord APIは'code'を返すので、完全なURLを構築
+  return `https://discord.gg/${data.code}`
 }
