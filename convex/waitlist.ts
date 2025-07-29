@@ -3,12 +3,13 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 // ウェイトリスト登録
-export const register = mutation({
+export const add = mutation({
   args: {
     email: v.string(),
-    name: v.string(),
-    role: v.optional(v.string()),
-    referralSource: v.optional(v.string()),
+    name: v.optional(v.string()),
+    company: v.optional(v.string()),
+    interests: v.array(v.string()),
+    source: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     // 重複チェック
@@ -24,6 +25,7 @@ export const register = mutation({
     // 新規登録
     const waitlistId = await ctx.db.insert("waitlist", {
       ...args,
+      status: "active",
       createdAt: Date.now(),
     });
     
@@ -43,7 +45,6 @@ export const list = query({
   handler: async (ctx, args) => {
     const waitlist = await ctx.db
       .query("waitlist")
-      .withIndex("by_created_at")
       .order("desc")
       .take(args.limit || 50);
     
