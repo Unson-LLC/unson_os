@@ -2,6 +2,7 @@
 'use client'
 
 import { Button } from '@/components/ui/Button'
+import { ProductStatusBadge } from '@/components/ui/ProductStatusBadge'
 import { products, categories, getProductsByCategory } from '@/data/products'
 import { useFilter } from '@/hooks/useFilter'
 import { FilterButtons, StatsGrid } from '@/components/interactive'
@@ -135,7 +136,7 @@ export default function ProductsPage() {
         <div className="container-custom">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="card hover:shadow-lg transition-shadow duration-200">
+              <div key={product.id} className="card hover:shadow-lg transition-shadow duration-200" data-testid={`product-card-${product.name}`}>
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-1">
@@ -171,22 +172,29 @@ export default function ProductsPage() {
                     <div className="text-lg font-semibold text-gray-900">予定価格: {product.price}</div>
                     <div className="text-xs text-gray-500">想定ユーザー: {product.users}</div>
                   </div>
-                  <div>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
-                      構想段階
-                    </span>
-                  </div>
+                  <ProductStatusBadge product={product} />
                 </div>
                 
                 <div className="flex gap-2">
+                  {product.isReal && product.serviceUrl && (
+                    <a href={product.serviceUrl} target="_blank" rel="noopener noreferrer" className="flex-1" data-testid="service-url-link">
+                      <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
+                        サービスを見る
+                      </Button>
+                    </a>
+                  )}
+                  {!product.isReal && product.lpUrl && (
+                    <a href={product.lpUrl} target="_blank" rel="noopener noreferrer" data-testid="lp-link" className="flex-1">
+                      <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
+                        LPを見る
+                      </Button>
+                    </a>
+                  )}
                   <a href={`/products/${product.id}`} className="flex-1">
                     <Button size="sm" className="w-full">
-                      コンセプト詳細
+                      詳細情報
                     </Button>
                   </a>
-                  <Button variant="outline" size="sm" className="w-full flex-1" disabled>
-                    開発予定
-                  </Button>
                 </div>
               </div>
             ))}
