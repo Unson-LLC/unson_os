@@ -129,9 +129,11 @@ export async function POST(request: NextRequest) {
       console.log('生成された招待リンク:', discordInviteLink)
     } catch (error) {
       console.error('Discord招待リンク生成エラー:', error)
-      // フォールバック: 環境変数の固定リンクを使用
-      discordInviteLink = process.env.DISCORD_INVITE_LINK || 'https://discord.gg/unsonos'
-      console.log('フォールバックリンクを使用:', discordInviteLink)
+      // Bot APIが失敗した場合はエラーを返す
+      return NextResponse.json(
+        { error: 'Discord招待リンクの生成に失敗しました。時間をおいて再度お試しください。' },
+        { status: 500 }
+      )
     }
     
     // Discord Server ID（ウィジェット用）
