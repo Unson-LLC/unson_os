@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { ConvexHttpClient } from 'convex/browser'
+import { createDiscordInvite } from '@/utils/discord'
+import { InviteEmail } from '@/components/emails/InviteEmail'
 // import { api } from '@/convex/_generated/api'
 
 interface DiscordJoinRequest {
@@ -101,8 +103,18 @@ export async function POST(request: NextRequest) {
     // 現在の日時
     const now = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
 
-    // Discord招待リンク
-    const discordInviteLink = process.env.DISCORD_INVITE_LINK || 'https://discord.gg/unsonos'
+    // Discord Bot APIで動的に招待リンクを生成
+    let discordInviteLink: string
+    try {
+      discordInviteLink = await createDiscordInvite()
+    } catch (error) {
+      console.error('Discord招待リンク生成エラー:', error)
+      // フォールバック: 環境変数の固定リンクを使用
+      discordInviteLink = process.env.DISCORD_INVITE_LINK || 'https://discord.gg/unsonos'
+    }
+    
+    // Discord Server ID（ウィジェット用）
+    const discordServerId = process.env.DISCORD_SERVER_ID || '1234567890123456789'
 
     // TODO: Convexに保存
     // try {
@@ -124,8 +136,15 @@ export async function POST(request: NextRequest) {
     //   throw error
     // }
 
+    // 新しいReact Emailテンプレートを使用する場合
+    const useNewTemplate = process.env.USE_NEW_EMAIL_TEMPLATE === 'true'
+    
     // メール送信データの準備
-    const emailData = {
+    const emailData = useNewTemplate ? {
+      to: body.email,
+      subject: 'Discord 招待リンクのご案内',
+      react: InviteEmail({ inviteUrl: discordInviteLink }),
+    } : {
       to: body.email,
       subject: 'Unson OS Discordコミュニティへようこそ！',
       html: `
@@ -147,7 +166,7 @@ export async function POST(request: NextRequest) {
           
           <div style="background-color: #f5f5f5; padding: 16px; border-radius: 8px; margin: 24px 0;">
             <h3 style="margin-top: 0;">または、以下のウィジェットから直接参加：</h3>
-            <iframe src="${discordInviteLink}&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" style="border-radius: 8px; display: block; margin: 0 auto;"></iframe>
+            <iframe src="https://discord.com/widget?id=${discordServerId}&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius: 8px; display: block; margin: 0 auto;"></iframe>
           </div>
 
           <h3 style="color: #1a1a1a; margin-top: 32px;">参加後の流れ</h3>
@@ -277,12 +296,19 @@ export async function POST(request: NextRequest) {
     // メール送信
     
     // 申請者へのメール
-    await resend.emails.send({
-      from: `Unson OS <${fromEmail}>`,
-      to: body.email,
-      subject: emailData.subject,
-      html: emailData.html.replace('https://discord.gg/unsonos', discordInviteLink),
-    })
+    if (useNewTemplate) {
+      await resend.emails.send({
+        from: `Unson OS <${fromEmail}>`,
+        ...emailData
+      })
+    } else {
+      await resend.emails.send({
+        from: `Unson OS <${fromEmail}>`,
+        to: body.email,
+        subject: emailData.subject,
+        html: emailData.html.replace('https://discord.gg/unsonos', discordInviteLink),
+      })
+    }
 
     // 管理者への通知メール
     if (process.env.ADMIN_EMAIL) {
