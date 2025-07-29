@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 import { ConvexHttpClient } from 'convex/browser'
 import { createDiscordInvite } from '@/utils/discord'
 import { InviteEmail } from '@/components/emails/InviteEmail'
-// import { api } from '@/convex/_generated/api'
+import { api } from '@/convex/_generated/api'
 
 interface DiscordJoinRequest {
   email: string
@@ -141,25 +141,25 @@ export async function POST(request: NextRequest) {
     // Discord Server ID（ウィジェット用）
     const discordServerId = process.env.DISCORD_SERVER_ID || '1234567890123456789'
 
-    // TODO: Convexに保存
-    // try {
-    //   await convex.mutation(api.discordApplications.create, {
-    //     email: body.email,
-    //     name: body.name,
-    //     reasons: body.reasons,
-    //     otherReason: body.otherReason,
-    //     skills: body.skills,
-    //     expectations: body.expectations,
-    //   })
-    // } catch (error: any) {
-    //   if (error.message?.includes('既に承認済み')) {
-    //     return NextResponse.json(
-    //       { error: '既に承認済みの申請があります。Discord招待リンクをメールでご確認ください。' },
-    //       { status: 400 }
-    //     )
-    //   }
-    //   throw error
-    // }
+    // Convexに保存
+    try {
+      await convex.mutation(api.discordApplications.create, {
+        email: body.email,
+        name: body.name,
+        reasons: body.reasons,
+        otherReason: body.otherReason,
+        skills: body.skills,
+        expectations: body.expectations,
+      })
+    } catch (error: any) {
+      if (error.message?.includes('既に承認済み')) {
+        return NextResponse.json(
+          { error: '既に承認済みの申請があります。Discord招待リンクをメールでご確認ください。' },
+          { status: 400 }
+        )
+      }
+      throw error
+    }
 
     // 新しいReact Emailテンプレートを使用する場合
     const useNewTemplate = process.env.USE_NEW_EMAIL_TEMPLATE !== 'false' // デフォルトでtrue
