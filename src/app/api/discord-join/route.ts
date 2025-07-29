@@ -138,7 +138,7 @@ export async function POST(request: NextRequest) {
     // }
 
     // 新しいReact Emailテンプレートを使用する場合
-    const useNewTemplate = process.env.USE_NEW_EMAIL_TEMPLATE === 'true'
+    const useNewTemplate = process.env.USE_NEW_EMAIL_TEMPLATE !== 'false' // デフォルトでtrue
     
     // メール送信データの準備
     const emailData = useNewTemplate ? {
