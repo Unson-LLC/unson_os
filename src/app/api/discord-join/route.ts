@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
         hasServerId: !!process.env.DISCORD_SERVER_ID,
         serverId: process.env.DISCORD_SERVER_ID,
         nodeEnv: process.env.NODE_ENV,
-        // 環境変数の再デプロイトリガー
+        // 環境変数の再デプロイトリガー - Production環境変数設定後
         deployTime: new Date().toISOString()
       })
       
