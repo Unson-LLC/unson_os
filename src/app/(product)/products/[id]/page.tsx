@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Button } from '@/components/ui/Button'
+import { ProductStatusBadge } from '@/components/ui/ProductStatusBadge'
 import { notFound } from 'next/navigation'
 import { getProductById, getRelatedProducts } from '@/data/products'
 
@@ -89,20 +90,31 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               
               <div className="flex items-center gap-4 mb-8">
                 <div className="text-3xl font-bold text-gray-900">{product.price}</div>
-                {product.status === 'active' && (
-                  <span className="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">
-                    利用可能
-                  </span>
-                )}
+                <ProductStatusBadge product={product} size="sm" />
               </div>
               
               <div className="flex gap-4">
-                <a href={`/trial/${product.id}`}>
-                  <Button size="lg">無料トライアル開始</Button>
-                </a>
-                <a href="/contact">
-                  <Button variant="outline" size="lg">お問い合わせ</Button>
-                </a>
+                {product.isReal && product.serviceUrl ? (
+                  <>
+                    <a href={product.serviceUrl} target="_blank" rel="noopener noreferrer">
+                      <Button size="lg" className="bg-green-600 hover:bg-green-700">
+                        サービスを利用する
+                      </Button>
+                    </a>
+                    <a href="/contact">
+                      <Button variant="outline" size="lg">お問い合わせ</Button>
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href={`/trial/${product.id}`}>
+                      <Button size="lg">無料トライアル開始</Button>
+                    </a>
+                    <a href="/contact">
+                      <Button variant="outline" size="lg">お問い合わせ</Button>
+                    </a>
+                  </>
+                )}
               </div>
             </div>
             
@@ -198,6 +210,56 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
           </div>
         </div>
       </section>
+
+      {product.isReal && (
+        <section className="section-padding bg-gray-50" data-testid="advertising-lps-section">
+          <div className="container-custom">
+            <h2 className="heading-secondary text-center mb-12">広告運用LP</h2>
+            
+            {product.advertisingLPs && product.advertisingLPs.length > 0 ? (
+              <div className="grid md:grid-cols-2 gap-8">
+                {product.advertisingLPs.map((lp, index) => (
+                  <div key={index} className="card" data-testid="ad-lp-card">
+                    <div className="mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{lp.title}</h3>
+                      <div className="flex items-center gap-4 text-sm">
+                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+                          {lp.channel}
+                        </span>
+                        {lp.conversionRate && (
+                          <span className="text-gray-600">
+                            コンバージョン率: <span className="font-semibold">{lp.conversionRate}</span>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <a 
+                      href={lp.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline text-sm"
+                    >
+                      LPを確認する →
+                    </a>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <div className="max-w-md mx-auto">
+                  <div className="bg-gray-100 rounded-lg p-8 text-gray-500">
+                    <svg className="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    <p className="text-lg font-medium mb-2">広告運用LPは準備中です</p>
+                    <p className="text-sm">現在、効果的なLPを作成中です。<br/>今後の更新をお待ちください。</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
