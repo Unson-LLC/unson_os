@@ -106,12 +106,32 @@ export async function POST(request: NextRequest) {
     // Discord Bot APIで動的に招待リンクを生成
     let discordInviteLink: string
     try {
+      // 環境変数の確認
+      console.log('Discord環境変数チェック:', {
+        hasToken: !!process.env.DISCORD_BOT_TOKEN,
+        tokenFirst5: process.env.DISCORD_BOT_TOKEN?.substring(0, 5),
+        hasChannelId: !!process.env.DISCORD_CHANNEL_ID,
+        channelId: process.env.DISCORD_CHANNEL_ID,
+        hasServerId: !!process.env.DISCORD_SERVER_ID,
+        serverId: process.env.DISCORD_SERVER_ID,
+        nodeEnv: process.env.NODE_ENV
+      })
+      
+      if (!process.env.DISCORD_BOT_TOKEN || !process.env.DISCORD_CHANNEL_ID) {
+        console.error('Discord環境変数が未設定:', {
+          hasToken: !!process.env.DISCORD_BOT_TOKEN,
+          hasChannelId: !!process.env.DISCORD_CHANNEL_ID
+        })
+        throw new Error('Discord configuration missing')
+      }
+      
       discordInviteLink = await createDiscordInvite()
       console.log('生成された招待リンク:', discordInviteLink)
     } catch (error) {
       console.error('Discord招待リンク生成エラー:', error)
       // フォールバック: 環境変数の固定リンクを使用
       discordInviteLink = process.env.DISCORD_INVITE_LINK || 'https://discord.gg/unsonos'
+      console.log('フォールバックリンクを使用:', discordInviteLink)
     }
     
     // Discord Server ID（ウィジェット用）
