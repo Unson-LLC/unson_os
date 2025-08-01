@@ -742,6 +742,13 @@ npm run build --verbose
 - **Sentry**: エラー監視
 - **Plausible**: プライバシー重視Analytics
 
+### UnsonOS Web テンプレート
+最新の技術スタックを統合したテンプレートも利用可能です：
+- **[UnsonOS Web Template](https://github.com/Unson-LLC/unson-os-web-template)**
+  - 上記セットアップが完了済み
+  - Convex、Bun、Moonなど最新スタック統合
+  - すぐに開発を開始可能
+
 ---
 
 ## リソース
