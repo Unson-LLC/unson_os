@@ -51,11 +51,11 @@ UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作り�
 
 2. **技術議論への参加** 🟢
    - [GitHub Issues](https://github.com/Unson-LLC/unson_os/issues) で技術提案
-   - [Discord](https://discord.gg/unsonos) でアーキテクチャ議論
+   - [Discord設定ガイド](/docs/setup/discord/) でコミュニティ参加
 
 3. **設計への貢献** 🟡
-   - [技術アーキテクチャ](/docs/technical/architecture) - AI統合の設計議論
-   - [サービス生成パイプライン](/docs/technical/pipeline) - 自動化フローの設計
+   - [技術アーキテクチャ](/docs/technical/unson-os-architecture) - AI統合の設計議論
+   - [サービス生成パイプライン](/docs/technical/service-generation-pipeline) - 自動化フローの設計
 
 #### あなたのスキルを活かせる分野
 - マイクロサービス設計
@@ -69,12 +69,12 @@ UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作り�
 
 #### ビジネスモデルの理解 🟢
 1. **収益モデル**
-   - [収益分配システム](/docs/dao/revenue-sharing) - 45-15-40モデルの詳細
-   - [DAO完全ガイド](/docs/dao/overview) - 分散型組織の仕組み
+   - [収益分配システム](/docs/governance/dao-structure) - 45-15-40モデルの詳細
+   - [DAO簡単ガイド](/docs/governance/dao-simple-guide) - 分散型組織の仕組み
 
 2. **市場戦略** 🟡
-   - [マイクロビジネス戦略](/docs/strategy/micro-business) - 100個のSaaS管理戦略
-   - [MVP検証フレームワーク](/docs/strategy/mvp-validation) - 2週間サイクルの検証プロセス
+   - [マイクロビジネス戦略](/docs/strategy/micro-business-strategy) - 100個のSaaS管理戦略
+   - [MVP検証フレームワーク](/docs/strategy/mvp-validation-framework) - 2週間サイクルの検証プロセス
 
 3. **将来性** 🔴
    - 2025年：ARR 1億円目標
@@ -111,36 +111,36 @@ UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作り�
 ## 📚 ドキュメント一覧（優先度順）
 
 ### 🔥 必読ドキュメント（5-10分）
-1. **[UnsonOS構想概要](/docs/introduction)** 🔴
+1. **[エグゼクティブ戦略レポート](/docs/executive-strategy-report)** 🔴
    - ビジョンとミッション
    - なぜ100個のSaaSなのか
    - 3年間のロードマップ
 
-2. **[クイックスタート](/docs/quickstart)** 🟢
+2. **[企業ビジョン](/docs/company-vision)** 🟢
    - 5分で理解する参加方法
    - 必要なツールとアカウント
 
-3. **[コミュニティ参加](/community)** 🟢
+3. **[Discord設定ガイド](/docs/setup/discord/)** 🟢
    - Discord参加方法
    - 貢献の始め方
 
 ### 📖 詳細を知りたい方向け（各15-20分）
 
 #### 技術系ドキュメント
-- **[プラットフォーム概要](/docs/platform-overview)** 🟡 - システム全体像
-- **[技術アーキテクチャ](/docs/technical/architecture)** 🟡 - 4層スタック設計
+- **[エグゼクティブ戦略レポート](/docs/executive-strategy-report)** 🟡 - システム全体像
+- **[技術アーキテクチャ](/docs/technical/unson-os-architecture)** 🟡 - 4層スタック設計
 - **[開発環境セットアップ](/docs/development/setup-guide)** 🟢 - 今すぐ始める
 - **[テストガイドライン](/docs/testing-guidelines)** 🟢 - TDD実践ガイド
 
 #### ビジネス系ドキュメント
-- **[マイクロビジネス戦略](/docs/strategy/micro-business)** 🔴 - 100個の管理手法
-- **[MVP検証フレームワーク](/docs/strategy/mvp-validation)** 🔴 - 高速検証サイクル
-- **[SaaS設計プロセス](/docs/strategy/saas-design)** 🔴 - テックタッチ設計
+- **[マイクロビジネス戦略](/docs/strategy/micro-business-strategy)** 🔴 - 100個の管理手法
+- **[MVP検証フレームワーク](/docs/strategy/mvp-validation-framework)** 🔴 - 高速検証サイクル
+- **[SaaS設計プロセス](/docs/strategy/saas-design-process)** 🔴 - テックタッチ設計
 
 #### DAO・ガバナンス系ドキュメント
-- **[DAO完全ガイド](/docs/dao/overview)** 🔴 - 分散型組織の詳細
-- **[DAO参加ガイド](/docs/dao/guide)** 🔴 - 初心者向け説明
-- **[収益分配システム](/docs/dao/revenue-sharing)** 🔴 - 45-15-40モデル
+- **[DAO構造](/docs/governance/dao-structure)** 🔴 - 分散型組織の詳細
+- **[DAO簡単ガイド](/docs/governance/dao-simple-guide)** 🔴 - 初心者向け説明
+- **[統合トークノミクス](/docs/strategy/tokenomics-unified)** 🔴 - 収益分配モデル
 
 ---
 
@@ -210,4 +210,4 @@ A: 自由です。週1時間の議論参加から、フルタイムの開発ま�
 
 ---
 
-*最終更新: 2025年7月25日*
+*最終更新: 2025年8月1日*
