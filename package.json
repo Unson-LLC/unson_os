@@ -22,7 +22,10 @@
     "test:e2e:ui": "playwright test --ui",
     "test:all": "npm run test:ci && npm run test:e2e",
     "setup:check": "node scripts/setup-check.js",
-    "convex:dev": "convex dev"
+    "convex:dev": "convex dev",
+    "secrets:check": "secretlint \"**/*\"",
+    "secrets:fix": "secretlint \"**/*\" --fix",
+    "prepare": "command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1 && npx husky install || true"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -48,6 +51,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.8.2",
     "@playwright/test": "^1.40.1",
+    "@secretlint/secretlint-rule-preset-recommend": "^10.2.1",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
@@ -58,6 +62,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-axe": "^8.0.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -65,6 +70,7 @@
     "postcss": "^8",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
+    "secretlint": "^10.2.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
     "whatwg-fetch": "^3.6.20"
