@@ -10,6 +10,8 @@ UnsonOSプロジェクトのマーケティング関連ドキュメントの総�
 | ファイル | 内容 | 対象者 |
 |---------|------|---------|
 | **[listing-ads-setup-guide.md](./advertising/listing-ads-setup-guide.md)** | 包括的広告運用ガイド | 全員 |
+| [mcp-setup-guide.md](./advertising/mcp-setup-guide.md) | Claude経由での自然言語広告運用 | 技術者 |
+| [google-ads-api-application-guide.md](./advertising/google-ads-api-application-guide.md) | Google Ads API申請の詳細手順 🆕 | 技術者、管理者 |
 | [copywriting-guide.md](./advertising/copywriting-guide.md) | 効果的な広告文作成法 | マーケター、ライター |
 | [psychological-techniques-guide.md](./advertising/psychological-techniques-guide.md) | 心理学を活用した広告手法 | マーケター |
 | [ab-testing-guide.md](./advertising/ab-testing-guide.md) | A/Bテストの実践方法 | データアナリスト、マーケター |
