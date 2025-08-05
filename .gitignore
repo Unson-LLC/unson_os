@@ -96,3 +96,10 @@ google_ads_credentials.json
 mcp_google_ads_server.py
 get_refresh_token.py
 mcp_env/
+
+# Discord関連スクリプト
+scripts/discord/
+
+# Google Ads認証関連
+google_ads_env/
+google_ads_auth_backup.json
