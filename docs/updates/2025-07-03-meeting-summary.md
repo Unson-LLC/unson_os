@@ -60,8 +60,9 @@
 ### 5. 技術スタック決定
 
 #### フロントエンド/バックエンド
-- Next.js + Supabase/Convex
-- Vercel/Cloudflare Workers
+- Next.js + Convex（初期フェーズ）
+- Vercel（初期デプロイ環境）
+- Cloudflare Workers（将来の移行先）
 - Stripe決済統合
 
 #### AI/自動化
