@@ -960,7 +960,7 @@ OSS コミュニティの貢献速度を落とさないための知財ガード�
 | --- | --- |
 | 継続学習重み | ユーザー行動＋広告効果データで再訓練した LLM/画像モデルを S3 private + hash バージョン管理 |
 | Telemetry データ | PostHog → S3 → DuckDB に ETL。外部へは集計値のみシェア |
-| 動的価格アルゴ | 需要・広告入札をリアルタイム回帰。推定式はリポジトリ非公開で Cloudflare Workers に暗号化配置 |
+| 動的価格アルゴ | 需要・広告入札をリアルタイム回帰。推定式はリポジトリ非公開で暗号化配置（将来的にCloudflare Workers移行時） |
 
 ---
 
@@ -980,7 +980,7 @@ OSS コミュニティの貢献速度を落とさないための知財ガード�
 | 領域 | ポリシー |
 | --- | --- |
 | EU GDPR | PII は EU リージョン内 S3 に保存、標準契約条項(SCC) 記載 |
-| 米 DMCA | GitHub / Cloudflare に DMCA エージェント登録済み |
+| 米 DMCA | GitHub / インフラプロバイダーに DMCA エージェント登録（将来的にCloudflare移行時も同様） |
 | 中国 CNCERT | 現地利用は別 sub-brand で提供、モデル重み縮退版を使用 |
 
 ---
@@ -1038,7 +1038,7 @@ OSS コミュニティの貢献速度を落とさないための知財ガード�
 
 | 項目 | P：予防 | D：検知 | C：是正・回復 |
 | --- | --- | --- | --- |
-| サーバ停止 | マルチクラウド（Vercel + Cloudflare）構成 | Grafana Cloud SLA監視 | 自動フェイルオーバー※5分以内 |
+| サーバ停止 | 初期Vercel、成長後マルチクラウド（Vercel + Cloudflare）構成 | Grafana Cloud SLA監視 | 自動フェイルオーバー※5分以内 |
 | 脆弱性 | Semgrep PRブロック＋年1監査 | Sentry エラー率5倍でPing | 当番者がパッチ→Canary→全反映（30分以内） |
 | スマコンBUG | 外部監査＋バグバウンティ | Chainwatch Bot が異常Tx通知 | Safe 3/5署名で緊急 Pause → 改修 → 再開 |
 

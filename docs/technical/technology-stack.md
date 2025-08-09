@@ -35,7 +35,7 @@ UnsonOSは、100個のマイクロSaaSを高速に開発・運営するため、
 | **UIキット** | **shadcn/ui**, **tweakcn**, **21st.dev** | • 基本〜高度UIまでカバー |
 | **認証** | **BetterAuth / Clerk / WorkOS** | • 自前〜エンタープライズまで選択可 |
 | **決済** | **RevenueCat + Stripe** | • サブスク最適化<br>• 分析内蔵 |
-| **ホスティング** | **Cloudflare** | • Edge Functions<br>• 世界最速CDN |
+| **ホスティング** | **Vercel（初期）→ Cloudflare（成長後）** | • 開発速度重視 → コスト最適化<br>• 段階的移行戦略 |
 
 ### ネイティブアプリ開発
 
@@ -60,7 +60,7 @@ UnsonOSは、100個のマイクロSaaSを高速に開発・運営するため、
 | **E2E Native** | **Maestro** | ネイティブアプリのE2Eテスト |
 | **負荷テスト** | **k6** | パフォーマンステスト |
 | **IaC** | **Alchemy (Pure TS)** | TypeScriptによるインフラ管理 |
-| **ホスティング** | **Cloudflare** | 自動スケール対応 |
+| **ホスティング** | **Vercel（初期）→ Cloudflare（成長後）** | 初期は開発速度、成長後はスケール性重視 |
 | **監視** | **Sentry** (エラー)<br>**BetterStack** (ログ)<br>**Statsig** (アナリティクス) | 包括的な監視体制 |
 
 ⚠️ **重要**: RevenueCat統合を忘れずに！
