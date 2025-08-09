@@ -70,7 +70,8 @@ AI駆動型の自律的な組織運営を実現するための働き方ガイド
 ### 開発
 - Claude Code: コード生成
 - GitHub Actions: CI/CD
-- Vercel/Cloudflare: デプロイ
+- Vercel: デプロイ（初期フェーズ）
+- Cloudflare: デプロイ（成長フェーズ後の移行先）
 
 ### コミュニケーション
 - Slack: 日常的なやり取り
