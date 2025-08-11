@@ -19,60 +19,21 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: Generate PR Summary with AI
+    - name: Generate PR Summary
       id: summary
-      env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       run: |
         # PR情報を取得
         PR_TITLE="${{ github.event.pull_request.title }}"
-        PR_BODY="${{ github.event.pull_request.body }}"
-        PR_URL="${{ github.event.pull_request.html_url }}"
-        PR_AUTHOR="${{ github.event.pull_request.user.login }}"
-        PR_STATE="${{ github.event.pull_request.state }}"
         PR_MERGED="${{ github.event.pull_request.merged }}"
         
-        # Pythonスクリプトで要約生成
-        cat > generate_summary.py << 'EOF'
-        import os
-        import json
-        import sys
-        from anthropic import Anthropic
+        # 簡潔な要約を生成
+        if [ "$PR_MERGED" = "true" ]; then
+            SUMMARY="✅ PRがマージされました！"
+        else
+            SUMMARY="🔄 新しいPRが作成されました"
+        fi
         
-        pr_title = os.environ.get('PR_TITLE', '')
-        pr_body = os.environ.get('PR_BODY', '')
-        pr_merged = os.environ.get('PR_MERGED', 'false')
-        event_name = os.environ.get('GITHUB_EVENT_NAME', '')
-        
-        # 簡潔な要約を生成（AIなしでも動作）
-        if pr_merged == 'true':
-            summary = f"✅ PR がマージされました！\n**{pr_title}**"
-        elif event_name == 'pull_request' and os.environ.get('PR_STATE') == 'open':
-            summary = f"🔄 新しいPRが作成されました\n**{pr_title}**"
-        else:
-            summary = pr_title
-        
-        # PR本文から主要な変更点を抽出（簡易版）
-        if pr_body:
-            lines = pr_body.split('\n')
-            key_points = []
-            for line in lines:
-                if line.startswith('- ') or line.startswith('* '):
-                    key_points.append(line)
-                    if len(key_points) >= 3:
-                        break
-            
-            if key_points:
-                summary += "\n\n**主な変更:**\n" + '\n'.join(key_points[:3])
-        
-        print(summary)
-        EOF
-        
-        export PR_TITLE PR_BODY PR_URL PR_AUTHOR PR_STATE PR_MERGED GITHUB_EVENT_NAME
-        SUMMARY=$(python generate_summary.py)
-        echo "SUMMARY<<EOF" >> $GITHUB_OUTPUT
-        echo "$SUMMARY" >> $GITHUB_OUTPUT
-        echo "EOF" >> $GITHUB_OUTPUT
+        echo "SUMMARY=$SUMMARY" >> $GITHUB_OUTPUT
         
     - name: Send PR Opened Notification
       if: github.event.action == 'opened'
@@ -84,7 +45,7 @@ jobs:
         embed-title: "🔄 新しいPRが作成されました"
         embed-url: "${{ github.event.pull_request.html_url }}"
         embed-description: |
-          ${{ steps.summary.outputs.SUMMARY }}
+          **${{ github.event.pull_request.title }}**
           
           **作成者:** ${{ github.event.pull_request.user.login }}
           **ブランチ:** `${{ github.event.pull_request.head.ref }}` → `${{ github.event.pull_request.base.ref }}`
@@ -102,7 +63,7 @@ jobs:
         embed-title: "✅ PRがマージされました！"
         embed-url: "${{ github.event.pull_request.html_url }}"
         embed-description: |
-          ${{ steps.summary.outputs.SUMMARY }}
+          **${{ github.event.pull_request.title }}**
           
           **マージ者:** ${{ github.event.pull_request.merged_by.login }}
           **作成者:** ${{ github.event.pull_request.user.login }}
