@@ -793,7 +793,7 @@ SaaSの限界を突破：
 
 - 🏠 **公式サイト**: unson-os.com
 - 💻 **GitHub**: github.com/unson-os
-- 💬 **Discord**: discord.gg/unson
+- 💬 **Discord**: discord.gg/wBaz7mpcjC
 - 📚 **ドキュメント**: docs.unson-os.com
 
 ## 連絡先
@@ -839,4 +839,4 @@ A: 検証次第ですが、最初のMVPで収益化を目指します
 ## 一緒に作ろう、自動化された未来を。
 
 ### Join us today!
-### → discord.gg/unson-os
+### → discord.gg/wBaz7mpcjC
