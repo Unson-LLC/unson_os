@@ -1,0 +1,17 @@
+{
+  "name": "google-ads",
+  "version": "1.0.0",
+  "description": "Google Ads APIを使用してキャンペーンを管理するための汎用Pythonスクリプト集です。",
+  "main": "update-keywords.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "google-ads-api": "^21.0.0"
+  }
+}
