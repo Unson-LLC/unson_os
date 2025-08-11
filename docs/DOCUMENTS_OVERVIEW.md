@@ -129,6 +129,7 @@ UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作り�
 #### 技術系ドキュメント
 - **[エグゼクティブ戦略レポート](/docs/executive-strategy-report)** 🟡 - システム全体像
 - **[技術アーキテクチャ](/docs/technical/unson-os-architecture)** 🟡 - 4層スタック設計
+- **[将来拡張構造プラン](/docs/FUTURE_EXPANSION_STRUCTURE)** 🔴 - 100個のSaaS管理構造
 - **[開発環境セットアップ](/docs/development/setup-guide)** 🟢 - 今すぐ始める
 - **[テストガイドライン](/docs/testing-guidelines)** 🟢 - TDD実践ガイド
 
