@@ -45,7 +45,7 @@ const bannerConfig: Record<DocStatus, BannerConfigItemExtended> = {
     cta: {
       text: '議論に参加する',
       urls: [
-        { label: 'Discord', url: 'https://discord.gg/unsonos' },
+        { label: 'Discord', url: 'https://discord.gg/wBaz7mpcjC' },
         { label: 'GitHub', url: 'https://github.com/Unson-LLC/unson_os/issues' }
       ]
     }
