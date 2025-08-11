@@ -13,21 +13,28 @@ Unson OSは、従来の「1つの大きなビジネス」ではなく、「100-2
 - **"Company-as-a-Product"**: 会社そのものを製品として捉える新しいアプローチ
 - **テックタッチ運用**: 人的サポートを最小限に抑えた自動化
 
-## ドキュメント構成
+## 📚 ドキュメント
 
-### 戦略ドキュメント
-- [`/docs/executive-strategy-report.md`](docs/executive-strategy-report.md) - 包括的戦略レポート（全10章）
-- [`/docs/strategy/`](docs/strategy/) - 詳細な戦略ドキュメント群
-  - [`saas-design-process.md`](docs/strategy/saas-design-process.md) - SaaS設計プロセス
-  - [`micro-business-strategy.md`](docs/strategy/micro-business-strategy.md) - マイクロビジネス戦略
-  - [`user-assumption-research.md`](docs/strategy/user-assumption-research.md) - ユーザーの思い込み調査手法
-  - [`mvp-validation-framework.md`](docs/strategy/mvp-validation-framework.md) - MVP検証フレームワーク
-  - [`dao-concept-design.md`](docs/strategy/dao-concept-design.md) - DAO詳細設計
-  - [`tokenomics-unified.md`](docs/strategy/tokenomics-unified.md) - 統一トークノミクス
-  - [`dao-capabilities.md`](docs/strategy/dao-capabilities.md) - DAOでできること
+詳細なドキュメントは [`/docs/`](docs/) にあります：
 
-### 技術ドキュメント
-- [`/docs/testing-guidelines.md`](docs/testing-guidelines.md) - TDDガイドライン
+### 利用者別ガイド
+- 👨‍💼 [`for-operators/`](docs/for-operators/) - UnsonOS運営者向け
+- 👩‍💻 [`for-developers/`](docs/for-developers/) - 開発者向け
+- 🌍 [`for-community/`](docs/for-community/) - コミュニティ向け
+- 📈 [`business-strategy/`](docs/business-strategy/) - ビジネス戦略
+
+### 主要ドキュメント
+- [`エグゼクティブ戦略レポート`](docs/business-strategy/executive-strategy-report.md) - 包括的戦略（全10章）
+- [`MVP検証フレームワーク`](docs/business-strategy/mvp-validation-framework.md) - 2週間サイクル検証
+- [`DAO構造`](docs/for-community/dao-governance/dao-structure.md) - 収益分配モデル
+
+## 🛠️ ツール & テンプレート
+
+### LP自動生成テンプレート
+コミュニティメンバーが開発した、JSONファイルの設定だけでLPを自動生成できるツール：
+- 🔗 **リポジトリ**: [https://github.com/Unson-LLC/lp-template](https://github.com/Unson-LLC/lp-template)
+- 📖 **使い方**: [`LP自動生成ガイド`](docs/for-developers/saas-templates/lp-template-guide.md)
+- ⚡ **特徴**: config.jsonを編集するだけで即座にLP生成
 
 ## 開発方針
 

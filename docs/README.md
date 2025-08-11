@@ -41,6 +41,7 @@
 
 ### 今すぐ始める
 - 🚀 [開発環境セットアップ](./for-developers/getting-started/setup-guide.md)
+- 🎨 [LP自動生成テンプレート](./for-developers/saas-templates/lp-template-guide.md) **NEW!**
 - 💬 [Discordコミュニティ参加](./for-community/community-resources/discord/)
 - 📝 [貢献ガイド](./for-community/contribution-guide/)
 
