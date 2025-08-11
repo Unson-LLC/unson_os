@@ -1,0 +1,56 @@
+# Google Ads キャンペーン設定テンプレート
+# このファイルをコピーして、キャンペーンごとに設定を作成してください
+
+campaign:
+  customer_id: "YOUR_CUSTOMER_ID"  # 例: "4600539562"
+  campaign_id: "YOUR_CAMPAIGN_ID"  # 例: "22873791559"
+  ad_group_id: "YOUR_AD_GROUP_ID"  # 例: "183083066586"
+  name: "キャンペーン名"
+
+# 削除するキーワード
+keywords_to_remove:
+  - "削除したいキーワード1"
+  - "削除したいキーワード2"
+  # 例:
+  # - "ai 企業"
+  # - "ai 会社"
+
+# 追加するキーワード
+keywords_to_add:
+  # 完全一致
+  exact:
+    - text: "完全一致キーワード1"
+      cpc_bid_micros: 50000000  # 50円
+    - text: "完全一致キーワード2"
+      cpc_bid_micros: 100000000  # 100円
+  
+  # フレーズ一致
+  phrase:
+    - text: "フレーズ一致 キーワード1"
+      cpc_bid_micros: 50000000
+    - text: "フレーズ一致 キーワード2"
+      cpc_bid_micros: 75000000  # 75円
+  
+  # 部分一致
+  broad:
+    - text: "部分一致 キーワード"
+      cpc_bid_micros: 30000000  # 30円
+
+# ターゲティング設定（オプション）
+targeting:
+  # 性別（MALE, FEMALE, UNKNOWN）
+  gender:
+    - FEMALE
+  
+  # 年齢層
+  age_ranges:
+    - AGE_RANGE_18_24
+    - AGE_RANGE_25_34
+    - AGE_RANGE_35_44
+    - AGE_RANGE_45_54
+  
+  # 地域（日本の都道府県コードなど）
+  locations:
+    - "JP"  # 日本全体
+    # - "JP-13"  # 東京都
+    # - "JP-27"  # 大阪府

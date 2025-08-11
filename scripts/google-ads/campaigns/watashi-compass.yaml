@@ -1,0 +1,109 @@
+# わたしコンパス ベータテスター募集キャンペーン設定
+
+campaign:
+  customer_id: "4600539562"
+  campaign_id: "22873791559"
+  ad_group_id: "183083066586"
+  name: "わたしコンパス_ベータテスター募集_2025"
+
+# AI関連の不適切なキーワードを削除
+keywords_to_remove:
+  - "ai 企業"
+  - "ai 会社"
+  - "人工 知能 企業"
+  - "ai 将来"
+  - "人工 知能 会社"
+  - "ai 開発 企業"
+  - "ai イベント"
+  - "コンサル ai"
+  - "ai of ai"
+  - "ai 開発 会社"
+  - "ai to ai"
+  - "設計 ai"
+  - "ai 使い方"
+  - "ai 比較"
+  - "ai コンサル"
+  - "ai イラストレーター 無料"
+  - "ai コンサルティング"
+  - "コンサルティング ai"
+  - "ai 一覧"
+  - "ai 無料"
+  - "無料 ai"
+  - "ai メーカー"
+  - "sns ai"
+  - "ai sns"
+  - "ai コンシェルジュ"
+  - "gps ai"
+  - "ai 特徴"
+  - "ai カウンセリング"
+  - "ai 情報"
+  - "コンシェルジュ ai"
+  - "将来 ai"
+  - "イベント ai"
+  - "ai ツール 無料"
+  - "モデル ai"
+  - "ai の 会社"
+  - "ai 本物"
+  - "ai 価値"
+  - "人工 知能 今後 の 発展"
+  - "あなた ai"
+  - "ai 人生"
+
+# 女性向け価値観診断キーワードを追加
+keywords_to_add:
+  # 完全一致
+  exact:
+    - text: "自分らしさ 診断"
+      cpc_bid_micros: 50000000  # 50円
+    - text: "価値観 女性"
+      cpc_bid_micros: 50000000
+    - text: "人生相談 AI"
+      cpc_bid_micros: 50000000
+    - text: "自己分析 女性"
+      cpc_bid_micros: 50000000
+    - text: "価値観診断 アプリ"
+      cpc_bid_micros: 50000000
+  
+  # フレーズ一致
+  phrase:
+    - text: "自分らしく生きる 方法"
+      cpc_bid_micros: 50000000
+    - text: "女性 価値観 見つける"
+      cpc_bid_micros: 50000000
+    - text: "本当の自分 探す"
+      cpc_bid_micros: 50000000
+    - text: "人生の選択 相談"
+      cpc_bid_micros: 50000000
+    - text: "女性向け 自己分析"
+      cpc_bid_micros: 50000000
+    - text: "自分軸 作り方"
+      cpc_bid_micros: 50000000
+    - text: "価値観 明確にする"
+      cpc_bid_micros: 50000000
+  
+  # 部分一致
+  broad:
+    - text: "女性 ライフデザイン"
+      cpc_bid_micros: 50000000
+    - text: "ワークライフバランス 悩み"
+      cpc_bid_micros: 50000000
+    - text: "結婚 仕事 選択"
+      cpc_bid_micros: 50000000
+    - text: "女性 キャリア 相談"
+      cpc_bid_micros: 50000000
+    - text: "自己理解 深める"
+      cpc_bid_micros: 50000000
+
+# ターゲティング設定
+targeting:
+  gender:
+    - FEMALE
+  
+  age_ranges:
+    - AGE_RANGE_18_24
+    - AGE_RANGE_25_34
+    - AGE_RANGE_35_44
+    - AGE_RANGE_45_54
+  
+  locations:
+    - "JP"  # 日本全体

@@ -159,7 +159,7 @@ export const SITE_CONFIG = {
   url: process.env.NEXT_PUBLIC_APP_URL || 'https://unson-os.com',
   ogImage: '/og/default.png',
   links: {
-    discord: 'https://discord.gg/unsonos',
+    discord: 'https://discord.gg/wBaz7mpcjC',
     github: 'https://github.com/unson-llc/unson-os',
     twitter: 'https://twitter.com/unsonos',
   },
@@ -742,6 +742,13 @@ npm run build --verbose
 - **Sentry**: エラー監視
 - **Plausible**: プライバシー重視Analytics
 
+### UnsonOS Web テンプレート
+最新の技術スタックを統合したテンプレートも利用可能です：
+- **[UnsonOS Web Template](https://github.com/Unson-LLC/unson-os-web-template)**
+  - 上記セットアップが完了済み
+  - Convex、Bun、Moonなど最新スタック統合
+  - すぐに開発を開始可能
+
 ---
 
 ## リソース
@@ -760,4 +767,4 @@ npm run build --verbose
 ### コミュニティ
 - [Next.js Discord](https://discord.gg/nextjs)
 - [Tailwind CSS Discord](https://discord.gg/tailwindcss)
-- [Unson OS Discord](https://discord.gg/unsonos)（準備中）
+- [Unson OS Discord](https://discord.gg/wBaz7mpcjC)（準備中）

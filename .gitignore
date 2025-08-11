@@ -88,3 +88,21 @@ jspm_packages/
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Google Ads API credentials
+google_ads_credentials.json
+
+# MCP関連ファイル
+mcp_google_ads_server.py
+get_refresh_token.py
+mcp_env/
+
+# Discord関連スクリプト
+scripts/discord/
+
+# Google Ads認証関連
+google_ads_env/
+google_ads_auth_backup.json
+google-ads.yaml
+scripts/google-ads/google-ads.yaml
+google-ads-env/
