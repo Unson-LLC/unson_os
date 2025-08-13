@@ -15,6 +15,9 @@
 - **[CaseBook設計書](./casebook-design.md)**  
   実験結果の蓄積とRAGによる学習システムの設計
 
+- **[UIストーリーボード](./ui-storyboard.md)**  
+  100個のSaaSを管理する統合ダッシュボードとGate承認UI設計
+
 - **[運用ガイド](./operation-guide.md)**  
   日常運用、トラブルシューティング、メンテナンス手順
 
