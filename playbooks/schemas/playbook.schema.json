@@ -1,0 +1,373 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnsonOS Playbook Schema",
+  "description": "Schema for UnsonOS data-driven decision playbooks",
+  "type": "object",
+  "required": ["playbookId", "version", "scope", "nodes"],
+  "properties": {
+    "playbookId": {
+      "type": "string",
+      "pattern": "^PLB\\^[a-z0-9_]+$",
+      "description": "Unique playbook identifier starting with PLB^"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version (x.y.z)"
+    },
+    "scope": {
+      "type": "object",
+      "required": ["tags"],
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(saas|market|channel|persona|stage):[a-zA-Z0-9_*-]+$"
+          },
+          "minItems": 1
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "windows": {
+      "type": "object",
+      "properties": {
+        "tiny": {
+          "type": "string",
+          "pattern": "^\\d+(h|d)$"
+        },
+        "short": {
+          "type": "string",
+          "pattern": "^\\d+(h|d)$"
+        },
+        "mid": {
+          "type": "string",
+          "pattern": "^\\d+(h|d)$"
+        },
+        "long": {
+          "type": "string",
+          "pattern": "^\\d+(h|d)$"
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/startNode"
+          },
+          {
+            "$ref": "#/definitions/guardNode"
+          },
+          {
+            "$ref": "#/definitions/actionNode"
+          },
+          {
+            "$ref": "#/definitions/gateNode"
+          },
+          {
+            "$ref": "#/definitions/outcomeNode"
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "startNode": {
+      "type": "object",
+      "required": ["id", "type", "next"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "const": "start"
+        },
+        "type": {
+          "type": "string",
+          "const": "Start"
+        },
+        "next": {
+          "type": "string"
+        }
+      }
+    },
+    "guardNode": {
+      "type": "object",
+      "required": ["id", "type", "then", "else"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^g_[a-z0-9_]+$"
+        },
+        "type": {
+          "type": "string",
+          "const": "Guard"
+        },
+        "any": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/condition"
+          }
+        },
+        "all": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/condition"
+          }
+        },
+        "then": {
+          "type": "string"
+        },
+        "else": {
+          "type": "string"
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["any"]
+        },
+        {
+          "required": ["all"]
+        }
+      ]
+    },
+    "actionNode": {
+      "type": "object",
+      "required": ["id", "type", "flags", "rollout", "next"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^a_[a-z0-9_]+$"
+        },
+        "type": {
+          "type": "string",
+          "const": "Action"
+        },
+        "flags": {
+          "type": "object"
+        },
+        "rollout": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/canaryRollout"
+            },
+            {
+              "$ref": "#/definitions/banditRollout"
+            },
+            {
+              "$ref": "#/definitions/blueGreenRollout"
+            }
+          ]
+        },
+        "next": {
+          "type": "string"
+        },
+        "riskClass": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        }
+      }
+    },
+    "gateNode": {
+      "type": "object",
+      "required": ["id", "type", "approverRole", "timeoutMinutes", "onApprove", "onReject"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^gate_[a-z0-9_]+$"
+        },
+        "type": {
+          "type": "string",
+          "const": "Gate"
+        },
+        "approverRole": {
+          "type": "string"
+        },
+        "timeoutMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "onApprove": {
+          "type": "string"
+        },
+        "onReject": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "escalation": {
+          "type": "string"
+        }
+      }
+    },
+    "outcomeNode": {
+      "type": "object",
+      "required": ["id", "type", "horizonDays", "kpi", "writeBack"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^outcome(_[a-z0-9_]+)?$"
+        },
+        "type": {
+          "type": "string",
+          "const": "Outcome"
+        },
+        "horizonDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "kpi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["CVR", "A1", "RET7", "ARPU", "NPS", "CAC", "LTV"]
+          },
+          "minItems": 1
+        },
+        "writeBack": {
+          "type": "string",
+          "const": "casebook"
+        },
+        "successCriteria": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string"
+            },
+            "lift": {
+              "type": "number"
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "required": ["code", "metric", "dir"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^Stage=(Idea|LP|MVP|Scale)\\|Window=(tiny|short|mid|long)\\|Segment=[A-Z]{2}-[A-Za-z]+-[A-Za-z]+$"
+        },
+        "metric": {
+          "type": "string",
+          "enum": ["CVR", "A1", "RET7", "ARPU", "NPS", "CAC", "LTV"]
+        },
+        "dir": {
+          "type": "string",
+          "enum": ["Up", "Down", "Flat"]
+        },
+        "threshold": {
+          "type": "number"
+        }
+      }
+    },
+    "canaryRollout": {
+      "type": "object",
+      "required": ["strategy", "steps", "intervalMinutes"],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "const": "canary"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "intervalMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rollbackCondition": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string"
+            },
+            "threshold": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "banditRollout": {
+      "type": "object",
+      "required": ["strategy", "maxExposure"],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "const": "bandit"
+        },
+        "algorithm": {
+          "type": "string",
+          "enum": ["thompson", "ucb"]
+        },
+        "maxExposure": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "explorationRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "blueGreenRollout": {
+      "type": "object",
+      "required": ["strategy"],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "const": "blue-green"
+        },
+        "healthCheckMinutes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}
