@@ -49,6 +49,12 @@ UnsonOSのデータ駆動コアシステムは、100-200個のマイクロSaaS�
 
 ```mermaid
 graph TB
+    subgraph Management UI
+        Dashboard[統合ダッシュボード]
+        GateUI[Gate承認UI]
+        Monitor[モニタリング画面]
+    end
+    
     subgraph Product Layer
         SDK[Product SDK]
         App[SaaS Application]
@@ -67,6 +73,10 @@ graph TB
         Playbooks[(Playbooks)]
         Evaluations[(Evaluations)]
     end
+    
+    Dashboard --> Resolver
+    GateUI --> Resolver
+    Monitor --> CaseBook
     
     SDK -->|SymbolEvent| Resolver
     Resolver -->|Flags| SDK
@@ -96,6 +106,7 @@ graph TB
 | **Outcome** | 結果評価 | KPI測定と効果判定 |
 | **CaseBook** | 事例集 | 状況→打ち手→結果→学びの蓄積 |
 | **Registry** | 適用管理 | ProductとPlaybookのマッピング |
+| **Dashboard** | 統合管理UI | 100個のSaaSの俯瞰とGate承認（[詳細](./ui-storyboard.md)） |
 
 ### KPIと記号化（Symbolization）
 
