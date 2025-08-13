@@ -24,6 +24,8 @@ yarn-error.log*
 
 # Local env files
 .env*.local
+.env
+scripts/**/.env
 
 # Vercel
 .vercel
@@ -106,3 +108,8 @@ google_ads_auth_backup.json
 google-ads.yaml
 scripts/google-ads/google-ads.yaml
 google-ads-env/
+
+# レポート関連（機密情報を含む可能性）
+reports/
+*.report.md
+*-report-*.md
