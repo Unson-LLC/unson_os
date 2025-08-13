@@ -10,6 +10,36 @@
 - **[技術スタック](./01-architecture/technology-stack.md)**  
   使用技術の選定理由と詳細
 
+### プレイブック・SDK・学習システム
+- **[プレイブックDSL仕様](./playbook-dsl-spec.md)**  
+  意思決定フローを記述するYAMLベースのDSL詳細仕様
+
+- **[Product SDK実装ガイド](./product-sdk-guide.md)**  
+  各SaaSアプリケーションがコアシステムと通信するためのSDK
+
+- **[CaseBook設計書](./casebook-design.md)**  
+  実験結果の蓄積とRAGによる学習システムの設計
+
+### UI設計・遷移・モニタリング
+- **[UIストーリーボード](./ui-storyboard.md)**  
+  100個のSaaSを管理する統合ダッシュボードとGate承認UI設計
+
+- **[UI遷移図](./ui-flow-diagram.md)**  
+  ユーザーの思考回路に沿った画面遷移フローの定義
+
+- **[フェーズ別モニタリング](./ui-phase-monitoring.md)**  
+  SaaS成長フェーズごとの監視要件とUI設計
+
+### 🏗️ アーキテクチャ
+- **[UnsonOSアーキテクチャ](./architecture/unson-os-architecture.md)**  
+  システム全体のアーキテクチャと技術スタック
+
+- **[マルチテナント戦略](./architecture/multi-tenant-strategy.md)**  
+  100-200個のSaaSを効率的に管理するための設計
+
+- **[運用ガイド](./operation-guide.md)**  
+  日常運用、トラブルシューティング、メンテナンス手順
+
 ### 02-ui-design/ - UI/UX設計
 - **[📌 UI設計書（完全版）](./02-ui-design/complete-design.md)** ← **最優先参照**  
   ダッシュボード、時系列データビュー、PKG、DAO機能の統合UI仕様
