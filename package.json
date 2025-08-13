@@ -75,5 +75,8 @@
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
     "whatwg-fetch": "^3.6.20"
-  }
+  },
+  "workspaces": [
+    "scripts/knowledge-base"
+  ]
 }
