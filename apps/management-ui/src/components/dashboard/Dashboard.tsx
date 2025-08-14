@@ -25,7 +25,6 @@ import { TimeSeriesGrid } from './TimeSeriesGrid'
 import { MetricsGrid } from './MetricsGrid'
 import { PKGExecutionStatus } from './PKGExecutionStatus'
 import { DAORevenueDashboard } from './DAORevenueDashboard'
-import { SaaSList } from './SaaSList'
 import { PortfolioEvolution } from './PortfolioEvolution'
 import { NotificationPanel } from './NotificationPanel'
 import { DetailModal, DAODetailContent, PKGDetailContent, ContributorDetailContent } from './DetailModal'
@@ -290,8 +289,6 @@ export function Dashboard() {
                 onDetailClick={() => setModalState({ isOpen: true, type: 'dao' })}
                 onContributorClick={(name) => setModalState({ isOpen: true, type: 'contributor', data: { name } })}
               />
-              
-              <SaaSList />
             </div>
           )}
         </main>
