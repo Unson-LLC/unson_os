@@ -17,14 +17,14 @@ UnsonOSのデータ駆動コアシステムは、100-200個のマイクロSaaS�
 - リアルタイムでの高速判断を実現
 
 ### 3. 宣言的グラフ
-- Start/Guard/Action/Gate/Outcome をノードとして接続
+- Start/Guard/Action/GATE/Outcome をノードとして接続
 - 条件分岐と実行フローを視覚的に管理
 - 再現可能で監査可能な意思決定
 
 ### 4. 安全第一
-- canary deployment（段階的展開）
+- canary deployment（フェーズ的展開）
 - bandit algorithm（探索と活用のバランス）
-- Gate（人による承認）
+- GATE（人による承認）
 - 自動ロールバック機能
 
 ### 5. 観測窓（Time Windows）
@@ -51,7 +51,7 @@ UnsonOSのデータ駆動コアシステムは、100-200個のマイクロSaaS�
 graph TB
     subgraph Management UI
         Dashboard[統合ダッシュボード]
-        GateUI[Gate承認UI]
+        GateUI[GATE承認UI]
         Monitor[モニタリング画面]
     end
     
@@ -98,15 +98,15 @@ graph TB
 | エンティティ | 説明 | 責務 |
 |------------|------|-----|
 | **Playbook** | 宣言的グラフ定義 | 意思決定フローの定義 |
-| **SymbolEvent** | 記号化されたイベント | Stage-Window-Segment×metric×direction |
+| **SymbolEvent** | 記号化されたイベント | フェーズ-Window-Segment×metric×direction |
 | **Resolver** | 解決エンジン | プレイブック解釈とAction決定 |
 | **Assignment** | ユーザー割当 | Stickyなバリアント割当管理 |
 | **RolloutPolicy** | 展開ポリシー | canary/bandit/blue-green戦略 |
-| **Gate** | 承認ゲート | 高影響アクションの人的承認 |
+| **GATE** | 承認GATE | 高影響アクションの人的承認 |
 | **Outcome** | 結果評価 | KPI測定と効果判定 |
 | **CaseBook** | 事例集 | 状況→打ち手→結果→学びの蓄積 |
 | **Registry** | 適用管理 | ProductとPlaybookのマッピング |
-| **Dashboard** | 統合管理UI | 100個のSaaSの俯瞰とGate承認（[詳細](./ui-storyboard.md)） |
+| **Dashboard** | 統合管理UI | 100個のSaaSの俯瞰とGATE承認（[詳細](./ui-storyboard.md)） |
 
 ### KPIと記号化（Symbolization）
 
@@ -146,7 +146,7 @@ while (node) {
       node = node.next
       break
       
-    case 'Gate':
+    case 'GATE':
       request = enqueueApproval(node.approverRole)
       decision = await waitDecisionOrTimeout(request, node.timeoutMinutes)
       node = decision.approved ? node.onApprove : node.onReject
@@ -293,7 +293,7 @@ type CaseEntry = {
 ## セキュリティとガバナンス
 
 ### アクセス制御（RBAC）
-- `growth-lead`: Gate承認権限
+- `growth-lead`: GATE承認権限
 - `pm`: プレイブック編集権限
 - `ops`: 緊急ロールバック権限
 - `legal`: コンプライアンスレビュー
@@ -333,7 +333,7 @@ type CaseEntry = {
 ### アラート条件
 - CVR急落（-20%以上）
 - 露出量超過（設定値の110%）
-- Gate承認タイムアウト
+- GATE承認タイムアウト
 - SLO逸脱
 
 ## 実装ロードマップ
@@ -345,7 +345,7 @@ type CaseEntry = {
 - [ ] Registry v0と監査ログ
 
 ### Day 31-60: 高度な機能
-- [ ] Gate（承認フロー）実装
+- [ ] GATE（承認フロー）実装
 - [ ] Banditアルゴリズム導入
 - [ ] オフライン評価とリプレイ機能
 - [ ] CaseBook構築とRAG ETL

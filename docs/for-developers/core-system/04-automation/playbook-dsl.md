@@ -48,7 +48,7 @@ type Scope = {
 - `market:{code}` - 市場（JP/EN/CN等）
 - `channel:{type}` - チャネル（Web/LINE/Ads等）
 - `persona:{segment}` - ペルソナ（SMB/Enterprise/Freelance等）
-- `stage:{phase}` - ステージ（Idea/LP/MVP/Scale）
+- `stage:{phase}` - フェーズ（Idea/LP/MVP/Scale）
 
 ### Windows（観測窓）
 
@@ -86,7 +86,7 @@ type StartNode = {
 - id: g_{name}
   type: Guard
   any:    # OR条件
-    - code: "{Stage}|{Window}|{Segment}"
+    - code: "{フェーズ}|{Window}|{Segment}"
       metric: "{metric_name}"
       dir: "{Up|Down|Flat}"
   all:    # AND条件
@@ -106,7 +106,7 @@ type GuardNode = {
 }
 
 type Condition = {
-  code: string         // "Stage=LP|Window=short|Segment=JP-Web-SMB"
+  code: string         // "フェーズ=LP|Window=short|Segment=JP-Web-SMB"
   metric: MetricType   // CVR, A1, RET7, ARPU等
   dir: Direction       // Up, Down, Flat
   threshold?: number   // オプション：カスタム閾値
@@ -115,7 +115,7 @@ type Condition = {
 
 #### Code形式
 ```
-Stage={Idea|LP|MVP|Scale}|Window={tiny|short|mid|long}|Segment={market-channel-persona}
+フェーズ={Idea|LP|MVP|Scale}|Window={tiny|short|mid|long}|Segment={market-channel-persona}
 ```
 
 ### 3. Action Node（アクション実行）
@@ -171,11 +171,11 @@ rollout:
   healthCheckMinutes: 30
 ```
 
-### 4. Gate Node（承認ゲート）
+### 4. GATE Node（承認GATE）
 
 ```yaml
 - id: gate_{name}
-  type: Gate
+  type: GATE
   approverRole: {role_name}
   timeoutMinutes: {timeout}
   onApprove: {approve_node_id}
@@ -186,7 +186,7 @@ rollout:
 ```typescript
 type GateNode = {
   id: string
-  type: 'Gate'
+  type: 'GATE'
   approverRole: string       // 承認者ロール
   timeoutMinutes: number     // タイムアウト（分）
   onApprove: string         // 承認時の遷移先
@@ -196,7 +196,7 @@ type GateNode = {
 }
 ```
 
-> **UIでの承認操作**: Gate承認は[管理ダッシュボード](./ui-storyboard.md#gate承認操作のセーフガード)を通じて行われます。確認ダイアログ、二段階確認、操作履歴記録などのセーフガード機能により、安全な承認プロセスを実現します。
+> **UIでの承認操作**: GATE承認は[管理ダッシュボード](./ui-storyboard.md#gate承認操作のセーフガード)を通じて行われます。確認ダイアログ、二段階確認、操作履歴記録などのセーフガード機能により、安全な承認プロセスを実現します。
 
 ### 5. Outcome Node（結果評価）
 
@@ -258,7 +258,7 @@ nodes:
   - id: check_cvr_trend
     type: Guard
     any:
-      - code: "Stage=LP|Window=short|Segment=JP-Web-SMB"
+      - code: "フェーズ=LP|Window=short|Segment=JP-Web-SMB"
         metric: "CVR"
         dir: "Down"
         threshold: -10
@@ -269,10 +269,10 @@ nodes:
   - id: check_retention
     type: Guard
     all:
-      - code: "Stage=MVP|Window=short|Segment=JP-Web-SMB"
+      - code: "フェーズ=MVP|Window=short|Segment=JP-Web-SMB"
         metric: "RET7"
         dir: "Down"
-      - code: "Stage=MVP|Window=tiny|Segment=JP-Web-SMB"
+      - code: "フェーズ=MVP|Window=tiny|Segment=JP-Web-SMB"
         metric: "A1"
         dir: "Flat"
     then: improve_onboarding
@@ -320,7 +320,7 @@ nodes:
 
   # マーケティングレビュー
   - id: gate_marketing_review
-    type: Gate
+    type: GATE
     approverRole: "growth-lead"
     timeoutMinutes: 180
     message: "ヒーローコピーの変更承認をお願いします"
@@ -363,12 +363,12 @@ nodes:
   - Start: `start`
   - Guard: `g_{name}`
   - Action: `a_{name}`
-  - Gate: `gate_{name}`
+  - GATE: `gate_{name}`
   - Outcome: `outcome` or `outcome_{name}`
 
 ### リスククラス
-- `high`: Gate必須、営業時間内のみ実行
-- `medium`: 承認推奨、段階的展開必須
+- `high`: GATE必須、営業時間内のみ実行
+- `medium`: 承認推奨、フェーズ的展開必須
 - `low`: 自動実行可能
 
 ## 拡張機能
@@ -434,8 +434,8 @@ override:
 - 主要KPIと補助KPIを区別
 
 ### 3. 適切なリスク管理
-- 高影響変更にはGateを設置
-- Canaryで段階的に展開
+- 高影響変更にはGATEを設置
+- Canaryでフェーズ的に展開
 
 ### 4. 学習の蓄積
 - 全実験をCaseBookに記録

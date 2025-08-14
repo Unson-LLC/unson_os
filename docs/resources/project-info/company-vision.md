@@ -56,7 +56,7 @@
 ### Year 1: 基盤構築
 - エンジンv1完成
 - ARR 1億円達成
-- 3ゲートPipeline稼働
+- 3GATEPipeline稼働
 - DAO Fund運用開始
 
 ### Year 2: スケール

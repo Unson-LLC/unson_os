@@ -20,13 +20,6 @@ export function PKGExecutionStatus({
   onDetailClick,
   onPauseClick
 }: PKGExecutionStatusProps) {
-  // Green Phase: ベタ書きで機能実装
-  const getProgressColor = (status: string) => {
-    if (status === '🔴') return 'bg-red-600'
-    if (status === '🟡') return 'bg-yellow-600'
-    return 'bg-green-600'
-  }
-  
   return (
     <div className="bg-white rounded-lg shadow">
       <div className="p-6 border-b">
@@ -35,85 +28,251 @@ export function PKGExecutionStatus({
       
       <div className="p-6 space-y-4">
         {data.map((item, index) => (
-          <article 
+          <PKGCard
             key={index}
-            className="border rounded-lg p-4"
-            aria-label={`${item.saasName}のPKG実行状況`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center space-x-3">
-                <span className="text-lg">{item.status}</span>
-                <span className="font-medium">{item.saasName}</span>
-                <span className="text-gray-600">│</span>
-                <span className="text-blue-600">{item.currentPkg}</span>
-                <span className="text-gray-600">│</span>
-                <span className="font-mono">{item.progress}%</span>
-                <span className="text-gray-600">│</span>
-                <span className="text-gray-700">次: {item.nextPkg}</span>
-              </div>
-              <div className="flex space-x-2">
-                <button 
-                  className="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200"
-                  onClick={() => onDetailClick?.(item.saasName)}
-                >
-                  詳細
-                </button>
-                <button 
-                  className="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200"
-                  onClick={() => onPauseClick?.(item.saasName)}
-                >
-                  一時停止
-                </button>
-              </div>
-            </div>
-            
-            {item.trigger && (
-              <div className="text-sm text-gray-500 mb-2">
-                └ トリガー: {item.trigger}
-              </div>
-            )}
-            
-            <div 
-              className="w-full bg-gray-200 rounded-full h-2"
-              role="progressbar"
-              aria-valuenow={item.progress}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              <div 
-                className={`h-2 rounded-full ${getProgressColor(item.status)}`}
-                style={{ width: `${item.progress}%` }}
-              />
-            </div>
-          </article>
+            item={item}
+            onDetailClick={() => onDetailClick?.(item.saasName)}
+            onPauseClick={() => onPauseClick?.(item.saasName)}
+          />
         ))}
         
-        {/* PKGフロー可視化 */}
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-medium mb-3">PKGフロー可視化:</h3>
-          <div className="font-mono text-sm space-y-2">
-            <div className="flex items-center space-x-2">
-              <span>[pkg_mvp_standard]</span>
-              <span>→</span>
-              <span>[条件判定]</span>
-              <span>→</span>
-              <span className="text-blue-600 font-bold">[pkg_crisis_recovery]</span>
-            </div>
-            <div className="flex items-center space-x-8">
-              <span className="text-green-600">✓完了</span>
-              <span className="text-gray-500">MRR⬇️</span>
-              <span className="text-blue-600">実行中(35%)</span>
-            </div>
-            <div className="flex items-center space-x-2 mt-2">
-              <span className="ml-32">↓</span>
-            </div>
-            <div className="flex items-center space-x-8 ml-24">
-              <span>[pivot]</span>
-              <span>[improve]</span>
-            </div>
-          </div>
-        </div>
+        <PKGFlowVisualization />
       </div>
     </div>
+  )
+}
+
+// 分離したコンポーネント
+function PKGCard({ 
+  item,
+  onDetailClick,
+  onPauseClick
+}: {
+  item: PKGExecutionData
+  onDetailClick: () => void
+  onPauseClick: () => void
+}) {
+  return (
+    <article 
+      className="border rounded-lg p-4"
+      aria-label={`${item.saasName}のPKG実行状況`}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <PKGInfo item={item} />
+        <PKGActions 
+          onDetailClick={onDetailClick}
+          onPauseClick={onPauseClick}
+        />
+      </div>
+      
+      {item.trigger && <PKGTrigger trigger={item.trigger} />}
+      
+      <PKGProgressBar 
+        progress={item.progress}
+        status={item.status}
+      />
+    </article>
+  )
+}
+
+function PKGInfo({ item }: { item: PKGExecutionData }) {
+  return (
+    <div className="flex items-center space-x-3">
+      <StatusIndicator status={item.status} />
+      <span className="font-medium">{item.saasName}</span>
+      <Separator />
+      <span className="text-blue-600">{item.currentPkg}</span>
+      <Separator />
+      <ProgressText progress={item.progress} />
+      <Separator />
+      <NextPKG name={item.nextPkg} />
+    </div>
+  )
+}
+
+function StatusIndicator({ status }: { status: '🟢' | '🟡' | '🔴' }) {
+  return <span className="text-lg">{status}</span>
+}
+
+function Separator() {
+  return <span className="text-gray-600">│</span>
+}
+
+function ProgressText({ progress }: { progress: number }) {
+  return <span className="font-mono">{progress}%</span>
+}
+
+function NextPKG({ name }: { name: string }) {
+  return <span className="text-gray-700">次: {name}</span>
+}
+
+function PKGActions({ 
+  onDetailClick,
+  onPauseClick
+}: {
+  onDetailClick: () => void
+  onPauseClick: () => void
+}) {
+  return (
+    <div className="flex space-x-2">
+      <ActionButton onClick={onDetailClick} label="詳細" />
+      <ActionButton onClick={onPauseClick} label="一時停止" />
+    </div>
+  )
+}
+
+function ActionButton({ 
+  onClick,
+  label
+}: {
+  onClick: () => void
+  label: string
+}) {
+  return (
+    <button 
+      className="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200"
+      onClick={onClick}
+    >
+      {label}
+    </button>
+  )
+}
+
+function PKGTrigger({ trigger }: { trigger: string }) {
+  return (
+    <div className="text-sm text-gray-500 mb-2">
+      └ トリガー: {trigger}
+    </div>
+  )
+}
+
+function PKGProgressBar({ 
+  progress,
+  status
+}: {
+  progress: number
+  status: '🟢' | '🟡' | '🔴'
+}) {
+  const colorClass = getProgressBarColor(status)
+  
+  return (
+    <div 
+      className="w-full bg-gray-200 rounded-full h-2"
+      role="progressbar"
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
+    >
+      <div 
+        className={`h-2 rounded-full ${colorClass}`}
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  )
+}
+
+function getProgressBarColor(status: '🟢' | '🟡' | '🔴'): string {
+  const colorMap = {
+    '🟢': 'bg-green-600',
+    '🟡': 'bg-yellow-600',
+    '🔴': 'bg-red-600'
+  }
+  return colorMap[status]
+}
+
+function PKGFlowVisualization() {
+  return (
+    <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+      <h3 className="font-medium mb-3">PKGフロー可視化:</h3>
+      <PKGFlowDiagram />
+    </div>
+  )
+}
+
+function PKGFlowDiagram() {
+  return (
+    <div className="font-mono text-sm space-y-2">
+      <FlowLine>
+        <FlowNode name="[pkg_mvp_standard]" />
+        <FlowArrow />
+        <FlowNode name="[条件判定]" />
+        <FlowArrow />
+        <FlowNode name="[pkg_crisis_recovery]" isCurrent />
+      </FlowLine>
+      
+      <FlowStatusLine>
+        <FlowStatus status="✓完了" isComplete />
+        <FlowStatus status="MRR⬇️" />
+        <FlowStatus status="実行中(35%)" isCurrent />
+      </FlowStatusLine>
+      
+      <FlowBranch />
+    </div>
+  )
+}
+
+function FlowLine({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center space-x-2">
+      {children}
+    </div>
+  )
+}
+
+function FlowNode({ 
+  name,
+  isCurrent = false
+}: {
+  name: string
+  isCurrent?: boolean
+}) {
+  const className = isCurrent 
+    ? "text-blue-600 font-bold" 
+    : ""
+  
+  return <span className={className}>{name}</span>
+}
+
+function FlowArrow() {
+  return <span>→</span>
+}
+
+function FlowStatusLine({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center space-x-8">
+      {children}
+    </div>
+  )
+}
+
+function FlowStatus({ 
+  status,
+  isComplete = false,
+  isCurrent = false
+}: {
+  status: string
+  isComplete?: boolean
+  isCurrent?: boolean
+}) {
+  const className = isComplete 
+    ? "text-green-600"
+    : isCurrent 
+      ? "text-blue-600"
+      : "text-gray-500"
+  
+  return <span className={className}>{status}</span>
+}
+
+function FlowBranch() {
+  return (
+    <>
+      <div className="flex items-center space-x-2 mt-2">
+        <span className="ml-32">↓</span>
+      </div>
+      <div className="flex items-center space-x-8 ml-24">
+        <span>[pivot]</span>
+        <span>[improve]</span>
+      </div>
+    </>
   )
 }

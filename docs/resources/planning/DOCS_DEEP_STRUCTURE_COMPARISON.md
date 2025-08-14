@@ -59,7 +59,7 @@ docs/
 │   │   │   ├── stage-2-mvp-dev.md         # ステージ2: MVP開発
 │   │   │   ├── stage-3-monetization.md    # ステージ3: 課金
 │   │   │   └── stage-4-scaling.md         # ステージ4: 拡張
-│   │   ├── gates/                         # ゲート判定
+│   │   ├── gates/                         # GATE判定
 │   │   │   ├── gate-1-lp-validation.md
 │   │   │   ├── gate-2-mvp-validation.md
 │   │   │   ├── gate-3-revenue-validation.md
@@ -477,7 +477,7 @@ docs/
 │   │   │       ├── growth-tactics.md
 │   │   │       ├── automation.md
 │   │   │       └── optimization.md
-│   │   ├── gates/                         # ゲート管理
+│   │   ├── gates/                         # GATE管理
 │   │   │   ├── gate-1-lp.md
 │   │   │   ├── gate-2-mvp.md
 │   │   │   ├── gate-3-revenue.md
