@@ -122,3 +122,8 @@ google-ads.yaml
 google-ads-env/
 venv/
 
+
+# Next.js
+.next/
+.vercel/
+
