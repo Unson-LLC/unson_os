@@ -32,7 +32,7 @@ describe('Dashboard', () => {
       expect(within(nav).getByRole('button', { name: /コマンドセンター/ })).toBeInTheDocument()
       expect(within(nav).getByRole('button', { name: /データ & インサイト/ })).toBeInTheDocument()
       expect(within(nav).getByRole('button', { name: /戦略 & 実行/ })).toBeInTheDocument()
-      expect(within(nav).getByRole('button', { name: /ポートフォリオ & ファイナンス/ })).toBeInTheDocument()
+      expect(within(nav).getByRole('button', { name: /ポートフォリオ/ })).toBeInTheDocument()
       expect(within(nav).getByRole('button', { name: /SaaS一覧/ })).toBeInTheDocument()
       expect(within(nav).getByRole('button', { name: /ポートフォリオ/ })).toBeInTheDocument()
       expect(within(nav).getByRole('button', { name: /AI設定/ })).toBeInTheDocument()
@@ -86,7 +86,7 @@ describe('Dashboard', () => {
       render(<Dashboard />)
       
       const nav = screen.getByRole('navigation')
-      const portfolioButton = within(nav).getByRole('button', { name: /ポートフォリオ & ファイナンス/ })
+      const portfolioButton = within(nav).getByRole('button', { name: /ポートフォリオ/ })
       await user.click(portfolioButton)
       
       expect(screen.getByText('💰 収益分配ダッシュボード')).toBeInTheDocument()
@@ -174,7 +174,7 @@ describe('Dashboard', () => {
       render(<Dashboard />)
       
       const nav = screen.getByRole('navigation')
-      const portfolioButton = within(nav).getByRole('button', { name: /ポートフォリオ & ファイナンス/ })
+      const portfolioButton = within(nav).getByRole('button', { name: /ポートフォリオ/ })
       await user.click(portfolioButton)
       
       // 収益分配

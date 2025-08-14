@@ -1,6 +1,25 @@
 'use client'
 
 import React, { useState } from 'react'
+import { 
+  Bell, 
+  Wallet, 
+  User, 
+  ChevronDown,
+  Target,
+  ClipboardList,
+  Brain,
+  BarChart3,
+  TrendingUp,
+  DollarSign,
+  Link2,
+  Bot,
+  ArrowUpRight,
+  ArrowDownRight,
+  ArrowRight,
+  ArrowUp,
+  ArrowDown
+} from 'lucide-react'
 import { KPICard } from './KPICard'
 import { TimeSeriesGrid } from './TimeSeriesGrid'
 import { MetricsGrid } from './MetricsGrid'
@@ -52,29 +71,32 @@ export function Dashboard() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-secondary-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-10">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-bold text-gray-900">UnsonOS v2.4.1</h1>
+            <h1 className="text-xl font-bold text-secondary-900">UnsonOS v2.4.1</h1>
           </div>
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setShowNotifications(!showNotifications)}
-              className="relative inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 cursor-pointer"
+              className="relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium bg-error-100 text-error-800 hover:bg-error-200 transition-colors duration-200"
             >
-              🔔 3件
+              <Bell className="w-4 h-4 mr-1" />
+              <span>3件</span>
             </button>
             <button 
               onClick={() => setModalState({ isOpen: true, type: 'dao' })}
-              className="flex items-center space-x-2 hover:bg-gray-100 px-3 py-1 rounded"
+              className="flex items-center space-x-2 hover:bg-secondary-100 px-3 py-2 rounded-md transition-colors duration-200"
             >
-              <span>💰 DAO</span>
+              <Wallet className="w-4 h-4" />
+              <span className="text-sm font-medium">DAO</span>
             </button>
             <div className="flex items-center space-x-2">
-              <span className="text-gray-700">👤 佐藤太郎</span>
-              <button className="text-gray-400 hover:text-gray-600">▼</button>
+              <User className="w-4 h-4 text-secondary-700" />
+              <span className="text-secondary-900 text-sm font-medium">佐藤太郎</span>
+              <ChevronDown className="w-4 h-4 text-secondary-600 hover:text-secondary-800 transition-colors" />
             </div>
           </div>
         </div>
@@ -85,39 +107,39 @@ export function Dashboard() {
         <nav className="w-64 bg-white shadow-sm h-screen sticky top-0 overflow-y-auto">
           <div className="p-4 space-y-1">
             <SidebarItem 
-              icon="🎯" 
+              icon={Target} 
               label="コマンドセンター" 
               active={activeTab === 'command'}
               onClick={() => setActiveTab('command')}
             />
             <SidebarItem 
-              icon="📋" 
+              icon={ClipboardList} 
               label="SaaS一覧" 
               active={activeTab === 'saas-list'}
               onClick={() => setActiveTab('saas-list')}
             />
             <SidebarItem 
-              icon="🧠" 
+              icon={Brain} 
               label="学習分析" 
               active={activeTab === 'learning'}
               onClick={() => setActiveTab('learning')}
             />
             <div className="border-t my-2"></div>
             <SidebarItem 
-              icon="📊" 
+              icon={BarChart3} 
               label="データ & インサイト" 
               active={activeTab === 'data'}
               onClick={() => setActiveTab('data')}
             />
             <SidebarItem 
-              icon="🎯" 
+              icon={TrendingUp} 
               label="戦略 & 実行" 
               active={activeTab === 'strategy'}
               onClick={() => setActiveTab('strategy')}
             />
             <SidebarItem 
-              icon="💰" 
-              label="ポートフォリオ & ファイナンス" 
+              icon={DollarSign} 
+              label="ポートフォリオ" 
               active={activeTab === 'portfolio'}
               onClick={() => setActiveTab('portfolio')}
             />
@@ -172,10 +194,11 @@ export function Dashboard() {
             <div className="space-y-6 p-6">
               {/* コマンドセンターからの連携情報表示 */}
               {(dataViewFocus.saasName || dataViewFocus.metric) && (
-                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                <div className="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-md">
                   <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-blue-700 font-medium">🔗 コマンドセンターから参照中</span>
+                    <div className="flex items-center">
+                      <Link2 className="w-4 h-4 text-primary-600 mr-2" />
+                      <span className="text-primary-700 font-medium">コマンドセンターから参照中</span>
                       {dataViewFocus.saasName && (
                         <span className="ml-2">SaaS: {dataViewFocus.saasName}</span>
                       )}
@@ -185,7 +208,7 @@ export function Dashboard() {
                     </div>
                     <button
                       onClick={() => setDataViewFocus({})}
-                      className="text-blue-600 hover:text-blue-800 text-sm"
+                      className="text-primary-600 hover:text-primary-800 text-sm transition-colors"
                     >
                       フォーカス解除
                     </button>
@@ -215,9 +238,10 @@ export function Dashboard() {
                   <div className="mt-4 text-center">
                     <button
                       onClick={() => setActiveTab('command')}
-                      className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                      className="btn-primary inline-flex items-center"
                     >
-                      🎯 コマンドセンターに戻る
+                      <Target className="w-4 h-4 mr-2" />
+                      コマンドセンターに戻る
                     </button>
                   </div>
                 )}
@@ -225,11 +249,14 @@ export function Dashboard() {
 
               {/* AI判断用インジケーターシステム */}
               <div role="region" aria-label="AI判断用インジケーターシステム">
-                <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-4 mb-6">
-                  <h3 className="font-semibold text-purple-700 mb-2">🤖 AI学習データ統合層</h3>
-                  <p className="text-sm text-gray-600">
+                <div className="bg-gradient-to-r from-accent-50 to-primary-50 rounded-lg p-4 mb-6">
+                  <h3 className="font-semibold text-accent-700 mb-2 flex items-center">
+                    <Bot className="w-5 h-5 mr-2" />
+                    AI学習データ統合層
+                  </h3>
+                  <p className="text-sm text-secondary-600">
                     上記の可視化データは全てこのIndicatorSystemで管理されており、
-                    すべてのメトリクスがAI判断用インジケーター（⬆️↗️→↘️⬇️）として記録・学習されています。
+                    すべてのメトリクスがAI判断用インジケーターとして記録・学習されています。
                   </p>
                 </div>
                 <IndicatorSystem 
@@ -253,7 +280,7 @@ export function Dashboard() {
             </div>
           )}
 
-          {/* ポートフォリオ & ファイナンス */}
+          {/* ポートフォリオ */}
           {activeTab === 'portfolio' && (
             <div className="space-y-6 p-6">
               <PortfolioEvolution />
@@ -285,9 +312,9 @@ export function Dashboard() {
         isOpen={modalState.isOpen}
         onClose={() => setModalState({ isOpen: false, type: null })}
         title={
-          modalState.type === 'dao' ? '💰 収益分配詳細' :
-          modalState.type === 'pkg' ? '📝 PKG実行詳細' :
-          modalState.type === 'contributor' ? '🏆 貢献者詳細' :
+          modalState.type === 'dao' ? '収益分配詳細' :
+          modalState.type === 'pkg' ? 'PKG実行詳細' :
+          modalState.type === 'contributor' ? '貢献者詳細' :
           ''
         }
       >
@@ -300,12 +327,12 @@ export function Dashboard() {
 }
 
 function SidebarItem({ 
-  icon, 
+  icon: Icon, 
   label, 
   active = false,
   onClick
 }: { 
-  icon: string
+  icon: React.ComponentType<{ className?: string }>
   label: string
   active?: boolean
   onClick?: () => void
@@ -314,14 +341,14 @@ function SidebarItem({
     <button 
       className={`
         w-full flex items-center space-x-3 px-3 py-2 rounded-lg
-        transition-colors cursor-pointer
+        transition-colors duration-200 cursor-pointer
         ${active 
-          ? 'bg-blue-50 text-blue-600 font-medium' 
-          : 'hover:bg-gray-50 text-gray-700'}
+          ? 'bg-primary-50 text-primary-700 font-semibold' 
+          : 'hover:bg-secondary-50 text-secondary-800 font-medium'}
       `}
       onClick={onClick}
     >
-      <span className="text-lg">{icon}</span>
+      <Icon className={`w-5 h-5 ${active ? 'text-primary-600' : 'text-secondary-700'}`} />
       <span>{label}</span>
     </button>
   )
