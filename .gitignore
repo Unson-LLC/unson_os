@@ -113,3 +113,12 @@ google-ads-env/
 reports/
 *.report.md
 *-report-*.md
+# Google Ads関連
+google_ads_client.py
+google_ads_update.py
+update_campaign*.sh
+*.env
+google-ads.yaml
+google-ads-env/
+venv/
+
