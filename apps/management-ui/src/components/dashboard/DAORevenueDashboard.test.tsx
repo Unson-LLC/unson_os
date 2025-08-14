@@ -22,7 +22,7 @@ describe('DAORevenueDashboard', () => {
     it('タイトルを表示する', () => {
       render(<DAORevenueDashboard data={mockData} />)
       
-      expect(screen.getByText('💰 収益分配ダッシュボード')).toBeInTheDocument()
+      expect(screen.getByText('収益分配ダッシュボード')).toBeInTheDocument()
     })
 
     it('総売上を表示する', () => {
@@ -55,7 +55,7 @@ describe('DAORevenueDashboard', () => {
     it('貢献者TOP5のタイトルを表示する', () => {
       render(<DAORevenueDashboard data={mockData} />)
       
-      expect(screen.getByText('🏆 貢献度TOP5:')).toBeInTheDocument()
+      expect(screen.getByText('貢献度TOP5:')).toBeInTheDocument()
     })
 
     it('各貢献者の情報を表示する', () => {

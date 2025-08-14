@@ -202,7 +202,7 @@ function PKGFlowDiagram() {
       
       <FlowStatusLine>
         <FlowStatus status="✓完了" isComplete />
-        <FlowStatus status="MRR⬇️" />
+        <FlowStatus status="MRR↓" />
         <FlowStatus status="実行中(35%)" isCurrent />
       </FlowStatusLine>
       

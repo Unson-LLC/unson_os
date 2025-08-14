@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ClipboardList, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react'
 
 interface SaaSItem {
   id: string
@@ -169,14 +170,27 @@ export function SaaSList() {
 
   const formatNumber = (num: number) => num.toLocaleString()
   const formatChange = (num: number) => {
-    if (num === 0) return '→'
-    return num > 0 ? `↗️ +${formatNumber(num)}` : `↘️ ${formatNumber(num)}`
+    if (num === 0) return <ArrowRight className="w-4 h-4" />
+    return num > 0 ? (
+      <span className="flex items-center gap-1">
+        <TrendingUp className="w-4 h-4" />
+        +{formatNumber(num)}
+      </span>
+    ) : (
+      <span className="flex items-center gap-1">
+        <TrendingDown className="w-4 h-4" />
+        {formatNumber(num)}
+      </span>
+    )
   }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">📋 SaaS一覧</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <ClipboardList className="w-6 h-6" />
+          SaaS一覧
+        </h2>
         <div className="flex items-center space-x-4">
           <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             + 新規SaaS追加
@@ -331,7 +345,10 @@ export function SaaSList() {
                     <div>
                       <div className="text-sm font-medium">{item.cvr.toFixed(1)}%</div>
                       <div className="text-xs text-gray-500">
-                        {item.cvrChange > 0 ? '↗️' : item.cvrChange < 0 ? '↘️' : '→'} {Math.abs(item.cvrChange).toFixed(1)}%
+                        <span className="flex items-center gap-1">
+                          {item.cvrChange > 0 ? <TrendingUp className="w-3 h-3" /> : item.cvrChange < 0 ? <TrendingDown className="w-3 h-3" /> : <ArrowRight className="w-3 h-3" />}
+                          {Math.abs(item.cvrChange).toFixed(1)}%
+                        </span>
                       </div>
                     </div>
                   </td>

@@ -5,23 +5,23 @@ import { PKGExecutionStatus } from './PKGExecutionStatus'
 const mockData = [
   {
     saasName: '猫カフェ予約',
-    status: '🔴' as const,
+    status: 'critical' as const,
     currentPkg: 'pkg_crisis_recovery',
     progress: 35,
-    trigger: 'MRR⬇️ (14:30検出)',
+    trigger: 'MRR↓ (14:30検出)',
     nextPkg: 'pkg_pivot'
   },
   {
     saasName: '家計簿アプリ',
-    status: '🟢' as const,
+    status: 'success' as const,
     currentPkg: 'pkg_fast_mvp',
     progress: 78,
-    trigger: 'CVR↗️ > 15%',
+    trigger: 'CVR↗ > 15%',
     nextPkg: 'pkg_monetize'
   },
   {
     saasName: '英会話マッチ',
-    status: '🟡' as const,
+    status: 'warning' as const,
     currentPkg: 'pkg_optimization',
     progress: 45,
     nextPkg: '[分岐待ち]'
@@ -40,9 +40,7 @@ describe('PKGExecutionStatus', () => {
       render(<PKGExecutionStatus data={mockData} />)
       
       // SaaS名とステータス
-      expect(screen.getByText('🔴')).toBeInTheDocument()
       expect(screen.getByText('猫カフェ予約')).toBeInTheDocument()
-      expect(screen.getByText('🟢')).toBeInTheDocument()
       expect(screen.getByText('家計簿アプリ')).toBeInTheDocument()
       
       // 現在のPKG
@@ -61,8 +59,8 @@ describe('PKGExecutionStatus', () => {
     it('トリガー情報を表示する', () => {
       render(<PKGExecutionStatus data={mockData} />)
       
-      expect(screen.getByText('└ トリガー: MRR⬇️ (14:30検出)')).toBeInTheDocument()
-      expect(screen.getByText('└ トリガー: CVR↗️ > 15%')).toBeInTheDocument()
+      expect(screen.getByText('└ トリガー: MRR↓ (14:30検出)')).toBeInTheDocument()
+      expect(screen.getByText('└ トリガー: CVR↗ > 15%')).toBeInTheDocument()
     })
 
     it('トリガーがない場合は表示しない', () => {
