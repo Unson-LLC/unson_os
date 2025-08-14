@@ -1,4 +1,5 @@
 import React from 'react'
+import { ArrowDown, CheckCircle } from 'lucide-react'
 
 interface PKGExecutionData {
   saasName: string
@@ -202,7 +203,7 @@ function PKGFlowDiagram() {
       
       <FlowStatusLine>
         <FlowStatus status="✓完了" isComplete />
-        <FlowStatus status="MRR⬇️" />
+        <FlowStatus status={<span className="flex items-center gap-1">MRR<ArrowDown className="w-3 h-3" /></span>} />
         <FlowStatus status="実行中(35%)" isCurrent />
       </FlowStatusLine>
       

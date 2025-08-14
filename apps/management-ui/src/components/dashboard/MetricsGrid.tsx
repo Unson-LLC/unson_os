@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { BarChart3 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 // 人間向け数値・グラフ表示データ
@@ -78,7 +79,10 @@ function MetricsHeader({
   return (
     <div className="p-6 border-b">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold">📊 メトリクス分析</h2>
+        <h2 className="text-lg font-semibold flex items-center gap-2">
+          <BarChart3 className="w-5 h-5" />
+          メトリクス分析
+        </h2>
         <div className="flex space-x-2">
           <button
             onClick={() => onViewModeChange('table')}

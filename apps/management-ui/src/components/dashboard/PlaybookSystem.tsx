@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Search, Zap, Megaphone, Target, TestTube, BarChart3, Settings, Rocket } from 'lucide-react'
 import { PlaybookVisualizer } from './PlaybookVisualizer'
 
 // PKGタイプ定義
@@ -297,11 +298,11 @@ export function PlaybookSystem({ onViewDataSeries }: PlaybookSystemProps) {
 
   const getStepIcon = (type: string) => {
     switch (type) {
-      case 'analysis': return '🔍'
-      case 'action': return '⚡'
-      case 'notification': return '📢'
-      case 'decision': return '🎯'
-      case 'test': return '🧪'
+      case 'analysis': return <Search className="w-4 h-4" />
+      case 'action': return <Zap className="w-4 h-4" />
+      case 'notification': return <Megaphone className="w-4 h-4" />
+      case 'decision': return <Target className="w-4 h-4" />
+      case 'test': return <TestTube className="w-4 h-4" />
       default: return '📝'
     }
   }
@@ -355,11 +356,11 @@ export function PlaybookSystem({ onViewDataSeries }: PlaybookSystemProps) {
                 onChange={(e) => setFilterCategory(e.target.value)}
               >
                 <option value="all">すべてのカテゴリ</option>
-                <option value="crisis">🔴 危機対応</option>
-                <option value="fast-track">🚀 高速トラック</option>
-                <option value="standard">📘 標準フロー</option>
-                <option value="optimization">⚙️ 最適化</option>
-                <option value="sunset">🌅 サンセット</option>
+                <option value="crisis">危機対応</option>
+                <option value="fast-track">高速トラック</option>
+                <option value="standard">標準フロー</option>
+                <option value="optimization">最適化</option>
+                <option value="sunset">サンセット</option>
               </select>
             </div>
             <div className="max-h-[600px] overflow-y-auto">
@@ -383,7 +384,10 @@ export function PlaybookSystem({ onViewDataSeries }: PlaybookSystemProps) {
                       <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
                         <span>⏱ {pkg.estimatedDuration}</span>
                         <span>✅ {pkg.successRate}%成功</span>
-                        <span>📊 {pkg.usage}回使用</span>
+                        <span className="flex items-center gap-1">
+                          <BarChart3 className="w-3 h-3" />
+                          {pkg.usage}回使用
+                        </span>
                       </div>
                     </div>
                   </div>

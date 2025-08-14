@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FileText, BookOpen, RotateCcw, Target, Compass, Package, BarChart3, RefreshCw } from 'lucide-react'
 import { PlaybookSystemV2 } from './PlaybookSystemV2'
 import { PlaybookTemplates } from './PlaybookTemplates'
 
@@ -25,19 +26,28 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">📝 プレイブックシステム</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <FileText className="w-6 h-6" />
+          プレイブックシステム
+        </h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setActiveView('templates')}
             className={`px-4 py-2 rounded ${activeView === 'templates' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
           >
-            📚 テンプレート
+            <span className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4" />
+              テンプレート
+            </span>
           </button>
           <button
             onClick={() => setActiveView('execution')}
             className={`px-4 py-2 rounded ${activeView === 'execution' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
           >
-            🔄 実行・判定システム
+            <span className="flex items-center gap-2">
+              <RotateCcw className="w-4 h-4" />
+              実行・判定システム
+            </span>
           </button>
         </div>
       </div>
@@ -47,7 +57,10 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-blue-700 font-medium">🎯 アクティブ:</span>
+              <span className="text-blue-700 font-medium flex items-center gap-1">
+                <Target className="w-4 h-4" />
+                アクティブ:
+              </span>
               <span className="ml-2">{selectedSaaS}</span>
               <span className="mx-2">→</span>
               <span className="text-blue-600">テンプレート: {selectedTemplate}</span>
@@ -56,7 +69,10 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
               onClick={() => setActiveView('templates')}
               className="text-blue-600 hover:text-blue-800 text-sm"
             >
-              📚 テンプレートに戻る
+              <span className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4" />
+              テンプレート
+            </span>に戻る
             </button>
           </div>
         </div>
@@ -85,9 +101,12 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
       {activeView === 'execution' && (
         <div>
           <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-medium mb-2">🔄 実行・判定システムとは</h3>
+            <h3 className="font-medium mb-2 flex items-center gap-2">
+              <RotateCcw className="w-5 h-5" />
+              実行・判定システムとは
+            </h3>
             <p className="text-sm text-gray-600">
-              インジケーター（⬆️↗️→↘️⬇️）に基づく自動判断システム。
+              インジケーター（↑↗→↘↓）に基づく自動判断システム。
               テンプレートの知見を活用して、リアルタイムの指標変化に応じた
               最適なアクション（PKG）を自動実行します。
             </p>
@@ -99,7 +118,10 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
 
       {/* プレイブックの概念説明 */}
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
-        <h3 className="font-semibold mb-3">🧭 プレイブックシステムの全体像</h3>
+        <h3 className="font-semibold mb-3 flex items-center gap-2">
+          <Compass className="w-5 h-5" />
+          プレイブックシステムの全体像
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-medium text-blue-700 mb-2">📚 テンプレート（静的知見）</h4>
@@ -111,7 +133,10 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
             </ul>
           </div>
           <div>
-            <h4 className="font-medium text-purple-700 mb-2">🔄 実行システム（動的判断）</h4>
+            <h4 className="font-medium text-purple-700 mb-2 flex items-center gap-2">
+              <RefreshCw className="w-4 h-4" />
+              実行システム（動的判断）
+            </h4>
             <ul className="text-sm space-y-1 text-gray-600">
               <li>• インジケーターによる自動判断</li>
               <li>• PKGを使った処理のカプセル化</li>
@@ -124,13 +149,25 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
           <div className="inline-flex items-center space-x-2 text-sm text-gray-600">
             <span>📚 テンプレート選択</span>
             <span>→</span>
-            <span>🔄 インジケーター監視</span>
+            <span className="flex items-center gap-1">
+              <RefreshCw className="w-3 h-3" />
+              インジケーター監視
+            </span>
             <span>→</span>
-            <span>📦 PKG自動実行</span>
+            <span className="flex items-center gap-1">
+              <Package className="w-3 h-3" />
+              PKG自動実行
+            </span>
             <span>→</span>
-            <span>📊 結果測定</span>
+            <span className="flex items-center gap-1">
+              <BarChart3 className="w-3 h-3" />
+              結果測定
+            </span>
             <span>→</span>
-            <span>🔄 継続改善</span>
+            <span className="flex items-center gap-1">
+              <RefreshCw className="w-3 h-3" />
+              継続改善
+            </span>
           </div>
         </div>
       </div>
