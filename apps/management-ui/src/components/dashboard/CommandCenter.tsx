@@ -416,25 +416,25 @@ export function CommandCenter({ onDrillDown, onTakeAction }: CommandCenterProps)
                 <div className="flex space-x-2">
                   <button
                     onClick={() => onTakeAction?.(saas.id, 'detail')}
-                    className="text-xs px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200"
+                    className="text-xs px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 rounded hover:bg-blue-200 dark:hover:bg-blue-700"
                   >
                     詳細
                   </button>
                   <button
                     onClick={() => onTakeAction?.(saas.id, 'deep-analysis')}
-                    className="text-xs px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200"
+                    className="text-xs px-3 py-1 bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100 rounded hover:bg-purple-200 dark:hover:bg-purple-700"
                   >
                     📋 詳しく見る
                   </button>
                   <button
                     onClick={() => onDrillDown?.('data', { saas: saas.name, metric: 'all' })}
-                    className="text-xs px-3 py-1 bg-gray-100 text-gray-800 rounded hover:bg-gray-200"
+                    className="text-xs px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-100 rounded hover:bg-gray-200 dark:hover:bg-gray-600"
                   >
                     📊 データ
                   </button>
                   <button
                     onClick={() => onTakeAction?.(saas.id, 'action')}
-                    className="text-xs px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200"
+                    className="text-xs px-3 py-1 bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100 rounded hover:bg-red-200 dark:hover:bg-red-700"
                   >
                     🚀 実行
                   </button>
@@ -514,25 +514,25 @@ export function CommandCenter({ onDrillDown, onTakeAction }: CommandCenterProps)
                 <div className="flex space-x-2">
                   <button
                     onClick={() => onDrillDown?.('strategy', { saas: saas.name, action: 'gate' })}
-                    className="text-xs px-3 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200"
+                    className="text-xs px-3 py-1 bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100 rounded hover:bg-green-200 dark:hover:bg-green-700"
                   >
                     🚪 GATE判断
                   </button>
                   <button
                     onClick={() => onTakeAction?.(saas.id, 'deep-analysis')}
-                    className="text-xs px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200"
+                    className="text-xs px-3 py-1 bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100 rounded hover:bg-purple-200 dark:hover:bg-purple-700"
                   >
                     📋 詳しく見る
                   </button>
                   <button
                     onClick={() => onDrillDown?.('data', { saas: saas.name, metric: 'cvr' })}
-                    className="text-xs px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200"
+                    className="text-xs px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 rounded hover:bg-blue-200 dark:hover:bg-blue-700"
                   >
                     📊 広告データ
                   </button>
                   <button
                     onClick={() => onTakeAction?.(saas.id, 'execute')}
-                    className="text-xs px-3 py-1 bg-orange-100 text-orange-800 rounded hover:bg-orange-200"
+                    className="text-xs px-3 py-1 bg-orange-100 text-orange-800 dark:bg-orange-800 dark:text-orange-100 rounded hover:bg-orange-200 dark:hover:bg-orange-700"
                   >
                     🚀 実行
                   </button>
