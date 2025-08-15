@@ -467,7 +467,217 @@ Authorization: Bearer {token}
 }
 ```
 
-## 5. アラート・通知API
+## 5. DAGステータス・実行API
+
+### GET /api/saas/:id/dag/status
+**概要**: 特定SaaSのDAG処理状況取得
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "saasId": "saas-123",
+    "saasName": "猫カフェ予約システム",
+    "dagStatus": {
+      "lastExecuted": "2025-01-15T10:30:00Z",
+      "nextScheduled": "2025-01-15T12:00:00Z",
+      "executionId": "dag-exec-456789",
+      "currentCycle": "24h",
+      "status": "running"
+    },
+    "layer1": {
+      "symbolCount": 148,
+      "lastUpdated": "2025-01-15T10:30:00Z",
+      "symbols": {
+        "B_MRR": {
+          "value": 0.45,
+          "normalized": true,
+          "source": "stripe.monthly_recurring_revenue",
+          "timestamp": "2025-01-15T10:30:00Z"
+        },
+        "U_DAU_MAU": {
+          "value": 0.62,
+          "normalized": true,
+          "source": "analytics.engagement_ratio",
+          "timestamp": "2025-01-15T10:30:00Z"
+        },
+        "M_TREND": {
+          "value": 0.78,
+          "normalized": true,
+          "source": "google_trends.search_volume",
+          "timestamp": "2025-01-15T10:29:45Z"
+        }
+      },
+      "errors": []
+    },
+    "layer2": {
+      "functionsEvaluated": 12,
+      "lastEvaluated": "2025-01-15T10:30:00Z",
+      "results": {
+        "L2_PMF_CHECK": {
+          "result": true,
+          "confidence": 0.89,
+          "inputs": ["U_RETENTION_D7", "B_GROWTH", "U_DAU_MAU"],
+          "inputValues": [0.58, 0.23, 0.62],
+          "executionTime": 45
+        },
+        "L2_SCALE_READY": {
+          "result": true,
+          "confidence": 0.94,
+          "inputs": ["B_LTV_CAC", "B_GROWTH", "T_UPTIME"],
+          "inputValues": [0.84, 0.23, 0.998],
+          "executionTime": 32
+        },
+        "L2_PIVOT_DECISION": {
+          "result": false,
+          "confidence": 0.76,
+          "inputs": ["B_MRR", "U_RETENTION_D7", "M_TREND"],
+          "inputValues": [0.45, 0.58, 0.78],
+          "executionTime": 28
+        }
+      },
+      "errors": []
+    },
+    "layer3": {
+      "selectedPKG": "GROWTH_VIRAL_SCALE",
+      "selectionConfidence": 0.91,
+      "alternatives": [
+        {
+          "pkgId": "GROWTH_ORGANIC_SCALE",
+          "confidence": 0.73,
+          "reason": "Lower viral coefficient"
+        }
+      ],
+      "executionQueue": [
+        {
+          "pkgId": "GROWTH_VIRAL_SCALE",
+          "priority": "medium",
+          "queuePosition": 3,
+          "estimatedStart": "2025-01-15T11:15:00Z"
+        }
+      ],
+      "lastExecution": {
+        "pkgId": "GROWTH_USER_ACQUISITION",
+        "startedAt": "2025-01-15T08:00:00Z",
+        "completedAt": "2025-01-15T08:45:00Z",
+        "result": "success",
+        "details": {
+          "stepsExecuted": 8,
+          "stepsSucceeded": 8,
+          "stepsSkipped": 0,
+          "stepsFailled": 0
+        }
+      }
+    },
+    "emergencyTriggers": {
+      "active": [],
+      "recent": [
+        {
+          "triggerId": "emrg-789",
+          "metric": "T_UPTIME",
+          "threshold": 0.90,
+          "actualValue": 0.89,
+          "triggeredAt": "2025-01-14T22:30:00Z",
+          "resolvedAt": "2025-01-14T22:45:00Z",
+          "pkgExecuted": "CRISIS_UPTIME_RECOVERY"
+        }
+      ]
+    }
+  }
+}
+```
+
+### GET /api/dag/batch/status
+**概要**: バッチ処理状況取得
+
+**Query Parameters:**
+- `cycle`: サイクル種別 (2h|24h|48h)
+- `status`: ステータス (running|pending|completed|failed)
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "currentBatch": {
+      "batchId": "batch-20250115-103000",
+      "cycle": "24h",
+      "status": "running",
+      "startedAt": "2025-01-15T10:30:00Z",
+      "progress": {
+        "totalSaaS": 87,
+        "processedSaaS": 45,
+        "percentage": 51.7
+      },
+      "currentBatches": [
+        {
+          "batchNumber": 3,
+          "saasIds": ["saas-041", "saas-042", "saas-043", "..."],
+          "status": "running",
+          "startedAt": "2025-01-15T10:35:00Z"
+        }
+      ],
+      "estimatedCompletion": "2025-01-15T11:15:00Z"
+    },
+    "queuedBatches": [
+      {
+        "batchId": "batch-20250115-120000",
+        "cycle": "2h",
+        "saasCount": 12,
+        "priority": "critical",
+        "scheduledFor": "2025-01-15T12:00:00Z"
+      }
+    ],
+    "recentCompleted": [
+      {
+        "batchId": "batch-20250115-080000",
+        "cycle": "24h",
+        "completedAt": "2025-01-15T09:15:00Z",
+        "duration": "00:45:00",
+        "saasProcessed": 87,
+        "pkgsExecuted": 23,
+        "successRate": 0.96
+      }
+    ]
+  }
+}
+```
+
+### POST /api/dag/emergency/trigger
+**概要**: 緊急DAG実行トリガー
+
+**Request:**
+```json
+{
+  "saasId": "saas-123",
+  "reason": "manual_intervention",
+  "metric": "B_MRR",
+  "currentValue": 0.02,
+  "expectedPKGs": ["CRISIS_MRR_RECOVERY"],
+  "skipQueue": true
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "emergencyExecution": {
+      "executionId": "emrg-exec-789",
+      "saasId": "saas-123",
+      "triggeredAt": "2025-01-15T10:45:00Z",
+      "estimatedCompletion": "2025-01-15T11:30:00Z",
+      "selectedPKG": "CRISIS_MRR_RECOVERY",
+      "priority": "critical",
+      "status": "queued"
+    }
+  }
+}
+```
+
+## 6. アラート・通知API
 
 ### GET /api/alerts
 **概要**: アラート一覧取得

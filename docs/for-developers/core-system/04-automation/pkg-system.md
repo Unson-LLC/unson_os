@@ -4,7 +4,33 @@
 
 PKGシステムは、FXトレーディングシステムのDAG（Directed Acyclic Graph）アーキテクチャをベースに、100-200個のマイクロSaaS管理に最適化した階層的データ処理システムです。実用的な300-500のシンボルから、24-48時間の高速サイクルで最適なPKGを動的に選択します。
 
-## 核心概念
+## 用語集・核心概念
+
+### 重要用語定義
+
+| 用語 | 定義 | 具体例 |
+|------|------|--------|
+| **Symbol** | Layer1で生成される正規化済みメトリクス（0-1値） | B_MRR: 0.45, U_DAU: 0.62 |
+| **Layer2関数** | 複数シンボルから条件を評価する判定ロジック | L2_PMF_CHECK, L2_PIVOT_DECISION |
+| **PKG** | 条件に応じて実行されるアクションパッケージ | CRISIS_MRR_RECOVERY, GROWTH_VIRAL_SCALE |
+| **DAG実行** | Layer1→2→3の順次処理による自動判定フロー | 2h/24h/48hサイクルでの定期実行 |
+| **Lifecycle** | SaaSの現在状態カテゴリ | LAUNCH, GROWTH, STABLE, CRISIS |
+| **Priority** | PKG実行の緊急度レベル | KILL>CRISIS>PIVOT>SCALE>OPTIMIZE |
+| **Batch処理** | 複数SaaSの並列処理単位 | 20個ずつのグループ処理 |
+| **Emergency Trigger** | 閾値超過時の即座DAG実行 | MRR 95%減少時の緊急対応 |
+
+### アーキテクチャ階層関係
+```
+生データ（Stripe, GA等）
+    ↓ 正規化
+Layer1: Symbol生成（300-500個）
+    ↓ 組み合わせ評価  
+Layer2: 判定関数（PMF, PIVOT, SCALE等）
+    ↓ 条件マッチング
+Layer3: PKG選択・実行（競合解決含む）
+    ↓ バッチ処理
+実行結果（20個並列、優先度順）
+```
 
 ### DAGアーキテクチャ（UnsonOS最適化版）
 - **階層構造**: Layer 1（データ収集）→ Layer 2（SaaS判定）→ Layer 3（PKG実行）
@@ -16,6 +42,76 @@ PKGシステムは、FXトレーディングシステムのDAG（Directed Acycli
 ### データフロー
 ```
 [生データ] → [シンボル化] → [Layer1] → [Layer2演算] → [Layer3判定] → [PKG実行]
+```
+
+## DAG実行制御フロー
+
+### スケジューラー駆動型実行
+```typescript
+class DAGScheduler {
+  // メインスケジューラー - cron形式で定期実行
+  @Cron('0 */2 * * *') // 2時間毎
+  async executeRapidCycle() {
+    const criticalSaaS = await this.identifyCriticalSaaS();
+    await this.executeBatch(criticalSaaS, ['KILL', 'CRISIS']);
+  }
+  
+  @Cron('0 0 * * *') // 毎日
+  async executeStandardCycle() {
+    const allSaaS = await this.getAllActiveSaaS();
+    await this.executeBatch(allSaaS, ['SCALE', 'OPTIMIZE']);
+  }
+  
+  @Cron('0 0 */2 * *') // 48時間毎
+  async executeExtendedCycle() {
+    const pivotCandidates = await this.identifyPivotCandidates();
+    await this.executeBatch(pivotCandidates, ['PIVOT']);
+  }
+}
+```
+
+### リアルタイム緊急トリガー
+```typescript
+class EmergencyTrigger {
+  // 閾値ベースの即座実行
+  async onMetricUpdate(saasId: string, metric: string, value: number) {
+    const emergencyThresholds = {
+      'B_MRR': 0.05,        // MRR 95%以上減少
+      'T_UPTIME': 0.90,     // アップタイム90%以下
+      'U_DAU_MAU': 0.01     // エンゲージメント1%以下
+    };
+    
+    if (value < emergencyThresholds[metric]) {
+      // 緊急実行（スケジューラーを待たない）
+      await this.executeEmergencyDAG(saasId, metric, value);
+    }
+  }
+}
+```
+
+### 実行タイムライン例
+```
+時刻 00:00 - 48時間サイクル開始
+  └─ 全SaaSのLayer1シンボル更新
+  └─ Layer2 PIVOT判定関数実行
+  └─ 該当PKGをキューに追加
+
+時刻 02:00 - 2時間サイクル実行  
+  └─ 危機的SaaSのLayer1シンボル更新
+  └─ Layer2 KILL/CRISIS判定
+  └─ 緊急PKG即座実行
+  
+時刻 04:00 - 2時間サイクル実行
+時刻 06:00 - 2時間サイクル実行
+
+時刻 08:00 - 24時間サイクル実行
+  └─ 全SaaSのLayer1シンボル更新  
+  └─ Layer2 SCALE/OPTIMIZE判定
+  └─ 通常PKGをバッチキューに追加
+  
+随時: 緊急トリガー
+  └─ メトリクス監視（Webhook/ストリーム）
+  └─ 閾値超過時の即座DAG実行
 ```
 
 ## レイヤー定義
@@ -123,7 +219,7 @@ const saasJudgmentFunctions = {
 ```
 
 ### Layer 3: PKG選択層
-Layer 2の結果からPKGを決定
+Layer 2の結果からPKGを決定（競合解決ポリシー含む）
 
 ```typescript
 interface Layer3Selector {
@@ -156,6 +252,151 @@ const layer3Selectors = {
     ]
   }
 };
+
+## PKG競合解決ポリシー
+
+### 同時条件発生時の処理方針
+
+複数のLayer2関数がTRUEを返した場合の競合解決ルール：
+
+#### 1. 優先度ベース選択
+```typescript
+const PKG_PRIORITY_MATRIX = {
+  'KILL': 100,        // 最高優先度（即座実行）
+  'CRISIS': 90,       // 危機対応（緊急実行）
+  'PIVOT': 80,        // ピボット（重要）
+  'SCALE': 70,        // スケール（成長）
+  'OPTIMIZE': 60,     // 最適化（通常）
+  'MONITOR': 50       // 監視（低優先度）
+};
+
+class ConflictResolver {
+  resolveMultipleConditions(triggeredFunctions: string[]): PKGSelection {
+    // 1. 各関数の対応PKGを特定
+    const candidatePKGs = triggeredFunctions.map(func => 
+      this.mapFunctionToPKG(func)
+    );
+    
+    // 2. 優先度でソート
+    const sortedByPriority = candidatePKGs.sort((a, b) => 
+      PKG_PRIORITY_MATRIX[b.category] - PKG_PRIORITY_MATRIX[a.category]
+    );
+    
+    // 3. 最高優先度のPKGを選択
+    const selectedPKG = sortedByPriority[0];
+    
+    // 4. 他のPKGは後続キューまたはマージを検討
+    const deferredPKGs = sortedByPriority.slice(1);
+    
+    return {
+      immediate: selectedPKG,
+      deferred: this.handleDeferredPKGs(deferredPKGs)
+    };
+  }
+}
+```
+
+#### 2. カテゴリ別競合解決
+
+**A. CRISIS系同時発生**
+```
+例: MRR低下 + チャーン増加 + アップタイム低下
+解決策: 統合CRISIS PKG実行
+選択PKG: CRISIS_MULTI_RECOVERY（複合対応）
+理由: 個別対応よりも統合対応で効率化
+```
+
+**B. GROWTH系同時発生** 
+```
+例: スケール準備完了 + バイラル係数上昇
+解決策: より積極的なGROWTH PKG選択  
+選択PKG: GROWTH_AGGRESSIVE_SCALE
+理由: 成長機会の最大化
+```
+
+**C. 異カテゴリ競合**
+```
+例: CRISIS（MRR低下）+ SCALE（LTV/CAC良好）
+解決策: CRISIS優先、SCALE延期
+選択PKG: CRISIS_MRR_RECOVERY → 完了後SCALE評価
+理由: 危機対応を優先、成長は安定後
+```
+
+#### 3. 実行パターン
+
+**パターン1: 排他実行（デフォルト）**
+```typescript
+// 1つのSaaSに対して同時に1つのPKGのみ実行
+executionPolicy: 'exclusive',
+conflictResolution: 'priority_based'
+```
+
+**パターン2: 並列実行（特定条件）**  
+```typescript
+// 独立性が高い場合の並列実行許可
+if (areIndependent(pkg1, pkg2)) {
+  executionPolicy: 'parallel',
+  maxConcurrent: 2
+}
+
+// 独立性チェック例
+function areIndependent(pkg1, pkg2) {
+  const independentPairs = [
+    ['STABLE_PERF_OPTIMIZE', 'STABLE_CONTENT_UPDATE'],
+    ['GROWTH_MARKETING_AB', 'GROWTH_FEATURE_AB']
+  ];
+  return independentPairs.some(pair => 
+    pair.includes(pkg1.id) && pair.includes(pkg2.id)
+  );
+}
+```
+
+**パターン3: 段階実行**
+```typescript
+// 依存関係がある場合の段階実行
+executionPolicy: 'sequential',
+dependencies: {
+  'CRISIS_MRR_RECOVERY': {
+    prerequisites: [],
+    followUps: ['STABLE_PERF_MONITOR']
+  },
+  'GROWTH_VIRAL_SCALE': {
+    prerequisites: ['STABLE_PERF_OPTIMIZE'],
+    followUps: ['GROWTH_RETENTION_FOCUS']
+  }
+}
+```
+
+#### 4. 競合ログと学習
+
+```typescript
+interface ConflictLog {
+  timestamp: Date;
+  saasId: string;
+  triggeredFunctions: string[];
+  selectedPKG: string;
+  deferredPKGs: string[];
+  resolutionReason: string;
+  outcome: 'success' | 'failure' | 'partial';
+  executionTime: number;
+}
+
+class ConflictLearning {
+  // 競合パターンの学習と最適化
+  async learnFromConflicts(logs: ConflictLog[]) {
+    // 頻出競合パターンの特定
+    const patterns = this.identifyPatterns(logs);
+    
+    // 成功率の高い解決策の特定
+    const successfulStrategies = this.analyzeOutcomes(logs);
+    
+    // 新しい統合PKGの提案
+    const proposedPKGs = this.proposeCombinedPKGs(patterns);
+    
+    return { patterns, successfulStrategies, proposedPKGs };
+  }
+}
+```
 ```
 
 ## PKG定義（Layer 4）
@@ -409,6 +650,438 @@ class CompatibilityLayer {
 | 同時管理SaaS数 | 100-200 | - |
 | バッチ処理効率 | > 90% | - |
 | 自動化率 | > 80% | - |
+
+## エラーハンドリング・復旧戦略
+
+### Layer別エラーハンドリング
+
+#### Layer 1: シンボル生成エラー対応
+```typescript
+class Layer1ErrorHandler {
+  async handleSymbolGenerationError(
+    symbolId: string, 
+    error: SymbolError
+  ): Promise<SymbolValue | null> {
+    switch (error.type) {
+      case 'DATA_SOURCE_UNAVAILABLE':
+        // フォールバックデータソースを使用
+        return await this.getFallbackData(symbolId);
+        
+      case 'NORMALIZATION_FAILED':
+        // 前回値を使用（タイムスタンプ付き警告）
+        return await this.getLastKnownValue(symbolId);
+        
+      case 'THRESHOLD_EXCEEDED':
+        // 安全値にクランプ
+        return this.clampToSafeRange(error.value);
+        
+      default:
+        // デフォルト値を返す
+        return this.getDefaultSymbolValue(symbolId);
+    }
+  }
+  
+  // 欠損シンボル補完戦略
+  async interpolateMissingSymbols(
+    symbols: SaaSSymbol[],
+    missing: string[]
+  ): Promise<SaaSSymbol[]> {
+    const interpolated = [];
+    
+    for (const symbolId of missing) {
+      // 1. 関連SaaSの同シンボル平均値使用
+      const avgValue = await this.getAverageFromPeers(symbolId);
+      if (avgValue) {
+        interpolated.push({
+          id: symbolId,
+          value: avgValue,
+          timestamp: new Date(),
+          source: 'interpolated_peer_average',
+          confidence: 0.6
+        });
+        continue;
+      }
+      
+      // 2. 時系列予測による補完
+      const predictedValue = await this.predictFromHistory(symbolId);
+      if (predictedValue) {
+        interpolated.push({
+          id: symbolId,
+          value: predictedValue,
+          timestamp: new Date(),
+          source: 'time_series_prediction',
+          confidence: 0.4
+        });
+        continue;
+      }
+      
+      // 3. 最終手段：保守的デフォルト値
+      interpolated.push(this.getSafeDefaultSymbol(symbolId));
+    }
+    
+    return [...symbols, ...interpolated];
+  }
+}
+```
+
+#### Layer 2: 判定関数エラー対応
+```typescript
+class Layer2ErrorHandler {
+  async handleFunctionError(
+    functionId: string,
+    inputs: Layer1Symbol[],
+    error: FunctionError
+  ): Promise<JudgmentResult> {
+    switch (error.type) {
+      case 'INSUFFICIENT_INPUT_DATA':
+        // 最小限入力での緊急判定
+        return await this.emergencyJudgment(functionId, inputs);
+        
+      case 'FUNCTION_TIMEOUT':
+        // 前回結果を流用（タイムアウト警告付き）
+        const lastResult = await this.getLastResult(functionId);
+        return {
+          ...lastResult,
+          confidence: lastResult.confidence * 0.7,
+          source: 'cached_with_timeout'
+        };
+        
+      case 'LOGIC_ERROR':
+        // 単純化ロジックで代替
+        return await this.fallbackLogic(functionId, inputs);
+        
+      case 'DEPENDENCY_FAILED':
+        // 依存関係のない単独判定
+        return await this.independentJudgment(functionId, inputs);
+        
+      default:
+        // 保守的判定（変更なし）
+        return this.getConservativeResult(functionId);
+    }
+  }
+  
+  // 緊急判定ロジック（最小データで動作）
+  async emergencyJudgment(
+    functionId: string, 
+    availableInputs: Layer1Symbol[]
+  ): Promise<JudgmentResult> {
+    const emergencyLogic = {
+      'L2_PMF_CHECK': (inputs) => {
+        // リテンションのみで簡易PMF判定
+        const retention = inputs.find(s => s.id === 'U_RETENTION_D7');
+        return retention ? retention.value > 0.3 : false;
+      },
+      'L2_KILL_CHECK': (inputs) => {
+        // MRRのみで緊急キル判定
+        const mrr = inputs.find(s => s.id === 'B_MRR');
+        return mrr ? mrr.value < 0.05 : false;
+      },
+      'L2_SCALE_READY': (inputs) => {
+        // 保守的：スケールしない
+        return false;
+      }
+    };
+    
+    const result = emergencyLogic[functionId]?.(availableInputs) ?? false;
+    
+    return {
+      functionId,
+      result,
+      confidence: 0.5, // 低信頼度
+      executionTime: 0,
+      source: 'emergency_judgment',
+      inputs: availableInputs.map(s => s.id)
+    };
+  }
+}
+```
+
+#### Layer 3: PKG実行エラー対応
+```typescript
+class Layer3ErrorHandler {
+  async handlePKGExecutionError(
+    pkgId: string,
+    saasId: string,
+    error: PKGExecutionError
+  ): Promise<ExecutionResult> {
+    switch (error.type) {
+      case 'RESOURCE_UNAVAILABLE':
+        // リソース待ちキューに追加
+        return await this.queueForLater(pkgId, saasId);
+        
+      case 'STEP_FAILURE':
+        // 失敗ステップをスキップして継続
+        return await this.continueWithSkip(pkgId, error.failedStep);
+        
+      case 'DEPENDENCY_TIMEOUT':
+        // 依存関係をスキップして実行
+        return await this.executeWithoutDependencies(pkgId);
+        
+      case 'CONCURRENT_EXECUTION_CONFLICT':
+        // 競合PKGの完了を待機
+        return await this.waitAndRetry(pkgId, saasId);
+        
+      default:
+        return this.abortWithRollback(pkgId, saasId, error);
+    }
+  }
+  
+  // 段階的PKG復旧戦略
+  async recoverFailedPKG(
+    pkgId: string, 
+    failurePoint: string
+  ): Promise<RecoveryPlan> {
+    const recoveryStrategies = {
+      // Critical系PKGの復旧
+      'CRISIS_MRR_RECOVERY': {
+        fallbackPKG: 'CRISIS_EMERGENCY_STABILIZE',
+        skipableSteps: ['generate_detailed_report'],
+        essentialSteps: ['immediate_actions', 'notify_stakeholders']
+      },
+      
+      // Kill系PKGの復旧
+      'LIFECYCLE_END_CLEANUP': {
+        fallbackPKG: 'CRISIS_PAUSE_OPERATIONS',
+        skipableSteps: ['archive_analytics'],
+        essentialSteps: ['stop_billing', 'notify_users']
+      },
+      
+      // Growth系PKGの復旧
+      'GROWTH_VIRAL_SCALE': {
+        fallbackPKG: 'STABLE_CONTINUE_MONITORING',
+        skipableSteps: ['advanced_viral_mechanics'],
+        essentialSteps: ['basic_scaling']
+      }
+    };
+    
+    const strategy = recoveryStrategies[pkgId];
+    if (!strategy) {
+      return { action: 'abort', reason: 'no_recovery_strategy' };
+    }
+    
+    // 重要ステップが失敗した場合はフォールバック
+    if (strategy.essentialSteps.includes(failurePoint)) {
+      return {
+        action: 'fallback',
+        targetPKG: strategy.fallbackPKG,
+        reason: 'essential_step_failed'
+      };
+    }
+    
+    // スキップ可能ステップの場合は継続
+    if (strategy.skipableSteps.includes(failurePoint)) {
+      return {
+        action: 'skip_and_continue',
+        skippedStep: failurePoint,
+        reason: 'non_essential_step'
+      };
+    }
+    
+    return { action: 'retry', maxAttempts: 2 };
+  }
+}
+```
+
+### システムレベル復旧戦略
+
+#### 1. Circuit Breaker パターン
+```typescript
+class DAGCircuitBreaker {
+  private readonly thresholds = {
+    failure_rate: 0.5,     // 50%失敗率でオープン
+    response_time: 30000,  // 30秒応答時間でオープン
+    consecutive_failures: 5 // 5回連続失敗でオープン
+  };
+  
+  private state: 'CLOSED' | 'OPEN' | 'HALF_OPEN' = 'CLOSED';
+  private failures = 0;
+  private lastFailure?: Date;
+  
+  async executeDAG(
+    saasId: string,
+    operation: () => Promise<any>
+  ): Promise<DAGResult> {
+    if (this.state === 'OPEN') {
+      if (this.shouldTryAgain()) {
+        this.state = 'HALF_OPEN';
+      } else {
+        return this.getFallbackResult(saasId);
+      }
+    }
+    
+    try {
+      const result = await operation();
+      this.onSuccess();
+      return result;
+    } catch (error) {
+      this.onFailure();
+      throw error;
+    }
+  }
+  
+  private getFallbackResult(saasId: string): DAGResult {
+    return {
+      saasId,
+      selectedPKG: 'STABLE_CONTINUE_MONITORING', // 安全なデフォルト
+      confidence: 0.3,
+      source: 'circuit_breaker_fallback',
+      timestamp: new Date()
+    };
+  }
+}
+```
+
+#### 2. Retry ポリシー
+```typescript
+class RetryPolicy {
+  async executeWithRetry<T>(
+    operation: () => Promise<T>,
+    config: RetryConfig
+  ): Promise<T> {
+    let lastError: Error;
+    
+    for (let attempt = 1; attempt <= config.maxAttempts; attempt++) {
+      try {
+        return await operation();
+      } catch (error) {
+        lastError = error;
+        
+        // リトライ不可能なエラー
+        if (this.isNonRetryableError(error)) {
+          throw error;
+        }
+        
+        // 最後の試行
+        if (attempt === config.maxAttempts) {
+          throw error;
+        }
+        
+        // 指数バックオフ待機
+        const delay = this.calculateBackoff(attempt, config);
+        await this.sleep(delay);
+      }
+    }
+    
+    throw lastError;
+  }
+  
+  private isNonRetryableError(error: Error): boolean {
+    return error.message.includes('INVALID_PKG_ID') ||
+           error.message.includes('SAAS_NOT_FOUND') ||
+           error.message.includes('AUTHENTICATION_FAILED');
+  }
+}
+```
+
+#### 3. 障害検知・自動復旧
+```typescript
+class HealthMonitor {
+  async monitorSystemHealth(): Promise<void> {
+    const healthChecks = {
+      'layer1_symbol_generation': this.checkLayer1Health,
+      'layer2_function_execution': this.checkLayer2Health,
+      'layer3_pkg_execution': this.checkLayer3Health,
+      'batch_processing': this.checkBatchHealth
+    };
+    
+    for (const [component, checker] of Object.entries(healthChecks)) {
+      try {
+        const health = await checker();
+        
+        if (health.status === 'UNHEALTHY') {
+          await this.triggerRecovery(component, health.issues);
+        }
+      } catch (error) {
+        await this.handleMonitoringError(component, error);
+      }
+    }
+  }
+  
+  private async triggerRecovery(
+    component: string, 
+    issues: HealthIssue[]
+  ): Promise<void> {
+    const recoveryActions = {
+      'layer1_symbol_generation': async () => {
+        // データソースの再接続
+        await this.reconnectDataSources();
+        // キャッシュのクリア
+        await this.clearCorruptedCache();
+      },
+      
+      'layer2_function_execution': async () => {
+        // 関数プールの再初期化
+        await this.reinitializeFunctionPool();
+        // メモリ不足の場合はGC強制実行
+        if (issues.some(i => i.type === 'MEMORY_PRESSURE')) {
+          global.gc?.();
+        }
+      },
+      
+      'layer3_pkg_execution': async () => {
+        // 実行キューのリセット
+        await this.resetExecutionQueue();
+        // 失敗PKGの再スケジューリング
+        await this.rescheduleFailedPKGs();
+      }
+    };
+    
+    await recoveryActions[component]?.();
+  }
+}
+```
+
+### ログ・監視統合
+
+```typescript
+class ErrorLogger {
+  async logDAGError(
+    saasId: string,
+    layer: 'Layer1' | 'Layer2' | 'Layer3',
+    error: DAGError
+  ): Promise<void> {
+    const logEntry = {
+      timestamp: new Date().toISOString(),
+      saasId,
+      layer,
+      errorType: error.type,
+      errorMessage: error.message,
+      context: error.context,
+      recovery: error.recovery,
+      impact: this.assessErrorImpact(error),
+      correlationId: error.correlationId
+    };
+    
+    // 重要度に応じた通知
+    if (logEntry.impact === 'CRITICAL') {
+      await this.sendSlackAlert(logEntry);
+      await this.createPagerDutyIncident(logEntry);
+    }
+    
+    // 構造化ログ出力
+    console.error('DAG_ERROR', JSON.stringify(logEntry));
+    
+    // メトリクス更新
+    await this.updateErrorMetrics(layer, error.type);
+  }
+  
+  private assessErrorImpact(error: DAGError): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' {
+    if (error.type.includes('KILL') || error.type.includes('CRISIS')) {
+      return 'CRITICAL';
+    }
+    
+    if (error.affectedSaasCount > 10) {
+      return 'HIGH';
+    }
+    
+    if (error.hasRecovery) {
+      return 'MEDIUM';
+    }
+    
+    return 'LOW';
+  }
+}
+```
 
 ## 今後の拡張
 
