@@ -9,9 +9,9 @@ UnsonOSダッシュボードシステムのバックエンドAPI設計。
 
 ### API設計原則
 - **RESTful設計**: HTTP動詞とステータスコードの適切な使用
-- **フェーズ指向**: 各SaaSフェーズに特化したエンドポイント
+- **DAGベースアーキテクチャ**: PKGシステムと連携したエンドポイント
 - **リアルタイム対応**: WebSocketによる即座の更新通知
-- **スケーラビリティ**: 大量のSaaSプロダクト対応
+- **スケーラビリティ**: 100-200個のマイクロSaaS同時管理対応
 
 ### 技術スタック
 - Node.js + Express.js（API Server）
@@ -74,11 +74,12 @@ Authorization: Bearer {token}
 **概要**: SaaSプロダクト一覧取得
 
 **Query Parameters:**
-- `phase`: フェーズフィルター (research|lp|mvp|monetization|scale)
-- `status`: ステータスフィルター (healthy|warning|critical)
+- `lifecycle`: ライフサイクルフィルター (LAUNCH|GROWTH|STABLE|CRISIS)
+- `pkgStatus`: PKG実行ステータス (running|pending|completed|failed)
+- `priority`: 優先度フィルター (critical|high|medium|low)
 - `page`: ページ番号 (default: 1)
 - `limit`: 取得件数 (default: 50, max: 100)
-- `sort`: ソート (name|phase|mrr|updated_at)
+- `sort`: ソート (name|lifecycle|mrr|last_pkg_execution|updated_at)
 - `order`: ソート順 (asc|desc)
 
 **Response:**
@@ -90,8 +91,9 @@ Authorization: Bearer {token}
       {
         "id": "saas-123",
         "name": "猫カフェ予約システム",
-        "phase": "mvp",
-        "status": "healthy",
+        "lifecycle": "GROWTH",
+        "pkgStatus": "running",
+        "currentPKG": "GROWTH_VIRAL_SCALE",
         "kpis": {
           "mrr": 45000,
           "dau": 120,
@@ -103,8 +105,18 @@ Authorization: Bearer {token}
           "warning": 1,
           "info": 3
         },
-        "needsAttention": false,
-        "readyForNextPhase": true,
+        "dagProcessing": {
+          "layer1Complete": true,
+          "layer2Result": "SCALE_READY",
+          "layer3Status": "executing"
+        },
+        "pkgHistory": [
+          {
+            "pkgId": "LAUNCH_LOWPMF_IMPROVE",
+            "executedAt": "2025-01-10T10:00:00Z",
+            "result": "success"
+          }
+        ],
         "lastUpdated": "2025-01-15T10:30:00Z",
         "createdAt": "2024-12-01T00:00:00Z"
       }
@@ -117,17 +129,23 @@ Authorization: Bearer {token}
     },
     "summary": {
       "totalCount": 87,
-      "phaseDistribution": {
-        "research": 12,
-        "lp": 23,
-        "mvp": 31,
-        "monetization": 18,
-        "scale": 3
+      "lifecycleDistribution": {
+        "LAUNCH": 35,
+        "GROWTH": 31,
+        "STABLE": 18,
+        "CRISIS": 3
       },
-      "statusDistribution": {
-        "healthy": 64,
-        "warning": 18,
-        "critical": 5
+      "pkgDistribution": {
+        "running": 12,
+        "pending": 5,
+        "completed": 68,
+        "failed": 2
+      },
+      "priorityDistribution": {
+        "critical": 5,
+        "high": 18,
+        "medium": 42,
+        "low": 22
       }
     }
   }
@@ -146,8 +164,15 @@ Authorization: Bearer {token}
       "id": "saas-123",
       "name": "猫カフェ予約システム",
       "description": "猫カフェオーナー向けの予約管理・顧客管理システム",
-      "phase": "mvp",
-      "status": "healthy",
+      "lifecycle": "GROWTH",
+      "pkgStatus": "running",
+      "currentPKG": {
+        "id": "GROWTH_VIRAL_SCALE",
+        "name": "Growth Viral Scale Package",
+        "startedAt": "2025-01-15T10:00:00Z",
+        "progress": 0.65,
+        "estimatedCompletion": "2025-01-15T12:30:00Z"
+      },
       "kpis": {
         "mrr": 45000,
         "dau": 120,
@@ -157,48 +182,63 @@ Authorization: Bearer {token}
         "ltv": 18000,
         "ltv_cac_ratio": 6.4
       },
-      "phaseHistory": [
+      "lifecycleHistory": [
         {
-          "phase": "research",
+          "lifecycle": "LAUNCH",
           "startedAt": "2024-11-01T00:00:00Z",
-          "completedAt": "2024-11-15T00:00:00Z",
-          "duration": 14
-        },
-        {
-          "phase": "lp",
-          "startedAt": "2024-11-15T00:00:00Z",
           "completedAt": "2024-12-01T00:00:00Z",
-          "duration": 16
+          "duration": 30,
+          "pkgsExecuted": ["LAUNCH_MARKET_RESEARCH", "LAUNCH_MVP_BUILD"]
         },
         {
-          "phase": "mvp",
+          "lifecycle": "GROWTH",
           "startedAt": "2024-12-01T00:00:00Z",
           "completedAt": null,
-          "duration": 45
+          "duration": 45,
+          "pkgsExecuted": ["GROWTH_USER_ACQUISITION", "GROWTH_VIRAL_SCALE"]
         }
       ],
-      "gateRequirements": {
+      "dagStatus": {
+        "layer1Symbols": {
+          "B_MRR": 0.45,
+          "U_DAU_MAU": 0.62,
+          "M_TREND": 0.78,
+          "lastUpdated": "2025-01-15T10:30:00Z"
+        },
+        "layer2Functions": {
+          "L2_PMF_CHECK": true,
+          "L2_SCALE_READY": true,
+          "L2_PIVOT_DECISION": false,
+          "lastEvaluated": "2025-01-15T10:30:00Z"
+        },
+        "layer3Selection": {
+          "selectedPKG": "GROWTH_VIRAL_SCALE",
+          "confidence": 0.89,
+          "alternatives": ["GROWTH_ORGANIC_SCALE"]
+        }
+      },
+      "pkgRequirements": {
         "current": [
           {
-            "id": "mvp_retention",
-            "title": "7日後継続率 30%以上",
+            "id": "growth_ltv_cac",
+            "title": "LTV/CAC 3倍以上",
             "status": "met",
-            "target": 0.3,
-            "actual": 0.35
+            "target": 3.0,
+            "actual": 4.2
           },
           {
-            "id": "mvp_nps",
-            "title": "NPS 7以上",
+            "id": "growth_retention",
+            "title": "7日後継続率 50%以上",
             "status": "met", 
-            "target": 7,
-            "actual": 8.2
+            "target": 0.5,
+            "actual": 0.58
           },
           {
-            "id": "mvp_feedback",
-            "title": "ユーザーフィードバック 50件以上",
-            "status": "pending",
-            "target": 50,
-            "actual": 38
+            "id": "growth_uptime",
+            "title": "アップタイム 99%以上",
+            "status": "met",
+            "target": 0.99,
+            "actual": 0.998
           }
         ]
       },
@@ -206,8 +246,8 @@ Authorization: Bearer {token}
         {
           "id": "alert-456",
           "severity": "warning",
-          "title": "DAU減少傾向",
-          "message": "過去7日間でDAUが15%減少しています",
+          "title": "Layer2判定アラート",
+          "message": "L2_SCALE_READY関数が不安定な結果を返しています",
           "createdAt": "2025-01-14T15:30:00Z"
         }
       ]
@@ -225,7 +265,8 @@ Authorization: Bearer {token}
   "name": "ペットシッター予約アプリ",
   "description": "ペットオーナーとシッターをマッチングするサービス",
   "targetMarket": "都市部のペットオーナー",
-  "businessModel": "マッチング手数料（15%）"
+  "businessModel": "マッチング手数料（15%）",
+  "initialLifecycle": "LAUNCH"
 }
 ```
 
@@ -237,8 +278,9 @@ Authorization: Bearer {token}
     "saas": {
       "id": "saas-124",
       "name": "ペットシッター予約アプリ",
-      "phase": "research",
-      "status": "healthy",
+      "lifecycle": "LAUNCH",
+      "pkgStatus": "pending",
+      "initialPKG": "LAUNCH_MARKET_RESEARCH",
       "createdAt": "2025-01-15T12:00:00Z"
     }
   }
@@ -252,12 +294,13 @@ Authorization: Bearer {token}
 ```json
 {
   "name": "猫カフェ予約システム Pro",
-  "description": "更新された説明"
+  "description": "更新された説明",
+  "lifecycle": "STABLE"
 }
 ```
 
 ### DELETE /api/saas/:id
-**概要**: SaaS削除（Kill判定）
+**概要**: SaaS削除（LIFECYCLE_END_CLEANUP PKG実行）
 
 **Response:**
 ```json
