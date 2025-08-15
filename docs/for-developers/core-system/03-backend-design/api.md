@@ -9,9 +9,9 @@ UnsonOSダッシュボードシステムのバックエンドAPI設計。
 
 ### API設計原則
 - **RESTful設計**: HTTP動詞とステータスコードの適切な使用
-- **フェーズ指向**: 各SaaSフェーズに特化したエンドポイント
+- **DAGベースアーキテクチャ**: PKGシステムと連携したエンドポイント
 - **リアルタイム対応**: WebSocketによる即座の更新通知
-- **スケーラビリティ**: 大量のSaaSプロダクト対応
+- **スケーラビリティ**: 100-200個のマイクロSaaS同時管理対応
 
 ### 技術スタック
 - Node.js + Express.js（API Server）
@@ -74,11 +74,12 @@ Authorization: Bearer {token}
 **概要**: SaaSプロダクト一覧取得
 
 **Query Parameters:**
-- `phase`: フェーズフィルター (research|lp|mvp|monetization|scale)
-- `status`: ステータスフィルター (healthy|warning|critical)
+- `lifecycle`: ライフサイクルフィルター (LAUNCH|GROWTH|STABLE|CRISIS)
+- `pkgStatus`: PKG実行ステータス (running|pending|completed|failed)
+- `priority`: 優先度フィルター (critical|high|medium|low)
 - `page`: ページ番号 (default: 1)
 - `limit`: 取得件数 (default: 50, max: 100)
-- `sort`: ソート (name|phase|mrr|updated_at)
+- `sort`: ソート (name|lifecycle|mrr|last_pkg_execution|updated_at)
 - `order`: ソート順 (asc|desc)
 
 **Response:**
@@ -90,8 +91,9 @@ Authorization: Bearer {token}
       {
         "id": "saas-123",
         "name": "猫カフェ予約システム",
-        "phase": "mvp",
-        "status": "healthy",
+        "lifecycle": "GROWTH",
+        "pkgStatus": "running",
+        "currentPKG": "GROWTH_VIRAL_SCALE",
         "kpis": {
           "mrr": 45000,
           "dau": 120,
@@ -103,8 +105,18 @@ Authorization: Bearer {token}
           "warning": 1,
           "info": 3
         },
-        "needsAttention": false,
-        "readyForNextPhase": true,
+        "dagProcessing": {
+          "layer1Complete": true,
+          "layer2Result": "SCALE_READY",
+          "layer3Status": "executing"
+        },
+        "pkgHistory": [
+          {
+            "pkgId": "LAUNCH_LOWPMF_IMPROVE",
+            "executedAt": "2025-01-10T10:00:00Z",
+            "result": "success"
+          }
+        ],
         "lastUpdated": "2025-01-15T10:30:00Z",
         "createdAt": "2024-12-01T00:00:00Z"
       }
@@ -117,17 +129,23 @@ Authorization: Bearer {token}
     },
     "summary": {
       "totalCount": 87,
-      "phaseDistribution": {
-        "research": 12,
-        "lp": 23,
-        "mvp": 31,
-        "monetization": 18,
-        "scale": 3
+      "lifecycleDistribution": {
+        "LAUNCH": 35,
+        "GROWTH": 31,
+        "STABLE": 18,
+        "CRISIS": 3
       },
-      "statusDistribution": {
-        "healthy": 64,
-        "warning": 18,
-        "critical": 5
+      "pkgDistribution": {
+        "running": 12,
+        "pending": 5,
+        "completed": 68,
+        "failed": 2
+      },
+      "priorityDistribution": {
+        "critical": 5,
+        "high": 18,
+        "medium": 42,
+        "low": 22
       }
     }
   }
@@ -146,8 +164,15 @@ Authorization: Bearer {token}
       "id": "saas-123",
       "name": "猫カフェ予約システム",
       "description": "猫カフェオーナー向けの予約管理・顧客管理システム",
-      "phase": "mvp",
-      "status": "healthy",
+      "lifecycle": "GROWTH",
+      "pkgStatus": "running",
+      "currentPKG": {
+        "id": "GROWTH_VIRAL_SCALE",
+        "name": "Growth Viral Scale Package",
+        "startedAt": "2025-01-15T10:00:00Z",
+        "progress": 0.65,
+        "estimatedCompletion": "2025-01-15T12:30:00Z"
+      },
       "kpis": {
         "mrr": 45000,
         "dau": 120,
@@ -157,48 +182,63 @@ Authorization: Bearer {token}
         "ltv": 18000,
         "ltv_cac_ratio": 6.4
       },
-      "phaseHistory": [
+      "lifecycleHistory": [
         {
-          "phase": "research",
+          "lifecycle": "LAUNCH",
           "startedAt": "2024-11-01T00:00:00Z",
-          "completedAt": "2024-11-15T00:00:00Z",
-          "duration": 14
-        },
-        {
-          "phase": "lp",
-          "startedAt": "2024-11-15T00:00:00Z",
           "completedAt": "2024-12-01T00:00:00Z",
-          "duration": 16
+          "duration": 30,
+          "pkgsExecuted": ["LAUNCH_MARKET_RESEARCH", "LAUNCH_MVP_BUILD"]
         },
         {
-          "phase": "mvp",
+          "lifecycle": "GROWTH",
           "startedAt": "2024-12-01T00:00:00Z",
           "completedAt": null,
-          "duration": 45
+          "duration": 45,
+          "pkgsExecuted": ["GROWTH_USER_ACQUISITION", "GROWTH_VIRAL_SCALE"]
         }
       ],
-      "gateRequirements": {
+      "dagStatus": {
+        "layer1Symbols": {
+          "B_MRR": 0.45,
+          "U_DAU_MAU": 0.62,
+          "M_TREND": 0.78,
+          "lastUpdated": "2025-01-15T10:30:00Z"
+        },
+        "layer2Functions": {
+          "L2_PMF_CHECK": true,
+          "L2_SCALE_READY": true,
+          "L2_PIVOT_DECISION": false,
+          "lastEvaluated": "2025-01-15T10:30:00Z"
+        },
+        "layer3Selection": {
+          "selectedPKG": "GROWTH_VIRAL_SCALE",
+          "confidence": 0.89,
+          "alternatives": ["GROWTH_ORGANIC_SCALE"]
+        }
+      },
+      "pkgRequirements": {
         "current": [
           {
-            "id": "mvp_retention",
-            "title": "7日後継続率 30%以上",
+            "id": "growth_ltv_cac",
+            "title": "LTV/CAC 3倍以上",
             "status": "met",
-            "target": 0.3,
-            "actual": 0.35
+            "target": 3.0,
+            "actual": 4.2
           },
           {
-            "id": "mvp_nps",
-            "title": "NPS 7以上",
+            "id": "growth_retention",
+            "title": "7日後継続率 50%以上",
             "status": "met", 
-            "target": 7,
-            "actual": 8.2
+            "target": 0.5,
+            "actual": 0.58
           },
           {
-            "id": "mvp_feedback",
-            "title": "ユーザーフィードバック 50件以上",
-            "status": "pending",
-            "target": 50,
-            "actual": 38
+            "id": "growth_uptime",
+            "title": "アップタイム 99%以上",
+            "status": "met",
+            "target": 0.99,
+            "actual": 0.998
           }
         ]
       },
@@ -206,8 +246,8 @@ Authorization: Bearer {token}
         {
           "id": "alert-456",
           "severity": "warning",
-          "title": "DAU減少傾向",
-          "message": "過去7日間でDAUが15%減少しています",
+          "title": "Layer2判定アラート",
+          "message": "L2_SCALE_READY関数が不安定な結果を返しています",
           "createdAt": "2025-01-14T15:30:00Z"
         }
       ]
@@ -225,7 +265,8 @@ Authorization: Bearer {token}
   "name": "ペットシッター予約アプリ",
   "description": "ペットオーナーとシッターをマッチングするサービス",
   "targetMarket": "都市部のペットオーナー",
-  "businessModel": "マッチング手数料（15%）"
+  "businessModel": "マッチング手数料（15%）",
+  "initialLifecycle": "LAUNCH"
 }
 ```
 
@@ -237,8 +278,9 @@ Authorization: Bearer {token}
     "saas": {
       "id": "saas-124",
       "name": "ペットシッター予約アプリ",
-      "phase": "research",
-      "status": "healthy",
+      "lifecycle": "LAUNCH",
+      "pkgStatus": "pending",
+      "initialPKG": "LAUNCH_MARKET_RESEARCH",
       "createdAt": "2025-01-15T12:00:00Z"
     }
   }
@@ -252,12 +294,13 @@ Authorization: Bearer {token}
 ```json
 {
   "name": "猫カフェ予約システム Pro",
-  "description": "更新された説明"
+  "description": "更新された説明",
+  "lifecycle": "STABLE"
 }
 ```
 
 ### DELETE /api/saas/:id
-**概要**: SaaS削除（Kill判定）
+**概要**: SaaS削除（LIFECYCLE_END_CLEANUP PKG実行）
 
 **Response:**
 ```json
@@ -424,7 +467,217 @@ Authorization: Bearer {token}
 }
 ```
 
-## 5. アラート・通知API
+## 5. DAGステータス・実行API
+
+### GET /api/saas/:id/dag/status
+**概要**: 特定SaaSのDAG処理状況取得
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "saasId": "saas-123",
+    "saasName": "猫カフェ予約システム",
+    "dagStatus": {
+      "lastExecuted": "2025-01-15T10:30:00Z",
+      "nextScheduled": "2025-01-15T12:00:00Z",
+      "executionId": "dag-exec-456789",
+      "currentCycle": "24h",
+      "status": "running"
+    },
+    "layer1": {
+      "symbolCount": 148,
+      "lastUpdated": "2025-01-15T10:30:00Z",
+      "symbols": {
+        "B_MRR": {
+          "value": 0.45,
+          "normalized": true,
+          "source": "stripe.monthly_recurring_revenue",
+          "timestamp": "2025-01-15T10:30:00Z"
+        },
+        "U_DAU_MAU": {
+          "value": 0.62,
+          "normalized": true,
+          "source": "analytics.engagement_ratio",
+          "timestamp": "2025-01-15T10:30:00Z"
+        },
+        "M_TREND": {
+          "value": 0.78,
+          "normalized": true,
+          "source": "google_trends.search_volume",
+          "timestamp": "2025-01-15T10:29:45Z"
+        }
+      },
+      "errors": []
+    },
+    "layer2": {
+      "functionsEvaluated": 12,
+      "lastEvaluated": "2025-01-15T10:30:00Z",
+      "results": {
+        "L2_PMF_CHECK": {
+          "result": true,
+          "confidence": 0.89,
+          "inputs": ["U_RETENTION_D7", "B_GROWTH", "U_DAU_MAU"],
+          "inputValues": [0.58, 0.23, 0.62],
+          "executionTime": 45
+        },
+        "L2_SCALE_READY": {
+          "result": true,
+          "confidence": 0.94,
+          "inputs": ["B_LTV_CAC", "B_GROWTH", "T_UPTIME"],
+          "inputValues": [0.84, 0.23, 0.998],
+          "executionTime": 32
+        },
+        "L2_PIVOT_DECISION": {
+          "result": false,
+          "confidence": 0.76,
+          "inputs": ["B_MRR", "U_RETENTION_D7", "M_TREND"],
+          "inputValues": [0.45, 0.58, 0.78],
+          "executionTime": 28
+        }
+      },
+      "errors": []
+    },
+    "layer3": {
+      "selectedPKG": "GROWTH_VIRAL_SCALE",
+      "selectionConfidence": 0.91,
+      "alternatives": [
+        {
+          "pkgId": "GROWTH_ORGANIC_SCALE",
+          "confidence": 0.73,
+          "reason": "Lower viral coefficient"
+        }
+      ],
+      "executionQueue": [
+        {
+          "pkgId": "GROWTH_VIRAL_SCALE",
+          "priority": "medium",
+          "queuePosition": 3,
+          "estimatedStart": "2025-01-15T11:15:00Z"
+        }
+      ],
+      "lastExecution": {
+        "pkgId": "GROWTH_USER_ACQUISITION",
+        "startedAt": "2025-01-15T08:00:00Z",
+        "completedAt": "2025-01-15T08:45:00Z",
+        "result": "success",
+        "details": {
+          "stepsExecuted": 8,
+          "stepsSucceeded": 8,
+          "stepsSkipped": 0,
+          "stepsFailled": 0
+        }
+      }
+    },
+    "emergencyTriggers": {
+      "active": [],
+      "recent": [
+        {
+          "triggerId": "emrg-789",
+          "metric": "T_UPTIME",
+          "threshold": 0.90,
+          "actualValue": 0.89,
+          "triggeredAt": "2025-01-14T22:30:00Z",
+          "resolvedAt": "2025-01-14T22:45:00Z",
+          "pkgExecuted": "CRISIS_UPTIME_RECOVERY"
+        }
+      ]
+    }
+  }
+}
+```
+
+### GET /api/dag/batch/status
+**概要**: バッチ処理状況取得
+
+**Query Parameters:**
+- `cycle`: サイクル種別 (2h|24h|48h)
+- `status`: ステータス (running|pending|completed|failed)
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "currentBatch": {
+      "batchId": "batch-20250115-103000",
+      "cycle": "24h",
+      "status": "running",
+      "startedAt": "2025-01-15T10:30:00Z",
+      "progress": {
+        "totalSaaS": 87,
+        "processedSaaS": 45,
+        "percentage": 51.7
+      },
+      "currentBatches": [
+        {
+          "batchNumber": 3,
+          "saasIds": ["saas-041", "saas-042", "saas-043", "..."],
+          "status": "running",
+          "startedAt": "2025-01-15T10:35:00Z"
+        }
+      ],
+      "estimatedCompletion": "2025-01-15T11:15:00Z"
+    },
+    "queuedBatches": [
+      {
+        "batchId": "batch-20250115-120000",
+        "cycle": "2h",
+        "saasCount": 12,
+        "priority": "critical",
+        "scheduledFor": "2025-01-15T12:00:00Z"
+      }
+    ],
+    "recentCompleted": [
+      {
+        "batchId": "batch-20250115-080000",
+        "cycle": "24h",
+        "completedAt": "2025-01-15T09:15:00Z",
+        "duration": "00:45:00",
+        "saasProcessed": 87,
+        "pkgsExecuted": 23,
+        "successRate": 0.96
+      }
+    ]
+  }
+}
+```
+
+### POST /api/dag/emergency/trigger
+**概要**: 緊急DAG実行トリガー
+
+**Request:**
+```json
+{
+  "saasId": "saas-123",
+  "reason": "manual_intervention",
+  "metric": "B_MRR",
+  "currentValue": 0.02,
+  "expectedPKGs": ["CRISIS_MRR_RECOVERY"],
+  "skipQueue": true
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "emergencyExecution": {
+      "executionId": "emrg-exec-789",
+      "saasId": "saas-123",
+      "triggeredAt": "2025-01-15T10:45:00Z",
+      "estimatedCompletion": "2025-01-15T11:30:00Z",
+      "selectedPKG": "CRISIS_MRR_RECOVERY",
+      "priority": "critical",
+      "status": "queued"
+    }
+  }
+}
+```
+
+## 6. アラート・通知API
 
 ### GET /api/alerts
 **概要**: アラート一覧取得

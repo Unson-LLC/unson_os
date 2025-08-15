@@ -228,121 +228,223 @@ type OutcomeNode = {
 
 ## 完全な例
 
-### オンボーディング最適化プレイブック
+### マイクロSaaS運用最適化システム
 
 ```yaml
-playbookId: PLB^onboarding_optimization
-version: 2.1.0
+pkgSystemId: PKG^MICROSAAS_OPTIMIZATION
+version: 3.0.0
 scope:
-  tags: 
+  saasList: 
     - "saas:*"
-    - "market:JP"
-    - "channel:Web"
   exclude:
-    - "persona:Enterprise"
+    - "saas:enterprise_tools"
+  lifecycleStage:
+    - "LAUNCH"
+    - "GROWTH"
+    - "STABLE"
   priority: 10
+  batchSize: 20
 
-windows:
-  tiny: "24h"
-  short: "7d"
-  mid: "14d"
-  long: "28d"
+timeWindows:
+  rapid: "2h"
+  standard: "24h"
+  extended: "48h"
+  weekly: "7d"
 
-nodes:
-  # 開始
-  - id: start
-    type: Start
-    next: check_cvr_trend
-
-  # CVRトレンドチェック
-  - id: check_cvr_trend
-    type: Guard
-    any:
-      - code: "Stage=LP|Window=short|Segment=JP-Web-SMB"
-        metric: "CVR"
-        dir: "Down"
-        threshold: -10
-    then: test_hero_copy
-    else: check_retention
-
-  # リテンションチェック
-  - id: check_retention
-    type: Guard
-    all:
-      - code: "Stage=MVP|Window=short|Segment=JP-Web-SMB"
-        metric: "RET7"
-        dir: "Down"
-      - code: "Stage=MVP|Window=tiny|Segment=JP-Web-SMB"
-        metric: "A1"
-        dir: "Flat"
-    then: improve_onboarding
-    else: monitor_only
-
-  # ヒーローコピーテスト
-  - id: test_hero_copy
-    type: Action
-    flags:
-      "hero.headline": "価値観の迷子から、自分らしい選択へ"
-      "hero.subtext": "AIがあなたの本当の価値観を発見"
-      "cta.text": "無料で診断を始める"
-    rollout:
-      strategy: "canary"
-      steps: [0.05, 0.15, 0.30, 0.50, 1.00]
-      intervalMinutes: 240
-      rollbackCondition:
-        metric: "CVR"
-        threshold: -15
-    riskClass: "medium"
-    next: gate_marketing_review
-
-  # オンボーディング改善
-  - id: improve_onboarding
-    type: Action
-    flags:
-      "onboarding.steps": 3
-      "onboarding.skipEnabled": true
-      "onboarding.progressBar": true
-    rollout:
-      strategy: "bandit"
-      algorithm: "thompson"
-      maxExposure: 0.4
-      explorationRate: 0.15
-    riskClass: "low"
-    next: evaluate_impact
-
-  # 監視のみ
-  - id: monitor_only
-    type: Action
-    flags: {}
-    rollout:
-      strategy: "blue-green"
-    next: evaluate_impact
-
-  # マーケティングレビュー
-  - id: gate_marketing_review
-    type: Gate
-    approverRole: "growth-lead"
-    timeoutMinutes: 180
-    message: "ヒーローコピーの変更承認をお願いします"
-    onApprove: evaluate_impact
-    onReject: monitor_only
-
-  # 影響評価
-  - id: evaluate_impact
-    type: Outcome
-    horizonDays: 14
-    kpi:
-      - "CVR"
-      - "A1"
-      - "RET7"
-      - "ARPU"
-    successCriteria:
-      metric: "CVR"
-      lift: 5
-    writeBack: "casebook"
-    tags:
-      - "experiment:onboarding_v2"
-      - "quarter:2025Q1"
+layers:
+  # Layer 1: SaaSシンボル生成
+  - id: layer1_saas_symbols
+    type: SymbolGeneration
+    symbols:
+      # ビジネス指標
+      - id: B_MRR
+        source: "stripe.monthly_recurring_revenue"
+        normalization: "target_based"
+        target: 100000
+      - id: B_CHURN
+        source: "analytics.churn_rate"
+        normalization: "inverse_percentage"
+        dangerLine: 10
+      - id: B_LTV_CAC
+        source: "calculated.ltv_cac_ratio"
+        normalization: "ratio_based"
+        target: 3.0
+        
+      # ユーザー行動指標  
+      - id: U_DAU_MAU
+        source: "analytics.engagement_ratio"
+        normalization: "direct_ratio"
+      - id: U_RETENTION_D7
+        source: "analytics.retention_7day"
+        normalization: "percentage"
+        
+      # 市場状況指標
+      - id: M_TREND
+        source: "google_trends.search_volume"
+        normalization: "log_based"
+        
+      # 技術指標
+      - id: T_UPTIME
+        source: "monitoring.uptime_percentage"
+        normalization: "percentage"
+        
+  # Layer 2: SaaS判定関数
+  - id: layer2_saas_judgment
+    type: JudgmentFunctions
+    functions:
+      # PMF判定
+      - id: L2_PMF_CHECK
+        type: PMF
+        inputs: ["U_RETENTION_D7", "B_GROWTH", "U_DAU_MAU"]
+        timeWindow: "7d"
+        condition: |
+          retention = inputs[0];
+          growth = inputs[1];
+          engagement = inputs[2];
+          return retention > 0.5 && growth > 0.2 && engagement > 0.4;
+          
+      # ピボット判定
+      - id: L2_PIVOT_DECISION
+        type: PIVOT
+        inputs: ["B_MRR", "U_RETENTION_D7", "M_TREND"]
+        timeWindow: "48h"
+        attempts: 3
+        condition: |
+          mrr = inputs[0];
+          retention = inputs[1];
+          trend = inputs[2];
+          return mrr < 0.1 && retention < 0.2 && trend < 0.3;
+          
+      # スケール準備判定
+      - id: L2_SCALE_READY
+        type: SCALE
+        inputs: ["B_LTV_CAC", "B_GROWTH", "T_UPTIME"]
+        timeWindow: "24h"
+        condition: |
+          ltv_cac = inputs[0];
+          growth = inputs[1];
+          uptime = inputs[2];
+          return ltv_cac > 0.7 && growth > 0.3 && uptime > 0.99;
+          
+      # キル判定
+      - id: L2_KILL_CHECK
+        type: KILL
+        inputs: ["B_MRR", "B_RUNWAY", "U_DAU_MAU"]
+        timeWindow: "2h"
+        daysThreshold: 90
+        condition: |
+          mrr = inputs[0];
+          runway = inputs[1];
+          engagement = inputs[2];
+          return mrr < 0.01 && runway < 0.1 && engagement < 0.05;
+          
+  # Layer 3: PKG選択・実行
+  - id: layer3_pkg_execution
+    type: PKGExecution
+    selectors:
+      - conditions:
+          layer2Functions: ["L2_PMF_CHECK"]
+          logic: "FALSE"
+          resultPKG: "LAUNCH_LOWPMF_IMPROVE"
+          priority: "high"
+      - conditions:
+          layer2Functions: ["L2_PIVOT_DECISION"]
+          logic: "TRUE"
+          resultPKG: "CRISIS_RETENTION_PIVOT"
+          priority: "critical"
+      - conditions:
+          layer2Functions: ["L2_SCALE_READY"]
+          logic: "TRUE"
+          resultPKG: "GROWTH_VIRAL_SCALE"
+          priority: "medium"
+      - conditions:
+          layer2Functions: ["L2_KILL_CHECK"]
+          logic: "TRUE"
+          resultPKG: "LIFECYCLE_END_CLEANUP"
+          priority: "critical"
+    execution:
+      batchProcessing:
+        enabled: true
+        size: 20
+        concurrency: 5
+      timeout: "30m"
+      retryPolicy:
+        maxAttempts: 3
+        backoffMultiplier: 2
+        
+# PKG定義
+pkgDefinitions:
+  LAUNCH_LOWPMF_IMPROVE:
+    name: "Low PMF Improvement Package"
+    steps:
+      - id: "analyze_user_behavior"
+        parallel: false
+        timeout: "10m"
+        actions:
+          - collect_user_feedback
+          - analyze_drop_off_points
+          - identify_friction_areas
+      - id: "generate_improvement_plan"
+        parallel: false
+        timeout: "5m"
+        actions:
+          - create_optimization_strategy
+          - prioritize_improvements
+      - id: "execute_ab_tests"
+        parallel: true
+        timeout: "20m"
+        actions:
+          - test_onboarding_flow
+          - test_core_features
+          - test_pricing_model
+    exitConditions:
+      - function: "L2_PMF_CHECK"
+        threshold: "TRUE"
+        timeout: "7d"
+        
+  CRISIS_RETENTION_PIVOT:
+    name: "Crisis Retention Pivot Package"
+    steps:
+      - id: "emergency_analysis"
+        parallel: false
+        timeout: "5m"
+        actions:
+          - identify_critical_issues
+          - analyze_churn_patterns
+      - id: "pivot_strategy_generation"
+        parallel: false
+        timeout: "10m"
+        actions:
+          - generate_pivot_options
+          - validate_market_fit
+      - id: "rapid_implementation"
+        parallel: true
+        timeout: "15m"
+        actions:
+          - implement_core_changes
+          - update_messaging
+          - adjust_pricing
+    exitConditions:
+      - function: "L2_PIVOT_DECISION"
+        threshold: "FALSE"
+        timeout: "48h"
+        
+  GROWTH_VIRAL_SCALE:
+    name: "Growth Viral Scale Package"
+    steps:
+      - id: "scale_infrastructure"
+        parallel: false
+        timeout: "10m"
+      - id: "viral_mechanics"
+        parallel: true
+        timeout: "15m"
+      - id: "marketing_automation"
+        parallel: true
+        timeout: "20m"
+    exitConditions:
+      - function: "L2_SCALE_READY"
+        threshold: "SUSTAINED"
+        timeout: "30d"
 ```
 
 ## バリデーションルール
