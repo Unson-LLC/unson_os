@@ -54,6 +54,9 @@ jobs:
 
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          RESEND_API_KEY: dummy_key_for_build
+          NEXT_PUBLIC_CONVEX_URL: https://ceaseless-bison-200.convex.cloud
 
       - name: Deploy Project Artifacts to Vercel
         run: |
@@ -90,6 +93,9 @@ jobs:
 
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          RESEND_API_KEY: dummy_key_for_build
+          NEXT_PUBLIC_CONVEX_URL: https://ceaseless-bison-200.convex.cloud
 
       - name: Deploy Project Artifacts to Vercel
         run: |
