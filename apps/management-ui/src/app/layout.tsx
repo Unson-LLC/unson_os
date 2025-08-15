@@ -7,6 +7,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'UnsonOS 管理ダッシュボード',
   description: '100-200個のマイクロSaaSプロダクトを監視・管理するUnsonOSの管理ダッシュボード',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
 }
 
 export default function RootLayout({

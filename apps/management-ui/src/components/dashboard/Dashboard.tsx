@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { 
   Bell, 
   Wallet, 
@@ -75,6 +76,13 @@ export function Dashboard() {
       <header className="bg-white shadow-sm border-b sticky top-0 z-10">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center space-x-4">
+            <Image 
+              src="/unson-os-logo.png" 
+              alt="UnsonOS Logo" 
+              width={40} 
+              height={40}
+              className="rounded-lg"
+            />
             <h1 className="text-xl font-bold text-secondary-900">UnsonOS v2.4.1</h1>
           </div>
           <div className="flex items-center space-x-4">
