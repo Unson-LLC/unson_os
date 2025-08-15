@@ -1,11 +1,9 @@
 {
-  "name": "unson-os-landing",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "rootDirectory": "./",
   "regions": ["hnd1"],
   "public": true
 }
