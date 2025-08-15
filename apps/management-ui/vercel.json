@@ -1,32 +1,30 @@
 {
+  "name": "unson-os-management",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "env": {
-    "NEXT_PUBLIC_APP_URL": {
-      "description": "Management UI URL",
-      "value": "https://unson-os-management.vercel.app"
-    },
-    "NEXT_PUBLIC_CONVEX_URL": {
-      "description": "Convex backend URL",
-      "@": "vercel-blob:production"
-    },
-    "GOOGLE_ADS_DEVELOPER_TOKEN": {
-      "description": "Google Ads API Developer Token",
-      "@": "vercel-blob:production"
-    },
-    "GOOGLE_ADS_CLIENT_ID": {
-      "description": "Google Ads API Client ID",
-      "@": "vercel-blob:production"
-    },
-    "GOOGLE_ADS_CLIENT_SECRET": {
-      "description": "Google Ads API Client Secret",
-      "@": "vercel-blob:production"
-    },
-    "GOOGLE_ADS_REFRESH_TOKEN": {
-      "description": "Google Ads API Refresh Token",
-      "@": "vercel-blob:production"
+  "outputDirectory": ".next",
+  "rootDirectory": "./",
+  "regions": ["hnd1"],
+  "public": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
     }
-  }
+  ]
 }

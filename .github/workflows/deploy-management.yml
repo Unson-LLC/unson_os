@@ -1,0 +1,47 @@
+name: Deploy Management UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/management-ui/**'
+      - '.github/workflows/deploy-management.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/management-ui/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: |
+          cd apps/management-ui
+          npm install
+          
+      - name: Run tests
+        run: |
+          cd apps/management-ui
+          npm run test:ci
+          
+      - name: Build
+        run: |
+          cd apps/management-ui
+          npm run build
+          
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_MANAGEMENT }}
+          working-directory: ./apps/management-ui
+          production: ${{ github.event_name == 'push' }}

@@ -1,24 +1,11 @@
 {
+  "name": "unson-os-landing",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "env": {
-    "NEXT_PUBLIC_APP_URL": {
-      "description": "Landing Page URL",
-      "value": "https://unson-os-landing.vercel.app"
-    },
-    "RESEND_API_KEY": {
-      "description": "Resend API key for email functionality",
-      "@": "vercel-blob:production"
-    },
-    "NEXT_PUBLIC_CONVEX_URL": {
-      "description": "Convex backend URL",
-      "@": "vercel-blob:production"
-    },
-    "NEXT_PUBLIC_GA_MEASUREMENT_ID": {
-      "description": "Google Analytics Measurement ID",
-      "@": "vercel-blob:production"
-    }
-  }
+  "outputDirectory": ".next",
+  "rootDirectory": "./",
+  "regions": ["hnd1"],
+  "public": true
 }
