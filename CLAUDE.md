@@ -7,6 +7,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **重要**: このプロジェクトで作業する際は、必ず日本語で応答してください。
 **IMPORTANT**: When working on this project, always respond in Japanese.
 
+## 時刻設定 / Time Zone Setting
+
+**重要**: 時刻表示は必ず日本標準時（JST）で統一してください。
+**IMPORTANT**: Always use Japan Standard Time (JST) for time display.
+
 ## 🔧 開発４大原則
 
 **作業開始前に必ず確認・出力する原則：**
