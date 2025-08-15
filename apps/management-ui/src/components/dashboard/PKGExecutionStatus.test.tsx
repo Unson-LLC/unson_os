@@ -5,7 +5,7 @@ import { PKGExecutionStatus } from './PKGExecutionStatus'
 const mockData = [
   {
     saasName: '猫カフェ予約',
-    status: 'critical' as const,
+    status: '🔴' as const,
     currentPkg: 'pkg_crisis_recovery',
     progress: 35,
     trigger: 'MRR↓ (14:30検出)',
@@ -13,7 +13,7 @@ const mockData = [
   },
   {
     saasName: '家計簿アプリ',
-    status: 'success' as const,
+    status: '🟢' as const,
     currentPkg: 'pkg_fast_mvp',
     progress: 78,
     trigger: 'CVR↗ > 15%',
@@ -21,7 +21,7 @@ const mockData = [
   },
   {
     saasName: '英会話マッチ',
-    status: 'warning' as const,
+    status: '🟡' as const,
     currentPkg: 'pkg_optimization',
     progress: 45,
     nextPkg: '[分岐待ち]'
@@ -90,19 +90,19 @@ describe('PKGExecutionStatus', () => {
     it('ステータスに応じてプログレスバーの色を変える', () => {
       const { container } = render(<PKGExecutionStatus data={mockData} />)
       
-      const articles = screen.getAllByRole('article')
+      // 各プログレスバーとその内部の色付きdivを確認
+      const progressBars = container.querySelectorAll('[role="progressbar"]')
+      expect(progressBars).toHaveLength(3)
       
-      // 🔴ステータスは赤色
-      const redProgress = articles[0].querySelector('.bg-red-600')
-      expect(redProgress).toBeInTheDocument()
+      // クラス名に色の指定が含まれているか確認
+      const firstProgressChild = progressBars[0].firstElementChild as HTMLElement
+      expect(firstProgressChild?.className).toContain('bg-red-600')
       
-      // 🟢ステータスは緑色
-      const greenProgress = articles[1].querySelector('.bg-green-600')
-      expect(greenProgress).toBeInTheDocument()
+      const secondProgressChild = progressBars[1].firstElementChild as HTMLElement
+      expect(secondProgressChild?.className).toContain('bg-green-600')
       
-      // 🟡ステータスは黄色
-      const yellowProgress = articles[2].querySelector('.bg-yellow-600')
-      expect(yellowProgress).toBeInTheDocument()
+      const thirdProgressChild = progressBars[2].firstElementChild as HTMLElement
+      expect(thirdProgressChild?.className).toContain('bg-yellow-600')
     })
   })
 
