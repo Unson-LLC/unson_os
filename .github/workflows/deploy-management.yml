@@ -44,4 +44,5 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_MANAGEMENT }}
           working-directory: ./apps/management-ui
-          production: ${{ github.event_name == 'push' }}
+          github-comment: true
+          github-deployment: false
