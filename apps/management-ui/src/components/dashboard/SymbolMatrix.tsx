@@ -17,7 +17,7 @@ interface SymbolMatrixProps {
   className?: string
 }
 
-const DEFAULT_METRIC_OPTIONS = ['MRR', 'DAU', 'CVR']
+const DEFAULT_METRIC_OPTIONS = ['MRR', 'DAU', 'CVR', 'NPS', 'LTV', 'CAC', 'RETENTION', 'GROWTH']
 const DEFAULT_TIMEFRAME_OPTIONS = ['1h', '5分', '1日']
 
 const SYMBOL_STYLES = {
@@ -79,7 +79,10 @@ function MatrixHeader({
 }) {
   return (
     <div className="p-6 border-b">
-      <h2 className="text-lg font-semibold mb-4">記号マトリックス</h2>
+      <h2 className="text-lg font-semibold mb-4">Symbolマトリックス</h2>
+      <div className="text-sm text-gray-500 mb-2">
+        DAG Layer1: Symbol正規化システム (148/300-500 Symbols)
+      </div>
       
       <div className="flex items-center space-x-4">
         <MatrixSelect
@@ -140,7 +143,7 @@ function MatrixTable({
     <div className="p-6 overflow-x-auto">
       <table 
         className="w-full text-sm font-mono"
-        aria-label={`${metric}の記号マトリックス`}
+        aria-label={`${metric}のSymbolマトリックス`}
       >
         <thead>
           <tr>

@@ -29,7 +29,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: -5,
     cvr: 6.5,
     cvrChange: -1.5,
-    currentPkg: 'pkg_crisis_recovery',
+    currentPkg: 'CRISIS_MRR_RECOVERY',
     launchDate: '2024-10-15',
     lastUpdated: '2025-01-15 14:35'
   },
@@ -44,7 +44,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: 25,
     cvr: 15.2,
     cvrChange: 2.1,
-    currentPkg: 'pkg_fast_mvp',
+    currentPkg: 'LAUNCH_MVP_STANDARD',
     launchDate: '2024-08-01',
     lastUpdated: '2025-01-15 14:00'
   },
@@ -59,7 +59,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: -2,
     cvr: 8.5,
     cvrChange: 0.5,
-    currentPkg: 'pkg_optimization',
+    currentPkg: 'GROWTH_OPTIMIZE_UX',
     launchDate: '2024-12-01',
     lastUpdated: '2025-01-15 13:45'
   },
@@ -74,7 +74,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: 12,
     cvr: 11.3,
     cvrChange: 1.2,
-    currentPkg: 'pkg_standard_growth',
+    currentPkg: 'GROWTH_STANDARD_CYCLE',
     launchDate: '2024-09-20',
     lastUpdated: '2025-01-15 14:20'
   },
@@ -89,7 +89,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: -3,
     cvr: 0.8,
     cvrChange: -0.5,
-    currentPkg: 'pkg_sunset',
+    currentPkg: 'LIFECYCLE_END_CLEANUP',
     launchDate: '2024-03-15',
     lastUpdated: '2025-01-15 12:00'
   },
@@ -104,7 +104,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: 45,
     cvr: 18.0,
     cvrChange: 18.0,
-    currentPkg: 'pkg_lp_validation',
+    currentPkg: 'LAUNCH_LP_VALIDATION',
     launchDate: '2025-01-10',
     lastUpdated: '2025-01-15 14:30'
   },
@@ -119,7 +119,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: 0,
     cvr: 0,
     cvrChange: 0,
-    currentPkg: 'pkg_research',
+    currentPkg: 'RESEARCH_MARKET_FIT',
     launchDate: '2025-01-14',
     lastUpdated: '2025-01-15 10:00'
   },
@@ -134,7 +134,7 @@ const mockSaaSData: SaaSItem[] = [
     dauChange: -5,
     cvr: 0.9,
     cvrChange: -0.3,
-    currentPkg: 'pkg_sunset',
+    currentPkg: 'LIFECYCLE_END_CLEANUP',
     launchDate: '2024-04-01',
     lastUpdated: '2025-01-15 11:30'
   }

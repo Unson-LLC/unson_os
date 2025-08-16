@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-// プレイブックテンプレート = 業界別SaaS運用ノウハウ
-interface PlaybookTemplate {
+// PKGテンプレート = 業界別SaaS運用ノウハウ
+interface PKGTemplate {
   id: string
   name: string
   industry: string  // '予約業界', 'FinTech', 'EdTech'
@@ -59,8 +59,8 @@ interface PlaybookTemplate {
   }
 }
 
-// モックプレイブックテンプレート
-const mockPlaybookTemplates: PlaybookTemplate[] = [
+// モックPKGテンプレート
+const mockPKGTemplates: PKGTemplate[] = [
   {
     id: 'reservation_systems',
     name: '予約システム業界プレイブック',
@@ -433,20 +433,20 @@ const mockPlaybookTemplates: PlaybookTemplate[] = [
 
 // SaaS適用例
 const saasApplications = [
-  { saasName: '猫カフェ予約', playbookId: 'reservation_systems', phase: '運用', status: 'success' },
-  { saasName: '家計簿アプリ', playbookId: 'personal_fintech', phase: '開発', status: 'in_progress' },
-  { saasName: 'AI議事録作成', playbookId: 'b2b_productivity', phase: '調査', status: 'in_progress' },
-  { saasName: 'ペット管理', playbookId: 'reservation_systems', phase: '運用', status: 'success' },
-  { saasName: '英会話マッチ', playbookId: 'b2b_productivity', phase: '開発', status: 'warning' }
+  { saasName: '猫カフェ予約', pkgId: 'reservation_systems', phase: '運用', status: 'success' },
+  { saasName: '家計簿アプリ', pkgId: 'personal_fintech', phase: '開発', status: 'in_progress' },
+  { saasName: 'AI議事録作成', pkgId: 'b2b_productivity', phase: '調査', status: 'in_progress' },
+  { saasName: 'ペット管理', pkgId: 'reservation_systems', phase: '運用', status: 'success' },
+  { saasName: '英会話マッチ', pkgId: 'b2b_productivity', phase: '開発', status: 'warning' }
 ]
 
-interface PlaybookTemplatesProps {
+interface PKGTemplatesProps {
   onSelectTemplate?: (templateId: string, saasName: string) => void
   onViewDetails?: (templateId: string) => void
 }
 
-export function PlaybookTemplates({ onSelectTemplate, onViewDetails }: PlaybookTemplatesProps) {
-  const [selectedTemplate, setSelectedTemplate] = useState<PlaybookTemplate | null>(null)
+export function PlaybookTemplates({ onSelectTemplate, onViewDetails }: PKGTemplatesProps) {
+  const [selectedTemplate, setSelectedTemplate] = useState<PKGTemplate | null>(null)
   const [viewMode, setViewMode] = useState<'templates' | 'applications' | 'details'>('templates')
 
   const getIndustryColor = (industry: string) => {
@@ -470,7 +470,7 @@ export function PlaybookTemplates({ onSelectTemplate, onViewDetails }: PlaybookT
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">📚 プレイブックテンプレート</h2>
+        <h2 className="text-2xl font-bold">📚 PKGテンプレート</h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setViewMode('templates')}
@@ -498,7 +498,7 @@ export function PlaybookTemplates({ onSelectTemplate, onViewDetails }: PlaybookT
       {/* テンプレート一覧 */}
       {viewMode === 'templates' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {mockPlaybookTemplates.map(template => (
+          {mockPKGTemplates.map(template => (
             <div
               key={template.id}
               className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer"
@@ -562,7 +562,7 @@ export function PlaybookTemplates({ onSelectTemplate, onViewDetails }: PlaybookT
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {saasApplications.map((app, idx) => {
-                  const template = mockPlaybookTemplates.find(t => t.id === app.playbookId)
+                  const template = mockPKGTemplates.find(t => t.id === app.pkgId)
                   return (
                     <tr key={idx} className="hover:bg-gray-50">
                       <td className="px-6 py-4 font-medium">{app.saasName}</td>
@@ -581,13 +581,13 @@ export function PlaybookTemplates({ onSelectTemplate, onViewDetails }: PlaybookT
                       <td className="px-6 py-4">
                         <div className="flex space-x-2">
                           <button
-                            onClick={() => onViewDetails?.(app.playbookId)}
+                            onClick={() => onViewDetails?.(app.pkgId)}
                             className="text-blue-600 hover:text-blue-800 text-sm"
                           >
                             詳細
                           </button>
                           <button
-                            onClick={() => onSelectTemplate?.(app.playbookId, app.saasName)}
+                            onClick={() => onSelectTemplate?.(app.pkgId, app.saasName)}
                             className="text-green-600 hover:text-green-800 text-sm"
                           >
                             実行

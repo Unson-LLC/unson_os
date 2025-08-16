@@ -61,7 +61,7 @@ describe('SymbolMatrix', () => {
     it('選択されたメトリクスを表示する', () => {
       render(<SymbolMatrix data={mockData} metric="MRR" />)
       
-      expect(screen.getByText('記号マトリックス')).toBeInTheDocument()
+      expect(screen.getByText('Symbolマトリックス')).toBeInTheDocument()
       expect(screen.getByDisplayValue('MRR')).toBeInTheDocument()
     })
   })
@@ -154,7 +154,7 @@ describe('SymbolMatrix', () => {
       render(<SymbolMatrix data={mockData} metric="MRR" />)
       
       const table = screen.getByRole('table')
-      expect(table).toHaveAttribute('aria-label', 'MRRの記号マトリックス')
+      expect(table).toHaveAttribute('aria-label', 'MRRのSymbolマトリックス')
     })
 
     it('各記号にツールチップ用のtitle属性を持つ', () => {

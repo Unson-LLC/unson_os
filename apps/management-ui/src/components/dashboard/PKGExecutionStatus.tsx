@@ -23,7 +23,7 @@ export function PKGExecutionStatus({
   return (
     <div className="bg-white rounded-lg shadow">
       <div className="p-6 border-b">
-        <h2 className="text-lg font-semibold">プレイブック実行状況</h2>
+        <h2 className="text-lg font-semibold">PKG実行状況</h2>
       </div>
       
       <div className="p-6 space-y-4">
@@ -193,11 +193,11 @@ function PKGFlowDiagram() {
   return (
     <div className="font-mono text-sm space-y-2">
       <FlowLine>
-        <FlowNode name="[pkg_mvp_standard]" />
+        <FlowNode name="[LAUNCH_MVP_STANDARD]" />
         <FlowArrow />
-        <FlowNode name="[条件判定]" />
+        <FlowNode name="[Layer2判定]" />
         <FlowArrow />
-        <FlowNode name="[pkg_crisis_recovery]" isCurrent />
+        <FlowNode name="[CRISIS_MRR_RECOVERY]" isCurrent />
       </FlowLine>
       
       <FlowStatusLine>
@@ -207,6 +207,12 @@ function PKGFlowDiagram() {
       </FlowStatusLine>
       
       <FlowBranch />
+      
+      <div className="mt-4 text-xs text-gray-600">
+        <div>Layer1: Symbol正規化 (148シンボル)</div>
+        <div>Layer2: 判定関数 (12関数実行)</div>
+        <div>Layer3: PKG選択 (信頼度: 91%)</div>
+      </div>
     </div>
   )
 }
@@ -270,8 +276,8 @@ function FlowBranch() {
         <span className="ml-32">↓</span>
       </div>
       <div className="flex items-center space-x-8 ml-24">
-        <span>[pivot]</span>
-        <span>[improve]</span>
+        <span>[CRISIS_PRODUCT_PIVOT]</span>
+        <span>[CRISIS_UX_IMPROVE]</span>
       </div>
     </>
   )

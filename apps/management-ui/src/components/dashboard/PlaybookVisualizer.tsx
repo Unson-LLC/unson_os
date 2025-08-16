@@ -249,7 +249,7 @@ export function PlaybookVisualizer({ onViewDataSeries }: PlaybookVisualizerProps
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">🔀 プレイブック分岐ビジュアライザー</h2>
+        <h2 className="text-2xl font-bold">🔀 PKG分岐ビジュアライザー</h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setViewMode('flow')}

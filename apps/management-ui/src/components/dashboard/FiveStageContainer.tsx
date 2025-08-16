@@ -114,8 +114,8 @@ const mockSaaSData: SaaSInfo[] = [
             status: '🔄',
             pkgs: [
               {
-                id: 'pkg_keyword_optimization',
-                name: 'pkg_keyword_optimization',
+                id: 'GROWTH_KEYWORD_OPTIMIZE',
+                name: 'GROWTH_KEYWORD_OPTIMIZE',
                 type: 'キーワード最適化',
                 status: 'completed',
                 progress: 100,
@@ -134,8 +134,8 @@ const mockSaaSData: SaaSInfo[] = [
                 ]
               },
               {
-                id: 'pkg_ad_copy_abtest',
-                name: 'pkg_ad_copy_abtest',
+                id: 'GROWTH_AD_COPY_TEST',
+                name: 'GROWTH_AD_COPY_TEST',
                 type: 'コピーA/Bテスト',
                 status: 'completed',
                 progress: 100,
@@ -154,8 +154,8 @@ const mockSaaSData: SaaSInfo[] = [
                 ]
               },
               {
-                id: 'pkg_targeting_adjustment',
-                name: 'pkg_targeting_adjustment',
+                id: 'GROWTH_TARGET_ADJUST',
+                name: 'GROWTH_TARGET_ADJUST',
                 type: 'ターゲティング調整',
                 status: 'running',
                 progress: 45,
@@ -217,8 +217,8 @@ const mockSaaSData: SaaSInfo[] = [
             status: '⏳',
             pkgs: [
               {
-                id: 'pkg_survey_deployment',
-                name: 'pkg_survey_deployment',
+                id: 'RESEARCH_SURVEY_DEPLOY',
+                name: 'RESEARCH_SURVEY_DEPLOY',
                 type: 'アンケート配信',
                 status: 'pending',
                 progress: 0,
@@ -280,8 +280,8 @@ const mockSaaSData: SaaSInfo[] = [
             status: '🔄',
             pkgs: [
               {
-                id: 'pkg_feature_usage_analysis',
-                name: 'pkg_feature_usage_analysis',
+                id: 'GROWTH_FEATURE_ANALYZE',
+                name: 'GROWTH_FEATURE_ANALYZE',
                 type: '機能利用分析',
                 status: 'completed',
                 progress: 100,
@@ -300,8 +300,8 @@ const mockSaaSData: SaaSInfo[] = [
                 ]
               },
               {
-                id: 'pkg_notification_optimization',
-                name: 'pkg_notification_optimization',
+                id: 'GROWTH_NOTIFY_OPTIMIZE',
+                name: 'GROWTH_NOTIFY_OPTIMIZE',
                 type: '通知最適化',
                 status: 'running',
                 progress: 65,
@@ -363,8 +363,8 @@ const mockSaaSData: SaaSInfo[] = [
             status: '🔄',
             pkgs: [
               {
-                id: 'pkg_pricing_optimization',
-                name: 'pkg_pricing_optimization',
+                id: 'GROWTH_PRICE_OPTIMIZE',
+                name: 'GROWTH_PRICE_OPTIMIZE',
                 type: '価格最適化',
                 status: 'completed',
                 progress: 100,
@@ -383,8 +383,8 @@ const mockSaaSData: SaaSInfo[] = [
                 ]
               },
               {
-                id: 'pkg_feature_upsell',
-                name: 'pkg_feature_upsell',
+                id: 'GROWTH_FEATURE_UPSELL',
+                name: 'GROWTH_FEATURE_UPSELL',
                 type: '機能アップセル',
                 status: 'completed',
                 progress: 100,
@@ -456,8 +456,8 @@ const mockSaaSData: SaaSInfo[] = [
             status: '🔄',
             pkgs: [
               {
-                id: 'pkg_user_feedback_analysis',
-                name: 'pkg_user_feedback_analysis',
+                id: 'RESEARCH_FEEDBACK_ANALYZE',
+                name: 'RESEARCH_FEEDBACK_ANALYZE',
                 type: 'ユーザーフィードバック分析',
                 status: 'completed',
                 progress: 100,
@@ -476,8 +476,8 @@ const mockSaaSData: SaaSInfo[] = [
                 ]
               },
               {
-                id: 'pkg_ui_rollback',
-                name: 'pkg_ui_rollback',
+                id: 'CRISIS_UI_ROLLBACK',
+                name: 'CRISIS_UI_ROLLBACK',
                 type: 'UI緊急ロールバック',
                 status: 'running',
                 progress: 70,
@@ -1014,10 +1014,10 @@ function SaaSPhaseView({ saasId, onSelectPlaybook }: {
 
   // 最近のアクティビティ（モック）
   const recentActivity = [
-    { time: '14:32', type: 'pkg_complete', message: 'pkg_feature_usage_analysis 完了', status: 'success' },
+    { time: '14:32', type: 'pkg_complete', message: 'GROWTH_FEATURE_ANALYZE 完了', status: 'success' },
     { time: '14:15', type: 'gate_waiting', message: 'Gate「成長指標確認」待ち', status: 'pending' },
     { time: '13:45', type: 'indicator_update', message: 'リテンション率 82.5%↗️ 記録', status: 'info' },
-    { time: '13:20', type: 'pkg_start', message: 'pkg_notification_optimization 開始', status: 'info' },
+    { time: '13:20', type: 'pkg_start', message: 'GROWTH_NOTIFY_OPTIMIZE 開始', status: 'info' },
     { time: '13:00', type: 'alert', message: 'DAU目標達成: 234名', status: 'success' }
   ]
 
@@ -1948,19 +1948,19 @@ function IndicatorRecordView({ indicatorId }: { indicatorId: string }) {
 
       {/* 記号化プロセス詳細 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* 生データ → 記号 変換過程 */}
+        {/* Layer1: 生データ → Symbol 変換過程 */}
         <div className="bg-white rounded-lg shadow">
           <div className="p-6 border-b">
             <h3 className="font-semibold flex items-center">
               <span className="text-xl mr-2">🔄</span>
-              記号化変換プロセス
+              Symbol化変換プロセス
             </h3>
           </div>
           
           <div className="p-6 space-y-4">
-            {/* 生データ表示 */}
+            {/* Layer1: 生データ収集 */}
             <div>
-              <h4 className="font-medium mb-2">📊 生データ</h4>
+              <h4 className="font-medium mb-2">📊 Layer1: 生データ収集</h4>
               <div className="bg-gray-50 rounded p-3 text-sm space-y-1">
                 <div>コンバージョン: {detail.symbolizationProcess.rawData.conversions}件</div>
                 <div>インプレッション: {detail.symbolizationProcess.rawData.impressions.toLocaleString()}回</div>
@@ -1971,7 +1971,7 @@ function IndicatorRecordView({ indicatorId }: { indicatorId: string }) {
 
             {/* 時系列チャート */}
             <div>
-              <h4 className="font-medium mb-2">📈 時系列推移</h4>
+              <h4 className="font-medium mb-2">📈 Symbol時系列推移</h4>
               <div className="bg-gray-50 rounded p-3">
                 <div className="flex items-end space-x-1 h-20">
                   {detail.symbolizationProcess.rawData.hourlyData.map((data, index) => (
@@ -1990,9 +1990,9 @@ function IndicatorRecordView({ indicatorId }: { indicatorId: string }) {
               </div>
             </div>
 
-            {/* AI判定ルール */}
+            {/* Layer2判定関数 */}
             <div>
-              <h4 className="font-medium mb-2">🤖 AI判定ルール</h4>
+              <h4 className="font-medium mb-2">🤖 Layer2判定関数</h4>
               <div className="space-y-2">
                 {detail.symbolizationProcess.aiAnalysis.decisionTree.map((rule, index) => (
                   <div key={index} className="flex items-center justify-between bg-gray-50 rounded p-2 text-sm">
@@ -2008,9 +2008,9 @@ function IndicatorRecordView({ indicatorId }: { indicatorId: string }) {
               </div>
             </div>
 
-            {/* 記号選択理由 */}
+            {/* Symbol選択理由 */}
             <div>
-              <h4 className="font-medium mb-2">🎯 記号選択根拠</h4>
+              <h4 className="font-medium mb-2">🎯 Symbol選択根拠</h4>
               <div className="bg-blue-50 rounded p-3">
                 <div className="flex items-center space-x-2 mb-2">
                   <span className="text-2xl">{detail.symbol}</span>
@@ -2031,14 +2031,14 @@ function IndicatorRecordView({ indicatorId }: { indicatorId: string }) {
           <div className="p-6 border-b">
             <h3 className="font-semibold flex items-center">
               <span className="text-xl mr-2">🧠</span>
-              AI学習・パターン認識
+              DAG学習・パターン認識
             </h3>
           </div>
           
           <div className="p-6 space-y-4">
-            {/* コンテキスト要因 */}
+            {/* Layer3: PKG選択要因 */}
             <div>
-              <h4 className="font-medium mb-2">🌐 コンテキスト要因</h4>
+              <h4 className="font-medium mb-2">🌐 Layer3: PKG選択要因</h4>
               <div className="space-y-2">
                 {detail.symbolizationProcess.contextualFactors.map((factor, index) => (
                   <div key={index} className="flex items-center justify-between bg-gray-50 rounded p-2 text-sm">
@@ -2076,9 +2076,9 @@ function IndicatorRecordView({ indicatorId }: { indicatorId: string }) {
               </div>
             </div>
 
-            {/* AI学習状況 */}
+            {/* DAG学習状況 */}
             <div>
-              <h4 className="font-medium mb-2">📚 AI学習状況</h4>
+              <h4 className="font-medium mb-2">📚 DAG学習状況</h4>
               <div className="bg-purple-50 rounded p-3 space-y-2 text-sm">
                 <div>
                   <span className="text-gray-600">学習データ:</span>
