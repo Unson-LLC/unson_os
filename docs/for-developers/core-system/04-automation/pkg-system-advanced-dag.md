@@ -47,39 +47,49 @@ graph TB
 
 ## 2. PKG ID体系の拡張
 
-### 2.1 ID構造定義
+### 2.1 ID構造定義（改善版）
 
 ```
-[カテゴリ][タイプ][対象]^[階層]-[連番]
+[DAG種別]^[階層]-[連番]
 ```
 
 #### UnsonOS用ID体系
 ```
-991^N-XXX  # SaaS運用PKG（階層N、連番XXX）
+M^N-XXX  # Material DAG（素材DAG）
+D^N-XXX  # Decision DAG（判定DAG）
+F^N-XXX  # Financial DAG（財務DAG）
+X^N-XXX  # eXecution DAG（実行DAG）
 ```
 
-#### 詳細構造
+#### 詳細構造と例
 ```
-991^2-126
- │││ │  └─ 連番: その階層内での通し番号（1〜999）
- │││ └──── 階層: 0=生データ, 1=素材DAG, 2以降=判定DAG（上限なし）
- ││└────── 対象: 1=特定SaaS, 9=全SaaS共通
- │└─────── タイプ: 9=統合型
- └──────── カテゴリ: 9=UnsonOS
+M^1-005   Material DAG, Layer1, Node5（Symbol生成）
+D^10-002  Decision DAG, Layer10, Node2（深層判定）
+F^100-001 Financial DAG, Layer100, Node1（リスク評価）
+X^1-001   eXecution DAG, Layer1, Node1（最終実行）
 ```
+
+#### DAG種別プレフィックス定義
+| プレフィックス | DAG種別 | 役割 | 階層範囲 |
+|---------------|---------|------|----------|
+| **M** | Material | 生データ収集・Symbol生成 | 0-99 |
+| **D** | Decision | 判定ロジック・条件評価 | 100-899 |
+| **F** | Financial | リスク管理・資源配分 | 900-949 |
+| **X** | eXecution | PKG選択・最終実行 | 950-999 |
 
 ### 2.2 階層別ID割り当て
 
-| 階層 | ID範囲 | 役割 | ノード数目安 |
-|------|--------|------|-------------|
-| 0 | 991^0-001〜999 | 生データ収集 | 50-100 |
-| 1 | 991^1-001〜999 | Symbol生成（素材DAG） | 300-500 |
-| 2 | 991^2-001〜999 | 基本判定関数 | 100-200 |
-| 3 | 991^3-001〜999 | 複合判定関数 | 100-200 |
-| ... | ... | ... | ... |
-| N | 991^N-001〜999 | 深層判定関数 | 可変 |
-| N+1 | 991^{N+1}-001〜999 | 財務判定 | 50-100 |
-| N+2 | 991^{N+2}-001〜999 | 実行指示 | 20-50 |
+| DAG種別 | ID範囲例 | 役割 | ノード数目安 |
+|---------|----------|------|-------------|
+| Material | M^0-001〜999 | 生データ収集 | 50-100 |
+| Material | M^1-001〜999 | Symbol生成 | 300-500 |
+| Decision | D^100-001〜999 | 基本判定関数 | 100-200 |
+| Decision | D^200-001〜999 | 複合判定関数 | 100-200 |
+| Decision | D^N-001〜999 | 深層判定関数 | 可変 |
+| Financial | F^900-001〜999 | リスク評価 | 50-100 |
+| Financial | F^910-001〜999 | 資源配分 | 30-50 |
+| eXecution | X^950-001〜999 | PKG選択 | 20-50 |
+| eXecution | X^960-001〜999 | 実行指示 | 10-30 |
 
 ## 3. 素材DAGと判定DAGの分離
 
@@ -154,22 +164,22 @@ class JudgmentDAG {
     });
   }
   
-  // 階層2: 基本判定
-  static L2_PMF_CHECK(symbols: SymbolSet): boolean {
+  // D^100-001: 基本判定
+  static D_100_001_PMF_CHECK(symbols: SymbolSet): boolean {
     return symbols['U_RETENTION_D7'] > 0.5 && 
            symbols['B_GROWTH'] > 0.2 &&
            symbols['U_DAU_MAU'] > 0.4;
   }
   
-  // 階層3: 複合判定（階層2の結果を利用）
-  static L3_CRISIS_DETECT(l2Results: Layer2Results): boolean {
-    return !l2Results.pmfCheck && 
-           l2Results.churnAlert &&
-           l2Results.mrrDecline;
+  // D^200-001: 複合判定（下位層の結果を利用）
+  static D_200_001_CRISIS_DETECT(d100Results: DecisionLayer100Results): boolean {
+    return !d100Results.pmfCheck && 
+           d100Results.churnAlert &&
+           d100Results.mrrDecline;
   }
   
-  // 階層N: 深層判定（すべての下位層を参照可能）
-  static LN_FINAL_DECISION(allLowerLayers: LayerResults[]): PKGAction {
+  // D^N-001: 深層判定（すべての下位層を参照可能）
+  static D_N_001_FINAL_DECISION(allLowerLayers: LayerResults[]): PKGAction {
     // 複雑な判定ロジック
     const aggregatedScore = this.aggregateScores(allLowerLayers);
     return this.selectPKG(aggregatedScore);
@@ -177,48 +187,105 @@ class JudgmentDAG {
 }
 ```
 
-## 4. 財務DAGの実装
+## 4. 財務DAGの実装（UnsonOS特化版）
 
-### 4.1 財務DAG構造
+### 4.1 UnsonOS版財務DAGの役割定義
+
+UnsonOS版の財務DAGは、以下の4つの主要機能を担当します：
+
+1. **リソース制約管理**: CPU、メモリ、DB接続数の制限
+2. **PKG実行コスト評価**: 各PKGの実行コストと予算管理
+3. **同時実行数制御**: 並列PKG実行の最適化
+4. **リスク評価**: SaaS全体のポートフォリオリスク管理
+
+### 4.2 財務DAG構造
 
 ```typescript
-// 財務DAG（階層N+1）
-class FinancialDAG {
-  // リスク管理パラメータ
-  private readonly MAX_RISK_PER_SAAS = 0.02; // 2%ルール
-  private readonly MAX_CONCURRENT_CRISIS = 5; // 同時危機対応上限
+// UnsonOS財務DAG（F^900-XXX系列）
+class UnsonOSFinancialDAG {
+  // UnsonOS特化のリソース制約
+  private readonly constraints = {
+    maxConcurrentPKGs: 20,           // 同時実行PKG数上限
+    maxMemoryUsageMB: 1000,          // メモリ使用量上限
+    maxDBConnections: 50,            // DB同時接続数上限
+    maxCPUUsagePercent: 80,          // CPU使用率上限
+    emergencyReservePercent: 20      // 緊急時リソース予約
+  };
   
-  evaluate(judgmentResults: JudgmentResults, portfolio: Portfolio): FinancialDecision {
-    const riskAssessment = this.assessRisk(portfolio);
-    const resourceAllocation = this.allocateResources(judgmentResults, riskAssessment);
+  // PKGカテゴリ別コスト定義
+  private readonly pkgCosts = {
+    'CRISIS': { cpu: 0.8, memory: 100, dbConnections: 5, priority: 100 },
+    'KILL': { cpu: 0.5, memory: 50, dbConnections: 2, priority: 100 },
+    'PIVOT': { cpu: 1.0, memory: 150, dbConnections: 8, priority: 80 },
+    'SCALE': { cpu: 0.6, memory: 80, dbConnections: 4, priority: 70 },
+    'OPTIMIZE': { cpu: 0.3, memory: 40, dbConnections: 2, priority: 60 }
+  };
+  
+  // F^900-001: メインの財務評価関数
+  evaluate(judgmentResults: JudgmentResults, currentLoad: SystemLoad): FinancialDecision {
+    const resourceCheck = this.checkResourceAvailability(currentLoad);
+    const costEstimate = this.calculatePKGCosts(judgmentResults.selectedPKGs);
+    const riskAssessment = this.assessPortfolioRisk(judgmentResults);
     
     return {
-      canExecute: this.checkFinancialConstraints(resourceAllocation),
-      priority: this.calculatePriority(judgmentResults, riskAssessment),
-      budget: resourceAllocation.budget,
-      resourceLimit: resourceAllocation.limit
+      canExecute: resourceCheck.available && costEstimate.withinBudget,
+      maxConcurrent: this.calculateOptimalConcurrency(resourceCheck, costEstimate),
+      resourceAllocation: this.optimizeResourceAllocation(judgmentResults),
+      riskLevel: riskAssessment.overallRisk,
+      recommendations: this.generateRecommendations(resourceCheck, costEstimate, riskAssessment)
     };
   }
   
-  // リスク評価
-  private assessRisk(portfolio: Portfolio): RiskProfile {
+  // F^910-001: リソース可用性チェック
+  private checkResourceAvailability(currentLoad: SystemLoad): ResourceAvailability {
+    const available = {
+      cpu: (this.constraints.maxCPUUsagePercent - currentLoad.cpuUsage) / 100,
+      memory: this.constraints.maxMemoryUsageMB - currentLoad.memoryUsageMB,
+      dbConnections: this.constraints.maxDBConnections - currentLoad.dbConnections,
+      concurrentSlots: this.constraints.maxConcurrentPKGs - currentLoad.runningPKGs
+    };
+    
     return {
-      totalExposure: portfolio.activeSaaS * this.MAX_RISK_PER_SAAS,
-      concentrationRisk: this.calculateConcentration(portfolio),
-      liquidityRisk: this.calculateLiquidity(portfolio),
-      operationalRisk: this.calculateOperational(portfolio)
+      available: Object.values(available).every(v => v > 0),
+      resourceLimits: available,
+      emergencyReserve: this.calculateEmergencyReserve(available)
     };
   }
   
-  // リソース配分
-  private allocateResources(
-    judgment: JudgmentResults, 
-    risk: RiskProfile
-  ): ResourceAllocation {
-    const availableBudget = this.calculateAvailableBudget(risk);
-    const priorities = this.rankByPriority(judgment);
+  // F^920-001: PKG実行コスト計算
+  private calculatePKGCosts(selectedPKGs: PKGCandidate[]): CostEstimate {
+    let totalCost = { cpu: 0, memory: 0, dbConnections: 0 };
+    let totalBudget = 0;
     
-    return this.distributeResources(availableBudget, priorities);
+    selectedPKGs.forEach(pkg => {
+      const cost = this.pkgCosts[pkg.category];
+      totalCost.cpu += cost.cpu;
+      totalCost.memory += cost.memory;
+      totalCost.dbConnections += cost.dbConnections;
+      totalBudget += this.calculateMonetaryCost(pkg);
+    });
+    
+    return {
+      resourceCost: totalCost,
+      monetaryCost: totalBudget,
+      withinBudget: this.isWithinBudget(totalCost, totalBudget),
+      recommendations: this.getCostOptimizationSuggestions(selectedPKGs)
+    };
+  }
+  
+  // F^930-001: ポートフォリオリスク評価
+  private assessPortfolioRisk(judgmentResults: JudgmentResults): RiskAssessment {
+    const concentrationRisk = this.calculateConcentrationRisk(judgmentResults);
+    const executionRisk = this.calculateExecutionRisk(judgmentResults);
+    const cascadeRisk = this.calculateCascadeRisk(judgmentResults);
+    
+    return {
+      overallRisk: Math.max(concentrationRisk, executionRisk, cascadeRisk),
+      concentrationRisk,
+      executionRisk,
+      cascadeRisk,
+      mitigation: this.suggestRiskMitigation(concentrationRisk, executionRisk, cascadeRisk)
+    };
   }
 }
 ```
@@ -298,8 +365,8 @@ class LayerValidator {
   }
   
   private static extractLayer(nodeId: string): number {
-    // "991^N-XXX" から N を抽出
-    const match = nodeId.match(/\^(\d+)-/);
+    // "M^N-XXX" または "D^N-XXX" から N を抽出
+    const match = nodeId.match(/[MDFX]\^(\d+)-/);
     return match ? parseInt(match[1]) : 0;
   }
 }
@@ -379,9 +446,139 @@ class ParallelExecutor {
 | 実行DAG | < 10ms | 20ms | N/A |
 | **合計** | **< 50ms** | **100ms** | - |
 
-## 8. まとめ
+## 8. 段階的移行計画
 
-### 8.1 統合アーキテクチャの特徴
+### 8.1 Phase別移行戦略
+
+レビューフィードバックに基づき、以下の4段階で段階的に移行します：
+
+#### Phase 1: DAG実行エンジンの基盤構築（期間: 2-3週間）
+
+**目標**: 現在の3層アーキテクチャをDAGエンジン上で動作させる
+
+**実装内容**:
+- DAG実行エンジンの基盤開発
+- ノード定義と依存関係管理
+- 階層参照バリデーションの実装
+- トポロジカルソートによる実行順序決定
+
+**成功指標**:
+- [ ] 現在のSymbol→Guard→PKGフローがDAGエンジン上で動作
+- [ ] 階層参照チェックが正常に機能
+- [ ] 実行時間が従来システムと同等（±10%以内）
+
+#### Phase 2: 3層システムの新エンジン移行（期間: 2-3週間）
+
+**目標**: 既存システムを新DAGエンジンに完全移行
+
+**実装内容**:
+- 既存PKGロジックのDAGノード化
+- Symbol生成をM^1-XXX形式に変換
+- Guard判定をD^100-XXX形式に変換
+- PKG実行をX^950-XXX形式に変換
+
+**成功指標**:
+- [ ] 全PKGが新ID体系で動作
+- [ ] 出力結果が旧システムと100%一致
+- [ ] パフォーマンスが50ms以内を達成
+
+#### Phase 3: 4段階DAGへの拡張（期間: 3-4週間）
+
+**目標**: 素材DAG分離と財務DAG導入
+
+**実装内容**:
+- 素材DAGと判定DAGの完全分離
+- 財務DAG（F^900-XXX系列）の実装
+- リソース制約管理の導入
+- 並列実行最適化
+
+**成功指標**:
+- [ ] 素材DAGが独立して動作
+- [ ] 財務DAGがリソース制約を正しく管理
+- [ ] 20並列実行が安定動作
+
+#### Phase 4: 高度機能の統合（期間: 2-3週間）
+
+**目標**: 無限階層対応と最適化機能
+
+**実装内容**:
+- 動的階層管理システム
+- 深層判定DAG（D^200以上）の実装
+- エラー処理とフォールバック機能
+- 監視・ログ機能の充実
+
+**成功指標**:
+- [ ] 階層数に制限なく動作
+- [ ] エラー時の適切なフォールバック
+- [ ] 全体パフォーマンス目標達成
+
+### 8.2 移行時の注意点
+
+#### データ互換性の保証
+```typescript
+// 移行期間中の互換性レイヤー
+class MigrationCompatibilityLayer {
+  // 旧PKG名と新DAGノードIDのマッピング
+  private readonly pkgMapping = {
+    'CRISIS_MRR_RECOVERY': 'D^150-001',
+    'GROWTH_VIRAL_SCALE': 'D^200-005',
+    'STABLE_PERF_OPTIMIZE': 'D^180-003'
+  };
+  
+  // 段階的切り替え制御
+  switchToNewDAG(pkgName: string, phase: number): boolean {
+    const migrationSchedule = this.getMigrationSchedule();
+    return migrationSchedule[pkgName]?.phase <= phase;
+  }
+}
+```
+
+#### リスク軽減策
+1. **A/Bテスト実施**: 新旧システムを並行稼働し結果比較
+2. **段階的ロールアウト**: 重要度の低いSaaSから移行開始
+3. **即座復旧機能**: 問題発生時に旧システムへ即座切り戻し
+4. **詳細ログ**: 移行期間中の全操作を詳細記録
+
+### 8.3 各Phaseの詳細仕様
+
+#### Phase 1詳細: DAGエンジン基盤
+
+```typescript
+// 基盤DAGエンジンの最小実装
+interface DAGNode {
+  id: string;                    // M^1-001 形式
+  dependencies: string[];        // 依存するノードID
+  execute: (inputs: any) => any; // 実行関数
+  layer: number;                 // 階層番号（自動抽出）
+}
+
+class BasicDAGEngine {
+  private nodes: Map<string, DAGNode> = new Map();
+  
+  addNode(node: DAGNode): void {
+    // 階層参照チェック
+    this.validateDependencies(node);
+    this.nodes.set(node.id, node);
+  }
+  
+  async execute(): Promise<Map<string, any>> {
+    const sortedNodes = this.topologicalSort();
+    const results = new Map();
+    
+    for (const nodeId of sortedNodes) {
+      const node = this.nodes.get(nodeId)!;
+      const inputs = this.gatherInputs(node, results);
+      results.set(nodeId, await node.execute(inputs));
+    }
+    
+    return results;
+  }
+}
+```
+
+## 9. まとめ
+
+### 9.1 統合アーキテクチャの特徴
 
 1. **素材と判断の分離**: データ処理と判定ロジックを明確に分離
 2. **無限階層対応**: 関数合成の深さに制限なし
@@ -389,7 +586,7 @@ class ParallelExecutor {
 4. **財務管理統合**: リスク管理を独立したDAGで実装
 5. **並列実行最適化**: 同一階層内は並列処理
 
-### 8.2 実装チェックリスト
+### 9.2 実装チェックリスト
 
 - [ ] 階層数に上限を設けていない
 - [ ] 同階層間の参照を防いでいる
@@ -398,6 +595,7 @@ class ParallelExecutor {
 - [ ] 素材DAGと判定DAGが分離されている
 - [ ] 財務DAGが独立して実装されている
 - [ ] 並列実行が最適化されている
+- [ ] 段階的移行計画が策定されている
 
 ---
 
