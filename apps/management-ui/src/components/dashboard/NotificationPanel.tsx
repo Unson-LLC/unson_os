@@ -16,7 +16,7 @@ const mockNotifications: Notification[] = [
     id: '1',
     type: 'alert',
     title: '🔴 猫カフェ予約がクライシス状態',
-    message: 'MRRが¥38,000まで低下。pkg_crisis_recoveryを実行中',
+    message: 'MRRが¥38,000まで低下。CRISIS_MRR_RECOVERYを実行中',
     time: '5分前',
     isRead: false,
     actionLabel: '詳細を確認',

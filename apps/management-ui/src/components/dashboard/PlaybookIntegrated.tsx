@@ -28,7 +28,7 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <FileText className="w-6 h-6" />
-          プレイブックシステム
+          PKGシステム
         </h2>
         <div className="flex space-x-2">
           <button
@@ -120,7 +120,7 @@ export function PlaybookIntegrated({ onViewDataSeries }: PlaybookIntegratedProps
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
         <h3 className="font-semibold mb-3 flex items-center gap-2">
           <Compass className="w-5 h-5" />
-          プレイブックシステムの全体像
+          PKGシステムの全体像
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

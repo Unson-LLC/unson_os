@@ -60,8 +60,8 @@ interface PKGLog {
 const mockPKGLibrary: PKGDefinition[] = [
   // Crisis Management PKGs
   {
-    id: 'pkg_crisis_recovery',
-    name: '危機回復プレイブック',
+    id: 'CRISIS_MRR_RECOVERY',
+    name: '危機回復PKG',
     description: 'MRRまたはDAUが急降下した際の緊急対応',
     category: 'crisis',
     conditions: {
@@ -77,16 +77,16 @@ const mockPKGLibrary: PKGDefinition[] = [
       { id: 's6', name: 'スケール/ピボット判定', type: 'decision', description: '次のアクションを決定', automated: false, required: true }
     ],
     transitions: [
-      { condition: 'churn_rate < 5%', target: 'pkg_recovery_success', probability: 0.3 },
-      { condition: 'churn_rate >= 10%', target: 'pkg_pivot_consideration', probability: 0.5 },
-      { condition: 'no_improvement_3days', target: 'pkg_sunset_evaluation', probability: 0.2 }
+      { condition: 'churn_rate < 5%', target: 'CRISIS_RECOVERY_SUCCESS', probability: 0.3 },
+      { condition: 'churn_rate >= 10%', target: 'CRISIS_PRODUCT_PIVOT', probability: 0.5 },
+      { condition: 'no_improvement_3days', target: 'LIFECYCLE_END_CLEANUP', probability: 0.2 }
     ],
     estimatedDuration: '3-7日',
     successRate: 65,
     usage: 142
   },
   {
-    id: 'pkg_emergency_pivot',
+    id: 'CRISIS_PRODUCT_PIVOT',
     name: '緊急ピボット',
     description: '連続的な指標悪化時の方向転換',
     category: 'crisis',
@@ -101,8 +101,8 @@ const mockPKGLibrary: PKGDefinition[] = [
       { id: 's4', name: '高速検証', type: 'test', description: '24時間で検証', automated: true, required: true }
     ],
     transitions: [
-      { condition: 'new_cvr > 10%', target: 'pkg_fast_mvp', probability: 0.4 },
-      { condition: 'new_cvr < 5%', target: 'pkg_sunset_decision', probability: 0.6 }
+      { condition: 'new_cvr > 10%', target: 'LAUNCH_MVP_STANDARD', probability: 0.4 },
+      { condition: 'new_cvr < 5%', target: 'LIFECYCLE_END_CLEANUP', probability: 0.6 }
     ],
     estimatedDuration: '24-48時間',
     successRate: 45,
@@ -111,7 +111,7 @@ const mockPKGLibrary: PKGDefinition[] = [
 
   // Fast Track PKGs
   {
-    id: 'pkg_fast_mvp',
+    id: 'LAUNCH_MVP_STANDARD',
     name: '高速MVP構築',
     description: 'LP検証成功後の迅速なMVP開発',
     category: 'fast-track',
@@ -126,15 +126,15 @@ const mockPKGLibrary: PKGDefinition[] = [
       { id: 's4', name: 'ベータローンチ', type: 'action', description: '限定ユーザーに公開', automated: true, required: true }
     ],
     transitions: [
-      { condition: 'beta.retention > 50%', target: 'pkg_aggressive_scale', probability: 0.7 },
-      { condition: 'beta.retention < 30%', target: 'pkg_optimization', probability: 0.3 }
+      { condition: 'beta.retention > 50%', target: 'SCALE_FAST_GROWTH', probability: 0.7 },
+      { condition: 'beta.retention < 30%', target: 'GROWTH_OPTIMIZE_UX', probability: 0.3 }
     ],
     estimatedDuration: '5-7日',
     successRate: 78,
     usage: 89
   },
   {
-    id: 'pkg_aggressive_scale',
+    id: 'SCALE_FAST_GROWTH',
     name: 'アグレッシブスケール',
     description: '好調な指標を示すSaaSの急速拡大',
     category: 'fast-track',
@@ -149,8 +149,8 @@ const mockPKGLibrary: PKGDefinition[] = [
       { id: 's4', name: 'グロースハック', type: 'test', description: 'バイラル施策実行', automated: true, required: true }
     ],
     transitions: [
-      { condition: 'mrr > 1000000', target: 'pkg_enterprise_expansion', probability: 0.5 },
-      { condition: 'growth_rate < 10%', target: 'pkg_optimization', probability: 0.5 }
+      { condition: 'mrr > 1000000', target: 'SCALE_ENTERPRISE_EXPANSION', probability: 0.5 },
+      { condition: 'growth_rate < 10%', target: 'GROWTH_OPTIMIZE_UX', probability: 0.5 }
     ],
     estimatedDuration: '14-30日',
     successRate: 82,
@@ -159,8 +159,8 @@ const mockPKGLibrary: PKGDefinition[] = [
 
   // Standard PKGs
   {
-    id: 'pkg_standard_growth',
-    name: '標準成長プレイブック',
+    id: 'GROWTH_STANDARD_CYCLE',
+    name: '標準成長PKG',
     description: '安定したSaaSの継続的成長',
     category: 'standard',
     conditions: {
@@ -173,7 +173,7 @@ const mockPKGLibrary: PKGDefinition[] = [
       { id: 's3', name: 'コンテンツマーケティング', type: 'action', description: 'SEO記事作成', automated: true, required: false }
     ],
     transitions: [
-      { condition: 'always', target: 'pkg_standard_growth', probability: 1.0 }
+      { condition: 'always', target: 'GROWTH_STANDARD_CYCLE', probability: 1.0 }
     ],
     estimatedDuration: '継続的',
     successRate: 72,
@@ -182,8 +182,8 @@ const mockPKGLibrary: PKGDefinition[] = [
 
   // Optimization PKGs
   {
-    id: 'pkg_optimization',
-    name: '最適化プレイブック',
+    id: 'GROWTH_OPTIMIZE_UX',
+    name: '最適化PKG',
     description: 'パフォーマンス改善と効率化',
     category: 'optimization',
     conditions: {
@@ -196,8 +196,8 @@ const mockPKGLibrary: PKGDefinition[] = [
       { id: 's3', name: 'コンバージョン改善', type: 'test', description: 'ファネル最適化', automated: true, required: true }
     ],
     transitions: [
-      { condition: 'improvement > 20%', target: 'pkg_standard_growth', probability: 0.8 },
-      { condition: 'improvement < 5%', target: 'pkg_pivot_consideration', probability: 0.2 }
+      { condition: 'improvement > 20%', target: 'GROWTH_STANDARD_CYCLE', probability: 0.8 },
+      { condition: 'improvement < 5%', target: 'CRISIS_PRODUCT_PIVOT', probability: 0.2 }
     ],
     estimatedDuration: '3-5日',
     successRate: 68,
@@ -206,7 +206,7 @@ const mockPKGLibrary: PKGDefinition[] = [
 
   // Sunset PKGs
   {
-    id: 'pkg_sunset_evaluation',
+    id: 'LIFECYCLE_END_CLEANUP',
     name: 'サンセット評価',
     description: 'サービス終了の判定と実行',
     category: 'sunset',
@@ -234,7 +234,7 @@ const mockExecutions: PKGExecution[] = [
   {
     id: 'exec-001',
     saasName: '猫カフェ予約',
-    pkgId: 'pkg_crisis_recovery',
+    pkgId: 'CRISIS_MRR_RECOVERY',
     status: 'running',
     progress: 35,
     startTime: '2025-01-15 14:30',
@@ -253,7 +253,7 @@ const mockExecutions: PKGExecution[] = [
   {
     id: 'exec-002',
     saasName: '家計簿アプリ',
-    pkgId: 'pkg_fast_mvp',
+    pkgId: 'LAUNCH_MVP_STANDARD',
     status: 'running',
     progress: 78,
     startTime: '2025-01-14 10:00',
@@ -310,7 +310,7 @@ export function PlaybookSystem({ onViewDataSeries }: PlaybookSystemProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">📝 プレイブック（PKG）システム</h2>
+        <h2 className="text-2xl font-bold">📝 PKGシステム</h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setSelectedTab('visualizer')}
@@ -595,7 +595,7 @@ export function PlaybookSystem({ onViewDataSeries }: PlaybookSystemProps) {
                 className="w-full h-[500px] p-4 bg-gray-900 text-green-400 font-mono text-sm rounded"
                 defaultValue={`playbook: SAAS_LIFECYCLE
 packages:
-  pkg_custom_growth:
+  GROWTH_CUSTOM_EXPANSION:
     when: "mrr > 100000 AND growth_rate > 20%"
     
     indicators:
@@ -616,9 +616,9 @@ packages:
     
     transitions:
       - condition: "nps > 50"
-        target: "pkg_enterprise_expansion"
+        target: "SCALE_ENTERPRISE_EXPANSION"
       - condition: "default"
-        target: "pkg_standard_growth"`}
+        target: "GROWTH_STANDARD_CYCLE"`}
               />
             </div>
             <div>
@@ -627,7 +627,7 @@ packages:
                 <div className="space-y-4">
                   <div>
                     <span className="text-sm text-gray-600">PKG名:</span>
-                    <div className="font-medium">pkg_custom_growth</div>
+                    <div className="font-medium">GROWTH_CUSTOM_EXPANSION</div>
                   </div>
                   <div>
                     <span className="text-sm text-gray-600">実行条件:</span>

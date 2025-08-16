@@ -87,7 +87,7 @@ const mockCommandState: CommandCenterState = {
       metrics: { mrr: 38000, dau: 115, cvr: 6.5, trend: '⬇️' },
       actionInfo: {
         type: 'crisis_management',
-        description: 'pkg_crisis_recovery実行中（35%完了）',
+        description: 'CRISIS_MRR_RECOVERY実行中（35%完了）',
         progress: 35,
         deadline: '2025-01-18'
       }
@@ -159,7 +159,7 @@ const mockCommandState: CommandCenterState = {
       metrics: { mrr: 250000, dau: 450, cvr: 15.2, trend: '⬆️' },
       actionInfo: {
         type: 'pkg_execution',
-        description: 'pkg_aggressive_scale実行中（78%完了）',
+        description: 'SCALE_FAST_GROWTH実行中（78%完了）',
         progress: 78,
         deadline: '2025-01-17'
       }
@@ -176,7 +176,7 @@ const mockCommandState: CommandCenterState = {
       metrics: { mrr: 78000, dau: 234, cvr: 11.3, trend: '↗️' },
       actionInfo: {
         type: 'pkg_execution',
-        description: 'pkg_standard_growth継続中',
+        description: 'GROWTH_STANDARD_CYCLE継続中',
         progress: 100
       }
     }

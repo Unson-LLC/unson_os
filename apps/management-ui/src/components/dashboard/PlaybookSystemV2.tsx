@@ -13,7 +13,7 @@ interface Playbook {
 // 判断ノード = インジケーターによる分岐点
 interface DecisionNode {
   id: string
-  type: 'indicator' | 'action' | 'pkg_call'
+  type: 'indicator' | 'action' | 'pkg_execution'
   label: string
   condition?: string  // 'MRR:⬇️ AND DAU:↘️'
   branches?: {
@@ -321,13 +321,13 @@ export function PlaybookSystemV2({ onViewDataSeries }: PlaybookSystemV2Props) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">📋 プレイブックシステム</h2>
+        <h2 className="text-2xl font-bold">📋 PKGシステム</h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setSelectedView('playbook')}
             className={`px-4 py-2 rounded ${selectedView === 'playbook' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
           >
-            プレイブック設計
+            PKG設計
           </button>
           <button
             onClick={() => setSelectedView('pkg')}
@@ -355,7 +355,7 @@ export function PlaybookSystemV2({ onViewDataSeries }: PlaybookSystemV2Props) {
                 <div key={node.id} className="border rounded-lg p-4">
                   <div className="flex items-center space-x-2 mb-3">
                     <span className="text-lg">
-                      {node.type === 'indicator' ? '📊' : node.type === 'pkg_call' ? '📦' : '⚡'}
+                      {node.type === 'indicator' ? '📊' : node.type === 'pkg_execution' ? '📦' : '⚡'}
                     </span>
                     <h4 className="font-medium">{node.label}</h4>
                   </div>

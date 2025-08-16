@@ -118,7 +118,7 @@ export function PKGDetailContent({ saasName }: { saasName: string }) {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-sm text-gray-600">現在のPKG</div>
-              <div className="font-medium">pkg_crisis_recovery</div>
+              <div className="font-medium">CRISIS_MRR_RECOVERY</div>
             </div>
             <div>
               <div className="text-sm text-gray-600">進捗</div>

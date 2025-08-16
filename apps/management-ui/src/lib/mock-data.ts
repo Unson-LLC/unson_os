@@ -83,33 +83,33 @@ export const mockPKGExecutionData = [
   {
     saasName: '猫カフェ予約',
     status: '🔴' as const,
-    currentPkg: 'pkg_crisis_recovery',
+    currentPkg: 'CRISIS_MRR_RECOVERY',
     progress: 35,
     trigger: 'MRR⬇️ (14:30検出)',
-    nextPkg: 'pkg_pivot'
+    nextPkg: 'CRISIS_PRODUCT_PIVOT'
   },
   {
     saasName: '家計簿アプリ',
     status: '🟢' as const,
-    currentPkg: 'pkg_fast_mvp',
+    currentPkg: 'LAUNCH_MVP_STANDARD',
     progress: 78,
     trigger: 'CVR↗️ > 15%',
-    nextPkg: 'pkg_monetize'
+    nextPkg: 'GROWTH_MONETIZE_SETUP'
   },
   {
     saasName: '英会話マッチ',
     status: '🟡' as const,
-    currentPkg: 'pkg_optimization',
+    currentPkg: 'GROWTH_OPTIMIZE_UX',
     progress: 45,
     nextPkg: '[分岐待ち]'
   },
   {
     saasName: 'AI議事録',
     status: '🟢' as const,
-    currentPkg: 'pkg_fast_scale',
+    currentPkg: 'SCALE_FAST_GROWTH',
     progress: 92,
     trigger: 'DAU⬆️ 連続3日',
-    nextPkg: 'pkg_enterprise'
+    nextPkg: 'SCALE_ENTERPRISE_SETUP'
   }
 ]
 
@@ -142,4 +142,113 @@ export const mockKPISymbols = [
   { time: '16:00', symbols: ['⬇️', '↘️', '⬇️', '↘️'] },
   { time: '17:00', symbols: ['→', '→', '↘️', '→'] },
   { time: 'NOW', symbols: ['↗️', '↗️', '→', '→'] }
+]
+
+// DAGアーキテクチャ用モックデータ
+export const mockDAGExecutionData = {
+  saasId: 'saas-123',
+  saasName: '猫カフェ予約システム',
+  dagStatus: {
+    lastExecuted: '2025-01-15T10:30:00Z',
+    nextScheduled: '2025-01-15T12:00:00Z',
+    currentCycle: '24h' as const,
+    status: 'running' as const
+  },
+  layer1: {
+    symbolCount: 148,
+    lastUpdated: '2025-01-15T10:30:00Z',
+    symbols: {
+      'B_MRR': {
+        value: 0.45,
+        normalized: true,
+        source: 'stripe.monthly_recurring_revenue',
+        timestamp: '2025-01-15T10:30:00Z'
+      },
+      'U_DAU_MAU': {
+        value: 0.62,
+        normalized: true,
+        source: 'analytics.engagement_ratio',
+        timestamp: '2025-01-15T10:30:00Z'
+      },
+      'M_TREND': {
+        value: 0.78,
+        normalized: true,
+        source: 'google_trends.search_volume',
+        timestamp: '2025-01-15T10:29:45Z'
+      }
+    },
+    errors: []
+  },
+  layer2: {
+    functionsEvaluated: 12,
+    lastEvaluated: '2025-01-15T10:30:00Z',
+    results: {
+      'L2_PMF_CHECK': {
+        result: true,
+        confidence: 0.89,
+        inputs: ['U_RETENTION_D7', 'B_GROWTH', 'U_DAU_MAU'],
+        inputValues: [0.58, 0.23, 0.62],
+        executionTime: 45
+      },
+      'L2_SCALE_READY': {
+        result: true,
+        confidence: 0.94,
+        inputs: ['B_LTV_CAC', 'B_GROWTH', 'T_UPTIME'],
+        inputValues: [0.84, 0.23, 0.998],
+        executionTime: 32
+      }
+    },
+    errors: []
+  },
+  layer3: {
+    selectedPKG: 'GROWTH_VIRAL_SCALE',
+    selectionConfidence: 0.91,
+    alternatives: [
+      {
+        pkgId: 'GROWTH_ORGANIC_SCALE',
+        confidence: 0.73,
+        reason: 'Lower viral coefficient'
+      }
+    ]
+  },
+  emergencyTriggers: {
+    active: [],
+    recent: [
+      {
+        triggerId: 'emrg-789',
+        metric: 'T_UPTIME',
+        threshold: 0.90,
+        actualValue: 0.89,
+        triggeredAt: '2025-01-14T22:30:00Z',
+        resolvedAt: '2025-01-14T22:45:00Z',
+        pkgExecuted: 'CRISIS_UPTIME_RECOVERY'
+      }
+    ]
+  }
+}
+
+export const mockPKGConflicts = [
+  {
+    saasId: 'saas-456',
+    saasName: '英会話マッチングアプリ',
+    conflictingPKGs: [
+      {
+        pkgId: 'CRISIS_MRR_RECOVERY',
+        priority: 90,
+        reason: 'MRR急減により緊急実行が必要',
+        requiredResources: ['CPU: High', 'DB: Write Lock']
+      },
+      {
+        pkgId: 'GROWTH_OPTIMIZE_UX',
+        priority: 60,
+        reason: 'UX改善によるユーザー体験向上',
+        requiredResources: ['CPU: Medium', 'Cache: Refresh']
+      }
+    ],
+    recommendedResolution: {
+      execute: 'CRISIS_MRR_RECOVERY',
+      defer: ['GROWTH_OPTIMIZE_UX'],
+      cancel: []
+    }
+  }
 ]
