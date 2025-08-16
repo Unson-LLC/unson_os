@@ -335,24 +335,20 @@ describe('BasicDAGEngine', () => {
       );
     });
 
-    test('循環参照検出', () => {
-      // 循環参照を作成（実際のID体系では発生しないが、テスト用）
+    test('存在しない依存ノードでエラー', async () => {
+      // 存在しない依存ノードを参照するテスト
       engine.addNode({
-        id: 'M^1-001',
-        dependencies: ['M^1-002'], // 先に宣言していない依存
-        layer: 1,
+        id: 'D^100-001',
+        dependencies: ['M^1-999'], // 存在しないノード
+        layer: 100,
         execute: async () => ({})
       });
-
-      engine.addNode({
-        id: 'M^1-002',
-        dependencies: ['M^1-001'], // 循環参照
-        layer: 1,
-        execute: async () => ({})
-      });
-
-      // ただし、階層参照ルールにより上記は実際には追加できない
-      // より現実的な循環参照のテストが必要
+      
+      // 実行時にエラーが発生し、失敗結果が返されることを確認
+      const result = await engine.execute();
+      expect(result.success).toBe(false);
+      expect(result.errors).toHaveLength(1);
+      expect(result.errors[0].error.message).toContain('依存ノードが見つかりません');
     });
   });
 });

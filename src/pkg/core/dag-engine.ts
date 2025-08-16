@@ -87,16 +87,15 @@ export class BasicDAGEngine {
    * @param node 追加するノード
    */
   addNode(node: DAGNode): void {
-    // 階層番号を自動抽出
-    node.layer = this.extractLayer(node.id);
+    // 階層番号を自動抽出して上書き
+    const extractedLayer = this.extractLayer(node.id);
+    node.layer = extractedLayer;
     
     // 階層参照ルールの検証
     this.validateDependencies(node);
     
     // ノード登録
     this.nodes.set(node.id, node);
-    
-    console.log(`[DAG] ノード追加: ${node.id} (階層${node.layer})`);
   }
 
   /**
@@ -112,15 +111,11 @@ export class BasicDAGEngine {
       // トポロジカルソートで実行順序決定
       const sortedNodes = this.topologicalSort();
       
-      console.log(`[DAG] 実行開始: ${sortedNodes.length}ノード`);
-      
       // 順次実行
       for (const nodeId of sortedNodes) {
         try {
           const result = await this.executeNode(nodeId, results);
           results.set(nodeId, result);
-          
-          console.log(`[DAG] ノード完了: ${nodeId}`);
         } catch (error) {
           const nodeError: ExecutionError = {
             nodeId,
@@ -129,8 +124,6 @@ export class BasicDAGEngine {
             inputs: this.gatherInputs(nodeId, results)
           };
           errors.push(nodeError);
-          
-          console.error(`[DAG] ノードエラー: ${nodeId}`, error);
         }
       }
       
@@ -149,13 +142,9 @@ export class BasicDAGEngine {
       
       this.executionHistory.push(executionResult);
       
-      console.log(`[DAG] 実行完了: ${executionTime}ms (成功: ${executionResult.success})`);
-      
       return executionResult;
       
     } catch (error) {
-      console.error('[DAG] 実行失敗:', error);
-      
       return {
         success: false,
         results,
@@ -240,19 +229,25 @@ export class BasicDAGEngine {
     const inDegree = new Map<string, number>();
     const adjList = new Map<string, string[]>();
     
-    // グラフ構築
-    for (const [nodeId, node] of this.nodes) {
+    // 登録済みノードのみでグラフ構築
+    const nodeEntries = Array.from(this.nodes.entries());
+    
+    for (const [nodeId, node] of nodeEntries) {
       inDegree.set(nodeId, 0);
       adjList.set(nodeId, []);
     }
     
-    for (const [nodeId, node] of this.nodes) {
+    // 依存関係の構築（存在するノード間のみ）
+    for (const [nodeId, node] of nodeEntries) {
       node.dependencies.forEach(depId => {
-        if (!adjList.has(depId)) {
-          adjList.set(depId, []);
+        // 依存ノードが存在する場合のみ処理
+        if (this.nodes.has(depId)) {
+          adjList.get(depId)!.push(nodeId);
+          const currentInDegree = inDegree.get(nodeId) || 0;
+          inDegree.set(nodeId, currentInDegree + 1);
+        } else {
+          throw new Error(`依存ノードが見つかりません: ${depId} (required by ${nodeId})`);
         }
-        adjList.get(depId)!.push(nodeId);
-        inDegree.set(nodeId, (inDegree.get(nodeId) || 0) + 1);
       });
     }
     
@@ -261,7 +256,9 @@ export class BasicDAGEngine {
     const result: string[] = [];
     
     // 入次数0のノードをキューに追加
-    for (const [nodeId, degree] of inDegree) {
+    const inDegreeEntries = Array.from(inDegree.entries());
+    
+    for (const [nodeId, degree] of inDegreeEntries) {
       if (degree === 0) {
         queue.push(nodeId);
       }
@@ -336,7 +333,9 @@ export class BasicDAGEngine {
   getStatistics() {
     const layerStats = new Map<number, number>();
     
-    for (const node of this.nodes.values()) {
+    const nodeValues = Array.from(this.nodes.values());
+    
+    for (const node of nodeValues) {
       const count = layerStats.get(node.layer) || 0;
       layerStats.set(node.layer, count + 1);
     }

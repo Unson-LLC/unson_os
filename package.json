@@ -30,6 +30,9 @@
     "test:hooks": "jest --testPathPattern=tests/unit/hooks",
     "test:integration": "jest --testPathPattern=tests/integration",
     "test:api": "jest --testPathPattern=api",
+    "test:pkg": "jest --config=jest-pkg.config.js",
+    "test:pkg:watch": "jest --config=jest-pkg.config.js --watch",
+    "test:pkg:coverage": "jest --config=jest-pkg.config.js --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:all": "npm run test:ci && npm run test:e2e",
@@ -85,6 +88,7 @@
     "prettier-plugin-tailwindcss": "^0.5.9",
     "secretlint": "^10.2.1",
     "tailwindcss": "^3.3.0",
+    "ts-jest": "^29.4.1",
     "typescript": "^5",
     "whatwg-fetch": "^3.6.20"
   },
