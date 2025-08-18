@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "title": "FitLife Coach - パーソナルフィットネスコーチング",
+    "description": "あなただけの専属トレーナーと一緒に、理想の体を手に入れましょう。オンラインで完結する本格的パーソナルトレーニング",
+    "keywords": ["パーソナルトレーニング", "オンラインフィットネス", "ダイエット", "筋トレ", "健康"]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#EF4444",
+      "secondary": "#F97316",
+      "accent": "#14B8A6",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Montserrat', sans-serif",
+      "body": "'Open Sans', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #EF4444 0%, #DC2626 100%)",
+      "secondary": "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+      "accent": "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "90日で理想の体を手に入れる",
+      "subtitle": "専属トレーナーがあなたの目標達成を完全サポート。自宅で始められる本格的パーソナルトレーニング",
+      "cta": "無料カウンセリング予約",
+      "secondaryCta": "プログラム詳細",
+      "backgroundImage": "/images/fitness-hero.jpg",
+      "backgroundGradient": false
+    },
+    "problem": {
+      "title": "こんなお悩みありませんか？",
+      "subtitle": "",
+      "description": "一人でのトレーニングには限界があります。正しい方法で効率的に結果を出しましょう",
+      "problems": [
+        {
+          "title": "何度もリバウンドを繰り返している",
+          "description": "自己流のダイエットで一時的に痩せても、すぐに元に戻ってしまう"
+        },
+        {
+          "title": "ジムに通う時間がない",
+          "description": "仕事や家事で忙しく、ジムに通う時間を確保できない"
+        },
+        {
+          "title": "正しいトレーニング方法がわからない",
+          "description": "YouTubeを見ても、自分に合った方法なのか判断できない"
+        }
+      ]
+    },
+    "solution": {
+      "title": "FitLife Coachが選ばれる理由",
+      "subtitle": "",
+      "description": "科学的根拠に基づいたメソッドと、経験豊富なトレーナーがあなたの成功を約束します",
+      "solutions": [
+        {
+          "title": "完全オーダーメイド",
+          "description": "あなたの体質、目標、ライフスタイルに合わせた専用プログラム",
+          "icon": "User"
+        },
+        {
+          "title": "24時間サポート",
+          "description": "LINEでいつでも質問可能。食事や運動の疑問をすぐに解決",
+          "icon": "MessageCircle"
+        },
+        {
+          "title": "科学的アプローチ",
+          "description": "最新のスポーツ科学と栄養学に基づいた効果的なメソッド",
+          "icon": "Activity"
+        }
+      ]
+    },
+    "service": {
+      "title": "プログラム内容",
+      "subtitle": "",
+      "services": [
+        {
+          "title": "パーソナルトレーニング",
+          "description": "週2回のオンラインセッションで、正しいフォームと効果的な運動を指導",
+          "features": [
+            "1対1のライブセッション",
+            "動画でのフォームチェック",
+            "自宅でできる効果的なメニュー"
+          ],
+          "icon": "Dumbbell"
+        },
+        {
+          "title": "栄養管理サポート",
+          "description": "管理栄養士監修の食事プランで、無理なく健康的に目標達成",
+          "features": [
+            "個別の食事プラン作成",
+            "毎日の食事アドバイス",
+            "レシピ提供"
+          ],
+          "icon": "Apple"
+        },
+        {
+          "title": "モチベーション管理",
+          "description": "専属コーチが毎日のモチベーションを維持し、目標達成まで伴走",
+          "features": [
+            "毎日のチェックイン",
+            "週次の進捗レビュー",
+            "メンタルサポート"
+          ],
+          "icon": "Heart"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "料金プラン",
+      "subtitle": "あなたの目標に合わせて選べる3つのプラン",
+      "plans": [
+        {
+          "name": "ライト",
+          "price": "¥19,800",
+          "period": "月",
+          "description": "まずは始めてみたい方に",
+          "features": [
+            "月4回のオンラインセッション",
+            "基本食事プラン",
+            "LINEサポート",
+            "運動動画ライブラリ"
+          ],
+          "cta": "ライトプランで始める",
+          "popular": false
+        },
+        {
+          "name": "スタンダード",
+          "price": "¥39,800",
+          "period": "月",
+          "description": "本気で変わりたい方に",
+          "features": [
+            "月8回のオンラインセッション",
+            "完全カスタム食事プラン",
+            "24時間LINEサポート",
+            "栄養士による月次カウンセリング",
+            "プログレスレポート"
+          ],
+          "cta": "スタンダードプランで始める",
+          "popular": true
+        },
+        {
+          "name": "プレミアム",
+          "price": "¥69,800",
+          "period": "月",
+          "description": "最速で結果を出したい方に",
+          "features": [
+            "無制限オンラインセッション",
+            "VIP食事管理",
+            "専属トレーナー2名体制",
+            "サプリメント提供",
+            "月2回の対面セッション"
+          ],
+          "cta": "プレミアムプランで始める",
+          "popular": false
+        }
+      ]
+    },
+    "form": {
+      "title": "無料カウンセリング予約",
+      "subtitle": "まずは30分の無料カウンセリングで、あなたの目標をお聞かせください",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@email.com",
+          "required": true
+        },
+        {
+          "type": "tel",
+          "name": "phone",
+          "label": "電話番号",
+          "placeholder": "090-1234-5678",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "goal",
+          "label": "目標",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["ダイエット", "筋力アップ", "体力向上", "健康維持"]
+        },
+        {
+          "type": "textarea",
+          "name": "message",
+          "label": "その他ご要望",
+          "placeholder": "具体的な目標や現在の状況をお聞かせください",
+          "required": false
+        }
+      ],
+      "submitText": "無料カウンセリングを予約",
+      "successMessage": "予約を受け付けました！24時間以内にご連絡いたします。",
+      "privacyText": "個人情報は厳重に管理し、サービス提供以外の目的では使用いたしません。"
+    },
+    "finalCta": {
+      "title": "今なら入会金無料！",
+      "subtitle": "この機会を逃さず、理想の体を手に入れましょう",
+      "cta": "今すぐ無料カウンセリング",
+      "urgencyText": "キャンペーンは今月末まで",
+      "benefitsList": [
+        "90日間の返金保証",
+        "入会金30,000円が無料",
+        "初月50%OFF",
+        "トレーニンググッズプレゼント"
+      ]
+    },
+    "footer": {
+      "companyName": "FitLife Coach",
+      "description": "科学的アプローチで、あなたの理想の体づくりをサポート",
+      "sections": [
+        {
+          "title": "プログラム",
+          "links": [
+            { "text": "トレーニング内容", "url": "/training" },
+            { "text": "栄養管理", "url": "/nutrition" },
+            { "text": "成功事例", "url": "/success-stories" },
+            { "text": "トレーナー紹介", "url": "/trainers" }
+          ]
+        },
+        {
+          "title": "サポート",
+          "links": [
+            { "text": "よくある質問", "url": "/faq" },
+            { "text": "お問い合わせ", "url": "/contact" },
+            { "text": "会員ログイン", "url": "/login" },
+            { "text": "ブログ", "url": "/blog" }
+          ]
+        }
+      ],
+      "copyright": "© 2025 FitLife Coach. All rights reserved.",
+      "socialLinks": [
+        { "platform": "instagram", "url": "https://instagram.com/fitlifecoach" },
+        { "platform": "youtube", "url": "https://youtube.com/fitlifecoach" },
+        { "platform": "facebook", "url": "https://facebook.com/fitlifecoach" }
+      ]
+    }
+  },
+  "assets": {
+    "logo": "/images/logo.png",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/fitness-hero.jpg"
+    }
+  }
+}

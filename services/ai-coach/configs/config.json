@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "title": "AI自分時間コーチ - 20年ぶりの自分時間を、最高の人生設計に変える",
+    "description": "子育てが一段落した40-55歳女性の皆さま。お疲れ様でした、お母さん。今度はあなたの番です。AIがあなたらしい時間の使い方を一緒に見つけます。",
+    "keywords": ["自分時間", "子育て卒業", "40代女性", "人生設計", "趣味発見", "コミュニティ", "AIコーチング"]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#E879F9",
+      "secondary": "#A78BFA", 
+      "accent": "#FB7185",
+      "background": "#FEFEFE",
+      "text": "#374151",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'M PLUS Rounded 1c', sans-serif",
+      "body": "'Noto Sans JP', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #E879F9 0%, #C084FC 50%, #A78BFA 100%)",
+      "secondary": "linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%)",
+      "accent": "linear-gradient(135deg, #FBCFE8 0%, #F9A8D4 50%, #EC4899 100%)"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "お疲れ様でした、お母さん。\n今度はあなたの番です。",
+      "subtitle": "20年ぶりの自分時間を、最高の人生設計に変えませんか？AIがあなたの隠れた興味や才能を発見し、充実した毎日をサポートします。",
+      "cta": "無料で自分時間診断を始める",
+      "secondaryCta": "サービス詳細を見る",
+      "backgroundImage": "/images/hero-mother-freedom.jpg",
+      "backgroundGradient": true
+    },
+    "problem": {
+      "title": "こんなお悩み、ありませんか？",
+      "subtitle": "子育てが一段落した多くのお母さんが感じている気持ちです",
+      "description": "長年家族のために尽くしてきたあなた。ふと気がつくと「自分が何をしたいのかわからない」という気持ちになっていませんか？",
+      "problems": [
+        {
+          "title": "自分の時間ができたけど何をしていいかわからない",
+          "description": "子供が手を離れて時間ができたものの、趣味もなく、何から始めればいいのか迷ってしまう。",
+          "image": "/images/problem-confusion.svg"
+        },
+        {
+          "title": "昔の友達とは疎遠になり、新しい友達もいない",
+          "description": "子育て中心の生活で友人関係が希薄になり、今更新しい人間関係を築けるか不安。",
+          "image": "/images/problem-loneliness.svg"
+        },
+        {
+          "title": "家事以外のスキルがない気がして自信がない",
+          "description": "専業主婦期間が長く、社会復帰や新しいことへの挑戦に対して自信を失っている。",
+          "image": "/images/problem-confidence.svg"
+        },
+        {
+          "title": "子供のことばかり考えて自分を見失っている",
+          "description": "「母親である自分」以外のアイデンティティがわからず、空虚感を感じている。",
+          "image": "/images/problem-identity.svg"
+        },
+        {
+          "title": "新しいことを始めても続かない",
+          "description": "習い事や趣味を始めても、一人では継続が難しく、結局やめてしまう。",
+          "image": "/images/problem-continuation.svg"
+        },
+        {
+          "title": "自分の時間を取ることに罪悪感を感じる",
+          "description": "長年家族優先で生きてきたため、自分のための時間を取ることに後ろめたさを感じる。",
+          "image": "/images/problem-guilt.svg"
+        }
+      ]
+    },
+    "solution": {
+      "title": "AIがあなたの「新しい自分」を一緒に見つけます",
+      "subtitle": "段階的なサポートで、無理なく充実した自分時間を手に入れましょう",
+      "description": "20分の対話で、あなたの隠れた興味や才能をAIが発見。一人ひとりに合わせた体験やコミュニティをご提案し、新しい人生の扉を開きます。",
+      "solutions": [
+        {
+          "title": "AI自己分析で隠れた興味・才能を発見",
+          "description": "子育て前の記憶から最近心が動いた瞬間まで、AIとの対話であなたの本当の興味を掘り起こします。",
+          "icon": "Search"
+        },
+        {
+          "title": "段階的な体験提案で無理なくステップアップ",
+          "description": "見学→体験→短期参加→継続の自然な流れで、プレッシャーなく新しい活動に参加できます。",
+          "icon": "TrendingUp"
+        },
+        {
+          "title": "同じ想いを持つ仲間とのマッチング",
+          "description": "似た状況や価値観を持つ女性同士をつなぎ、一緒に成長できるコミュニティを提供します。",
+          "icon": "Users"
+        }
+      ]
+    },
+    "service": {
+      "title": "あなたの成長を4つのフェーズでサポート",
+      "subtitle": "最初の一歩から社会貢献まで、段階的にあなたの可能性を広げていきます",
+      "services": [
+        {
+          "title": "Phase 1: 自分を見つめ直す（1週間）",
+          "description": "AI自己分析チャットで、あなたの興味関心や価値観を再発見。小さな挑戦から始めて、自分時間への罪悪感を取り除きます。",
+          "features": [
+            "20分のAI自己分析チャット",
+            "パーソナル時間プラン提示",
+            "毎日の振り返りサポート"
+          ],
+          "icon": "Compass"
+        },
+        {
+          "title": "Phase 2: 新しい体験を探索（2ヶ月）",
+          "description": "AIが地域や予算を考慮して最適な体験を提案。写真付き日記で感情を記録し、本当に好きなことを発見していきます。",
+          "features": [
+            "週次チャレンジ提案",
+            "体験日記・感情分析",
+            "興味の可視化レーダーチャート"
+          ],
+          "icon": "Telescope"
+        },
+        {
+          "title": "Phase 3: 仲間とつながる（3-6ヶ月）",
+          "description": "スキル交換や一緒に挑戦する仲間とマッチング。ワークショップ参加から主催まで、コミュニティで価値を発見します。",
+          "features": [
+            "多様なマッチング機能",
+            "ワークショップ参加・主催",
+            "隠れたスキル診断"
+          ],
+          "icon": "Heart"
+        },
+        {
+          "title": "Phase 4: 社会に貢献する（6ヶ月〜）",
+          "description": "身につけたスキルで有料ワークショップやサークル運営を開始。月2-3万円の副収入を得ながら、やりがいのある活動を継続。",
+          "features": [
+            "有料ワークショップ主催",
+            "サークル運営・月謝制",
+            "売上・税務管理サポート"
+          ],
+          "icon": "Award"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "シンプルな2つのプラン",
+      "subtitle": "まずは無料から始めて、スキルが身についたら収益化へ",
+      "plans": [
+        {
+          "name": "フリープラン",
+          "price": "¥0",
+          "period": "月",
+          "description": "自分時間の発見から基本的な体験まで、すべて無料でお試しいただけます。",
+          "features": [
+            "AI基本コーチング（週3回まで）",
+            "ワークショップ閲覧・参加",
+            "無料ワークショップ無制限主催",
+            "基本的なマッチング機能",
+            "コミュニティ参加（メンバーとして）"
+          ],
+          "cta": "無料で始める",
+          "popular": false
+        },
+        {
+          "name": "プレミアムプラン",
+          "price": "¥980",
+          "period": "月",
+          "description": "本格的な副業化とコミュニティ運営で、月2-3万円の副収入を目指せます。",
+          "features": [
+            "AI無制限コーチング・分析",
+            "有料ワークショップ主催機能",
+            "サークル作成・運営機能",
+            "高度なマッチング（相性分析等）",
+            "詳細な成長レポート・可視化",
+            "売上管理・税務サポート機能"
+          ],
+          "cta": "プレミアムを試す",
+          "popular": true
+        }
+      ]
+    },
+    "form": {
+      "title": "無料AI自己分析を今すぐ体験",
+      "subtitle": "20分の対話で、あなたの隠れた可能性を発見しましょう",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "田中 花子",
+          "required": true
+        },
+        {
+          "type": "email", 
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "hanako@example.com",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "age",
+          "label": "年齢",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["35-39歳", "40-44歳", "45-49歳", "50-54歳", "55歳以上"]
+        },
+        {
+          "type": "select",
+          "name": "children_stage",
+          "label": "お子様の状況",
+          "placeholder": "選択してください", 
+          "required": true,
+          "options": ["高校生", "大学生・専門学校生", "社会人（同居）", "社会人（独立済み）", "その他"]
+        },
+        {
+          "type": "textarea",
+          "name": "concerns",
+          "label": "現在のお悩みや気になること",
+          "placeholder": "自分の時間ができたけど何をしていいかわからない、新しい友達が欲しい、など",
+          "required": false
+        }
+      ],
+      "submitText": "無料AI診断を始める",
+      "successMessage": "ありがとうございます！すぐにAI自己分析を開始できるリンクをメールでお送りします。",
+      "privacyText": "※個人情報は厳重に管理し、サービス向上の目的のみに使用いたします。"
+    },
+    "finalCta": {
+      "title": "新しいあなたに出会う時間です",
+      "subtitle": "子育てという大仕事を終えたあなただからこそ、素晴らしい可能性が待っています",
+      "cta": "今すぐ無料診断を受ける",
+      "urgencyText": "💝 今なら初回登録で、パーソナライズされた「自分時間活用ガイド」をプレゼント！",
+      "benefitsList": [
+        "20分のAI対話で隠れた興味・才能を発見",
+        "あなた専用の時間プランを自動作成",
+        "同じ想いを持つ仲間との出会い",
+        "段階的成長で無理なくスキルアップ",
+        "最終的には月2-3万円の副収入も可能"
+      ]
+    },
+    "footer": {
+      "companyName": "AI自分時間コーチ",
+      "description": "女性の新しい人生設計をAIでサポートするサービスです",
+      "sections": [
+        {
+          "title": "サービス",
+          "links": [
+            { "text": "機能詳細", "url": "/features" },
+            { "text": "料金プラン", "url": "/pricing" },
+            { "text": "成功事例", "url": "/stories" },
+            { "text": "よくある質問", "url": "/faq" }
+          ]
+        },
+        {
+          "title": "サポート",
+          "links": [
+            { "text": "使い方ガイド", "url": "/guide" },
+            { "text": "お問い合わせ", "url": "/contact" },
+            { "text": "プライバシーポリシー", "url": "/privacy" },
+            { "text": "利用規約", "url": "/terms" }
+          ]
+        }
+      ],
+      "copyright": "© 2025 AI自分時間コーチ. All rights reserved.",
+      "socialLinks": [
+        { "platform": "twitter", "url": "https://twitter.com/ai_jibun_coach" },
+        { "platform": "facebook", "url": "https://facebook.com/ai.jibun.coach" },
+        { "platform": "instagram", "url": "https://instagram.com/ai_jibun_coach" }
+      ]
+    }
+  },
+  "assets": {
+    "logo": "/images/logo-ai-coach.png",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/hero-mother-freedom.jpg",
+      "problem1": "/images/problem-confusion.svg",
+      "problem2": "/images/problem-loneliness.svg",
+      "problem3": "/images/problem-confidence.svg",
+      "problem4": "/images/problem-identity.svg",
+      "problem5": "/images/problem-continuation.svg",
+      "problem6": "/images/problem-guilt.svg"
+    }
+  }
+}

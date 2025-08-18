@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "Authentic Life AI - AI価値観診断で本当の自分を発見",
+    "description": "AIが深層心理を分析し、あなたの本当の価値観を明らかにします。自分らしい人生の選択をサポートする革新的なサービス",
+    "keywords": ["AI診断", "価値観", "自己分析", "ライフコンサルティング", "パーソナル成長"]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#8B5CF6",
+      "secondary": "#3B82F6",
+      "accent": "#EC4899",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Noto Sans JP', sans-serif",
+      "body": "'Noto Sans JP', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "secondary": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "accent": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "AIが導く、本当の自分との出会い",
+      "subtitle": "最先端のAI技術があなたの深層心理を分析し、隠れた価値観を明らかにします。自分らしい人生の選択をサポートする革新的なサービス",
+      "cta": "無料で価値観診断を始める",
+      "secondaryCta": "サービス詳細を見る",
+      "backgroundGradient": true
+    },
+    "problem": {
+      "title": "こんなお悩みありませんか？",
+      "subtitle": "多くの人が抱える人生の迷いや不安",
+      "description": "現代社会では、多くの選択肢や情報に囲まれ、本当に自分が望む生き方を見失いがちです",
+      "problems": [
+        {
+          "title": "自分の本当の価値観がわからない",
+          "description": "周りの期待や社会の常識に流され、自分が本当に大切にしたいことが見えなくなっている"
+        },
+        {
+          "title": "人生の重要な決断に迷う",
+          "description": "転職、結婚、移住など、人生の岐路に立った時、どの選択が自分にとって最善なのか判断できない"
+        },
+        {
+          "title": "他人と自分を比較してしまう",
+          "description": "SNSで他人の成功を見て焦りを感じ、自分の人生に満足できない日々を過ごしている"
+        }
+      ]
+    },
+    "solution": {
+      "title": "AI技術で価値観を可視化",
+      "subtitle": "最先端技術があなたの本当の自分を発見",
+      "description": "Authentic Life AIは、独自のAIアルゴリズムと心理学の知見を組み合わせ、あなたの深層心理から本当の価値観を導き出します",
+      "solutions": [
+        {
+          "title": "深層心理分析",
+          "description": "100以上の質問から、あなたの無意識の価値観パターンを分析",
+          "icon": "Brain"
+        },
+        {
+          "title": "価値観マッピング",
+          "description": "複雑な価値観を視覚的にマッピングし、理解しやすく表現",
+          "icon": "Map"
+        },
+        {
+          "title": "パーソナライズド提案",
+          "description": "あなたの価値観に基づいた具体的な行動提案を提供",
+          "icon": "Target"
+        }
+      ]
+    },
+    "service": {
+      "title": "サービス内容",
+      "subtitle": "あなたの人生を変える3つのステップ",
+      "services": [
+        {
+          "title": "STEP1: AI価値観診断",
+          "description": "独自開発のAIが100以上の質問を通じて、あなたの深層心理を分析",
+          "features": [
+            "所要時間約15分の簡単診断",
+            "科学的根拠に基づいた質問設計",
+            "リアルタイムAI分析"
+          ],
+          "icon": "ClipboardCheck"
+        },
+        {
+          "title": "STEP2: 詳細レポート",
+          "description": "あなたの価値観を多角的に分析した詳細なレポートを提供",
+          "features": [
+            "8つの価値観軸での分析結果",
+            "強み・弱みの可視化",
+            "行動特性の解説"
+          ],
+          "icon": "FileText"
+        },
+        {
+          "title": "STEP3: ライフコンサルティング",
+          "description": "AIと専門コンサルタントによる継続的なサポート",
+          "features": [
+            "月1回のオンラインセッション",
+            "24時間AIチャットサポート",
+            "目標達成プログラム"
+          ],
+          "icon": "Users"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "料金プラン",
+      "subtitle": "あなたのニーズに合わせた最適なプランを",
+      "plans": [
+        {
+          "name": "ベーシック",
+          "price": "無料",
+          "description": "まずは気軽にお試し",
+          "features": [
+            "AI価値観診断",
+            "基本レポート",
+            "メールサポート"
+          ],
+          "cta": "無料で始める",
+          "popular": false
+        },
+        {
+          "name": "プレミアム",
+          "price": "¥9,800",
+          "period": "月",
+          "description": "本格的な自己分析を",
+          "features": [
+            "全機能利用可能",
+            "詳細レポート",
+            "月2回のコンサルティング",
+            "優先サポート"
+          ],
+          "cta": "プレミアムを選ぶ",
+          "popular": true
+        },
+        {
+          "name": "エンタープライズ",
+          "price": "¥29,800",
+          "period": "月",
+          "description": "徹底的なサポートを",
+          "features": [
+            "全機能利用可能",
+            "無制限コンサルティング",
+            "専属コンサルタント",
+            "カスタマイズプログラム"
+          ],
+          "cta": "お問い合わせ",
+          "popular": false
+        }
+      ]
+    },
+    "form": {
+      "title": "無料診断を今すぐ始める",
+      "subtitle": "メールアドレスを入力するだけで、すぐに診断を開始できます",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@email.com",
+          "required": true
+        },
+        {
+          "type": "tel",
+          "name": "phone",
+          "label": "電話番号",
+          "placeholder": "090-1234-5678",
+          "required": false
+        },
+        {
+          "type": "select",
+          "name": "interest",
+          "label": "興味のある分野",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["キャリア", "人間関係", "ライフスタイル", "その他"]
+        }
+      ],
+      "submitText": "無料診断を開始",
+      "successMessage": "登録ありがとうございます！メールをご確認ください。",
+      "privacyText": "ご入力いただいた情報は、プライバシーポリシーに基づき適切に管理されます。"
+    },
+    "finalCta": {
+      "title": "今すぐ始めて、本当の自分を発見しよう",
+      "subtitle": "あなたの人生を変える第一歩を踏み出しませんか？",
+      "cta": "無料診断を開始する",
+      "urgencyText": "期間限定！今なら詳細レポートも無料",
+      "benefitsList": [
+        "15分で完了する簡単診断",
+        "科学的根拠に基づく分析",
+        "即座に結果を確認可能",
+        "完全無料・クレジットカード不要"
+      ]
+    },
+    "footer": {
+      "companyName": "Authentic Life AI",
+      "description": "AI技術で一人ひとりの本当の価値観を発見し、自分らしい人生をサポートします",
+      "sections": [
+        {
+          "title": "サービス",
+          "links": [
+            { "text": "価値観診断", "url": "#diagnosis" },
+            { "text": "料金プラン", "url": "#pricing" },
+            { "text": "よくある質問", "url": "#faq" }
+          ]
+        },
+        {
+          "title": "会社情報",
+          "links": [
+            { "text": "会社概要", "url": "/about", "external": false },
+            { "text": "プライバシーポリシー", "url": "/privacy", "external": false },
+            { "text": "利用規約", "url": "/terms", "external": false },
+            { "text": "お問い合わせ", "url": "/contact", "external": false }
+          ]
+        }
+      ],
+      "copyright": "© 2025 Authentic Life AI. All rights reserved.",
+      "socialLinks": [
+        { "platform": "twitter", "url": "https://twitter.com/authenticlifeai" },
+        { "platform": "facebook", "url": "https://facebook.com/authenticlifeai" },
+        { "platform": "instagram", "url": "https://instagram.com/authenticlifeai" }
+      ]
+    }
+  },
+  "assets": {
+    "logo": "/images/logo.png",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/hero-bg.jpg",
+      "problem1": "/images/problem-1.jpg",
+      "problem2": "/images/problem-2.jpg",
+      "problem3": "/images/problem-3.jpg"
+    }
+  }
+}

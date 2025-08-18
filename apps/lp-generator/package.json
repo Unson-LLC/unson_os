@@ -1,0 +1,40 @@
+{
+  "name": "@unson/lp-generator",
+  "version": "1.0.0",
+  "description": "Landing page generator for Unson OS microSaaS products",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3002",
+    "build": "next build",
+    "start": "next start --port 3002",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "generate:service": "node scripts/generate-service.js",
+    "interactive": "node scripts/interactive-generator.js",
+    "batch-generate": "node scripts/batch-generator.js"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "@unson/shared": "*",
+    "openai": "^4.0.0",
+    "inquirer": "^9.0.0",
+    "fs-extra": "^11.0.0",
+    "handlebars": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/inquirer": "^9.0.0",
+    "@types/fs-extra": "^11.0.0",
+    "typescript": "^5",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8",
+    "autoprefixer": "^10.0.1"
+  }
+}

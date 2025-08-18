@@ -1,0 +1,286 @@
+{
+  "meta": {
+    "title": "MyWa - あなた専属のAIニュースコンシェルジュ | AI・ロボット分野特化",
+    "description": "MyWaは、AI・ロボット分野に特化したパーソナライズドニュース配信サービスです。Why-Chip機能で推薦理由を透明化し、あなただけの学習体験を提供します。",
+    "keywords": ["AI", "ニュース", "パーソナライズ", "ロボット", "機械学習", "テクノロジー", "キュレーション", "透明性"]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#8B5CF6", 
+      "accent": "#EC4899",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "secondary": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "accent": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "\"へぇ\"で終わらせない。\n今日から使えるAIニュースだけを。",
+      "subtitle": "あなた専属のコンシェルジュが、Why-Chip機能を通じて推薦理由を透明化。AI・ロボット分野の情報を1分でキャッチアップし、次の一手が見つかる。",
+      "cta": "無料で始める",
+      "secondaryCta": "デモを見る",
+      "backgroundImage": "/images/hero-tech-bg.svg",
+      "backgroundGradient": true
+    },
+    "problem": {
+      "title": "AI情報の収集、こんなお悩みありませんか？",
+      "subtitle": "情報過多の時代、本当に必要な情報だけを効率的に得たい",
+      "description": "AI・ロボット分野は日々急速に進化しており、重要な情報を見逃すリスクが高まっています。",
+      "problems": [
+        {
+          "title": "情報が多すぎて選別できない",
+          "description": "毎日大量のAI関連ニュースが配信されるが、自分に関係のない情報ばかりで時間を無駄にしている",
+          "image": "/images/problem-overload.svg"
+        },
+        {
+          "title": "なぜその記事が重要なのかわからない",
+          "description": "推薦されたニュースの選択理由が不明で、信頼して読み進めることができない",
+          "image": "/images/problem-unclear.svg"
+        },
+        {
+          "title": "パーソナライズが不十分",
+          "description": "一般的なニュースアプリでは、自分の専門分野や興味レベルに合った記事が見つからない",
+          "image": "/images/problem-generic.svg"
+        },
+        {
+          "title": "学習効果が実感できない",
+          "description": "記事を読んでも知識として定着せず、実務に活かせる情報が得られない",
+          "image": "/images/problem-learning.svg"
+        },
+        {
+          "title": "更新頻度がバラバラ",
+          "description": "複数のニュースソースを使っているが、更新タイミングが異なり情報収集が非効率",
+          "image": "/images/problem-timing.svg"
+        },
+        {
+          "title": "AIの進歩についていけない",
+          "description": "技術の進歩が速すぎて、基礎知識が不足していることを実感している",
+          "image": "/images/problem-speed.svg"
+        }
+      ]
+    },
+    "solution": {
+      "title": "MyWaが解決する3つのコア価値",
+      "subtitle": "透明性・パーソナライズ・効率性で、AI学習体験を革新",
+      "description": "MyWaは独自のWhy-Chipシステムとハイブリッドアーキテクチャで、あなただけの学習体験を提供します。",
+      "solutions": [
+        {
+          "title": "透明性 - Why-Chip機能",
+          "description": "なぜその記事があなたに推薦されたかを35文字以内で明確に説明。推薦理由が見えるから安心して学習できます。",
+          "icon": "Eye"
+        },
+        {
+          "title": "完全パーソナライズ",
+          "description": "あなたのプロファイル・行動履歴・学習目標に基づいてAIがカスタムプロンプトを生成。本当に必要な情報だけをお届けします。",
+          "icon": "Target"
+        },
+        {
+          "title": "効率的学習サイクル",
+          "description": "1分でキャッチアップできる最適な情報量と、フィードバックによる継続的な精度向上で学習効果を最大化します。",
+          "icon": "Zap"
+        }
+      ]
+    },
+    "service": {
+      "title": "MyWaの主要サービス",
+      "subtitle": "AI・ロボット分野に特化した包括的な学習支援",
+      "services": [
+        {
+          "title": "パーソナライズドニュース配信",
+          "description": "AIが生成するカスタムプロンプトで、あなたに最適化された記事を毎日配信。Why-Chipで推薦理由も透明化します。",
+          "features": [
+            "Perplexity API による高品質記事検索",
+            "個人プロファイル × 行動履歴分析",
+            "Why-Chip による推薦理由の35文字説明",
+            "メール配信での定期お届け"
+          ],
+          "icon": "Mail"
+        },
+        {
+          "title": "学習管理・ブックマーク機能",
+          "description": "読んだ記事の管理、ブックマーク、学習進捗の可視化で、継続的な学習をサポートします。",
+          "features": [
+            "配信履歴の一覧・検索機能",
+            "興味別ブックマーク整理",
+            "学習統計・進捗レポート",
+            "フィードバックによる精度向上"
+          ],
+          "icon": "BookmarkCheck"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "料金プラン",
+      "subtitle": "あなたの学習スタイルに合わせて選べる3つのプラン",
+      "plans": [
+        {
+          "name": "スターター",
+          "price": "¥0",
+          "period": "永続無料",
+          "description": "AI学習を始めたい方におすすめ",
+          "features": [
+            "週3回のニュース配信",
+            "基本的なWhy-Chip機能",
+            "簡易ブックマーク機能",
+            "メール配信"
+          ],
+          "cta": "無料で始める",
+          "popular": false
+        },
+        {
+          "name": "プレミアム",
+          "price": "¥980",
+          "period": "月",
+          "description": "本格的にAI学習に取り組みたい方向け",
+          "features": [
+            "毎日のパーソナライズ配信",
+            "詳細Why-Chip分析（SHAP解析）",
+            "無制限ブックマーク・タグ機能",
+            "学習統計・進捗レポート",
+            "配信時間のカスタマイズ",
+            "フィードバック優先反映"
+          ],
+          "cta": "プレミアムを試す",
+          "popular": true
+        },
+        {
+          "name": "エンタープライズ",
+          "price": "お問い合わせ",
+          "description": "チーム・組織での導入をお考えの方",
+          "features": [
+            "チーム向けカスタマイズ配信",
+            "組織専用ダッシュボード",
+            "API連携・システム統合",
+            "専任サポート",
+            "セキュリティ強化オプション"
+          ],
+          "cta": "お問い合わせ",
+          "popular": false
+        }
+      ]
+    },
+    "form": {
+      "title": "無料体験・お問い合わせ",
+      "subtitle": "まずは無料でMyWaの価値を体験してください",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@company.com",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "role",
+          "label": "職種・役職",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["エンジニア", "研究者", "プロダクトマネージャー", "経営者・役員", "学生・研究生", "その他"]
+        },
+        {
+          "type": "select",
+          "name": "experience",
+          "label": "AI・ロボット分野の経験",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["初心者（1年未満）", "基礎レベル（1-3年）", "中級レベル（3-5年）", "上級レベル（5年以上）"]
+        },
+        {
+          "type": "textarea",
+          "name": "interests",
+          "label": "特に興味のあるAI分野・技術",
+          "placeholder": "機械学習、自然言語処理、コンピュータビジョン、ロボティクス等",
+          "required": false
+        }
+      ],
+      "submitText": "無料体験を開始する",
+      "successMessage": "登録完了！24時間以内に最初のパーソナライズニュースをお届けします。",
+      "privacyText": "個人情報保護方針に同意の上、送信してください。"
+    },
+    "finalCta": {
+      "title": "今すぐMyWaで、AI学習を始めましょう",
+      "subtitle": "「へぇ」で終わらない、実践的なAI知識を毎日お届け",
+      "cta": "無料体験を開始",
+      "urgencyText": "先着1000名限定！プレミアム機能を1ヶ月無料体験",
+      "benefitsList": [
+        "Why-Chip機能で推薦理由が透明",
+        "完全パーソナライズされた記事配信",
+        "1分でキャッチアップできる最適な情報量",
+        "フィードバックで継続的に精度向上"
+      ]
+    },
+    "footer": {
+      "companyName": "MyWa",
+      "description": "AI・ロボット分野特化のパーソナライズドニュース配信サービス",
+      "sections": [
+        {
+          "title": "サービス",
+          "links": [
+            { "text": "機能紹介", "url": "/features" },
+            { "text": "料金プラン", "url": "/pricing" },
+            { "text": "API仕様", "url": "/api-docs" },
+            { "text": "よくある質問", "url": "/faq" }
+          ]
+        },
+        {
+          "title": "会社情報",
+          "links": [
+            { "text": "About Us", "url": "/about" },
+            { "text": "プライバシーポリシー", "url": "/privacy" },
+            { "text": "利用規約", "url": "/terms" },
+            { "text": "お問い合わせ", "url": "/contact" }
+          ]
+        },
+        {
+          "title": "サポート",
+          "links": [
+            { "text": "ヘルプセンター", "url": "/help" },
+            { "text": "技術ドキュメント", "url": "/docs" },
+            { "text": "コミュニティ", "url": "/community" },
+            { "text": "ブログ", "url": "/blog" }
+          ]
+        }
+      ],
+      "copyright": "© 2025 MyWa. All rights reserved.",
+      "socialLinks": [
+        { "platform": "twitter", "url": "https://twitter.com/mywa_ai" },
+        { "platform": "github", "url": "https://github.com/mywa" },
+        { "platform": "linkedin", "url": "https://linkedin.com/company/mywa" }
+      ]
+    }
+  },
+  "assets": {
+    "logo": "/images/mywa-logo.svg",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/hero-tech-bg.svg",
+      "problem1": "/images/problem-overload.svg",
+      "problem2": "/images/problem-unclear.svg",
+      "problem3": "/images/problem-generic.svg",
+      "problem4": "/images/problem-learning.svg",
+      "problem5": "/images/problem-timing.svg",
+      "problem6": "/images/problem-speed.svg",
+      "solution1": "/images/solution-transparency.svg",
+      "solution2": "/images/solution-personalize.svg", 
+      "solution3": "/images/solution-efficiency.svg"
+    }
+  }
+}
