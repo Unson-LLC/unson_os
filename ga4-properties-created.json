@@ -1,0 +1,42 @@
+[
+  {
+    "serviceName": "mywa",
+    "displayName": "MyWa LP Analytics",
+    "propertyId": "501751039",
+    "measurementId": "G-9R4YRBEQSG",
+    "websiteUrl": "https://unson-lp-mywa.vercel.app",
+    "created": "2025-08-19T03:08:18.673Z"
+  },
+  {
+    "serviceName": "ai-bridge",
+    "displayName": "AI Bridge LP Analytics",
+    "propertyId": "501725327",
+    "measurementId": "G-HLS0TCPMYP",
+    "websiteUrl": "https://unson-lp-ai-bridge.vercel.app",
+    "created": "2025-08-19T03:08:22.287Z"
+  },
+  {
+    "serviceName": "ai-stylist",
+    "displayName": "AI Stylist LP Analytics",
+    "propertyId": "501730358",
+    "measurementId": "G-GVRHCRS21F",
+    "websiteUrl": "https://unson-lp-ai-stylist.vercel.app",
+    "created": "2025-08-19T03:08:26.598Z"
+  },
+  {
+    "serviceName": "ai-legacy-creator",
+    "displayName": "AI Legacy Creator LP Analytics",
+    "propertyId": "501758956",
+    "measurementId": "G-49GSFLVEK3",
+    "websiteUrl": "https://unson-lp-ai-legacy-creator.vercel.app",
+    "created": "2025-08-19T03:08:30.200Z"
+  },
+  {
+    "serviceName": "ai-coach",
+    "displayName": "AI Coach LP Analytics",
+    "propertyId": "501761284",
+    "measurementId": "G-EDTJ98X5XV",
+    "websiteUrl": "https://unson-lp-ai-coach.vercel.app",
+    "created": "2025-08-19T03:08:34.439Z"
+  }
+]

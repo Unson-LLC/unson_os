@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "clarity": {
+      "command": "npx",
+      "args": ["@microsoft/clarity-mcp-server"],
+      "env": {
+        "CLARITY_API_TOKEN": ""
+      }
+    },
+    "google-analytics": {
+      "command": "npx",
+      "args": ["@google-analytics/mcp-server"],
+      "env": {
+        "GOOGLE_ANALYTICS_PROPERTY_ID": "",
+        "GOOGLE_SERVICE_ACCOUNT_KEY_PATH": "./google-service-account.json"
+      }
+    }
+  }
+}

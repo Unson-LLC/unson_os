@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
+import { trackFormSubmission, trackCTAClick } from '@/components/Analytics/Analytics'
 
 interface FormSectionProps {
   config: TemplateConfig['content']['form']
@@ -40,6 +41,9 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
       if (!result.success) {
         throw new Error(result.error || '送信に失敗しました')
       }
+      
+      // フォーム送信成功イベントを追跡
+      trackFormSubmission('ai-bridge', 'contact')
       
       onSubmit?.(formData)
       setSubmitted(true)

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Analytics from '@/components/Analytics/Analytics'
+import ScrollTracker from '@/components/Analytics/ScrollTracker'
 
 export const metadata: Metadata = {
-  title: 'LP Template Generator',
-  description: 'Generate beautiful landing pages from configuration files',
+  title: 'AI Bridge - AI翻訳サービス',
+  description: '高精度AI翻訳で、言語の壁を越えたコミュニケーションを実現',
 }
 
 export default function RootLayout({
@@ -13,7 +15,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics 
+          serviceName="ai-bridge"
+          ga4MeasurementId={process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}
+          clarityProjectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
+        />
+        <ScrollTracker />
+      </body>
     </html>
   )
 }

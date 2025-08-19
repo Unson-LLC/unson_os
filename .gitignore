@@ -241,3 +241,9 @@ venv/
 .next/
 .vercel/
 
+
+# Google Service Account Keys
+google-service-account.json
+*service-account*.json
+# Google Service Account Key (specific)
+google-service-account.json

@@ -1,7 +1,26 @@
+#!/bin/bash
+
+# 各サービスのFormSection.tsxを更新してConvex連携を追加
+
+SERVICES=("ai-bridge" "ai-stylist" "ai-legacy-creator" "ai-coach")
+
+for service in "${SERVICES[@]}"; do
+  echo "Updating $service FormSection..."
+  
+  FILE="services/$service/src/components/sections/FormSection.tsx"
+  
+  if [ -f "$FILE" ]; then
+    # バックアップ作成
+    cp "$FILE" "$FILE.bak"
+    
+    # サービス名を取得（ai-bridge -> ai-bridge等）
+    SERVICE_NAME=$service
+    
+    # FormSectionファイルを更新
+    cat > "$FILE" << 'EOF'
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
-import { trackFormSubmission, trackCTAClick } from '@/components/Analytics/Analytics'
 
 interface FormSectionProps {
   config: TemplateConfig['content']['form']
@@ -21,18 +40,18 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
     
     try {
       // Convex API経由で送信
-      const response = await fetch('https://unsonos-api.vercel.app/api/service-application', {
+      const response = await fetch('/api/service-application', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           workspaceId: process.env.NEXT_PUBLIC_DEFAULT_WORKSPACE_ID || 'unson_main',
-          serviceName: 'mywa',
+          serviceName: 'SERVICE_NAME_PLACEHOLDER',
           email: formData.email || '',
           name: formData.name || '',
           formData,
-          source: 'LP-mywa',
+          source: 'LP-SERVICE_NAME_PLACEHOLDER',
         }),
       })
 
@@ -41,9 +60,6 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
       if (!result.success) {
         throw new Error(result.error || '送信に失敗しました')
       }
-      
-      // フォーム送信成功イベントを追跡
-      trackFormSubmission('mywa', 'contact')
       
       onSubmit?.(formData)
       setSubmitted(true)
@@ -106,20 +122,22 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
                         placeholder={field.placeholder}
                         required={field.required}
                         rows={4}
-                        className="input-field resize-none"
+                        value={formData[field.name] || ''}
                         onChange={(e) => handleChange(field.name, e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                       />
                     ) : field.type === 'select' && field.options ? (
                       <select
                         id={field.name}
                         name={field.name}
                         required={field.required}
-                        className="input-field"
+                        value={formData[field.name] || ''}
                         onChange={(e) => handleChange(field.name, e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
-                        <option value="">{field.placeholder}</option>
-                        {field.options.map((option, optionIndex) => (
-                          <option key={optionIndex} value={option}>
+                        <option value="">選択してください</option>
+                        {field.options.map((option, optIndex) => (
+                          <option key={optIndex} value={option}>
                             {option}
                           </option>
                         ))}
@@ -131,8 +149,9 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
                         name={field.name}
                         placeholder={field.placeholder}
                         required={field.required}
-                        className="input-field"
+                        value={formData[field.name] || ''}
                         onChange={(e) => handleChange(field.name, e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       />
                     )}
                   </div>
@@ -140,7 +159,7 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
               </div>
               
               {config.privacyText && (
-                <p className="text-sm text-gray-600 mt-4">
+                <p className="mt-4 text-sm text-gray-600">
                   {config.privacyText}
                 </p>
               )}
@@ -163,3 +182,22 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
     </section>
   )
 }
+EOF
+    
+    # サービス名を置換
+    sed -i '' "s/SERVICE_NAME_PLACEHOLDER/$SERVICE_NAME/g" "$FILE"
+    
+    echo "✅ Updated $service"
+  else
+    echo "⚠️  File not found: $FILE"
+  fi
+done
+
+echo "
+✅ All services updated with Convex integration!
+
+Next steps:
+1. Each LP now sends form data to /api/service-application
+2. Data is stored in Convex with workspace_id separation
+3. Test each form to ensure proper integration
+"
