@@ -1,0 +1,304 @@
+{
+  "timestamp": "2025-08-19T16:33:58.476Z",
+  "summary": {
+    "serviceName": "mywa",
+    "totalImages": 10,
+    "categories": "hero, problem, solution",
+    "estimatedTime": "20分"
+  },
+  "detailedRequirements": [
+    {
+      "category": "hero",
+      "filename": "hero-tech-bg.svg",
+      "purpose": "ヒーロー背景",
+      "theme": "\"へぇ\"で終わらせない。\n今日から使えるAIニュースだけを。",
+      "context": "あなた専属のコンシェルジュが、Why-Chip機能を通じて推薦理由を透明化。AI・ロボット分野の情報を1分でキャッチアップし、次の一手が見つかる。",
+      "originalPath": "/images/hero-tech-bg.svg",
+      "priority": "high",
+      "aiPrompt": {
+        "category": "hero",
+        "basePrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。",
+        "theme": {
+          "colors": {
+            "primary": "#3B82F6",
+            "secondary": "#8B5CF6",
+            "accent": "#EC4899",
+            "background": "#FFFFFF",
+            "text": "#1F2937",
+            "textLight": "#6B7280"
+          },
+          "fonts": {
+            "heading": "'Inter', sans-serif",
+            "body": "'Inter', sans-serif"
+          },
+          "gradients": {
+            "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            "secondary": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+            "accent": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+          }
+        },
+        "context": "",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "1200x600 landscape"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-overload.svg",
+      "purpose": "情報が多すぎて選別できない",
+      "theme": "情報が多すぎて選別できない",
+      "context": "毎日大量のAI関連ニュースが配信されるが、自分に関係のない情報ばかりで時間を無駄にしている",
+      "originalPath": "/images/problem-overload.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "情報が多すぎて選別できない",
+        "context": "毎日大量のAI関連ニュースが配信されるが、自分に関係のない情報ばかりで時間を無駄にしている",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-unclear.svg",
+      "purpose": "なぜその記事が重要なのかわからない",
+      "theme": "なぜその記事が重要なのかわからない",
+      "context": "推薦されたニュースの選択理由が不明で、信頼して読み進めることができない",
+      "originalPath": "/images/problem-unclear.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "なぜその記事が重要なのかわからない",
+        "context": "推薦されたニュースの選択理由が不明で、信頼して読み進めることができない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-generic.svg",
+      "purpose": "パーソナライズが不十分",
+      "theme": "パーソナライズが不十分",
+      "context": "一般的なニュースアプリでは、自分の専門分野や興味レベルに合った記事が見つからない",
+      "originalPath": "/images/problem-generic.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "パーソナライズが不十分",
+        "context": "一般的なニュースアプリでは、自分の専門分野や興味レベルに合った記事が見つからない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-learning.svg",
+      "purpose": "学習効果が実感できない",
+      "theme": "学習効果が実感できない",
+      "context": "記事を読んでも知識として定着せず、実務に活かせる情報が得られない",
+      "originalPath": "/images/problem-learning.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "学習効果が実感できない",
+        "context": "記事を読んでも知識として定着せず、実務に活かせる情報が得られない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-timing.svg",
+      "purpose": "更新頻度がバラバラ",
+      "theme": "更新頻度がバラバラ",
+      "context": "複数のニュースソースを使っているが、更新タイミングが異なり情報収集が非効率",
+      "originalPath": "/images/problem-timing.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "更新頻度がバラバラ",
+        "context": "複数のニュースソースを使っているが、更新タイミングが異なり情報収集が非効率",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-speed.svg",
+      "purpose": "AIの進歩についていけない",
+      "theme": "AIの進歩についていけない",
+      "context": "技術の進歩が速すぎて、基礎知識が不足していることを実感している",
+      "originalPath": "/images/problem-speed.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "AIの進歩についていけない",
+        "context": "技術の進歩が速すぎて、基礎知識が不足していることを実感している",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-1.jpg",
+      "purpose": "透明性 - Why-Chip機能",
+      "theme": "透明性 - Why-Chip機能",
+      "context": "なぜその記事があなたに推薦されたかを35文字以内で明確に説明。推薦理由が見えるから安心して学習できます。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "透明性 - Why-Chip機能",
+        "context": "なぜその記事があなたに推薦されたかを35文字以内で明確に説明。推薦理由が見えるから安心して学習できます。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-2.jpg",
+      "purpose": "完全パーソナライズ",
+      "theme": "完全パーソナライズ",
+      "context": "あなたのプロファイル・行動履歴・学習目標に基づいてAIがカスタムプロンプトを生成。本当に必要な情報だけをお届けします。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "完全パーソナライズ",
+        "context": "あなたのプロファイル・行動履歴・学習目標に基づいてAIがカスタムプロンプトを生成。本当に必要な情報だけをお届けします。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-3.jpg",
+      "purpose": "効率的学習サイクル",
+      "theme": "効率的学習サイクル",
+      "context": "1分でキャッチアップできる最適な情報量と、フィードバックによる継続的な精度向上で学習効果を最大化します。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "効率的学習サイクル",
+        "context": "1分でキャッチアップできる最適な情報量と、フィードバックによる継続的な精度向上で学習効果を最大化します。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    }
+  ],
+  "strategy": {
+    "totalImages": 10,
+    "serviceName": "mywa",
+    "strategy": {
+      "phase1": "ヒーロー画像（最優先）",
+      "phase2": "問題セクション画像（ユーザーの共感獲得）",
+      "phase3": "ソリューション画像（価値提案強化）",
+      "phase4": "CTA・サポート画像（コンバージョン向上）"
+    },
+    "mcpCommands": [
+      {
+        "step": "hero_hero-tech-bg.svg",
+        "mcpPrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。\n\nテーマ: [object Object]\n文脈: \nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 1200x600 landscape\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/hero-tech-bg.svg",
+        "fallbackPath": "/images/hero-tech-bg.svg",
+        "description": "ヒーロー背景の画像生成"
+      },
+      {
+        "step": "problem_problem-overload.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 情報が多すぎて選別できない\n文脈: 毎日大量のAI関連ニュースが配信されるが、自分に関係のない情報ばかりで時間を無駄にしている\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-overload.svg",
+        "fallbackPath": "/images/problem-overload.svg",
+        "description": "情報が多すぎて選別できないの画像生成"
+      },
+      {
+        "step": "problem_problem-unclear.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: なぜその記事が重要なのかわからない\n文脈: 推薦されたニュースの選択理由が不明で、信頼して読み進めることができない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-unclear.svg",
+        "fallbackPath": "/images/problem-unclear.svg",
+        "description": "なぜその記事が重要なのかわからないの画像生成"
+      },
+      {
+        "step": "problem_problem-generic.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: パーソナライズが不十分\n文脈: 一般的なニュースアプリでは、自分の専門分野や興味レベルに合った記事が見つからない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-generic.svg",
+        "fallbackPath": "/images/problem-generic.svg",
+        "description": "パーソナライズが不十分の画像生成"
+      },
+      {
+        "step": "problem_problem-learning.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 学習効果が実感できない\n文脈: 記事を読んでも知識として定着せず、実務に活かせる情報が得られない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-learning.svg",
+        "fallbackPath": "/images/problem-learning.svg",
+        "description": "学習効果が実感できないの画像生成"
+      },
+      {
+        "step": "problem_problem-timing.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 更新頻度がバラバラ\n文脈: 複数のニュースソースを使っているが、更新タイミングが異なり情報収集が非効率\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-timing.svg",
+        "fallbackPath": "/images/problem-timing.svg",
+        "description": "更新頻度がバラバラの画像生成"
+      },
+      {
+        "step": "problem_problem-speed.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: AIの進歩についていけない\n文脈: 技術の進歩が速すぎて、基礎知識が不足していることを実感している\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-speed.svg",
+        "fallbackPath": "/images/problem-speed.svg",
+        "description": "AIの進歩についていけないの画像生成"
+      },
+      {
+        "step": "solution_solution-1.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 透明性 - Why-Chip機能\n文脈: なぜその記事があなたに推薦されたかを35文字以内で明確に説明。推薦理由が見えるから安心して学習できます。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-1.jpg",
+        "fallbackPath": null,
+        "description": "透明性 - Why-Chip機能の画像生成"
+      },
+      {
+        "step": "solution_solution-2.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 完全パーソナライズ\n文脈: あなたのプロファイル・行動履歴・学習目標に基づいてAIがカスタムプロンプトを生成。本当に必要な情報だけをお届けします。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-2.jpg",
+        "fallbackPath": null,
+        "description": "完全パーソナライズの画像生成"
+      },
+      {
+        "step": "solution_solution-3.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 効率的学習サイクル\n文脈: 1分でキャッチアップできる最適な情報量と、フィードバックによる継続的な精度向上で学習効果を最大化します。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-3.jpg",
+        "fallbackPath": null,
+        "description": "効率的学習サイクルの画像生成"
+      }
+    ],
+    "estimatedTimeToComplete": "20分",
+    "nextSteps": [
+      "1. 各プロンプトをMCP経由でAI画像生成",
+      "2. 生成画像を適切なディレクトリに保存",
+      "3. 設定ファイルの画像パスを更新",
+      "4. 画像最適化とキャッシュ設定"
+    ]
+  },
+  "recommendations": [
+    "ヒーロー画像から開始することを推奨",
+    "問題セクション画像でユーザーの共感を獲得",
+    "ブランドカラーに合わせた色調統一",
+    "生成後は必ず画像最適化を実行"
+  ]
+}

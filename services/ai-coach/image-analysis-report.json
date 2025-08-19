@@ -1,0 +1,304 @@
+{
+  "timestamp": "2025-08-19T16:33:07.020Z",
+  "summary": {
+    "serviceName": "ai-coach",
+    "totalImages": 10,
+    "categories": "hero, problem, solution",
+    "estimatedTime": "20分"
+  },
+  "detailedRequirements": [
+    {
+      "category": "hero",
+      "filename": "hero-mother-freedom.jpg",
+      "purpose": "ヒーロー背景",
+      "theme": "お疲れ様でした、お母さん。\n今度はあなたの番です。",
+      "context": "20年ぶりの自分時間を、最高の人生設計に変えませんか？AIがあなたの隠れた興味や才能を発見し、充実した毎日をサポートします。",
+      "originalPath": "/images/hero-mother-freedom.jpg",
+      "priority": "high",
+      "aiPrompt": {
+        "category": "hero",
+        "basePrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。",
+        "theme": {
+          "colors": {
+            "primary": "#E879F9",
+            "secondary": "#A78BFA",
+            "accent": "#FB7185",
+            "background": "#FEFEFE",
+            "text": "#374151",
+            "textLight": "#6B7280"
+          },
+          "fonts": {
+            "heading": "'M PLUS Rounded 1c', sans-serif",
+            "body": "'Noto Sans JP', sans-serif"
+          },
+          "gradients": {
+            "primary": "linear-gradient(135deg, #E879F9 0%, #C084FC 50%, #A78BFA 100%)",
+            "secondary": "linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%)",
+            "accent": "linear-gradient(135deg, #FBCFE8 0%, #F9A8D4 50%, #EC4899 100%)"
+          }
+        },
+        "context": "",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "1200x600 landscape"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-confusion.svg",
+      "purpose": "自分の時間ができたけど何をしていいかわからない",
+      "theme": "自分の時間ができたけど何をしていいかわからない",
+      "context": "子供が手を離れて時間ができたものの、趣味もなく、何から始めればいいのか迷ってしまう。",
+      "originalPath": "/images/problem-confusion.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "自分の時間ができたけど何をしていいかわからない",
+        "context": "子供が手を離れて時間ができたものの、趣味もなく、何から始めればいいのか迷ってしまう。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-loneliness.svg",
+      "purpose": "昔の友達とは疎遠になり、新しい友達もいない",
+      "theme": "昔の友達とは疎遠になり、新しい友達もいない",
+      "context": "子育て中心の生活で友人関係が希薄になり、今更新しい人間関係を築けるか不安。",
+      "originalPath": "/images/problem-loneliness.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "昔の友達とは疎遠になり、新しい友達もいない",
+        "context": "子育て中心の生活で友人関係が希薄になり、今更新しい人間関係を築けるか不安。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-confidence.svg",
+      "purpose": "家事以外のスキルがない気がして自信がない",
+      "theme": "家事以外のスキルがない気がして自信がない",
+      "context": "専業主婦期間が長く、社会復帰や新しいことへの挑戦に対して自信を失っている。",
+      "originalPath": "/images/problem-confidence.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "家事以外のスキルがない気がして自信がない",
+        "context": "専業主婦期間が長く、社会復帰や新しいことへの挑戦に対して自信を失っている。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-identity.svg",
+      "purpose": "子供のことばかり考えて自分を見失っている",
+      "theme": "子供のことばかり考えて自分を見失っている",
+      "context": "「母親である自分」以外のアイデンティティがわからず、空虚感を感じている。",
+      "originalPath": "/images/problem-identity.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "子供のことばかり考えて自分を見失っている",
+        "context": "「母親である自分」以外のアイデンティティがわからず、空虚感を感じている。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-continuation.svg",
+      "purpose": "新しいことを始めても続かない",
+      "theme": "新しいことを始めても続かない",
+      "context": "習い事や趣味を始めても、一人では継続が難しく、結局やめてしまう。",
+      "originalPath": "/images/problem-continuation.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "新しいことを始めても続かない",
+        "context": "習い事や趣味を始めても、一人では継続が難しく、結局やめてしまう。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-guilt.svg",
+      "purpose": "自分の時間を取ることに罪悪感を感じる",
+      "theme": "自分の時間を取ることに罪悪感を感じる",
+      "context": "長年家族優先で生きてきたため、自分のための時間を取ることに後ろめたさを感じる。",
+      "originalPath": "/images/problem-guilt.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "自分の時間を取ることに罪悪感を感じる",
+        "context": "長年家族優先で生きてきたため、自分のための時間を取ることに後ろめたさを感じる。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-1.jpg",
+      "purpose": "AI自己分析で隠れた興味・才能を発見",
+      "theme": "AI自己分析で隠れた興味・才能を発見",
+      "context": "子育て前の記憶から最近心が動いた瞬間まで、AIとの対話であなたの本当の興味を掘り起こします。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "AI自己分析で隠れた興味・才能を発見",
+        "context": "子育て前の記憶から最近心が動いた瞬間まで、AIとの対話であなたの本当の興味を掘り起こします。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-2.jpg",
+      "purpose": "段階的な体験提案で無理なくステップアップ",
+      "theme": "段階的な体験提案で無理なくステップアップ",
+      "context": "見学→体験→短期参加→継続の自然な流れで、プレッシャーなく新しい活動に参加できます。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "段階的な体験提案で無理なくステップアップ",
+        "context": "見学→体験→短期参加→継続の自然な流れで、プレッシャーなく新しい活動に参加できます。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-3.jpg",
+      "purpose": "同じ想いを持つ仲間とのマッチング",
+      "theme": "同じ想いを持つ仲間とのマッチング",
+      "context": "似た状況や価値観を持つ女性同士をつなぎ、一緒に成長できるコミュニティを提供します。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "同じ想いを持つ仲間とのマッチング",
+        "context": "似た状況や価値観を持つ女性同士をつなぎ、一緒に成長できるコミュニティを提供します。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    }
+  ],
+  "strategy": {
+    "totalImages": 10,
+    "serviceName": "ai-coach",
+    "strategy": {
+      "phase1": "ヒーロー画像（最優先）",
+      "phase2": "問題セクション画像（ユーザーの共感獲得）",
+      "phase3": "ソリューション画像（価値提案強化）",
+      "phase4": "CTA・サポート画像（コンバージョン向上）"
+    },
+    "mcpCommands": [
+      {
+        "step": "hero_hero-mother-freedom.jpg",
+        "mcpPrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。\n\nテーマ: [object Object]\n文脈: \nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 1200x600 landscape\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/hero-mother-freedom.jpg",
+        "fallbackPath": "/images/hero-mother-freedom.jpg",
+        "description": "ヒーロー背景の画像生成"
+      },
+      {
+        "step": "problem_problem-confusion.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 自分の時間ができたけど何をしていいかわからない\n文脈: 子供が手を離れて時間ができたものの、趣味もなく、何から始めればいいのか迷ってしまう。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-confusion.svg",
+        "fallbackPath": "/images/problem-confusion.svg",
+        "description": "自分の時間ができたけど何をしていいかわからないの画像生成"
+      },
+      {
+        "step": "problem_problem-loneliness.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 昔の友達とは疎遠になり、新しい友達もいない\n文脈: 子育て中心の生活で友人関係が希薄になり、今更新しい人間関係を築けるか不安。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-loneliness.svg",
+        "fallbackPath": "/images/problem-loneliness.svg",
+        "description": "昔の友達とは疎遠になり、新しい友達もいないの画像生成"
+      },
+      {
+        "step": "problem_problem-confidence.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 家事以外のスキルがない気がして自信がない\n文脈: 専業主婦期間が長く、社会復帰や新しいことへの挑戦に対して自信を失っている。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-confidence.svg",
+        "fallbackPath": "/images/problem-confidence.svg",
+        "description": "家事以外のスキルがない気がして自信がないの画像生成"
+      },
+      {
+        "step": "problem_problem-identity.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 子供のことばかり考えて自分を見失っている\n文脈: 「母親である自分」以外のアイデンティティがわからず、空虚感を感じている。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-identity.svg",
+        "fallbackPath": "/images/problem-identity.svg",
+        "description": "子供のことばかり考えて自分を見失っているの画像生成"
+      },
+      {
+        "step": "problem_problem-continuation.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 新しいことを始めても続かない\n文脈: 習い事や趣味を始めても、一人では継続が難しく、結局やめてしまう。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-continuation.svg",
+        "fallbackPath": "/images/problem-continuation.svg",
+        "description": "新しいことを始めても続かないの画像生成"
+      },
+      {
+        "step": "problem_problem-guilt.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 自分の時間を取ることに罪悪感を感じる\n文脈: 長年家族優先で生きてきたため、自分のための時間を取ることに後ろめたさを感じる。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-guilt.svg",
+        "fallbackPath": "/images/problem-guilt.svg",
+        "description": "自分の時間を取ることに罪悪感を感じるの画像生成"
+      },
+      {
+        "step": "solution_solution-1.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: AI自己分析で隠れた興味・才能を発見\n文脈: 子育て前の記憶から最近心が動いた瞬間まで、AIとの対話であなたの本当の興味を掘り起こします。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-1.jpg",
+        "fallbackPath": null,
+        "description": "AI自己分析で隠れた興味・才能を発見の画像生成"
+      },
+      {
+        "step": "solution_solution-2.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 段階的な体験提案で無理なくステップアップ\n文脈: 見学→体験→短期参加→継続の自然な流れで、プレッシャーなく新しい活動に参加できます。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-2.jpg",
+        "fallbackPath": null,
+        "description": "段階的な体験提案で無理なくステップアップの画像生成"
+      },
+      {
+        "step": "solution_solution-3.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 同じ想いを持つ仲間とのマッチング\n文脈: 似た状況や価値観を持つ女性同士をつなぎ、一緒に成長できるコミュニティを提供します。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-3.jpg",
+        "fallbackPath": null,
+        "description": "同じ想いを持つ仲間とのマッチングの画像生成"
+      }
+    ],
+    "estimatedTimeToComplete": "20分",
+    "nextSteps": [
+      "1. 各プロンプトをMCP経由でAI画像生成",
+      "2. 生成画像を適切なディレクトリに保存",
+      "3. 設定ファイルの画像パスを更新",
+      "4. 画像最適化とキャッシュ設定"
+    ]
+  },
+  "recommendations": [
+    "ヒーロー画像から開始することを推奨",
+    "問題セクション画像でユーザーの共感を獲得",
+    "ブランドカラーに合わせた色調統一",
+    "生成後は必ず画像最適化を実行"
+  ]
+}
