@@ -36,6 +36,12 @@ Unson OSは、従来の「1つの大きなビジネス」ではなく、「100-2
 - 📖 **使い方**: [`LP自動生成ガイド`](docs/for-developers/saas-templates/lp-template-guide.md)
 - ⚡ **特徴**: config.jsonを編集するだけで即座にLP生成
 
+### Microsoft Clarity 分析ツール
+5つのランディングページのユーザー行動分析を自動セットアップ：
+- 🔧 **セットアップ**: `npm run clarity:setup`
+- 📖 **ガイド**: [`CLARITY_SETUP_GUIDE.md`](CLARITY_SETUP_GUIDE.md)
+- 🤖 **自動化**: Playwright使用でブラウザ操作を自動化
+
 ## 開発方針
 
 詳細な開発ガイドラインは[`CLAUDE.md`](CLAUDE.md)を参照してください。

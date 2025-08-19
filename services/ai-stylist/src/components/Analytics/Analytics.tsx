@@ -1,21 +1,19 @@
 import GoogleAnalytics from './GoogleAnalytics';
-import ClarityScript from './ClarityScript';
+import PostHogAnalytics from './PostHogAnalytics';
 
 interface AnalyticsProps {
   serviceName: string;
   ga4MeasurementId?: string;
-  clarityProjectId?: string;
 }
 
 export default function Analytics({ 
   serviceName,
-  ga4MeasurementId,
-  clarityProjectId 
+  ga4MeasurementId
 }: AnalyticsProps) {
   return (
     <>
       <GoogleAnalytics measurementId={ga4MeasurementId} />
-      <ClarityScript projectId={clarityProjectId} />
+      <PostHogAnalytics serviceName={serviceName} />
     </>
   );
 }

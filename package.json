@@ -41,6 +41,7 @@
     "convex:dev": "convex dev",
     "ga4:create": "node scripts/create-single-ga4-property.js",
     "ga4:check": "node scripts/check-ga4-access.js",
+    "clarity:setup": "node scripts/clarity-interactive-playwright.js",
     "secrets:check": "secretlint \"**/*\"",
     "secrets:fix": "secretlint \"**/*\" --fix",
     "prepare": "command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1 && npx husky install || true"
@@ -60,6 +61,9 @@
     "google-auth-library": "^9.0.0",
     "lucide-react": "^0.303.0",
     "next": "14.0.4",
+    "playwright": "^1.54.2",
+    "posthog-js": "^1.260.1",
+    "posthog-node": "^5.7.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
