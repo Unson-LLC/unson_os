@@ -1,9 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ConvexHttpClient } from 'convex/browser';
-import { api } from '@/convex/_generated/api';
+
+// 動的レンダリングを強制（キャッシュ問題を回避）
+export const dynamic = 'force-dynamic';
+
+// APIは文字列で直接指定
+const api = {
+  serviceApplications: {
+    createServiceApplication: 'serviceApplications:createServiceApplication'
+  }
+};
 
 // Refactor完了: 実際のConvex連携
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+
+// CORS設定
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+// OPTIONSリクエスト（プリフライト）対応
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 200, headers: corsHeaders });
+}
 
 interface ServiceApplicationRequest {
   workspaceId?: string;
@@ -27,7 +48,10 @@ export async function POST(request: NextRequest) {
           error: validationErrors.join(', '),
           success: false 
         },
-        { status: 400 }
+        { 
+          status: 400,
+          headers: corsHeaders 
+        }
       );
     }
 
@@ -52,7 +76,7 @@ export async function POST(request: NextRequest) {
       success: true,
       applicationId,
       message: `${serviceName}への申し込みが完了しました`,
-    });
+    }, { headers: corsHeaders });
 
   } catch (error: any) {
     console.error('Service application error:', error);
@@ -65,7 +89,10 @@ export async function POST(request: NextRequest) {
         error: errorMessage,
         success: false,
       },
-      { status: getErrorStatusCode(error) }
+      { 
+        status: getErrorStatusCode(error),
+        headers: corsHeaders 
+      }
     );
   }
 }
@@ -107,54 +134,51 @@ function getErrorMessage(error: any): string {
     return error;
   }
   
-  return 'サーバーエラーが発生しました';
+  return '送信中にエラーが発生しました';
 }
 
 // エラーステータスコードの取得
 function getErrorStatusCode(error: any): number {
-  if (error.message?.includes('必須') || error.message?.includes('無効')) {
-    return 400;
-  }
-  
-  if (error.message?.includes('既に') || error.message?.includes('重複')) {
+  if (error.message && error.message.includes('既に')) {
     return 409; // Conflict
   }
   
-  return 500;
+  return 500; // Internal Server Error
 }
 
-// サービス別の追加処理（将来の拡張ポイント）
+// サービス別の追加処理
 async function handleServiceSpecificProcessing(
   serviceName: string,
-  data: { email: string; name: string; formData: any; applicationId: string }
+  data: {
+    email: string;
+    name: string;
+    formData: Record<string, any>;
+    applicationId: string;
+  }
 ) {
+  // 各サービス特有の処理をここに追加
   switch (serviceName) {
     case 'mywa':
-      console.log(`MyWa申し込み処理: ${data.email}`);
-      // TODO: MyWa専用処理（ニュース配信開始等）
+      // mywa固有の処理
+      console.log(`mywa application created: ${data.applicationId}`);
       break;
-      
     case 'ai-bridge':
-      console.log(`AIブリッジ申し込み処理: ${data.email}`);
-      // TODO: AIブリッジ専用処理
+      // ai-bridge固有の処理
+      console.log(`ai-bridge application created: ${data.applicationId}`);
       break;
-      
     case 'ai-stylist':
-      console.log(`AIスタイリスト申し込み処理: ${data.email}`);
-      // TODO: AIスタイリスト専用処理
+      // ai-stylist固有の処理
+      console.log(`ai-stylist application created: ${data.applicationId}`);
       break;
-      
     case 'ai-legacy-creator':
-      console.log(`AIレガシークリエイター申し込み処理: ${data.email}`);
-      // TODO: AIレガシークリエイター専用処理
+      // ai-legacy-creator固有の処理
+      console.log(`ai-legacy-creator application created: ${data.applicationId}`);
       break;
-      
     case 'ai-coach':
-      console.log(`AIコーチ申し込み処理: ${data.email}`);
-      // TODO: AIコーチ専用処理
+      // ai-coach固有の処理
+      console.log(`ai-coach application created: ${data.applicationId}`);
       break;
-      
     default:
-      console.log(`未知のサービス: ${serviceName}`);
+      console.log(`Unknown service: ${serviceName}`);
   }
 }

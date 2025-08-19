@@ -10,12 +10,46 @@ interface FormSectionProps {
 export default function FormSection({ config, onSubmit }: FormSectionProps) {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit?.(formData)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 5000)
+    setIsSubmitting(true)
+    setError(null)
+    
+    try {
+      // Convex API経由で送信
+      const response = await fetch('https://unsonos-api.vercel.app/api/service-application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          workspaceId: process.env.NEXT_PUBLIC_DEFAULT_WORKSPACE_ID || 'unson_main',
+          serviceName: 'mywa',
+          email: formData.email || '',
+          name: formData.name || '',
+          formData,
+          source: 'LP-mywa',
+        }),
+      })
+
+      const result = await response.json()
+
+      if (!result.success) {
+        throw new Error(result.error || '送信に失敗しました')
+      }
+      
+      onSubmit?.(formData)
+      setSubmitted(true)
+      setFormData({})
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '送信中にエラーが発生しました')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (field: string, value: string) => {
@@ -45,6 +79,11 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8">
+              {error && (
+                <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-red-800">{error}</p>
+                </div>
+              )}
               <div className="space-y-6">
                 {config.fields.map((field, index) => (
                   <div key={index}>
@@ -104,13 +143,14 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
               
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className={cn(
                   "w-full mt-6 py-3 px-6 rounded-lg font-semibold",
                   "bg-primary text-white hover:bg-primary/90",
                   "transition-all transform hover:scale-105"
                 )}
               >
-                {config.submitText}
+                {isSubmitting ? '送信中...' : config.submitText}
               </button>
             </form>
           )}

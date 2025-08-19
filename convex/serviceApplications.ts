@@ -81,3 +81,55 @@ export const getUserApplications = query({
     );
   },
 });
+
+// デバッグ用: 全ての申し込みデータを取得
+export const getAllApplications = query({
+  args: {
+    workspaceId: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const db = ctx.db;
+    const applications = await db
+      .query("serviceApplications")
+      .filter(q => 
+        args.workspaceId 
+          ? q.eq(q.field("workspaceId"), args.workspaceId)
+          : true
+      )
+      .order("desc")
+      .take(20);
+    
+    return applications;
+  },
+});
+
+// テストデータ削除用関数
+export const deleteTestApplications = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const db = ctx.db;
+    
+    // テストデータを特定（test@example.comとtest2@example.comのデータ）
+    const testApplications = await db
+      .query("serviceApplications")
+      .filter(q => 
+        q.or(
+          q.eq(q.field("email"), "test@example.com"),
+          q.eq(q.field("email"), "test2@example.com")
+        )
+      )
+      .collect();
+    
+    // テストデータを削除
+    const deletedIds = [];
+    for (const app of testApplications) {
+      await db.delete(app._id);
+      deletedIds.push(app._id);
+    }
+    
+    return {
+      deletedCount: deletedIds.length,
+      deletedIds: deletedIds
+    };
+  },
+});
