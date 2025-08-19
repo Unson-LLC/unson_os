@@ -67,6 +67,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.2",
+    "@google-analytics/mcp-server": "^1.0.0",
+    "@microsoft/clarity-mcp-server": "^1.0.0",
     "@playwright/test": "^1.40.1",
     "@secretlint/secretlint-rule-preset-recommend": "^10.2.1",
     "@testing-library/jest-dom": "^6.1.5",
