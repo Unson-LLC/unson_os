@@ -1,0 +1,304 @@
+{
+  "timestamp": "2025-08-19T16:26:25.787Z",
+  "summary": {
+    "serviceName": "ai-stylist",
+    "totalImages": 10,
+    "categories": "hero, problem, solution",
+    "estimatedTime": "20分"
+  },
+  "detailedRequirements": [
+    {
+      "category": "hero",
+      "filename": "hero-sustainable-fashion.jpg",
+      "purpose": "ヒーロー背景",
+      "theme": "あなたの価値観が輝く、持続可能なスタイルを見つけよう",
+      "context": "AI技術で実現する、おしゃれと環境意識を両立した新しいファッションライフ。衝動買いを減らし、長く愛せるワードローブを一緒に作りませんか？",
+      "originalPath": "/images/hero-sustainable-fashion.jpg",
+      "priority": "high",
+      "aiPrompt": {
+        "category": "hero",
+        "basePrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。",
+        "theme": {
+          "colors": {
+            "primary": "#4ADE80",
+            "secondary": "#059669",
+            "accent": "#F59E0B",
+            "background": "#FEFEFE",
+            "text": "#1F2937",
+            "textLight": "#6B7280"
+          },
+          "fonts": {
+            "heading": "'Noto Sans JP', sans-serif",
+            "body": "'Noto Sans JP', sans-serif"
+          },
+          "gradients": {
+            "primary": "linear-gradient(135deg, #4ADE80 0%, #059669 100%)",
+            "secondary": "linear-gradient(135deg, #A7F3D0 0%, #4ADE80 100%)",
+            "accent": "linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)"
+          }
+        },
+        "context": "",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "1200x600 landscape"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-impulse-buy.svg",
+      "purpose": "衝動買いして後悔してしまう",
+      "theme": "衝動買いして後悔してしまう",
+      "context": "セールやトレンドに流されて買い物をしてしまい、結局あまり着ない服が増えてしまう",
+      "originalPath": "/images/problem-impulse-buy.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "衝動買いして後悔してしまう",
+        "context": "セールやトレンドに流されて買い物をしてしまい、結局あまり着ない服が増えてしまう",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-values-style.svg",
+      "purpose": "おしゃれと価値観が両立できない",
+      "theme": "おしゃれと価値観が両立できない",
+      "context": "環境に配慮したいけれど、エシカルファッションはデザインが限られていて物足りない",
+      "originalPath": "/images/problem-values-style.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "おしゃれと価値観が両立できない",
+        "context": "環境に配慮したいけれど、エシカルファッションはデザインが限られていて物足りない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-wardrobe-waste.svg",
+      "purpose": "手持ち服を活かしきれない",
+      "theme": "手持ち服を活かしきれない",
+      "context": "クローゼットに服はあるのに「着る服がない」と感じて、新しい服を買ってしまう",
+      "originalPath": "/images/problem-wardrobe-waste.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "手持ち服を活かしきれない",
+        "context": "クローゼットに服はあるのに「着る服がない」と感じて、新しい服を買ってしまう",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-no-strategy.svg",
+      "purpose": "長期的なスタイル戦略がない",
+      "theme": "長期的なスタイル戦略がない",
+      "context": "その場しのぎの買い物ばかりで、一貫したスタイルや投資効率の良いワードローブが作れない",
+      "originalPath": "/images/problem-no-strategy.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "長期的なスタイル戦略がない",
+        "context": "その場しのぎの買い物ばかりで、一貫したスタイルや投資効率の良いワードローブが作れない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-brand-info.svg",
+      "purpose": "エシカルブランドの情報不足",
+      "theme": "エシカルブランドの情報不足",
+      "context": "環境や社会に配慮したブランドを知りたいけれど、どこで信頼できる情報を得ればよいかわからない",
+      "originalPath": "/images/problem-brand-info.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "エシカルブランドの情報不足",
+        "context": "環境や社会に配慮したブランドを知りたいけれど、どこで信頼できる情報を得ればよいかわからない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-personal-style.svg",
+      "purpose": "自分に似合うスタイルがわからない",
+      "theme": "自分に似合うスタイルがわからない",
+      "context": "トレンドは追えるけれど、本当に自分らしく、価値観と一致するスタイルが見つからない",
+      "originalPath": "/images/problem-personal-style.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "自分に似合うスタイルがわからない",
+        "context": "トレンドは追えるけれど、本当に自分らしく、価値観と一致するスタイルが見つからない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-1.jpg",
+      "purpose": "価値観×スタイルの完璧な融合",
+      "theme": "価値観×スタイルの完璧な融合",
+      "context": "AIが環境・社会・経済への価値観を詳細分析し、あなたの信念と美意識を両立するスタイルを提案します",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "価値観×スタイルの完璧な融合",
+        "context": "AIが環境・社会・経済への価値観を詳細分析し、あなたの信念と美意識を両立するスタイルを提案します",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-2.jpg",
+      "purpose": "科学的ワードローブ最適化",
+      "theme": "科学的ワードローブ最適化",
+      "context": "手持ち服を画像認識で分析し、投資効率と着回し可能性を計算。無駄のない戦略的なワードローブを構築します",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "科学的ワードローブ最適化",
+        "context": "手持ち服を画像認識で分析し、投資効率と着回し可能性を計算。無駄のない戦略的なワードローブを構築します",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-3.jpg",
+      "purpose": "透明性の高いブランド情報",
+      "theme": "透明性の高いブランド情報",
+      "context": "製造過程から労働環境まで、ブランドの真の価値を可視化。安心して選択できるエシカルファッションをご紹介します",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "透明性の高いブランド情報",
+        "context": "製造過程から労働環境まで、ブランドの真の価値を可視化。安心して選択できるエシカルファッションをご紹介します",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    }
+  ],
+  "strategy": {
+    "totalImages": 10,
+    "serviceName": "ai-stylist",
+    "strategy": {
+      "phase1": "ヒーロー画像（最優先）",
+      "phase2": "問題セクション画像（ユーザーの共感獲得）",
+      "phase3": "ソリューション画像（価値提案強化）",
+      "phase4": "CTA・サポート画像（コンバージョン向上）"
+    },
+    "mcpCommands": [
+      {
+        "step": "hero_hero-sustainable-fashion.jpg",
+        "mcpPrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。\n\nテーマ: [object Object]\n文脈: \nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 1200x600 landscape\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/hero-sustainable-fashion.jpg",
+        "fallbackPath": "/images/hero-sustainable-fashion.jpg",
+        "description": "ヒーロー背景の画像生成"
+      },
+      {
+        "step": "problem_problem-impulse-buy.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 衝動買いして後悔してしまう\n文脈: セールやトレンドに流されて買い物をしてしまい、結局あまり着ない服が増えてしまう\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-impulse-buy.svg",
+        "fallbackPath": "/images/problem-impulse-buy.svg",
+        "description": "衝動買いして後悔してしまうの画像生成"
+      },
+      {
+        "step": "problem_problem-values-style.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: おしゃれと価値観が両立できない\n文脈: 環境に配慮したいけれど、エシカルファッションはデザインが限られていて物足りない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-values-style.svg",
+        "fallbackPath": "/images/problem-values-style.svg",
+        "description": "おしゃれと価値観が両立できないの画像生成"
+      },
+      {
+        "step": "problem_problem-wardrobe-waste.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 手持ち服を活かしきれない\n文脈: クローゼットに服はあるのに「着る服がない」と感じて、新しい服を買ってしまう\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-wardrobe-waste.svg",
+        "fallbackPath": "/images/problem-wardrobe-waste.svg",
+        "description": "手持ち服を活かしきれないの画像生成"
+      },
+      {
+        "step": "problem_problem-no-strategy.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 長期的なスタイル戦略がない\n文脈: その場しのぎの買い物ばかりで、一貫したスタイルや投資効率の良いワードローブが作れない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-no-strategy.svg",
+        "fallbackPath": "/images/problem-no-strategy.svg",
+        "description": "長期的なスタイル戦略がないの画像生成"
+      },
+      {
+        "step": "problem_problem-brand-info.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: エシカルブランドの情報不足\n文脈: 環境や社会に配慮したブランドを知りたいけれど、どこで信頼できる情報を得ればよいかわからない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-brand-info.svg",
+        "fallbackPath": "/images/problem-brand-info.svg",
+        "description": "エシカルブランドの情報不足の画像生成"
+      },
+      {
+        "step": "problem_problem-personal-style.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 自分に似合うスタイルがわからない\n文脈: トレンドは追えるけれど、本当に自分らしく、価値観と一致するスタイルが見つからない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-personal-style.svg",
+        "fallbackPath": "/images/problem-personal-style.svg",
+        "description": "自分に似合うスタイルがわからないの画像生成"
+      },
+      {
+        "step": "solution_solution-1.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 価値観×スタイルの完璧な融合\n文脈: AIが環境・社会・経済への価値観を詳細分析し、あなたの信念と美意識を両立するスタイルを提案します\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-1.jpg",
+        "fallbackPath": null,
+        "description": "価値観×スタイルの完璧な融合の画像生成"
+      },
+      {
+        "step": "solution_solution-2.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 科学的ワードローブ最適化\n文脈: 手持ち服を画像認識で分析し、投資効率と着回し可能性を計算。無駄のない戦略的なワードローブを構築します\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-2.jpg",
+        "fallbackPath": null,
+        "description": "科学的ワードローブ最適化の画像生成"
+      },
+      {
+        "step": "solution_solution-3.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 透明性の高いブランド情報\n文脈: 製造過程から労働環境まで、ブランドの真の価値を可視化。安心して選択できるエシカルファッションをご紹介します\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-3.jpg",
+        "fallbackPath": null,
+        "description": "透明性の高いブランド情報の画像生成"
+      }
+    ],
+    "estimatedTimeToComplete": "20分",
+    "nextSteps": [
+      "1. 各プロンプトをMCP経由でAI画像生成",
+      "2. 生成画像を適切なディレクトリに保存",
+      "3. 設定ファイルの画像パスを更新",
+      "4. 画像最適化とキャッシュ設定"
+    ]
+  },
+  "recommendations": [
+    "ヒーロー画像から開始することを推奨",
+    "問題セクション画像でユーザーの共感を獲得",
+    "ブランドカラーに合わせた色調統一",
+    "生成後は必ず画像最適化を実行"
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "timestamp": "2025-08-19T16:33:58.407Z",
+  "summary": {
+    "serviceName": "ai-legacy-creator",
+    "totalImages": 10,
+    "categories": "hero, problem, solution",
+    "estimatedTime": "20分"
+  },
+  "detailedRequirements": [
+    {
+      "category": "hero",
+      "filename": "hero-legacy.jpg",
+      "purpose": "ヒーロー背景",
+      "theme": "あなたの経験と知識を、価値ある作品として後世に残そう",
+      "context": "45年間の経験が眠っていませんか？AIが個人の知識を体系化し、次世代への継承をサポート。あなただけの「個人版ウィキペディア」を作成しましょう。",
+      "originalPath": "/images/hero-legacy.jpg",
+      "priority": "high",
+      "aiPrompt": {
+        "category": "hero",
+        "basePrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。",
+        "theme": {
+          "colors": {
+            "primary": "#1E40AF",
+            "secondary": "#7C3AED",
+            "accent": "#DC2626",
+            "background": "#FFFFFF",
+            "text": "#1F2937",
+            "textLight": "#6B7280"
+          },
+          "fonts": {
+            "heading": "'Playfair Display', serif",
+            "body": "'Inter', sans-serif"
+          },
+          "gradients": {
+            "primary": "linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%)",
+            "secondary": "linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)",
+            "accent": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)"
+          }
+        },
+        "context": "",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "1200x600 landscape"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-knowledge-loss.svg",
+      "purpose": "自分の知識が失われる危機感",
+      "theme": "自分の知識が失われる危機感",
+      "context": "40年以上のキャリアで培った専門知識やノウハウが、退職と共に組織から消えてしまう不安を感じている",
+      "originalPath": "/images/problem-knowledge-loss.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "自分の知識が失われる危機感",
+        "context": "40年以上のキャリアで培った専門知識やノウハウが、退職と共に組織から消えてしまう不安を感じている",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-organize.svg",
+      "purpose": "経験をどう整理していいかわからない",
+      "theme": "経験をどう整理していいかわからない",
+      "context": "散在する記憶や資料を体系的にまとめる方法がわからず、貴重な経験が埋もれたままになっている",
+      "originalPath": "/images/problem-organize.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "経験をどう整理していいかわからない",
+        "context": "散在する記憶や資料を体系的にまとめる方法がわからず、貴重な経験が埋もれたままになっている",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-mentoring.svg",
+      "purpose": "若手に伝える機会が少ない",
+      "theme": "若手に伝える機会が少ない",
+      "context": "メンタリングや指導の機会があっても、効果的に知識を伝える手法やプラットフォームがない",
+      "originalPath": "/images/problem-mentoring.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "若手に伝える機会が少ない",
+        "context": "メンタリングや指導の機会があっても、効果的に知識を伝える手法やプラットフォームがない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-contribution.svg",
+      "purpose": "退職後の社会貢献に不安",
+      "theme": "退職後の社会貢献に不安",
+      "context": "定年後も社会に貢献したいが、具体的にどのような形で知識を活かせるのかわからない",
+      "originalPath": "/images/problem-contribution.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "退職後の社会貢献に不安",
+        "context": "定年後も社会に貢献したいが、具体的にどのような形で知識を活かせるのかわからない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-digital.svg",
+      "purpose": "デジタル化への取り組みが進まない",
+      "theme": "デジタル化への取り組みが進まない",
+      "context": "紙の資料や頭の中の知識をデジタル化したいが、技術的なハードルが高く手が付けられない",
+      "originalPath": "/images/problem-digital.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "デジタル化への取り組みが進まない",
+        "context": "紙の資料や頭の中の知識をデジタル化したいが、技術的なハードルが高く手が付けられない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-evaluation.svg",
+      "purpose": "知識の価値が正当に評価されない",
+      "theme": "知識の価値が正当に評価されない",
+      "context": "長年の経験から得た知見の価値が組織や社会で適切に認識・評価されていないと感じる",
+      "originalPath": "/images/problem-evaluation.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "知識の価値が正当に評価されない",
+        "context": "長年の経験から得た知見の価値が組織や社会で適切に認識・評価されていないと感じる",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-1.jpg",
+      "purpose": "AI知識抽出・構造化",
+      "theme": "AI知識抽出・構造化",
+      "context": "自然言語処理技術で、これまでの経験談から核心的な知識を自動抽出。バラバラな記憶を体系的な知識グラフとして整理します。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "AI知識抽出・構造化",
+        "context": "自然言語処理技術で、これまでの経験談から核心的な知識を自動抽出。バラバラな記憶を体系的な知識グラフとして整理します。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-2.jpg",
+      "purpose": "個人版ウィキペディア作成",
+      "theme": "個人版ウィキペディア作成",
+      "context": "あなた専用のデジタル図書館を構築。検索可能な形で知識を保存し、いつでもアクセス・更新できる永続的なアーカイブを作成。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "個人版ウィキペディア作成",
+        "context": "あなた専用のデジタル図書館を構築。検索可能な形で知識を保存し、いつでもアクセス・更新できる永続的なアーカイブを作成。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-3.jpg",
+      "purpose": "次世代継承マッチング",
+      "theme": "次世代継承マッチング",
+      "context": "知識を求める若手専門職と自動マッチング。効果的なメンタリング関係を構築し、知識継承の成果を可視化します。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "次世代継承マッチング",
+        "context": "知識を求める若手専門職と自動マッチング。効果的なメンタリング関係を構築し、知識継承の成果を可視化します。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    }
+  ],
+  "strategy": {
+    "totalImages": 10,
+    "serviceName": "ai-legacy-creator",
+    "strategy": {
+      "phase1": "ヒーロー画像（最優先）",
+      "phase2": "問題セクション画像（ユーザーの共感獲得）",
+      "phase3": "ソリューション画像（価値提案強化）",
+      "phase4": "CTA・サポート画像（コンバージョン向上）"
+    },
+    "mcpCommands": [
+      {
+        "step": "hero_hero-legacy.jpg",
+        "mcpPrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。\n\nテーマ: [object Object]\n文脈: \nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 1200x600 landscape\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/hero-legacy.jpg",
+        "fallbackPath": "/images/hero-legacy.jpg",
+        "description": "ヒーロー背景の画像生成"
+      },
+      {
+        "step": "problem_problem-knowledge-loss.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 自分の知識が失われる危機感\n文脈: 40年以上のキャリアで培った専門知識やノウハウが、退職と共に組織から消えてしまう不安を感じている\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-knowledge-loss.svg",
+        "fallbackPath": "/images/problem-knowledge-loss.svg",
+        "description": "自分の知識が失われる危機感の画像生成"
+      },
+      {
+        "step": "problem_problem-organize.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 経験をどう整理していいかわからない\n文脈: 散在する記憶や資料を体系的にまとめる方法がわからず、貴重な経験が埋もれたままになっている\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-organize.svg",
+        "fallbackPath": "/images/problem-organize.svg",
+        "description": "経験をどう整理していいかわからないの画像生成"
+      },
+      {
+        "step": "problem_problem-mentoring.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 若手に伝える機会が少ない\n文脈: メンタリングや指導の機会があっても、効果的に知識を伝える手法やプラットフォームがない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-mentoring.svg",
+        "fallbackPath": "/images/problem-mentoring.svg",
+        "description": "若手に伝える機会が少ないの画像生成"
+      },
+      {
+        "step": "problem_problem-contribution.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 退職後の社会貢献に不安\n文脈: 定年後も社会に貢献したいが、具体的にどのような形で知識を活かせるのかわからない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-contribution.svg",
+        "fallbackPath": "/images/problem-contribution.svg",
+        "description": "退職後の社会貢献に不安の画像生成"
+      },
+      {
+        "step": "problem_problem-digital.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: デジタル化への取り組みが進まない\n文脈: 紙の資料や頭の中の知識をデジタル化したいが、技術的なハードルが高く手が付けられない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-digital.svg",
+        "fallbackPath": "/images/problem-digital.svg",
+        "description": "デジタル化への取り組みが進まないの画像生成"
+      },
+      {
+        "step": "problem_problem-evaluation.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 知識の価値が正当に評価されない\n文脈: 長年の経験から得た知見の価値が組織や社会で適切に認識・評価されていないと感じる\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-evaluation.svg",
+        "fallbackPath": "/images/problem-evaluation.svg",
+        "description": "知識の価値が正当に評価されないの画像生成"
+      },
+      {
+        "step": "solution_solution-1.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: AI知識抽出・構造化\n文脈: 自然言語処理技術で、これまでの経験談から核心的な知識を自動抽出。バラバラな記憶を体系的な知識グラフとして整理します。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-1.jpg",
+        "fallbackPath": null,
+        "description": "AI知識抽出・構造化の画像生成"
+      },
+      {
+        "step": "solution_solution-2.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 個人版ウィキペディア作成\n文脈: あなた専用のデジタル図書館を構築。検索可能な形で知識を保存し、いつでもアクセス・更新できる永続的なアーカイブを作成。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-2.jpg",
+        "fallbackPath": null,
+        "description": "個人版ウィキペディア作成の画像生成"
+      },
+      {
+        "step": "solution_solution-3.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 次世代継承マッチング\n文脈: 知識を求める若手専門職と自動マッチング。効果的なメンタリング関係を構築し、知識継承の成果を可視化します。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-3.jpg",
+        "fallbackPath": null,
+        "description": "次世代継承マッチングの画像生成"
+      }
+    ],
+    "estimatedTimeToComplete": "20分",
+    "nextSteps": [
+      "1. 各プロンプトをMCP経由でAI画像生成",
+      "2. 生成画像を適切なディレクトリに保存",
+      "3. 設定ファイルの画像パスを更新",
+      "4. 画像最適化とキャッシュ設定"
+    ]
+  },
+  "recommendations": [
+    "ヒーロー画像から開始することを推奨",
+    "問題セクション画像でユーザーの共感を獲得",
+    "ブランドカラーに合わせた色調統一",
+    "生成後は必ず画像最適化を実行"
+  ]
+}
