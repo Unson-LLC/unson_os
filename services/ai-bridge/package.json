@@ -16,6 +16,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.408.0",
     "next": "^15.4.4",
+    "posthog-js": "^1.260.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^2.6.0"

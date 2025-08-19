@@ -1,0 +1,304 @@
+{
+  "timestamp": "2025-08-19T15:39:31.695Z",
+  "summary": {
+    "serviceName": "ai-bridge",
+    "totalImages": 10,
+    "categories": "hero, problem, solution",
+    "estimatedTime": "20分"
+  },
+  "detailedRequirements": [
+    {
+      "category": "hero",
+      "filename": "hero-bridge.svg",
+      "purpose": "ヒーロー背景",
+      "theme": "世代の違いを強みに変える、新時代のリーダーになろう",
+      "context": "Z世代部下との関係に悩む管理職の方へ。AI技術で世代間ギャップを解決し、全世代が活躍できる革新的なチーム作りを実現します。",
+      "originalPath": "/images/hero-bridge.svg",
+      "priority": "high",
+      "aiPrompt": {
+        "category": "hero",
+        "basePrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。",
+        "theme": {
+          "colors": {
+            "primary": "#2563EB",
+            "secondary": "#7C3AED",
+            "accent": "#059669",
+            "background": "#FFFFFF",
+            "text": "#1F2937",
+            "textLight": "#6B7280"
+          },
+          "fonts": {
+            "heading": "'Noto Sans JP', sans-serif",
+            "body": "'Noto Sans JP', sans-serif"
+          },
+          "gradients": {
+            "primary": "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
+            "secondary": "linear-gradient(135deg, #059669 0%, #10B981 100%)",
+            "accent": "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)"
+          }
+        },
+        "context": "",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "1200x600 landscape"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-understanding.svg",
+      "purpose": "Z世代部下の考えが理解できない",
+      "theme": "Z世代部下の考えが理解できない",
+      "context": "「なぜすぐに転職を考えるのか」「リモートワークにこだわる理由は」など、若手の価値観が理解しにくい",
+      "originalPath": "/images/problem-understanding.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "Z世代部下の考えが理解できない",
+        "context": "「なぜすぐに転職を考えるのか」「リモートワークにこだわる理由は」など、若手の価値観が理解しにくい",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-guidance.svg",
+      "purpose": "指導方法が響かない",
+      "theme": "指導方法が響かない",
+      "context": "従来の指導方法では成果が出ず、部下のモチベーションが上がらない。何をどう伝えればいいのか分からない",
+      "originalPath": "/images/problem-guidance.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "指導方法が響かない",
+        "context": "従来の指導方法では成果が出ず、部下のモチベーションが上がらない。何をどう伝えればいいのか分からない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-conflict.svg",
+      "purpose": "チーム内の世代間対立",
+      "theme": "チーム内の世代間対立",
+      "context": "ベテランと若手の間で価値観の衝突が起き、チームの雰囲気が悪化。生産性の低下が深刻",
+      "originalPath": "/images/problem-conflict.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "チーム内の世代間対立",
+        "context": "ベテランと若手の間で価値観の衝突が起き、チームの雰囲気が悪化。生産性の低下が深刻",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-evaluation.svg",
+      "purpose": "評価面談で何を話せばいいか困る",
+      "theme": "評価面談で何を話せばいいか困る",
+      "context": "世代が違うと何をフィードバックすべきか悩む。相手に響く評価方法が分からない",
+      "originalPath": "/images/problem-evaluation.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "評価面談で何を話せばいいか困る",
+        "context": "世代が違うと何をフィードバックすべきか悩む。相手に響く評価方法が分からない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-meeting.svg",
+      "purpose": "会議で発言に偏りが出る",
+      "theme": "会議で発言に偏りが出る",
+      "context": "ベテランばかりが話し、若手が発言しない。または逆のパターンで、バランスの取れた議論ができない",
+      "originalPath": "/images/problem-meeting.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "会議で発言に偏りが出る",
+        "context": "ベテランばかりが話し、若手が発言しない。または逆のパターンで、バランスの取れた議論ができない",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "problem",
+      "filename": "problem-change.svg",
+      "purpose": "組織変革への抵抗がある",
+      "theme": "組織変革への抵抗がある",
+      "context": "新しい取り組みを始めようとすると、世代によって反応が大きく異なり、全体の合意形成が困難",
+      "originalPath": "/images/problem-change.svg",
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "problem",
+        "basePrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。",
+        "theme": "組織変革への抵抗がある",
+        "context": "新しい取り組みを始めようとすると、世代によって反応が大きく異なり、全体の合意形成が困難",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-1.jpg",
+      "purpose": "世代特性を科学的に分析",
+      "theme": "世代特性を科学的に分析",
+      "context": "各世代の価値観・行動パターンをAIが詳細分析。個人差も考慮した精密なプロファイリングで、一人ひとりに最適なアプローチを提案します。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "世代特性を科学的に分析",
+        "context": "各世代の価値観・行動パターンをAIが詳細分析。個人差も考慮した精密なプロファイリングで、一人ひとりに最適なアプローチを提案します。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-2.jpg",
+      "purpose": "リアルタイム・コミュニケーション支援",
+      "theme": "リアルタイム・コミュニケーション支援",
+      "context": "面談や会議の場面で、相手の世代に応じた最適な表現方法をリアルタイムでアドバイス。その場で使える実践的なサポートを提供します。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "リアルタイム・コミュニケーション支援",
+        "context": "面談や会議の場面で、相手の世代に応じた最適な表現方法をリアルタイムでアドバイス。その場で使える実践的なサポートを提供します。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    },
+    {
+      "category": "solution",
+      "filename": "solution-3.jpg",
+      "purpose": "多様性を活かすチーム設計",
+      "theme": "多様性を活かすチーム設計",
+      "context": "各世代の強みを最大化するプロジェクト配置とチーム編成をAI提案。世代間の相乗効果で生産性を劇的に向上させます。",
+      "originalPath": null,
+      "priority": "medium",
+      "aiPrompt": {
+        "category": "solution",
+        "basePrompt": "革新的なソリューションを表現するポジティブで未来的な画像。",
+        "theme": "多様性を活かすチーム設計",
+        "context": "各世代の強みを最大化するプロジェクト配置とチーム編成をAI提案。世代間の相乗効果で生産性を劇的に向上させます。",
+        "style": "professional, clean, modern, business-focused, high-quality",
+        "colors": "corporate blue and white theme, professional color palette",
+        "composition": "400x400 square or 16:9 aspect ratio"
+      }
+    }
+  ],
+  "strategy": {
+    "totalImages": 10,
+    "serviceName": "ai-bridge",
+    "strategy": {
+      "phase1": "ヒーロー画像（最優先）",
+      "phase2": "問題セクション画像（ユーザーの共感獲得）",
+      "phase3": "ソリューション画像（価値提案強化）",
+      "phase4": "CTA・サポート画像（コンバージョン向上）"
+    },
+    "mcpCommands": [
+      {
+        "step": "hero_hero-bridge.svg",
+        "mcpPrompt": "プロフェッショナルで信頼感のあるビジネス向けヒーロー背景画像。\n\nテーマ: [object Object]\n文脈: \nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 1200x600 landscape\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/hero-bridge.svg",
+        "fallbackPath": "/images/hero-bridge.svg",
+        "description": "ヒーロー背景の画像生成"
+      },
+      {
+        "step": "problem_problem-understanding.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: Z世代部下の考えが理解できない\n文脈: 「なぜすぐに転職を考えるのか」「リモートワークにこだわる理由は」など、若手の価値観が理解しにくい\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-understanding.svg",
+        "fallbackPath": "/images/problem-understanding.svg",
+        "description": "Z世代部下の考えが理解できないの画像生成"
+      },
+      {
+        "step": "problem_problem-guidance.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 指導方法が響かない\n文脈: 従来の指導方法では成果が出ず、部下のモチベーションが上がらない。何をどう伝えればいいのか分からない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-guidance.svg",
+        "fallbackPath": "/images/problem-guidance.svg",
+        "description": "指導方法が響かないの画像生成"
+      },
+      {
+        "step": "problem_problem-conflict.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: チーム内の世代間対立\n文脈: ベテランと若手の間で価値観の衝突が起き、チームの雰囲気が悪化。生産性の低下が深刻\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-conflict.svg",
+        "fallbackPath": "/images/problem-conflict.svg",
+        "description": "チーム内の世代間対立の画像生成"
+      },
+      {
+        "step": "problem_problem-evaluation.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 評価面談で何を話せばいいか困る\n文脈: 世代が違うと何をフィードバックすべきか悩む。相手に響く評価方法が分からない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-evaluation.svg",
+        "fallbackPath": "/images/problem-evaluation.svg",
+        "description": "評価面談で何を話せばいいか困るの画像生成"
+      },
+      {
+        "step": "problem_problem-meeting.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 会議で発言に偏りが出る\n文脈: ベテランばかりが話し、若手が発言しない。または逆のパターンで、バランスの取れた議論ができない\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-meeting.svg",
+        "fallbackPath": "/images/problem-meeting.svg",
+        "description": "会議で発言に偏りが出るの画像生成"
+      },
+      {
+        "step": "problem_problem-change.svg",
+        "mcpPrompt": "ビジネス課題を表現するシンプルで分かりやすいイラスト。\n\nテーマ: 組織変革への抵抗がある\n文脈: 新しい取り組みを始めようとすると、世代によって反応が大きく異なり、全体の合意形成が困難\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/problem-change.svg",
+        "fallbackPath": "/images/problem-change.svg",
+        "description": "組織変革への抵抗があるの画像生成"
+      },
+      {
+        "step": "solution_solution-1.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 世代特性を科学的に分析\n文脈: 各世代の価値観・行動パターンをAIが詳細分析。個人差も考慮した精密なプロファイリングで、一人ひとりに最適なアプローチを提案します。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-1.jpg",
+        "fallbackPath": null,
+        "description": "世代特性を科学的に分析の画像生成"
+      },
+      {
+        "step": "solution_solution-2.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: リアルタイム・コミュニケーション支援\n文脈: 面談や会議の場面で、相手の世代に応じた最適な表現方法をリアルタイムでアドバイス。その場で使える実践的なサポートを提供します。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-2.jpg",
+        "fallbackPath": null,
+        "description": "リアルタイム・コミュニケーション支援の画像生成"
+      },
+      {
+        "step": "solution_solution-3.jpg",
+        "mcpPrompt": "革新的なソリューションを表現するポジティブで未来的な画像。\n\nテーマ: 多様性を活かすチーム設計\n文脈: 各世代の強みを最大化するプロジェクト配置とチーム編成をAI提案。世代間の相乗効果で生産性を劇的に向上させます。\nスタイル: professional, clean, modern, business-focused, high-quality\nカラー: corporate blue and white theme, professional color palette\n構成: 400x400 square or 16:9 aspect ratio\n\n要求品質: ビジネス利用に適したプロフェッショナル品質\n出力形式: JPEGまたはPNG、Web最適化済み",
+        "outputPath": "services/undefined/public/images/generated/solution-3.jpg",
+        "fallbackPath": null,
+        "description": "多様性を活かすチーム設計の画像生成"
+      }
+    ],
+    "estimatedTimeToComplete": "20分",
+    "nextSteps": [
+      "1. 各プロンプトをMCP経由でAI画像生成",
+      "2. 生成画像を適切なディレクトリに保存",
+      "3. 設定ファイルの画像パスを更新",
+      "4. 画像最適化とキャッシュ設定"
+    ]
+  },
+  "recommendations": [
+    "ヒーロー画像から開始することを推奨",
+    "問題セクション画像でユーザーの共感を獲得",
+    "ブランドカラーに合わせた色調統一",
+    "生成後は必ず画像最適化を実行"
+  ]
+}

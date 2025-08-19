@@ -1,9 +1,8 @@
 'use client';
 
 import posthog from 'posthog-js';
-import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, ReactNode } from 'react';
 
 if (typeof window !== 'undefined') {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || '', {
@@ -45,13 +44,17 @@ function PostHogPageView() {
   return null;
 }
 
-export default function PostHogProvider({ children }: { children: React.ReactNode }) {
+interface PostHogProviderProps {
+  children: ReactNode;
+}
+
+export default function PostHogProvider({ children }: PostHogProviderProps) {
   return (
-    <PHProvider client={posthog}>
+    <div>
       <Suspense fallback={null}>
         <PostHogPageView />
       </Suspense>
-      {children}
-    </PHProvider>
+      {children as ReactNode}
+    </div>
   );
 }
