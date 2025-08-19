@@ -1,0 +1,10 @@
+{
+  "name": "unson-lp-mywa",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_SERVICE_NAME": "mywa"
+  }
+}

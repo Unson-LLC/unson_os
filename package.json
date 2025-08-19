@@ -39,6 +39,8 @@
     "test:all": "npm run test:ci && npm run test:e2e",
     "setup:check": "node scripts/setup-check.js",
     "convex:dev": "convex dev",
+    "ga4:create": "node scripts/create-single-ga4-property.js",
+    "ga4:check": "node scripts/check-ga4-access.js",
     "secrets:check": "secretlint \"**/*\"",
     "secrets:fix": "secretlint \"**/*\" --fix",
     "prepare": "command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1 && npx husky install || true"
@@ -55,6 +57,7 @@
     "convex": "^1.25.4",
     "framer-motion": "^10.18.0",
     "google-ads-api": "^20.0.1",
+    "google-auth-library": "^9.0.0",
     "lucide-react": "^0.303.0",
     "next": "14.0.4",
     "react": "^18",
@@ -67,7 +70,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.2",
-    "@google-analytics/mcp-server": "^1.0.0",
     "@microsoft/clarity-mcp-server": "^1.0.0",
     "@playwright/test": "^1.40.1",
     "@secretlint/secretlint-rule-preset-recommend": "^10.2.1",
