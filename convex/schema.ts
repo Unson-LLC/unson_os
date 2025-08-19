@@ -92,4 +92,27 @@ export default defineSchema({
   })
     .index("by_email", ["email"])
     .index("by_status", ["status"]),
+    
+  serviceApplications: defineTable({
+    workspace_id: v.string(),
+    serviceName: v.string(),
+    email: v.string(),
+    name: v.string(),
+    formData: v.any(),
+    status: v.union(
+      v.literal("submitted"),
+      v.literal("processing"),
+      v.literal("approved"),
+      v.literal("rejected"),
+      v.literal("trial_started")
+    ),
+    notes: v.optional(v.string()),
+    processedAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_workspace_service", ["workspace_id", "serviceName"])
+    .index("by_workspace_email", ["workspace_id", "email"])
+    .index("by_workspace_service_email", ["workspace_id", "serviceName", "email"])
+    .index("by_workspace_service_status", ["workspace_id", "serviceName", "status"]),
 });

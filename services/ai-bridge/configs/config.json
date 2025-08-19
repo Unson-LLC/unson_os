@@ -1,0 +1,337 @@
+{
+  "meta": {
+    "title": "AI世代間ブリッジ - 世代の違いを強みに変える新時代のリーダーシップ",
+    "description": "Z世代部下との関係に悩む40代管理職向け。AI技術で世代間ギャップを解決し、多様性を活かした高パフォーマンスチーム作りを実現。リアルタイムコミュニケーション支援で組織を変革。",
+    "keywords": ["世代間コミュニケーション", "Z世代マネジメント", "リーダーシップ", "チームビルディング", "組織変革"]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#2563EB",
+      "secondary": "#7C3AED",
+      "accent": "#059669",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Noto Sans JP', sans-serif",
+      "body": "'Noto Sans JP', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
+      "secondary": "linear-gradient(135deg, #059669 0%, #10B981 100%)",
+      "accent": "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "世代の違いを強みに変える、新時代のリーダーになろう",
+      "subtitle": "Z世代部下との関係に悩む管理職の方へ。AI技術で世代間ギャップを解決し、全世代が活躍できる革新的なチーム作りを実現します。",
+      "cta": "無料診断を始める",
+      "secondaryCta": "サービス詳細を見る",
+      "backgroundImage": "/images/hero-bridge.svg",
+      "backgroundGradient": true
+    },
+    "problem": {
+      "title": "こんなマネジメントの悩み、ありませんか？",
+      "subtitle": "多くの管理職が直面する世代間コミュニケーションの課題",
+      "description": "現代の職場では複数の世代が混在し、価値観や働き方の違いから様々な課題が生まれています。",
+      "problems": [
+        {
+          "title": "Z世代部下の考えが理解できない",
+          "description": "「なぜすぐに転職を考えるのか」「リモートワークにこだわる理由は」など、若手の価値観が理解しにくい",
+          "image": "/images/problem-understanding.svg"
+        },
+        {
+          "title": "指導方法が響かない",
+          "description": "従来の指導方法では成果が出ず、部下のモチベーションが上がらない。何をどう伝えればいいのか分からない",
+          "image": "/images/problem-guidance.svg"
+        },
+        {
+          "title": "チーム内の世代間対立",
+          "description": "ベテランと若手の間で価値観の衝突が起き、チームの雰囲気が悪化。生産性の低下が深刻",
+          "image": "/images/problem-conflict.svg"
+        },
+        {
+          "title": "評価面談で何を話せばいいか困る",
+          "description": "世代が違うと何をフィードバックすべきか悩む。相手に響く評価方法が分からない",
+          "image": "/images/problem-evaluation.svg"
+        },
+        {
+          "title": "会議で発言に偏りが出る",
+          "description": "ベテランばかりが話し、若手が発言しない。または逆のパターンで、バランスの取れた議論ができない",
+          "image": "/images/problem-meeting.svg"
+        },
+        {
+          "title": "組織変革への抵抗がある",
+          "description": "新しい取り組みを始めようとすると、世代によって反応が大きく異なり、全体の合意形成が困難",
+          "image": "/images/problem-change.svg"
+        }
+      ]
+    },
+    "solution": {
+      "title": "AI技術で世代間ギャップを「資源」に変える",
+      "subtitle": "問題を解決するのではなく、違いを強みとして活かす革新的アプローチ",
+      "description": "AI世代間ブリッジは、世代の違いを問題として捉えるのではなく、多様性の資源として活用することで、これまでにない高パフォーマンスチームの構築を支援します。",
+      "solutions": [
+        {
+          "title": "世代特性を科学的に分析",
+          "description": "各世代の価値観・行動パターンをAIが詳細分析。個人差も考慮した精密なプロファイリングで、一人ひとりに最適なアプローチを提案します。",
+          "icon": "Brain"
+        },
+        {
+          "title": "リアルタイム・コミュニケーション支援",
+          "description": "面談や会議の場面で、相手の世代に応じた最適な表現方法をリアルタイムでアドバイス。その場で使える実践的なサポートを提供します。",
+          "icon": "MessageSquare"
+        },
+        {
+          "title": "多様性を活かすチーム設計",
+          "description": "各世代の強みを最大化するプロジェクト配置とチーム編成をAI提案。世代間の相乗効果で生産性を劇的に向上させます。",
+          "icon": "Users"
+        }
+      ]
+    },
+    "service": {
+      "title": "AI世代間ブリッジの主要機能",
+      "subtitle": "科学的根拠に基づいた包括的な世代間マネジメント支援",
+      "services": [
+        {
+          "title": "世代間分析・診断システム",
+          "description": "チームメンバーの世代特性と個人特性を詳細分析し、効果的なマネジメント戦略を提案します。",
+          "features": [
+            "個人別の価値観・モチベーション分析",
+            "世代間の価値観ギャップ可視化",
+            "チーム内の相性・補完性診断",
+            "継続的な関係性変化の追跡"
+          ],
+          "icon": "BarChart3"
+        },
+        {
+          "title": "コミュニケーション最適化ツール",
+          "description": "各世代に響く表現方法とタイミングをAIが提案し、効果的な対話を実現します。",
+          "features": [
+            "世代別フィードバック方法の提案",
+            "シチュエーション別対応法ガイド",
+            "リアルタイム表現翻訳機能",
+            "非言語コミュニケーション分析"
+          ],
+          "icon": "MessageCircle"
+        },
+        {
+          "title": "チーム最適化エンジン",
+          "description": "多世代の強みを活かした高パフォーマンスチームの構築と運営を支援します。",
+          "features": [
+            "プロジェクト別最適配置提案",
+            "世代間協働ワークショップ企画",
+            "会議効率化・参加促進機能",
+            "チーム文化創造サポート"
+          ],
+          "icon": "Target"
+        },
+        {
+          "title": "組織変革リーダーシップ",
+          "description": "世代間ハーモニーを組織全体に拡大し、持続的な変革を実現します。",
+          "features": [
+            "変革ストーリー作成支援",
+            "段階的変革計画の策定",
+            "世代別抵抗対応戦略",
+            "全社エンゲージメント向上"
+          ],
+          "icon": "TrendingUp"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "料金プラン",
+      "subtitle": "チーム規模と目的に応じて選べる4つのプラン",
+      "plans": [
+        {
+          "name": "個人プラン",
+          "price": "¥3,980",
+          "period": "月",
+          "description": "マネージャー個人のスキル向上に最適",
+          "features": [
+            "基本的な世代間分析・コミュニケーション支援",
+            "1on1面談サポート（月10回まで）",
+            "個人向けレポート・アドバイス",
+            "基本的なチーム分析（5名まで）",
+            "世代間コミュニケーション研修動画"
+          ],
+          "cta": "個人プランを始める",
+          "popular": false
+        },
+        {
+          "name": "チームプラン",
+          "price": "¥19,800",
+          "period": "月",
+          "description": "小〜中規模チームの最適化に",
+          "features": [
+            "無制限の世代間分析・支援",
+            "チーム最適化AI（10名まで）",
+            "リアルタイム会議サポート",
+            "詳細なチーム・ダッシュボード",
+            "月次改善レポート",
+            "専門家による月1回コンサルティング"
+          ],
+          "cta": "チームプランを始める",
+          "popular": true
+        },
+        {
+          "name": "エンタープライズプラン",
+          "price": "¥98,000",
+          "period": "月",
+          "description": "大規模組織の包括的な変革支援",
+          "features": [
+            "組織全体の世代間分析（100名まで）",
+            "変革戦略コンサルティング",
+            "カスタマイズ機能・専任サポート",
+            "他部署との連携機能",
+            "役員向けレポート・ダッシュボード",
+            "研修・ワークショップ実施支援"
+          ],
+          "cta": "エンタープライズプランを相談する",
+          "popular": false
+        },
+        {
+          "name": "コンサルティングプラン",
+          "price": "個別見積もり",
+          "description": "完全カスタマイズの組織変革支援",
+          "features": [
+            "専門家による組織診断・改善支援",
+            "研修・ワークショップの企画・実施",
+            "長期的な組織開発支援",
+            "業界特化型ソリューション",
+            "海外展開・グローバルチーム対応"
+          ],
+          "cta": "詳細を相談する",
+          "popular": false
+        }
+      ]
+    },
+    "form": {
+      "title": "世代間コミュニケーション無料診断",
+      "subtitle": "まずは現在のチーム状況を診断してみませんか？5分で完了します",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@company.com",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "company",
+          "label": "会社名",
+          "placeholder": "株式会社サンプル",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "position",
+          "label": "役職",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["課長", "部長", "事業部長", "取締役", "その他管理職"]
+        },
+        {
+          "type": "select",
+          "name": "teamSize",
+          "label": "チーム規模",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["5名以下", "6-10名", "11-20名", "21-50名", "51名以上"]
+        },
+        {
+          "type": "select",
+          "name": "challenge",
+          "label": "最も困っている課題",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["Z世代部下との関係性", "チーム内の世代間対立", "評価・フィードバック方法", "会議・意思決定の効率", "組織変革への抵抗"]
+        },
+        {
+          "type": "textarea",
+          "name": "details",
+          "label": "具体的なお悩み（任意）",
+          "placeholder": "現在直面している世代間コミュニケーションの課題があれば、具体的にお聞かせください",
+          "required": false
+        }
+      ],
+      "submitText": "無料診断を受ける",
+      "successMessage": "診断お申込みありがとうございます！3営業日以内に詳細な分析レポートをお送りいたします。",
+      "privacyText": "個人情報は適切に管理し、サービス提供以外の目的では使用いたしません。"
+    },
+    "finalCta": {
+      "title": "今すぐ世代間ハーモニーのリーダーになろう",
+      "subtitle": "AIの力で世代の違いを最大の強みに変える新時代のマネジメントを始めませんか",
+      "cta": "無料診断を始める",
+      "urgencyText": "今なら初月50%OFF！先着100名様限定",
+      "benefitsList": [
+        "チームの生産性が平均20%向上",
+        "若手の離職率を30%以上削減",
+        "全世代の職場満足度が向上",
+        "組織変革がスムーズに推進できる"
+      ]
+    },
+    "footer": {
+      "companyName": "AI世代間ブリッジ",
+      "description": "世代の多様性を活かした革新的な組織作りを支援するAIプラットフォーム",
+      "sections": [
+        {
+          "title": "サービス",
+          "links": [
+            { "text": "機能詳細", "url": "/features" },
+            { "text": "料金プラン", "url": "/pricing" },
+            { "text": "導入事例", "url": "/cases" },
+            { "text": "無料診断", "url": "/diagnosis" }
+          ]
+        },
+        {
+          "title": "サポート",
+          "links": [
+            { "text": "よくある質問", "url": "/faq" },
+            { "text": "導入サポート", "url": "/support" },
+            { "text": "研修・セミナー", "url": "/training" },
+            { "text": "お問い合わせ", "url": "/contact" }
+          ]
+        },
+        {
+          "title": "会社情報",
+          "links": [
+            { "text": "会社概要", "url": "/about" },
+            { "text": "プライバシーポリシー", "url": "/privacy" },
+            { "text": "利用規約", "url": "/terms" },
+            { "text": "ニュース", "url": "/news" }
+          ]
+        }
+      ],
+      "copyright": "© 2025 AI世代間ブリッジ. All rights reserved.",
+      "socialLinks": [
+        { "platform": "twitter", "url": "https://twitter.com/generation_bridge" },
+        { "platform": "linkedin", "url": "https://linkedin.com/company/generation-bridge" },
+        { "platform": "facebook", "url": "https://facebook.com/generationbridge" }
+      ]
+    }
+  },
+  "assets": {
+    "logo": "/images/logo-generation-bridge.png",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/hero-bridge.svg",
+      "problemUnderstanding": "/images/problem-understanding.svg",
+      "problemGuidance": "/images/problem-guidance.svg",
+      "problemConflict": "/images/problem-conflict.svg",
+      "problemEvaluation": "/images/problem-evaluation.svg",
+      "problemMeeting": "/images/problem-meeting.svg",
+      "problemChange": "/images/problem-change.svg"
+    }
+  }
+}

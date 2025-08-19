@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Placeholder Images</title>
+</head>
+<body>
+    <h1>プレースホルダー画像生成</h1>
+    <p>このHTMLファイルをブラウザで開いて、画像を右クリックして保存してください。</p>
+    
+    <h2>ヒーロー背景</h2>
+    <canvas id="hero-bg" width="1920" height="1080"></canvas>
+    
+    <h2>問題提起画像</h2>
+    <canvas id="problem-1" width="600" height="400"></canvas>
+    <canvas id="problem-2" width="600" height="400"></canvas>
+    <canvas id="problem-3" width="600" height="400"></canvas>
+    
+    <h2>特徴画像</h2>
+    <canvas id="feature-1" width="800" height="600"></canvas>
+    <canvas id="feature-2" width="800" height="600"></canvas>
+    <canvas id="feature-3" width="800" height="600"></canvas>
+    
+    <h2>証言者アバター</h2>
+    <canvas id="avatar-1" width="100" height="100"></canvas>
+    <canvas id="avatar-2" width="100" height="100"></canvas>
+    <canvas id="avatar-3" width="100" height="100"></canvas>
+    
+    <script>
+        // ヒーロー背景を生成
+        function createHeroBackground(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // グラデーション背景
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // パターン
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < 20; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * 100, 0);
+                ctx.lineTo(i * 100 + 50, canvas.height);
+                ctx.stroke();
+            }
+            
+            // テキスト
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.font = 'bold 120px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('HERO BACKGROUND', canvas.width / 2, canvas.height / 2);
+        }
+        
+        // 問題画像を生成
+        function createProblemImage(canvasId, number) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // 背景
+            const colors = ['#fde68a', '#fca5a5', '#bfdbfe'];
+            ctx.fillStyle = colors[number - 1];
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // アイコン風の図形
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2 - 30, 80, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // テキスト
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+            ctx.font = 'bold 24px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(`PROBLEM ${number}`, canvas.width / 2, canvas.height / 2 + 50);
+        }
+        
+        // 特徴画像を生成
+        function createFeatureImage(canvasId, number) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // グラデーション背景
+            const gradients = [
+                ['#667eea', '#764ba2'],
+                ['#f093fb', '#f5576c'],
+                ['#4facfe', '#00f2fe']
+            ];
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, gradients[number - 1][0]);
+            gradient.addColorStop(1, gradients[number - 1][1]);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 装飾
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 3;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, 50 + i * 40, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            // テキスト
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 48px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(`FEATURE ${number}`, canvas.width / 2, canvas.height / 2);
+        }
+        
+        // アバター画像を生成
+        function createAvatarImage(canvasId, number) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // 背景色
+            const colors = ['#8b5cf6', '#3b82f6', '#10b981'];
+            ctx.fillStyle = colors[number - 1];
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 人物アイコン
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, 35, 20, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.ellipse(canvas.width / 2, 75, 30, 25, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // テキスト
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(number.toString(), canvas.width / 2, 95);
+        }
+        
+        // 画像を生成
+        createHeroBackground('hero-bg');
+        createProblemImage('problem-1', 1);
+        createProblemImage('problem-2', 2);
+        createProblemImage('problem-3', 3);
+        createFeatureImage('feature-1', 1);
+        createFeatureImage('feature-2', 2);
+        createFeatureImage('feature-3', 3);
+        createAvatarImage('avatar-1', 1);
+        createAvatarImage('avatar-2', 2);
+        createAvatarImage('avatar-3', 3);
+        
+        // 自動ダウンロード関数
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // ダウンロードボタンを追加
+        setTimeout(() => {
+            const button = document.createElement('button');
+            button.textContent = '全ての画像をダウンロード';
+            button.style.cssText = 'position: fixed; top: 10px; right: 10px; padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 5px; cursor: pointer;';
+            button.onclick = () => {
+                downloadCanvas('hero-bg', 'hero-bg.png');
+                setTimeout(() => downloadCanvas('problem-1', 'problem-1.png'), 100);
+                setTimeout(() => downloadCanvas('problem-2', 'problem-2.png'), 200);
+                setTimeout(() => downloadCanvas('problem-3', 'problem-3.png'), 300);
+                setTimeout(() => downloadCanvas('feature-1', 'feature-1.png'), 400);
+                setTimeout(() => downloadCanvas('feature-2', 'feature-2.png'), 500);
+                setTimeout(() => downloadCanvas('feature-3', 'feature-3.png'), 600);
+                setTimeout(() => downloadCanvas('avatar-1', 'avatar-1.png'), 700);
+                setTimeout(() => downloadCanvas('avatar-2', 'avatar-2.png'), 800);
+                setTimeout(() => downloadCanvas('avatar-3', 'avatar-3.png'), 900);
+            };
+            document.body.appendChild(button);
+        }, 100);
+    </script>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+        canvas {
+            display: block;
+            margin: 20px 0;
+            border: 1px solid #e5e7eb;
+            background: white;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #374151;
+        }
+    </style>
+</body>
+</html>

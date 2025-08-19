@@ -7,6 +7,7 @@
     "dev:apps": "./scripts/dev-apps.sh",
     "dev:landing": "cd apps/landing && npm run dev",
     "dev:mgmt": "cd apps/management-ui && npm run dev",
+    "dev:lp-gen": "cd apps/lp-generator && npm run dev",
     "dev:convex": "./scripts/dev-convex.sh",
     "dev:next": "./scripts/dev-nextjs.sh",
     "build": "next build",
@@ -93,6 +94,9 @@
     "whatwg-fetch": "^3.6.20"
   },
   "workspaces": [
-    "scripts/knowledge-base"
+    "scripts/knowledge-base",
+    "apps/*",
+    "services/*/landing",
+    "shared"
   ]
 }
