@@ -1,6 +1,6 @@
 'use client';
 
-import { usePostHog } from 'posthog-js/react';
+import posthog from 'posthog-js';
 import { useEffect } from 'react';
 
 interface PostHogAnalyticsProps {
@@ -8,49 +8,58 @@ interface PostHogAnalyticsProps {
 }
 
 export default function PostHogAnalytics({ serviceName }: PostHogAnalyticsProps) {
-  const posthog = usePostHog();
-
   useEffect(() => {
-    if (posthog) {
+    if (posthog && typeof window !== 'undefined') {
       posthog.register({
         service_name: serviceName,
       });
     }
-  }, [posthog, serviceName]);
+  }, [serviceName]);
 
   return null;
 }
 
 export const useAnalytics = () => {
-  const posthog = usePostHog();
 
   return {
     trackEvent: (eventName: string, properties?: Record<string, any>) => {
-      posthog?.capture(eventName, properties);
+      if (typeof window !== 'undefined' && posthog) {
+        posthog.capture(eventName, properties);
+      }
     },
     trackFormSubmission: (formType: string = 'contact') => {
-      posthog?.capture('form_submitted', {
-        form_type: formType,
-        timestamp: new Date().toISOString(),
-      });
+      if (typeof window !== 'undefined' && posthog) {
+        posthog.capture('form_submitted', {
+          form_type: formType,
+          timestamp: new Date().toISOString(),
+        });
+      }
     },
     trackCTAClick: (ctaLabel: string) => {
-      posthog?.capture('cta_clicked', {
-        cta_label: ctaLabel,
-        timestamp: new Date().toISOString(),
-      });
+      if (typeof window !== 'undefined' && posthog) {
+        posthog.capture('cta_clicked', {
+          cta_label: ctaLabel,
+          timestamp: new Date().toISOString(),
+        });
+      }
     },
     trackScrollDepth: (depth: number) => {
-      posthog?.capture('scroll_depth', {
-        depth_percentage: depth,
-        timestamp: new Date().toISOString(),
-      });
+      if (typeof window !== 'undefined' && posthog) {
+        posthog.capture('scroll_depth', {
+          depth_percentage: depth,
+          timestamp: new Date().toISOString(),
+        });
+      }
     },
     identifyUser: (userId: string, properties?: Record<string, any>) => {
-      posthog?.identify(userId, properties);
+      if (typeof window !== 'undefined' && posthog) {
+        posthog.identify(userId, properties);
+      }
     },
     setUserProperties: (properties: Record<string, any>) => {
-      posthog?.setPersonProperties(properties);
+      if (typeof window !== 'undefined' && posthog) {
+        posthog.setPersonProperties(properties);
+      }
     },
   };
 };

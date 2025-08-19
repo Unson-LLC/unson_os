@@ -2,7 +2,13 @@
   "meta": {
     "title": "AI世代間ブリッジ - 世代の違いを強みに変える新時代のリーダーシップ",
     "description": "Z世代部下との関係に悩む40代管理職向け。AI技術で世代間ギャップを解決し、多様性を活かした高パフォーマンスチーム作りを実現。リアルタイムコミュニケーション支援で組織を変革。",
-    "keywords": ["世代間コミュニケーション", "Z世代マネジメント", "リーダーシップ", "チームビルディング", "組織変革"]
+    "keywords": [
+      "世代間コミュニケーション",
+      "Z世代マネジメント",
+      "リーダーシップ",
+      "チームビルディング",
+      "組織変革"
+    ]
   },
   "theme": {
     "colors": {
@@ -29,7 +35,7 @@
       "subtitle": "Z世代部下との関係に悩む管理職の方へ。AI技術で世代間ギャップを解決し、全世代が活躍できる革新的なチーム作りを実現します。",
       "cta": "無料診断を始める",
       "secondaryCta": "サービス詳細を見る",
-      "backgroundImage": "/images/hero-bridge.svg",
+      "backgroundImage": "/images/generated/hero-bridge.jpg",
       "backgroundGradient": true
     },
     "problem": {
@@ -40,32 +46,32 @@
         {
           "title": "Z世代部下の考えが理解できない",
           "description": "「なぜすぐに転職を考えるのか」「リモートワークにこだわる理由は」など、若手の価値観が理解しにくい",
-          "image": "/images/problem-understanding.svg"
+          "image": "/images/generated/problem-understanding.jpg"
         },
         {
           "title": "指導方法が響かない",
           "description": "従来の指導方法では成果が出ず、部下のモチベーションが上がらない。何をどう伝えればいいのか分からない",
-          "image": "/images/problem-guidance.svg"
+          "image": "/images/generated/problem-guidance.jpg"
         },
         {
           "title": "チーム内の世代間対立",
           "description": "ベテランと若手の間で価値観の衝突が起き、チームの雰囲気が悪化。生産性の低下が深刻",
-          "image": "/images/problem-conflict.svg"
+          "image": "/images/generated/problem-conflict.jpg"
         },
         {
           "title": "評価面談で何を話せばいいか困る",
           "description": "世代が違うと何をフィードバックすべきか悩む。相手に響く評価方法が分からない",
-          "image": "/images/problem-evaluation.svg"
+          "image": "/images/generated/problem-evaluation.jpg"
         },
         {
           "title": "会議で発言に偏りが出る",
           "description": "ベテランばかりが話し、若手が発言しない。または逆のパターンで、バランスの取れた議論ができない",
-          "image": "/images/problem-meeting.svg"
+          "image": "/images/generated/problem-meeting.jpg"
         },
         {
           "title": "組織変革への抵抗がある",
           "description": "新しい取り組みを始めようとすると、世代によって反応が大きく異なり、全体の合意形成が困難",
-          "image": "/images/problem-change.svg"
+          "image": "/images/generated/problem-change.jpg"
         }
       ]
     },
@@ -239,7 +245,13 @@
           "label": "役職",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["課長", "部長", "事業部長", "取締役", "その他管理職"]
+          "options": [
+            "課長",
+            "部長",
+            "事業部長",
+            "取締役",
+            "その他管理職"
+          ]
         },
         {
           "type": "select",
@@ -247,7 +259,13 @@
           "label": "チーム規模",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["5名以下", "6-10名", "11-20名", "21-50名", "51名以上"]
+          "options": [
+            "5名以下",
+            "6-10名",
+            "11-20名",
+            "21-50名",
+            "51名以上"
+          ]
         },
         {
           "type": "select",
@@ -255,7 +273,13 @@
           "label": "最も困っている課題",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["Z世代部下との関係性", "チーム内の世代間対立", "評価・フィードバック方法", "会議・意思決定の効率", "組織変革への抵抗"]
+          "options": [
+            "Z世代部下との関係性",
+            "チーム内の世代間対立",
+            "評価・フィードバック方法",
+            "会議・意思決定の効率",
+            "組織変革への抵抗"
+          ]
         },
         {
           "type": "textarea",
@@ -288,36 +312,81 @@
         {
           "title": "サービス",
           "links": [
-            { "text": "機能詳細", "url": "/features" },
-            { "text": "料金プラン", "url": "/pricing" },
-            { "text": "導入事例", "url": "/cases" },
-            { "text": "無料診断", "url": "/diagnosis" }
+            {
+              "text": "機能詳細",
+              "url": "/features"
+            },
+            {
+              "text": "料金プラン",
+              "url": "/pricing"
+            },
+            {
+              "text": "導入事例",
+              "url": "/cases"
+            },
+            {
+              "text": "無料診断",
+              "url": "/diagnosis"
+            }
           ]
         },
         {
           "title": "サポート",
           "links": [
-            { "text": "よくある質問", "url": "/faq" },
-            { "text": "導入サポート", "url": "/support" },
-            { "text": "研修・セミナー", "url": "/training" },
-            { "text": "お問い合わせ", "url": "/contact" }
+            {
+              "text": "よくある質問",
+              "url": "/faq"
+            },
+            {
+              "text": "導入サポート",
+              "url": "/support"
+            },
+            {
+              "text": "研修・セミナー",
+              "url": "/training"
+            },
+            {
+              "text": "お問い合わせ",
+              "url": "/contact"
+            }
           ]
         },
         {
           "title": "会社情報",
           "links": [
-            { "text": "会社概要", "url": "/about" },
-            { "text": "プライバシーポリシー", "url": "/privacy" },
-            { "text": "利用規約", "url": "/terms" },
-            { "text": "ニュース", "url": "/news" }
+            {
+              "text": "会社概要",
+              "url": "/about"
+            },
+            {
+              "text": "プライバシーポリシー",
+              "url": "/privacy"
+            },
+            {
+              "text": "利用規約",
+              "url": "/terms"
+            },
+            {
+              "text": "ニュース",
+              "url": "/news"
+            }
           ]
         }
       ],
       "copyright": "© 2025 AI世代間ブリッジ. All rights reserved.",
       "socialLinks": [
-        { "platform": "twitter", "url": "https://twitter.com/generation_bridge" },
-        { "platform": "linkedin", "url": "https://linkedin.com/company/generation-bridge" },
-        { "platform": "facebook", "url": "https://facebook.com/generationbridge" }
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/generation_bridge"
+        },
+        {
+          "platform": "linkedin",
+          "url": "https://linkedin.com/company/generation-bridge"
+        },
+        {
+          "platform": "facebook",
+          "url": "https://facebook.com/generationbridge"
+        }
       ]
     }
   },

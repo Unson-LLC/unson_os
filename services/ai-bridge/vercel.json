@@ -5,6 +5,8 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_SERVICE_NAME": "ai-bridge"
+    "NEXT_PUBLIC_SERVICE_NAME": "ai-bridge",
+    "NEXT_PUBLIC_POSTHOG_KEY": "phc_Wae76RkdVCmtlZVdaCZ17sdj45CECqq0l3b7YftBiUG",
+    "NEXT_PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com"
   }
 }
