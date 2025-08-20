@@ -126,7 +126,7 @@ export const products: Product[] = [
     price: '月額 ¥1,680',
     users: 'ベータテスト中',
     rating: 4.9,
-    status: 'coming-soon',
+    status: 'beta',
     features: ['価値観診断（120問）', 'リアルタイムAI相談', '価値観ベース支出分档分析'],
     detailedFeatures: [
       {
@@ -196,10 +196,70 @@ export const products: Product[] = [
     lpUrl: 'https://authentic-life-ai.vercel.app/',
     isReal: false,
     launchDate: '2025年予定（現在LP検証中）'
+  },
+  {
+    id: 2,
+    name: 'AI世代間ブリッジ',
+    category: 'ビジネス',
+    description: '世代の違いを強みに変える新時代のリーダーシップ支援',
+    longDescription: 'Z世代部下との関係に悩む40代管理職向け。AI技術で世代間ギャップを解決し、多様性を活かした高パフォーマンスチーム作りを実現。リアルタイムコミュニケーション支援で組織を変革します。',
+    price: '月額 ¥3,980',
+    users: 'LP検証中',
+    rating: 4.7,
+    status: 'beta',
+    features: ['世代間コミュニケーション分析', 'リアルタイム翻訳', 'チームビルディング支援', 'マネジメント診断'],
+    lpUrl: 'https://unson-lp-ai-bridge.vercel.app',
+    isReal: false,
+    launchDate: '現在LP検証中'
+  },
+  {
+    id: 3,
+    name: 'AI自分時間コーチ',
+    category: 'ライフスタイル',
+    description: '忙しい日常の中で自分時間の質を高める習慣作りをサポート',
+    longDescription: '20-30代の忙しいビジネスパーソン向け。AIコーチが一人ひとりのライフスタイルを分析し、自分時間の使い方を最適化。短時間でも充実感のある習慣作りを実現します。',
+    price: '月額 ¥2,980',
+    users: 'LP検証中',
+    rating: 4.8,
+    status: 'beta',
+    features: ['自分時間診断', '習慣化サポート', 'AIパーソナライズ', 'ライフスタイル最適化'],
+    lpUrl: 'https://unson-lp-ai-coach.vercel.app',
+    isReal: false,
+    launchDate: '現在LP検証中'
+  },
+  {
+    id: 4,
+    name: 'AIレガシー・クリエーター',
+    category: 'ファミリー',
+    description: '大切な人の知恵や想いをAIが整理し、家族の絆を深める',
+    longDescription: '50-60代の方向け。AIが家族の会話や思い出を分析し、次世代に伝えたい知恵や価値観を美しい形で残すお手伝い。デジタル遺産として家族の絆を未来へ繋ぎます。',
+    price: '¥19,800',
+    users: 'LP検証中',
+    rating: 4.9,
+    status: 'beta',
+    features: ['知恵継承支援', 'デジタル遺産作成', 'AI分析', '家族の絆強化'],
+    lpUrl: 'https://unson-lp-ai-legacy-creator.vercel.app',
+    isReal: false,
+    launchDate: '現在LP検証中'
+  },
+  {
+    id: 5,
+    name: 'AIパーソナルスタイリスト',
+    category: 'ファッション',
+    description: '体型・好み・ライフスタイルを分析してパーソナルファッションを提案',
+    longDescription: '20-40代女性向け。AIがあなたの体型、好み、ライフスタイルを学習し、似合うファッションを科学的に分析。自信を持てるスタイルで毎日をもっと輝かせるお手伝いをします。',
+    price: '月額 ¥4,980',
+    users: 'LP検証中',
+    rating: 4.6,
+    status: 'beta',
+    features: ['体型分析', 'パーソナルスタイリング', 'ファッション提案', '自信向上'],
+    lpUrl: 'https://unson-lp-ai-stylist.vercel.app',
+    isReal: false,
+    launchDate: '現在LP検証中'
   }
 ]
 
-export const categories = ['全て', 'AI・ニュース', 'ライフスタイル']
+export const categories = ['全て', 'AI・ニュース', 'ライフスタイル', 'ビジネス', 'ファミリー', 'ファッション']
 
 export const getProductById = (id: number): Product | undefined => {
   return products.find(product => product.id === id)

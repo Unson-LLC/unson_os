@@ -1,0 +1,102 @@
+# AI世代間ブリッジ - 世代の違いを強みに変える新時代のリーダーシップ
+
+# 基本情報
+productId: "2025-08-002-ai-bridge"
+name: "AI世代間ブリッジ"
+slug: "ai-bridge"
+category: "ビジネス"
+
+# メタデータ  
+description: "世代の違いを強みに変える新時代のリーダーシップ支援"
+longDescription: |
+  Z世代部下との関係に悩む40代管理職向け。AI技術で世代間ギャップを解決し、
+  多様性を活かした高パフォーマンスチーム作りを実現。
+  リアルタイムコミュニケーション支援で組織を変革します。
+  
+# 現在状態
+currentPhase: 1                        # 1=LP作成・検証中
+status: "validation"                   # LP検証段階
+createdAt: "2025-08-01"               # 企画開始日
+lastUpdated: "2025-08-20"             # 最終更新日
+
+# ビジネス情報
+pricing:
+  model: "subscription"                # サブスクリプション
+  price: "月額 ¥3,980"
+  currency: "JPY"
+  
+target:
+  persona: "40代管理職（Z世代部下を持つ）"
+  segment: "BtoB"
+  marketSize: "medium"
+
+# 技術情報
+tech:
+  repository: ""                       # 個別リポジトリは未作成
+  deployUrl: ""                        # 本番URL（未設定）
+  lpUrl: "https://unson-lp-ai-bridge.vercel.app"
+  stagingUrl: ""                       # ステージング環境（未設定）
+
+# サービス実装情報
+implementation:
+  servicePath: "./service"             # 統合後のサービスコード位置
+  framework: "nextjs"                  # Next.js
+  packageManager: "npm"                # npm
+  buildCommand: "npm run build"        # ビルドコマンド
+  devCommand: "npm run dev"            # 開発サーバー
+  deployTarget: "vercel"               # Vercel
+  nodeVersion: "18"                    # Node.js 18
+  vercelProject: "unson-lp-ai-bridge"  # Vercelプロジェクト名
+  vercelTeam: "unson-llc"              # Vercelチーム名
+
+# KPI現在値（スナップショット）
+metrics:
+  currentCVR: null                     # LP検証中（未確定）
+  totalUsers: 0                        # LP段階
+  revenue: 0                           # 収益化前
+  monthlyUsers: 0                      # LP段階
+  lastMetricsUpdate: "2024-12-20"
+
+# プレイブック実行履歴
+playbookHistory:
+  - phase: 1
+    playbook: "PB-001"
+    version: "1.0.0"  
+    startDate: "2024-12-15"
+    endDate: "2024-12-20"
+    outcome: "in_progress"             # 現在実行中
+    keyMetrics:
+      cvr: null                        # 測定中
+      sessions: 450                    # 中間値
+    notes: "LP検証実行中。管理職向けのアプローチが順調"
+
+# フェーズ移行履歴  
+phaseHistory:
+  - from: 0
+    to: 1
+    date: "2024-12-15"
+    reason: "企画完了、LP検証開始"
+    approver: "product-team"
+
+# チーム・責任者
+team:
+  owner: "unson-team"
+  contributors: ["growth-team", "ai-engineer"]
+  reviewers: ["product-lead"]
+
+# 関連情報
+links:
+  designDoc: ""
+  marketResearch: ""
+  competitorAnalysis: ""
+  
+# タグ・分類
+tags: ["世代間コミュニケーション", "Z世代マネジメント", "リーダーシップ", "チームビルディング", "組織変革"]
+keywords: ["世代間ギャップ", "Z世代", "管理職", "コミュニケーション", "AI"]
+
+# 終了時情報（使用しない）
+termination:
+  date: null
+  reason: ""
+  finalMetrics: {}
+  lessonsLearned: ""

@@ -16,8 +16,10 @@ import type {
 import type * as careers from "../careers.js";
 import type * as contacts from "../contacts.js";
 import type * as discordApplications from "../discordApplications.js";
+import type * as lib_tenantUtils from "../lib/tenantUtils.js";
 import type * as productRequests from "../productRequests.js";
 import type * as products from "../products.js";
+import type * as serviceApplications from "../serviceApplications.js";
 import type * as waitlist from "../waitlist.js";
 
 /**
@@ -32,8 +34,10 @@ declare const fullApi: ApiFromModules<{
   careers: typeof careers;
   contacts: typeof contacts;
   discordApplications: typeof discordApplications;
+  "lib/tenantUtils": typeof lib_tenantUtils;
   productRequests: typeof productRequests;
   products: typeof products;
+  serviceApplications: typeof serviceApplications;
   waitlist: typeof waitlist;
 }>;
 export declare const api: FilterApi<

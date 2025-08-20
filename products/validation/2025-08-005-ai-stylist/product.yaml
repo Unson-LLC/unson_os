@@ -1,0 +1,102 @@
+# AIパーソナルスタイリスト - あなただけの完璧スタイル
+
+# 基本情報
+productId: "2025-08-005-ai-stylist"
+name: "AIパーソナルスタイリスト"
+slug: "ai-stylist"
+category: "ファッション"
+
+# メタデータ  
+description: "体型・好み・ライフスタイルを分析してパーソナルファッションを提案"
+longDescription: |
+  20-40代女性向け。AIがあなたの体型、好み、ライフスタイルを学習し、
+  似合うファッションを科学的に分析。
+  自信を持てるスタイルで毎日をもっと輝かせるお手伝いをします。
+  
+# 現在状態
+currentPhase: 1                        # 1=LP作成・検証中
+status: "validation"                   # LP検証段階
+createdAt: "2025-08-01"               # 企画開始日
+lastUpdated: "2025-08-20"             # 最終更新日
+
+# ビジネス情報
+pricing:
+  model: "subscription"                # サブスクリプション
+  price: "月額 ¥4,980"
+  currency: "JPY"
+  
+target:
+  persona: "20-40代女性（ファッション悩み）"
+  segment: "BtoC"
+  marketSize: "large"
+
+# 技術情報
+tech:
+  repository: ""                       # 個別リポジトリは未作成
+  deployUrl: ""                        # 本番URL（未設定）
+  lpUrl: "https://unson-lp-ai-stylist.vercel.app"
+  stagingUrl: ""                       # ステージング環境（未設定）
+
+# サービス実装情報
+implementation:
+  servicePath: "./service"             # 統合後のサービスコード位置
+  framework: "nextjs"                  # Next.js
+  packageManager: "npm"                # npm
+  buildCommand: "npm run build"        # ビルドコマンド
+  devCommand: "npm run dev"            # 開発サーバー
+  deployTarget: "vercel"               # Vercel
+  nodeVersion: "18"                    # Node.js 18
+  vercelProject: "unson-lp-ai-stylist" # Vercelプロジェクト名
+  vercelTeam: "unson-llc"              # Vercelチーム名
+
+# KPI現在値（スナップショット）
+metrics:
+  currentCVR: null                     # LP検証中（未確定）
+  totalUsers: 0                        # LP段階
+  revenue: 0                           # 収益化前
+  monthlyUsers: 0                      # LP段階
+  lastMetricsUpdate: "2024-12-20"
+
+# プレイブック実行履歴
+playbookHistory:
+  - phase: 1
+    playbook: "PB-001"
+    version: "1.0.0"  
+    startDate: "2024-12-15"
+    endDate: "2024-12-20"
+    outcome: "in_progress"             # 現在実行中
+    keyMetrics:
+      cvr: null                        # 測定中
+      sessions: 520                    # 中間値
+    notes: "LP検証実行中。パーソナルファッション提案への関心度確認中"
+
+# フェーズ移行履歴  
+phaseHistory:
+  - from: 0
+    to: 1
+    date: "2024-12-15"
+    reason: "企画完了、LP検証開始"
+    approver: "product-team"
+
+# チーム・責任者
+team:
+  owner: "unson-team"
+  contributors: ["growth-team", "fashion-ai-specialist"]
+  reviewers: ["product-lead"]
+
+# 関連情報
+links:
+  designDoc: ""
+  marketResearch: ""
+  competitorAnalysis: ""
+  
+# タグ・分類
+tags: ["ファッション", "パーソナルスタイリング", "体型分析", "AI提案", "自信向上"]
+keywords: ["ファッション", "スタイリスト", "体型", "似合う服", "AI"]
+
+# 終了時情報（使用しない）
+termination:
+  date: null
+  reason: ""
+  finalMetrics: {}
+  lessonsLearned: ""

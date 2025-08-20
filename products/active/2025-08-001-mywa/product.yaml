@@ -1,0 +1,112 @@
+# MyWa（マイワ）- AI・ロボット分野特化ニュースサービス
+
+# 基本情報
+productId: "2025-08-001-mywa"
+name: "MyWa（マイワ）"
+slug: "mywa"
+category: "AI・ニュース"
+
+# メタデータ  
+description: "AI・ロボット分野に特化したパーソナライズドAIニュース配信サービス"
+longDescription: |
+  MyWaは、AI・ロボット技術の実用的な情報だけを厳選して配信するニュースサービスです。
+  1記事1分で読める要約形式、Why-Chip（推薦理由）の表示、AIによるパーソナライズ学習など、
+  忙しいビジネスパーソンが効率的に情報収集できる仕組みを提供しています。
+  
+# 現在状態
+currentPhase: 3                        # 3=拡張・改善中
+status: "active"                       # 実稼働中
+createdAt: "2025-07-01"               # 企画開始日
+lastUpdated: "2025-08-20"             # 最終更新日
+
+# ビジネス情報
+pricing:
+  model: "freemium"                    # フリーミアム
+  price: "月額 ¥980（プレミアム）"
+  currency: "JPY"
+  
+target:
+  persona: "AI・ロボット業界のビジネスパーソン"
+  segment: "BtoB"
+  marketSize: "medium"                 # AI市場は成長中
+
+# 技術情報
+tech:
+  repository: ""                       # 個別リポジトリは未作成（services/mywa使用中）
+  deployUrl: "https://mywa.unson.jp"   # 本番URL
+  lpUrl: "https://unson-lp-mywa.vercel.app"  # LP URL
+  stagingUrl: ""                       # ステージング環境未設定
+
+# サービス実装情報
+implementation:
+  servicePath: "./service"             # 統合後のサービスコード位置
+  framework: "nextjs"                  # Next.js
+  packageManager: "npm"                # npm
+  buildCommand: "npm run build"        # ビルドコマンド
+  devCommand: "npm run dev"            # 開発サーバー
+  deployTarget: "vercel"               # Vercel
+  nodeVersion: "18"                    # Node.js 18
+  vercelProject: "mywa"                # Vercelプロジェクト名
+  vercelTeam: "unson-llc"              # Vercelチーム名
+
+# KPI現在値（スナップショット）
+metrics:
+  currentCVR: 0.148                    # LP検証時の実績（推定）
+  totalUsers: 50                       # ベータユーザー数（推定）
+  revenue: 0                           # 収益化前
+  monthlyUsers: 35                     # 月間アクティブユーザー（推定）
+  lastMetricsUpdate: "2024-12-20"
+
+# プレイブック実行履歴
+playbookHistory:
+  - phase: 1
+    playbook: "PB-001"
+    version: "1.0.0"  
+    startDate: "2024-11-15"
+    endDate: "2024-11-20"
+    outcome: "success"
+    keyMetrics:
+      cvr: 0.148
+      sessions: 1200
+    notes: "CVR目標達成、次フェーズ進行。AI業界への特化が奏功"
+
+# フェーズ移行履歴  
+phaseHistory:
+  - from: 0
+    to: 1
+    date: "2024-11-15"
+    reason: "企画完了、LP検証開始"
+    approver: "product-team"
+  - from: 1
+    to: 2
+    date: "2024-11-21"
+    reason: "CVR 14.8%達成、MVP開発開始承認"
+    approver: "product-team"  
+  - from: 2
+    to: 3
+    date: "2024-12-01"
+    reason: "ベータ版完成、本番運用開始"
+    approver: "product-team"
+
+# チーム・責任者
+team:
+  owner: "unson-team"
+  contributors: ["AI-engineer", "frontend-dev"]
+  reviewers: ["product-lead"]
+
+# 関連情報
+links:
+  designDoc: ""
+  marketResearch: ""
+  competitorAnalysis: ""
+  
+# タグ・分類
+tags: ["AI", "ニュース", "パーソナライズ", "BtoB", "ビジネス"]
+keywords: ["AIニュース", "ロボット", "技術情報", "パーソナライズ"]
+
+# 終了時情報（使用しない）
+termination:
+  date: null
+  reason: ""
+  finalMetrics: {}
+  lessonsLearned: ""

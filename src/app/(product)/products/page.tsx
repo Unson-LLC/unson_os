@@ -9,6 +9,7 @@ import { FilterButtons, StatsGrid } from '@/components/interactive'
 import { AlertTriangle, MessageCircle } from 'lucide-react'
 
 export default function ProductsPage() {
+  console.log('ProductsPage component loaded')
   // 統計計算関数
   const computeProductStats = (products: any[]) => {
     const totalUsers = products.reduce((sum, product) => {
@@ -24,6 +25,8 @@ export default function ProductsPage() {
   }
 
   // リファクタリング: カスタムフックを使用
+  console.log('Products data:', products)
+  console.log('Products length:', products.length)
   const productFilter = useFilter({
     items: products,
     filterField: 'category',
@@ -31,6 +34,8 @@ export default function ProductsPage() {
   })
 
   const { filteredItems: filteredProducts, filters, selectedFilter: selectedCategory, setSelectedFilter: setSelectedCategory } = productFilter
+  console.log('Filtered products:', filteredProducts)
+  console.log('Filtered products length:', filteredProducts.length)
   const { totalUsers, averageRating } = computeProductStats(filteredProducts)
 
   // 統計表示用のデータ
