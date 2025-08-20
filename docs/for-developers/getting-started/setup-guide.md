@@ -159,7 +159,7 @@ export const SITE_CONFIG = {
   url: process.env.NEXT_PUBLIC_APP_URL || 'https://unson-os.com',
   ogImage: '/og/default.png',
   links: {
-    discord: 'https://discord.gg/wBaz7mpcjC',
+    discord: 'https://discord.gg/ubDYjDVC',
     github: 'https://github.com/unson-llc/unson-os',
     twitter: 'https://twitter.com/unsonos',
   },
@@ -767,4 +767,4 @@ npm run build --verbose
 ### コミュニティ
 - [Next.js Discord](https://discord.gg/nextjs)
 - [Tailwind CSS Discord](https://discord.gg/tailwindcss)
-- [Unson OS Discord](https://discord.gg/wBaz7mpcjC)（準備中）
+- [Unson OS Discord](https://discord.gg/ubDYjDVC)（準備中）

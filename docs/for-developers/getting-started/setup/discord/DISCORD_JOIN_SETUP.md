@@ -65,7 +65,7 @@ RESEND_API_KEY=re_YOUR_API_KEY
 ADMIN_EMAIL=admin@unson-os.com
 
 # Discord招待リンク（無期限のもの）
-DISCORD_INVITE_LINK=https://discord.gg/wBaz7mpcjC
+DISCORD_INVITE_LINK=https://discord.gg/ubDYjDVC
 ```
 
 ### 4. セットアップ確認

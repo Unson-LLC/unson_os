@@ -424,7 +424,7 @@ npm run deploy:production
 
 ```
 参加方法:
-1. Discord参加 → https://discord.gg/wBaz7mpcjC
+1. Discord参加 → https://discord.gg/ubDYjDVC
 2. GitHubでIssue確認
 3. PRを作成（+3ポイント獲得）
 4. 月次で収益分配を受領

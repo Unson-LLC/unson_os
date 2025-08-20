@@ -15,7 +15,7 @@ longDescription: |
   
 # 現在状態
 currentPhase: 1                        # 1=LP検証, 2=MVP開発, 3=本番運用, 4=終了
-status: "validation"                   # validation/development/active/terminated
+status: "validation"                   # discovery/validation/development/active/terminated
 createdAt: "2024-12-XX"               # 企画開始日
 lastUpdated: "2024-12-XX"             # 最終更新日
 

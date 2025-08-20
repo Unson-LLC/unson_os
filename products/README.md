@@ -24,17 +24,17 @@ products/
 │   ├── 2025-08-003-ai-coach/         # AI自分時間コーチ
 │   ├── 2025-08-004-ai-legacy-creator/ # AIレガシー・クリエーター
 │   └── 2025-08-005-ai-stylist/       # AIパーソナルスタイリスト
-└── planning/                          # フェーズ0: 企画中
-    └── (新規企画予定)
+└── discovery/                         # フェーズ0: 課題検知中
+    └── (新規課題検知予定)
 
 ```
 
 ## プロダクトステージ（戦略レポート準拠）
 
-### フェーズ0: Planning（企画・構想）
-- 課題検知・市場調査
-- ペルソナ定義
-- 価値提案の検討
+### フェーズ0: Discovery（課題検知）
+- SNS・検索語・GitHub課題のクロール
+- LLMによる類似度クラスタリング
+- スコア上位課題の評価・選定
 
 ### フェーズ1: Validation（LP検証）
 - LP作成・公開
@@ -71,8 +71,8 @@ products/
 ### 🔄 Development（フェーズ2: MVP開発中）
 現在該当プロダクトなし
 
-### 🔵 Planning（フェーズ0: 企画中）
-新規企画予定
+### 🔵 Discovery（フェーズ0: 課題検知中）
+新規課題検知予定
 
 ## 統合管理方針
 
@@ -83,7 +83,7 @@ products/
 - `service/`: Next.jsサービス実装コード（統合後追加）
 
 ### 2. **フェーズ移行ゲート基準**
-- **Planning → Validation**: LP完成、広告配信準備完了
+- **Discovery → Validation**: 課題有効性確認、LP完成、広告配信準備完了
 - **Validation → Development**: CVR 10%以上、1,000セッション以上達成
 - **Development → Active**: 週次利用者200人以上、転換率7%以上、基本機能動作確認
 

@@ -130,7 +130,7 @@ yarn build
 
 1. [lp-templateリポジトリ](https://github.com/Unson-LLC/lp-template)にIssueを作成
 2. Pull Requestを送信
-3. [Discord](https://discord.gg/wBaz7mpcjC)の#dev-toolsチャンネルで議論
+3. [Discord](https://discord.gg/ubDYjDVC)の#dev-toolsチャンネルで議論
 
 ## 📚 関連ドキュメント
 

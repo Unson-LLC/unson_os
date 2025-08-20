@@ -56,7 +56,7 @@ products/
 │   ├── 2024-12-003-ai-coach/
 │   ├── 2024-12-004-ai-legacy-creator/
 │   └── 2024-12-005-ai-stylist/
-└── planning/                   # フェーズ0：課題検知・企画中
+└── discovery/                  # フェーズ0：課題検知・企画中
 
 docs/
 └── playbooks/                  # プレイブック定義
@@ -80,8 +80,8 @@ slug: "product-slug"
 category: "カテゴリ"
 
 # 現在状態
-currentPhase: 1                 # 0=課題検知, 1=LP作成, 2=MVP開発(課金込み), 3=拡張・改善
-status: "validation"            # planning/validation/active/terminated
+currentPhase: 1                 # 0=課題検知, 1=LP検証, 2=MVP開発(課金込み), 3=拡張・改善
+status: "validation"            # discovery/validation/development/active/terminated
 createdAt: "2024-12-01"
 lastUpdated: "2024-12-20"
 
