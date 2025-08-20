@@ -33,7 +33,7 @@
 #### Backend
 - **Runtime**: Node.js 18+
 - **Database**: Convex (Primary), Redis (Cache)
-- **Cron Jobs**: Vercel Cron Functions
+- **Cron Jobs**: Convex Scheduled Functions (推奨) / Vercel Cron Functions (バックアップ)
 - **API Integration**: Google Ads API v18, PostHog API v1, Claude API
 
 #### Frontend  
@@ -1045,7 +1045,7 @@ export async function POST(req: NextRequest) {
 }
 ```
 
-### 7. Cron Jobs設定
+### 7. Convex Cron Jobs設定（推奨）
 
 ```typescript
 // app/api/cron/google-ads-optimization/route.ts
