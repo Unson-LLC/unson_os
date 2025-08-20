@@ -92,7 +92,7 @@ UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作り�
 
 #### 今すぐ始められる貢献 🟢
 1. **コミュニティ参加**
-   - [Discord](https://discord.gg/wBaz7mpcjC) で初期メンバーとして活動
+   - [Discord](https://discord.gg/ubDYjDVC) で初期メンバーとして活動
    - アイデア提案や議論に参加
 
 2. **スキルに応じた貢献方法**
@@ -160,7 +160,7 @@ UnsonOSは、100個のSaaSビジネスをAIが自動運営する未来を作り�
 - 自分のタイプを確認する
 
 ### 2. 興味を持ったら（10分）
-- [Discord](https://discord.gg/wBaz7mpcjC) に参加
+- [Discord](https://discord.gg/ubDYjDVC) に参加
 - 他のメンバーと交流
 
 ### 3. 貢献を始める（随時）

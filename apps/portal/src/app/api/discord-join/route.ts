@@ -341,7 +341,7 @@ export async function POST(request: NextRequest) {
         from: `Unson OS <${fromEmail}>`,
         to: body.email,
         subject: emailData.subject,
-        html: emailData.html.replace('https://discord.gg/wBaz7mpcjC', discordInviteLink),
+        html: emailData.html.replace('https://discord.gg/ubDYjDVC', discordInviteLink),
       })
     }
 
