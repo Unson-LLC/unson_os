@@ -115,6 +115,32 @@ GOOGLE_ADS_LOGIN_CUSTOMER_ID=your_login_customer_id
   - google-ads-keyword-optimizer
   - google-ads-reporter
 
+## 🎌 日本市場向け画像生成エージェント
+
+### japanese-lp-image-generator
+**役割**: 日本市場向けLPの画像生成を専門化
+- 日本人（アジア系）の人物を必ず使用
+- 日本の文化的文脈に適した環境設定
+- サービス別ペルソナに基づく最適化
+- Gemini Imagen 4を使用した高品質画像生成
+
+**使用例**:
+```
+Task tool を使って japanese-lp-image-generator エージェントで ai-coach の画像を日本市場向けに再生成して
+```
+
+**プロンプトルール**:
+- 必須: "Japanese person with Asian features"
+- 必須: "modern Japanese [office/home/urban] setting"
+- 禁止: "western", "caucasian", "european"
+
+**サービス別ペルソナ**:
+- ai-coach: 40-55歳日本人女性
+- ai-legacy-creator: 45-65歳日本人男性
+- ai-stylist: 25-40歳日本人女性
+- ai-bridge: 20-60代多世代
+- mywa: 30-45歳ビジネスパーソン
+
 ## 🚧 今後の追加予定
 
 - google-ads-budget-manager: 予算配分最適化

@@ -1,0 +1,347 @@
+{
+  "meta": {
+    "title": "あなたの価値観が輝くスタイルを見つけよう - AIパーソナルスタイリスト",
+    "description": "20代女性向けのAIパーソナルスタイリストサービス。価値観とおしゃれを両立し、持続可能なファッションライフを実現。環境に配慮したブランド選びから長期的なワードローブ戦略まで、AIがトータルサポート。",
+    "keywords": ["AIスタイリスト", "サステナブルファッション", "エシカルファッション", "価値観", "パーソナルスタイリング"]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#4ADE80",
+      "secondary": "#059669",
+      "accent": "#F59E0B",
+      "background": "#FEFEFE",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Noto Sans JP', sans-serif",
+      "body": "'Noto Sans JP', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #4ADE80 0%, #059669 100%)",
+      "secondary": "linear-gradient(135deg, #A7F3D0 0%, #4ADE80 100%)",
+      "accent": "linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)"
+    }
+  },
+  "lpStyleGuide": {
+    "description": "ランディングページデザインの統一スタイルガイド",
+    "designPrinciples": [
+      "クリーンでミニマルなデザイン",
+      "サステナブルで温かみのある印象",
+      "若い女性にアピールする親しみやすさ",
+      "信頼性と専門性の両立"
+    ],
+    "layout": {
+      "maxWidth": "1200px",
+      "sectionSpacing": "80px",
+      "cardBorderRadius": "12px",
+      "buttonStyle": "rounded corners with soft shadows"
+    },
+    "typography": {
+      "headingScale": "1.5rem, 2rem, 2.5rem, 3rem",
+      "lineHeight": "1.6",
+      "fontWeight": "400 for body, 600 for headings"
+    },
+    "componentStyle": {
+      "cards": "white background, subtle shadow, rounded corners",
+      "buttons": "gradient background, hover effects, clear CTA text",
+      "sections": "alternating white/light-green backgrounds",
+      "images": "consistent aspect ratios, soft corners"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "あなたの価値観が輝く、持続可能なスタイルを見つけよう",
+      "subtitle": "AI技術で実現する、おしゃれと環境意識を両立した新しいファッションライフ。衝動買いを減らし、長く愛せるワードローブを一緒に作りませんか？",
+      "cta": "ベータ版に参加する（無料）",
+      "secondaryCta": "サービス詳細を見る",
+      "backgroundImage": "/images/generated/hero-sustainable-fashion.jpg",
+      "backgroundGradient": true
+    },
+    "problem": {
+      "title": "こんなファッションの悩みありませんか？",
+      "subtitle": "環境意識の高い20代女性が抱える、ファッションと価値観のジレンマ",
+      "description": "おしゃれでいたいけれど、地球環境や社会への影響も気になる。そんなあなたの悩みを解決します。",
+      "problems": [
+        {
+          "title": "衝動買いして後悔してしまう",
+          "description": "セールやトレンドに流されて買い物をしてしまい、結局あまり着ない服が増えてしまう",
+          "image": "/images/generated/problem-impulse-buy.png"
+        },
+        {
+          "title": "おしゃれと価値観が両立できない",
+          "description": "環境に配慮したいけれど、エシカルファッションはデザインが限られていて物足りない",
+          "image": "/images/generated/problem-values-style.jpg"
+        },
+        {
+          "title": "手持ち服を活かしきれない",
+          "description": "クローゼットに服はあるのに「着る服がない」と感じて、新しい服を買ってしまう",
+          "image": "/images/generated/problem-wardrobe-waste.jpg"
+        },
+        {
+          "title": "長期的なスタイル戦略がない",
+          "description": "その場しのぎの買い物ばかりで、一貫したスタイルや投資効率の良いワードローブが作れない",
+          "image": "/images/generated/problem-no-strategy.jpg"
+        },
+        {
+          "title": "エシカルブランドの情報不足",
+          "description": "環境や社会に配慮したブランドを知りたいけれど、どこで信頼できる情報を得ればよいかわからない",
+          "image": "/images/generated/problem-brand-info.jpg"
+        },
+        {
+          "title": "自分に似合うスタイルがわからない",
+          "description": "トレンドは追えるけれど、本当に自分らしく、価値観と一致するスタイルが見つからない",
+          "image": "/images/generated/problem-personal-style.jpg"
+        }
+      ]
+    },
+    "solution": {
+      "title": "AIがあなたの価値観とスタイルを完璧にマッチング",
+      "subtitle": "革新的なAI技術で、持続可能で魅力的なファッションライフを実現",
+      "description": "従来のスタイリングサービスとは一線を画す、価値観ベースのパーソナライズ機能で、あなたらしい持続可能なスタイルを発見できます。",
+      "solutions": [
+        {
+          "title": "価値観×スタイルの完璧な融合",
+          "description": "AIが環境・社会・経済への価値観を詳細分析し、あなたの信念と美意識を両立するスタイルを提案します",
+          "icon": "Heart"
+        },
+        {
+          "title": "科学的ワードローブ最適化",
+          "description": "手持ち服を画像認識で分析し、投資効率と着回し可能性を計算。無駄のない戦略的なワードローブを構築します",
+          "icon": "TrendingUp"
+        },
+        {
+          "title": "透明性の高いブランド情報",
+          "description": "製造過程から労働環境まで、ブランドの真の価値を可視化。安心して選択できるエシカルファッションをご紹介します",
+          "icon": "Shield"
+        }
+      ]
+    },
+    "service": {
+      "title": "AIパーソナルスタイリストの主要機能",
+      "subtitle": "価値観からワードローブ管理まで、トータルサポート",
+      "services": [
+        {
+          "title": "価値観ベーススタイリング",
+          "description": "あなたの環境・社会・経済への価値観を深く分析し、信念と美意識が調和した唯一無二のスタイルを創造します",
+          "features": [
+            "詳細価値観診断（環境・社会・経済軸）",
+            "ブランド価値マッチング",
+            "パーソナルカラー×エシカル分析",
+            "ライフスタイル連動スタイル提案"
+          ],
+          "icon": "Compass"
+        },
+        {
+          "title": "サステナブルワードローブ設計",
+          "description": "AI画像認識による手持ち服分析から、長期的な投資戦略まで。科学的アプローチで理想のワードローブを構築します",
+          "features": [
+            "手持ち服の自動解析・活用度計算",
+            "投資効率分析（コスパ×着用回数予測）",
+            "5年間ワードローブ戦略立案",
+            "ミニマル×マキシマム効果提案"
+          ],
+          "icon": "Target"
+        },
+        {
+          "title": "エシカル消費サポート",
+          "description": "ブランドの透明性から代替商品提案まで。安心・納得できる購買判断をAIがサポートします",
+          "features": [
+            "ブランド透明性データベース",
+            "製造過程・労働環境・環境負荷情報",
+            "代替商品自動提案",
+            "購入意思決定サポート"
+          ],
+          "icon": "Leaf"
+        },
+        {
+          "title": "コミュニティ・シェアリング",
+          "description": "価値観を共有する仲間とつながり、学び合い、持続可能なファッション文化を一緒に築きます",
+          "features": [
+            "価値観マッチングコミュニティ",
+            "アイテムシェア・交換機能",
+            "DIY・リメイクワークショップ",
+            "環境貢献度の可視化"
+          ],
+          "icon": "Users"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "料金プラン",
+      "subtitle": "ベータ版参加者の方には、正式版リリース時に特別価格でご提供予定です",
+      "plans": [
+        {
+          "name": "スタンダード",
+          "price": "¥1,980",
+          "period": "月",
+          "description": "基本的なスタイリングと価値観分析で、持続可能なファッションライフをスタート",
+          "features": [
+            "AI価値観診断（基本版）",
+            "ワードローブ管理（50アイテムまで）",
+            "エシカルブランド基本情報",
+            "コミュニティ参加（閲覧・基本交流）",
+            "月10回までのスタイル提案"
+          ],
+          "cta": "ベータ版に参加する",
+          "popular": false
+        },
+        {
+          "name": "プレミアム",
+          "price": "¥4,980",
+          "period": "月",
+          "description": "本格的なパーソナライズと専門家サポートで、理想のスタイルを完全に実現",
+          "features": [
+            "無制限ワードローブ管理・分析",
+            "詳細価値観診断（全項目）",
+            "優先エシカルブランド・アクセス",
+            "コミュニティ機能フル活用",
+            "専門家コンサルテーション（月1回）",
+            "パーソナル投資戦略レポート",
+            "リメイク・DIY個別サポート"
+          ],
+          "cta": "ベータ版に参加する",
+          "popular": true
+        },
+        {
+          "name": "コンシェルジュ",
+          "price": "¥9,800",
+          "period": "月",
+          "description": "専属スタイリストによる完全パーソナルサービスで、ライフスタイル全体をプロデュース",
+          "features": [
+            "専属スタイリスト・サポート",
+            "ブランド直接コネクション",
+            "プライベート・ショッピング同行",
+            "イベント・先行参加権",
+            "カスタムワードローブ設計",
+            "24時間チャットサポート",
+            "年2回の詳細スタイル分析"
+          ],
+          "cta": "ベータ版に参加する",
+          "popular": false
+        }
+      ]
+    },
+    "form": {
+      "title": "ベータ版参加申し込み・お問い合わせ",
+      "subtitle": "現在開発中のAIパーソナルスタイリストのベータ版に参加いただける方を募集しています。サービスに関するご質問・ご意見もこちらからお気軽にお問い合わせください",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 花子",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "hanako@example.com",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "age",
+          "label": "年齢層",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["20-24歳", "25-29歳", "30-34歳", "35歳以上"]
+        },
+        {
+          "type": "select",
+          "name": "priority",
+          "label": "ファッションで最も重視すること",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": ["環境への配慮", "長く着られること", "自分らしさの表現", "コストパフォーマンス", "トレンド感"]
+        },
+        {
+          "type": "textarea",
+          "name": "concerns",
+          "label": "ご質問・ご意見（任意）",
+          "placeholder": "ベータ版への期待、サービスに関するご質問、現在のファッションの悩みなど、ご自由にお書きください",
+          "required": false
+        }
+      ],
+      "submitText": "送信する",
+      "successMessage": "お申し込み・お問い合わせありがとうございます！24時間以内にご連絡いたします。",
+      "privacyText": "個人情報保護方針に同意の上、送信してください。ベータ版参加以外での利用はいたしません。"
+    },
+    "finalCta": {
+      "title": "今すぐ始めて、価値観が輝くスタイルを手に入れよう",
+      "subtitle": "持続可能で美しいファッションライフが、あなたを待っています",
+      "cta": "ベータ版に参加する",
+      "urgencyText": "先着100名様限定！ベータ版参加者には正式版リリース時に特別割引をご提供",
+      "benefitsList": [
+        "衝動買いが減り、年間平均10万円の節約効果",
+        "手持ち服の活用度が2倍に向上",
+        "価値観と一致するブランドとの出会い",
+        "環境への貢献を実感できる満足感"
+      ]
+    },
+    "footer": {
+      "companyName": "AIパーソナルスタイリスト",
+      "description": "AIとコミュニティの力で、価値観とスタイルが調和した持続可能なファッションライフを実現します",
+      "sections": [
+        {
+          "title": "サービス",
+          "links": [
+            { "text": "料金プラン", "url": "/pricing" }
+          ]
+        },
+        {
+          "title": "サポート",
+          "links": [
+            { "text": "お問い合わせ", "url": "/contact" }
+          ]
+        },
+        {
+          "title": "会社情報",
+          "links": [
+            { "text": "プライバシーポリシー", "url": "/privacy" }
+          ]
+        }
+      ],
+      "copyright": "© 2025 AIパーソナルスタイリスト. All rights reserved.",
+      "socialLinks": []
+    }
+  },
+  "visualStyleGuide": {
+    "description": "AI パーソナルスタイリストサービスの統一ビジュアルスタイル",
+    "artStyle": "modern flat design illustration with soft shadows",
+    "colorPalette": {
+      "primary": "#4ADE80",
+      "secondary": "#059669", 
+      "accent": "#F59E0B",
+      "neutral": "#F9FAFB",
+      "text": "#1F2937"
+    },
+    "visualTone": "warm, trustworthy, approachable, sustainable",
+    "imageCharacteristics": {
+      "style": "clean minimalist illustration",
+      "lighting": "soft natural lighting",
+      "mood": "optimistic and confident",
+      "target": "young Japanese women in their 20s-30s"
+    },
+    "promptTemplate": "{content}, modern flat design illustration with soft shadows, warm trustworthy approachable sustainable mood, clean minimalist style, soft natural lighting, optimistic confident atmosphere, featuring young Japanese women, using green (#4ADE80) and yellow (#F59E0B) color scheme",
+    "referenceStyles": [
+      "lifestyle illustration",
+      "sustainable fashion imagery", 
+      "modern japanese design aesthetic"
+    ]
+  },
+  "assets": {
+    "logo": "/images/sustainable-style-logo.png",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/hero-sustainable-fashion.jpg",
+      "problem1": "/images/problem-impulse-buy.svg",
+      "problem2": "/images/problem-values-style.svg",
+      "problem3": "/images/problem-wardrobe-waste.svg",
+      "problem4": "/images/problem-no-strategy.svg",
+      "problem5": "/images/problem-brand-info.svg",
+      "problem6": "/images/problem-personal-style.svg"
+    }
+  }
+}

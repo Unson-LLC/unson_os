@@ -1,0 +1,104 @@
+# UnsonOS Product Configuration Template
+# このファイルをコピーして各プロダクトのproduct.yamlを作成してください
+
+# 基本情報
+productId: "YYYY-MM-NNN-slug"          # 例: 2024-12-001-ai-bridge
+name: "プロダクト名"                    # 例: AI世代間ブリッジ
+slug: "product-slug"                   # URL用: ai-bridge
+category: "カテゴリ名"                  # ビジネス/ライフスタイル/AI・ニュース等
+
+# メタデータ  
+description: "プロダクト概要（1行）"
+longDescription: |
+  プロダクトの詳細説明。
+  複数行で記述可能。
+  
+# 現在状態
+currentPhase: 1                        # 1=LP検証, 2=MVP開発, 3=本番運用, 4=終了
+status: "validation"                   # validation/development/active/terminated
+createdAt: "2024-12-XX"               # 企画開始日
+lastUpdated: "2024-12-XX"             # 最終更新日
+
+# ビジネス情報
+pricing:
+  model: "subscription"                # subscription/one-time/freemium
+  price: "月額 ¥X,XXX"
+  currency: "JPY"
+  
+target:
+  persona: "XX代YY職の方"              # 例: 40代管理職
+  segment: "BtoB"                      # BtoB/BtoC/BtoG
+  marketSize: "medium"                 # small/medium/large
+
+# 技術情報
+tech:
+  repository: ""                       # 個別リポジトリURL（MVP開発時に設定）
+  deployUrl: ""                        # 本番URL
+  lpUrl: ""                           # LP URL
+  stagingUrl: ""                       # ステージング環境URL
+
+# サービス実装情報（統合後追加）
+implementation:
+  servicePath: "./service"             # サービスコードの相対パス
+  framework: "nextjs"                  # フレームワーク
+  packageManager: "npm"                # パッケージマネージャー
+  buildCommand: "npm run build"        # ビルドコマンド
+  devCommand: "npm run dev"            # 開発サーバーコマンド
+  deployTarget: "vercel"               # デプロイ先
+  nodeVersion: "18"                    # Node.jsバージョン
+  vercelProject: ""                    # Vercelプロジェクト名
+  vercelTeam: ""                       # Vercelチーム名
+
+# KPI現在値（スナップショット）
+metrics:
+  currentCVR: null                     # 例: 0.125 (12.5%)
+  totalUsers: 0
+  revenue: 0
+  monthlyUsers: 0
+  lastMetricsUpdate: "2024-12-XX"
+
+# プレイブック実行履歴
+playbookHistory:
+  # 例:
+  # - phase: 1
+  #   playbook: "PB-001"
+  #   version: "1.0.0"  
+  #   startDate: "2024-12-01"
+  #   endDate: "2024-12-05"
+  #   outcome: "success"              # success/failure/partial
+  #   keyMetrics:
+  #     cvr: 0.125
+  #     sessions: 1200
+  #   notes: "CVR目標達成、次フェーズ進行"
+
+# フェーズ移行履歴  
+phaseHistory:
+  # 例:
+  # - from: 0
+  #   to: 1
+  #   date: "2024-12-01"
+  #   reason: "企画完了、LP検証開始"
+  #   approver: "product-team"
+
+# チーム・責任者
+team:
+  owner: ""                            # プロダクトオーナー
+  contributors: []                     # 貢献者リスト
+  reviewers: []                        # レビュー担当者
+
+# 関連情報
+links:
+  designDoc: ""                        # 設計ドキュメント
+  marketResearch: ""                   # 市場調査結果  
+  competitorAnalysis: ""               # 競合分析
+  
+# タグ・分類
+tags: []                               # 例: ["AI", "40代", "マネジメント"]
+keywords: []                           # SEO/検索用キーワード
+
+# 終了時情報（status=terminatedの場合のみ）
+termination:
+  date: null
+  reason: ""                           # 例: "市場適合性不足" 
+  finalMetrics: {}
+  lessonsLearned: ""

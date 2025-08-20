@@ -1,0 +1,105 @@
+# わたしコンパス（Authentic Life AI） - 価値観という羅針盤で迷わない人生を
+
+# 基本情報
+productId: "2025-08-006-watashi-compass"
+name: "わたしコンパス"
+slug: "watashi-compass"
+category: "ライフスタイル"
+
+# メタデータ  
+description: "価値観という羅針盤で、あらゆる人生の選択において迷わない・後悔しない道筋を示すAIアシスタント"
+longDescription: |
+  わたしコンパス（Authentic Life AI）は、価値観という羅針盤で、
+  あらゆる人生の選択において迷わない・後悔しない道筋を示すAIアシスタントです。
+  情報過多による判断麻痺、他人軸での生き方、「べき論」の呪縛から解放し、
+  本当に自分らしい人生を歩むサポートをします。
+  
+# 現在状態
+currentPhase: 1                        # 1=LP作成・検証中
+status: "validation"                   # LP検証段階
+createdAt: "2024-11-01"               # 企画開始日（推定）
+lastUpdated: "2024-12-20"             # 最終更新日
+
+# ビジネス情報
+pricing:
+  model: "freemium"                    # フリーミアム
+  price: "月額 ¥1,980（プレミアム）"
+  currency: "JPY"
+  
+target:
+  persona: "価値観に迷いのある20-40代"
+  segment: "BtoC"
+  marketSize: "large"
+
+# 技術情報
+tech:
+  repository: ""                       # 別途管理（Vercel独立プロジェクト）
+  deployUrl: ""                        # 本番URL（未設定）
+  lpUrl: "https://authentic-life-ai.vercel.app"
+  stagingUrl: ""                       # ステージング環境（未設定）
+
+# サービス実装情報（注意：独立Vercelプロジェクト）
+implementation:
+  servicePath: ""                      # 外部プロジェクトのため空
+  framework: "nextjs"                  # Next.js（推定）
+  packageManager: "npm"                # npm（推定）
+  buildCommand: "npm run build"        # ビルドコマンド（推定）
+  devCommand: "npm run dev"            # 開発サーバー（推定）
+  deployTarget: "vercel"               # Vercel
+  nodeVersion: "18"                    # Node.js 18（推定）
+  vercelProject: "authentic-life-ai"   # Vercelプロジェクト名
+  vercelTeam: "unson-llc"              # Vercelチーム名
+  note: "独立したVercelプロジェクトとして管理中"
+
+# KPI現在値（スナップショット）
+metrics:
+  currentCVR: null                     # LP検証中（未確定）
+  totalUsers: 0                        # LP段階
+  revenue: 0                           # 収益化前
+  monthlyUsers: 0                      # LP段階
+  lastMetricsUpdate: "2024-12-20"
+
+# プレイブック実行履歴
+playbookHistory:
+  - phase: 1
+    playbook: "PB-001"
+    version: "1.0.0"  
+    startDate: "2024-11-15"            # 推定
+    endDate: ""                        # 継続中
+    outcome: "in_progress"             # 現在実行中
+    keyMetrics:
+      cvr: null                        # 測定中
+      sessions: null                   # データ要確認
+    notes: "LP検証実行中。価値観コンパス機能の需要確認中"
+
+# フェーズ移行履歴  
+phaseHistory:
+  - from: 0
+    to: 1
+    date: "2024-11-15"                 # 推定
+    reason: "企画完了、LP検証開始"
+    approver: "product-team"
+
+# チーム・責任者
+team:
+  owner: "unson-team"
+  contributors: ["growth-team", "life-coach-specialist"]
+  reviewers: ["product-lead"]
+
+# 関連情報
+links:
+  designDoc: ""
+  marketResearch: ""
+  competitorAnalysis: ""
+  adCampaign: "docs/business-strategy/marketing/advertising/watashi-compass-beta-campaign.md"
+  
+# タグ・分類
+tags: ["ライフスタイル", "価値観", "自己実現", "AIコーチング", "人生設計"]
+keywords: ["価値観", "人生選択", "自分軸", "迷い", "AI"]
+
+# 終了時情報（使用しない）
+termination:
+  date: null
+  reason: ""
+  finalMetrics: {}
+  lessonsLearned: ""

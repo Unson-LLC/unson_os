@@ -69,12 +69,13 @@ export const getStats = query({
     }
     
     const totalUsers = products.reduce((sum, product) => {
+      if (!product.users) return sum;
       const userCount = parseInt(product.users.replace(/[^0-9]/g, ''));
       return sum + userCount;
     }, 0);
     
     const averageRating = products.length > 0 
-      ? (products.reduce((sum, product) => sum + product.rating, 0) / products.length)
+      ? (products.reduce((sum, product) => sum + (product.rating || 0), 0) / products.length)
       : 0;
     
     const statusCounts = products.reduce((acc, product) => {
@@ -133,7 +134,7 @@ export const search = query({
     const filteredProducts = products.filter(product => 
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm) ||
-      product.features.some((feature: string) => feature.toLowerCase().includes(searchTerm))
+      (product.features && product.features.some((feature: string) => feature.toLowerCase().includes(searchTerm)))
     );
     
     return filteredProducts.slice(0, args.limit || 20);
@@ -147,15 +148,25 @@ export const create = mutation({
     category: v.string(),
     description: v.string(),
     longDescription: v.optional(v.string()),
-    price: v.string(),
-    users: v.string(),
-    rating: v.number(),
+    price: v.optional(v.string()),
+    users: v.optional(v.string()),
+    rating: v.optional(v.number()),
     status: v.union(
-      v.literal("active"),
-      v.literal("beta"),
-      v.literal("coming-soon")
+      v.literal("planning"),
+      v.literal("development"),
+      v.literal("testing"),
+      v.literal("launched")
     ),
-    features: v.array(v.string()),
+    features: v.optional(v.array(v.string())),
+    serviceUrl: v.optional(v.string()),
+    lpUrl: v.optional(v.string()),
+    advertisingLPs: v.optional(v.array(v.object({
+      url: v.string(),
+      title: v.string(),
+      channel: v.string(),
+      conversionRate: v.optional(v.string()),
+    }))),
+    isReal: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const now = Date.now();
@@ -182,11 +193,22 @@ export const update = mutation({
     users: v.optional(v.string()),
     rating: v.optional(v.number()),
     status: v.optional(v.union(
-      v.literal("active"),
-      v.literal("beta"),
-      v.literal("coming-soon")
+      v.literal("planning"),
+      v.literal("development"),
+      v.literal("testing"),
+      v.literal("launched")
     )),
     features: v.optional(v.array(v.string())),
+    serviceUrl: v.optional(v.string()),
+    lpUrl: v.optional(v.string()),
+    advertisingLPs: v.optional(v.array(v.object({
+      url: v.string(),
+      title: v.string(),
+      channel: v.string(),
+      conversionRate: v.optional(v.string()),
+    }))),
+    isReal: v.optional(v.boolean()),
+    launchDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const { id, ...updates } = args;
@@ -197,5 +219,54 @@ export const update = mutation({
     });
     
     return id;
+  },
+});
+
+// 広告用LP追加
+export const addAdvertisingLP = mutation({
+  args: {
+    id: v.id("products"),
+    lpData: v.object({
+      url: v.string(),
+      title: v.string(),
+      channel: v.string(),
+      conversionRate: v.optional(v.string()),
+    }),
+  },
+  handler: async (ctx, args) => {
+    const product = await ctx.db.get(args.id);
+    if (!product) {
+      throw new Error("Product not found");
+    }
+    
+    const currentLPs = product.advertisingLPs || [];
+    const updatedLPs = [...currentLPs, args.lpData];
+    
+    await ctx.db.patch(args.id, {
+      advertisingLPs: updatedLPs,
+      updatedAt: Date.now(),
+    });
+  },
+});
+
+// 広告用LP削除
+export const removeAdvertisingLP = mutation({
+  args: {
+    id: v.id("products"),
+    lpUrl: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const product = await ctx.db.get(args.id);
+    if (!product) {
+      throw new Error("Product not found");
+    }
+    
+    const currentLPs = product.advertisingLPs || [];
+    const updatedLPs = currentLPs.filter(lp => lp.url !== args.lpUrl);
+    
+    await ctx.db.patch(args.id, {
+      advertisingLPs: updatedLPs,
+      updatedAt: Date.now(),
+    });
   },
 });
