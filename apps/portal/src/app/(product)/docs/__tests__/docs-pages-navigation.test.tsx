@@ -9,6 +9,7 @@ jest.mock('next/navigation', () => ({
 
 // Next.js の Link コンポーネントをモック
 jest.mock('next/link', () => {
+  // eslint-disable-next-line react/display-name
   return ({ children, href, className }: any) => (
     <a href={href} className={className}>
       {children}
@@ -143,6 +144,7 @@ jest.mock('@/components/sections/CTASection', () => ({
 // 動的インポート関数
 const importDocPage = async (componentPath: string) => {
   try {
+    // eslint-disable-next-line @next/next/no-assign-module-variable
     const module = await import(componentPath)
     return module.default
   } catch (error) {

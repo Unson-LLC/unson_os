@@ -295,7 +295,7 @@ export default function IntroductionPage() {
                 </div>
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>
-                  <span>"Unson OS Alliance"発足</span>
+                  <span>&ldquo;Unson OS Alliance&rdquo;発足</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>

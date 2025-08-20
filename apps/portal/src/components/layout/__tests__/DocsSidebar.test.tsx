@@ -10,6 +10,7 @@ jest.mock('next/navigation', () => ({
 
 // Next.js の Link コンポーネントをモック
 jest.mock('next/link', () => {
+  // eslint-disable-next-line react/display-name
   return ({ children, href, className }: any) => (
     <a href={href} className={className}>
       {children}
