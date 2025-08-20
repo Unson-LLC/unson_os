@@ -1,5 +1,0 @@
-export { Button } from './Button'
-export { NavigationLink } from './NavigationLink'
-export { Modal, ConfirmModal } from './Modal'
-export { Accordion } from './Accordion'
-export { Tabs, VerticalTabs } from './Tabs'

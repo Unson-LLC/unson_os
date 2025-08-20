@@ -10,12 +10,12 @@ products/
 ├── template/                           # プロダクト作成テンプレート
 │   ├── product.yaml                   # 設定テンプレート
 │   ├── phases/                        # フェーズ管理テンプレート
-│   └── service/                       # サービスコードテンプレート
+│   └── lp/                            # LPコードテンプレート
 ├── active/                            # フェーズ3: 拡張・改善中
 │   └── 2025-08-001-mywa/             # MyWa（本格運用中）
 │       ├── product.yaml              # プロダクト管理情報
 │       ├── phases/                   # フェーズ履歴
-│       └── service/                  # Next.jsサービス実装
+│       └── lp/                       # Next.js LP実装
 ├── development/                       # フェーズ2: MVP開発中（課金込み）
 │   └── (該当プロダクトなし)
 ├── validation/                        # フェーズ1: LP検証中  
@@ -88,9 +88,9 @@ products/
 - **Development → Active**: 週次利用者200人以上、転換率7%以上、基本機能動作確認
 
 ### 3. **コードとデプロイ管理**
-- サービス実装: `{product}/service/` フォルダ
+- LP実装: `{product}/lp/` フォルダ
 - Vercelデプロイ: product.yamlの実装情報から自動化
-- 開発コマンド: `npm run dev` (各serviceフォルダ内)
+- 開発コマンド: `npm run dev` (各lpフォルダ内)
 
 ### 4. **情報更新ルール**
 - **リアルタイム**: KPI値をConvexDBと同期
@@ -103,11 +103,11 @@ products/
 ### サービス起動方法
 ```bash
 # MyWa開発サーバー起動
-cd products/active/2025-08-001-mywa/service
+cd products/active/2025-08-001-mywa/lp
 npm run dev
 
 # AI-Bridge LP開発  
-cd products/validation/2025-08-002-ai-bridge/service
+cd products/validation/2025-08-002-ai-bridge/lp
 npm run dev
 ```
 
