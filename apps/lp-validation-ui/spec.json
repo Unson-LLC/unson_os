@@ -1,0 +1,90 @@
+{
+  "action-logs": {
+    "contentMarkdown": "**Timeline Interface with Clean Aesthetics**\n\nStreamlined event display:\n- Headers: Consistent gray backgrounds with accent icons\n- Tabs: Clean white-on-gray tab system\n- Log entries: Light gray backgrounds with proper spacing\n- Typography: Clear hierarchy with readable font weights\n- Interactive elements: Subtle hover states and transitions",
+    "categoryId": "17557546003360"
+  },
+  "alert-settings-btn": {
+    "contentMarkdown": "**Settings Access**\nOpen alert configuration with outline styling and settings icon",
+    "categoryId": "17557546003361"
+  },
+  "back-btn": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates back to the position management page from the event detail page",
+    "categoryId": "17557546003361"
+  },
+  "back-to-positions-btn": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates back to the position management page from the position detail page",
+    "categoryId": "17557546003361"
+  },
+  "dashboard-header": {
+    "contentMarkdown": "**Modern Glass Header with Backdrop Effects**\n- Glass morphism background with backdrop blur\n- Gradient title with clip-path text styling\n- Icon integration with gradient backgrounds\n- Floating card design with shadow effects\n- Interactive buttons with hover states",
+    "categoryId": "17557546003362"
+  },
+  "dashboard-root": {
+    "contentMarkdown": "**Notion-inspired Dashboard Design**\n\nClean and modern interface with Notion-like aesthetics:\n- Background: Simple gray-50 background (#f9fafb)\n- Typography: Clean, readable fonts with proper hierarchy\n- Color palette: Primary grays with strategic accent colors (blue, green, orange, purple)\n- Border radius: Consistent rounded corners (lg = 8px for cards)\n- Shadows: Subtle shadow-sm for depth\n- Spacing: Generous padding and margins for breathing room",
+    "categoryId": "17557546003360"
+  },
+  "event-detail-page": {
+    "contentMarkdown": "**Page Header**\n- Back Button\n- Event Title\n\n**AI Evaluation Card**\n- Performance Evaluation\n    - AI Grade\n    - Status\n    - Improvement Items\n    - Recommended Actions\n    - Confidence Section\n\n**Basic Metrics Card**\n- Metrics Grid\n    - CVR Metric\n    - CPL Metric\n    - Visitors Metric\n    - Conversions Metric\n\n**Action Details Card**\n- Action List\n    - Time\n    - Action\n    - Users\n    - Rate\n    - Analysis\n    - Warning Badges\n    - Critical Badges\n\n**AI Analysis Card**\n- Root Cause\n- Actionable Recommendations\n    - Action Items\n        - Title\n        - Description\n        - Impact\n        - Action Button\n\n**Bottom Action Bar**\n- AI Accept Button\n- Manual Optimize Button\n- Record Issue Button",
+    "categoryId": "17557546003362"
+  },
+  "generate-report-btn": {
+    "contentMarkdown": "**Report Generation**\nGenerate comprehensive daily report with gradient button styling and download icon",
+    "categoryId": "17557546003361"
+  },
+  "log-detail-0": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the event detail page (ID: 1) showing comprehensive analysis including AI evaluation, metrics, action details and recommendations",
+    "categoryId": "17557546003361"
+  },
+  "log-detail-1": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the event detail page (ID: 2) showing comprehensive analysis including AI evaluation, metrics, action details and recommendations",
+    "categoryId": "17557546003361"
+  },
+  "log-detail-btn": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the event detail page showing detailed analysis of the specific event including AI recommendations and actionable insights",
+    "categoryId": "17557546003361"
+  },
+  "position-detail-btn": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the position management page showing detailed view of all LP positions with filtering and management capabilities",
+    "categoryId": "17557546003361"
+  },
+  "position-detail-page": {
+    "contentMarkdown": "**Page Header**\n- Back to Dashboard Button\n- Position Title\n- Position Subtitle\n- Refresh Button\n\n**Position Overview**\n- CVR Overview\n- CPL Overview\n- Leads Overview\n- Grade Overview\n- AI Analysis\n- Status Info\n    - Trend\n    - Status\n    - Last Update\n\n**Time Series Events**\n- Time Range Tabs\n    - 4 Hours Tab\n    - 1 Day Tab\n    - 1 Week Tab\n- Action Logs\n    - Action Log Items\n        - Time\n        - CVR\n        - Sessions\n        - CPL\n        - Optimization Details\n        - AI Recommendations\n        - Detail Button\n\n**User Flow**\n- Flow Stages\n    - Google Ads Stage\n    - Hero Stage\n    - Value Proposition Stage\n    - Form Stage\n- Flow Insights\n    - Key Drop-off Points\n\n**Performance Summary**\n- Performance Metrics\n    - Daily CVR Improvement\n    - Weekly Average CVR\n    - Monthly Leads\n    - ROI",
+    "categoryId": "17557546003362"
+  },
+  "position-management": {
+    "contentMarkdown": "**Clean Table Interface**\n\nNotions database-inspired design:\n- Headers: Light gray backgrounds with clean typography\n- Rows: Minimal styling with subtle hover effects\n- Status indicators: Color-coded dots (green/orange/red)\n- Badges: Properly colored status badges with semantic colors\n- Actions: Blue primary buttons with clear hierarchy\n- Filters: Clean badge-style filters with proper states",
+    "categoryId": "17557546003360"
+  },
+  "position-management-page": {
+    "contentMarkdown": "**Position Management Page**\n\n- Page Header\n    - Back to Dashboard Button\n    - Page Title\n    - Page Subtitle\n    - Bulk Actions Button\n    - New Position Button\n- Filters Section\n    - Search Input\n    - Filter Dropdown\n    - Results Count\n- Position Tabs\n    - All Tab\n    - Active Tab  \n    - Paused Tab\n- Position Cards List\n    - Position Info\n        - Performance Icon\n        - Position Name\n        - Status Badge\n        - AI Optimization Badge\n    - Action Buttons\n        - Analytics Button\n        - Settings Button\n        - More Button\n        - Pause/Resume Button\n    - Metrics Grid\n        - CPL Metric\n        - CVR Metric\n        - Sessions Metric\n        - Conversions Metric\n        - Spend Metric\n        - Update Metric\n    - Keywords Section\n- Empty State",
+    "categoryId": "17557546003362"
+  },
+  "position-name": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the detailed analysis page for the specific position showing metrics, events, user flow and performance data",
+    "categoryId": "17557546003361"
+  },
+  "position-row-1": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the detailed analysis page for AI-COACH position (ID: 1) showing comprehensive metrics, time series events, user flow analysis and performance data",
+    "categoryId": "17557546003361"
+  },
+  "position-row-2": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the detailed analysis page for AI-WRITER position (ID: 2) showing comprehensive metrics, time series events, user flow analysis and performance data",
+    "categoryId": "17557546003361"
+  },
+  "position-row-3": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the detailed analysis page for AI-BRIDGE position (ID: 3) showing comprehensive metrics, time series events, user flow analysis and performance data",
+    "categoryId": "17557546003361"
+  },
+  "position-row-4": {
+    "contentMarkdown": "**Click Navigation**\nWhen clicked, navigates to the detailed analysis page for AI-STYLIST position (ID: 4) showing comprehensive metrics, time series events, user flow analysis and performance data",
+    "categoryId": "17557546003361"
+  },
+  "quick-stats": {
+    "contentMarkdown": "**Notion-style Statistics Cards**\n\nMinimal yet informative design approach:\n- Background: Clean white with subtle gray borders\n- Layout: Compact padding (p-5) with proper text hierarchy\n- Icons: Colorful icon containers (green, blue, orange, gray) in rounded backgrounds\n- Typography: Semibold numbers (text-2xl) with medium labels\n- Hover states: Subtle shadow transitions\n- Color coding: Strategic use of accent colors for trends and status",
+    "categoryId": "17557546003360"
+  },
+  "summary-stats": {
+    "contentMarkdown": "**Clean Statistics Sidebar**\n\nNotions-inspired compact information display:\n- Event breakdown: Colored indicators (red, yellow, blue, gray) with proper semantic meaning\n- Alert cards: Color-coded urgency levels (red for critical, orange for warnings)\n- Action buttons: Primary blue buttons for consistency with overall design\n- Typography: Balanced text hierarchy with appropriate font weights\n- Layout: Efficient vertical spacing for optimal readability",
+    "categoryId": "17557546003360"
+  }
+}

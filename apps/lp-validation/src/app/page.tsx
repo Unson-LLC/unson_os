@@ -1,108 +1,174 @@
-// LP検証システム メインページ
+// LP検証システム - ダッシュボード（全ポジション・全イベント表示）
 'use client';
 
-import { SessionOverview } from '@/components/SessionOverview';
-import { MetricsDashboard } from '@/components/MetricsDashboard';
-import { OptimizationLog } from '@/components/OptimizationLog';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import TradingDashboard from '@/components/TradingDashboard';
+import TimeSeriesList from '@/components/TimeSeriesList';
+import EventDetailModal from '@/components/EventDetailModal';
+import { mockTradingData, mockTimeSeriesEvents, mockEventDetails } from '../../__mocks__/updated-trading-data';
+import { MOCK_ACTION_DELAY } from '@/lib/constants';
+import { commonStyles, cn } from '@/lib/styles';
 
-export default function LPValidationHomePage() {
+export default function LPValidationDashboard() {
+  const router = useRouter();
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [showEventDetail, setShowEventDetail] = useState(false);
+
+  const handlePositionClick = (position: any) => {
+    console.log('Navigating to position:', position);
+    // 個別ポジションページへ遷移
+    router.push(`/position/${position.id}`);
+  };
+
+  const handleEventSelect = (event: any) => {
+    setSelectedEvent(event);
+    setShowEventDetail(true);
+  };
+
+  const handleActionApprove = async (action: any) => {
+    console.log('Approved action:', action);
+    return new Promise(resolve => setTimeout(resolve, MOCK_ACTION_DELAY));
+  };
+
   return (
-    <div className="min-h-screen p-8">
-      <div className="max-w-7xl mx-auto">
-        <header className="mb-8 animate-fade-in">
-          <h1 className="text-3xl font-bold text-gray-900">LP検証ダッシュボード</h1>
-          <p className="text-gray-600 mt-2">
-            リアルタイムパフォーマンス監視とA/Bテスト最適化
-          </p>
-        </header>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {/* セッション一覧 */}
-          <div className="lg:col-span-1 xl:col-span-1 animate-slide-up">
-            <SessionOverview />
-          </div>
-          
-          {/* メトリクスダッシュボード */}
-          <div className="lg:col-span-1 xl:col-span-1 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <MetricsDashboard />
-          </div>
-          
-          {/* 最適化ログ */}
-          <div className="lg:col-span-2 xl:col-span-1 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <OptimizationLog />
-          </div>
-        </div>
-        
-        {/* 統計サマリー */}
-        <div className="mt-12 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="metric-card">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-unson-green rounded-lg flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <div className="text-sm font-medium text-gray-500">アクティブセッション</div>
-                  <div className="text-2xl font-bold text-gray-900">5</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="metric-card">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-unson-blue rounded-lg flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <div className="text-sm font-medium text-gray-500">平均CVR</div>
-                  <div className="text-2xl font-bold text-gray-900">12.3%</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="metric-card">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-unson-orange rounded-lg flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <div className="text-sm font-medium text-gray-500">平均CPA</div>
-                  <div className="text-2xl font-bold text-gray-900">¥287</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="metric-card">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-unson-purple rounded-lg flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2zm-2 9a1 1 0 100 2 1 1 0 000-2zm2 0a1 1 0 100 2 1 1 0 000-2zm2 0a1 1 0 100 2 1 1 0 000-2zm2 0a1 1 0 100 2 1 1 0 000-2zm2 0a1 1 0 100 2 1 1 0 000-2zm2 0a1 1 0 100 2 1 1 0 000-2zm-10-9V5a1 1 0 011-1h2a1 1 0 011 1v1H8z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <div className="text-sm font-medium text-gray-500">自動化実行</div>
-                  <div className="text-2xl font-bold text-gray-900">127</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className={cn("min-h-screen", commonStyles.bgGray50)}>
+      {/* ページヘッダー */}
+      <div className={cn("bg-white shadow-sm border-b", commonStyles.borderGray, commonStyles.cardPadding)}>
+        <h1 className={cn(commonStyles.text2Xl, commonStyles.fontBold, commonStyles.textPrimary)}>LP検証システム ダッシュボード</h1>
+        <p className={cn(commonStyles.textSm, commonStyles.textSecondary, "mt-1")}>全ポジション統合管理・リアルタイム分析</p>
       </div>
+
+      <div className={cn(commonStyles.cardPadding, commonStyles.spaceY6)}>
+        {/* メインダッシュボード */}
+        <section>
+          <h2 className={cn(commonStyles.textLg, commonStyles.fontSemibold, commonStyles.textPrimary, "mb-4")}>📊 ポジション管理</h2>
+          <p className={cn(commonStyles.textSm, commonStyles.textSecondary, "mb-4")}>
+            ポジションをクリックすると、個別の詳細ページへ移動します
+          </p>
+          <TradingDashboard 
+            data={mockTradingData}
+            onPositionClick={handlePositionClick}
+          />
+        </section>
+
+        {/* 全ポジションの時系列イベント一覧 */}
+        <section>
+          <h2 className={cn(commonStyles.textLg, commonStyles.fontSemibold, commonStyles.textPrimary, "mb-4")}>
+            ⏰ 全ポジション時系列イベント
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* 全イベントリスト */}
+            <div>
+              <div className={cn("mb-3 p-3 rounded", commonStyles.bgBlue50)}>
+                <p className={cn(commonStyles.textSm, "text-blue-700")}>
+                  📋 全ポジションのイベントを時系列で表示しています
+                </p>
+              </div>
+              <TimeSeriesList
+                sessionId="all"
+                events={mockTimeSeriesEvents}
+                selectedEventId={selectedEvent?.id}
+                onEventSelect={handleEventSelect}
+                hasMore={false}
+                onLoadMore={() => console.log('Load more events')}
+              />
+            </div>
+            
+            {/* サマリー統計 */}
+            <div className={cn(commonStyles.card, commonStyles.cardPadding)}>
+              <h3 className={cn(commonStyles.textLg, commonStyles.fontSemibold, commonStyles.textPrimary, "mb-4")}>📊 全体統計サマリー</h3>
+              
+              {/* 本日のパフォーマンス */}
+              <div className="mb-6">
+                <h4 className="text-sm font-medium text-gray-700 mb-3">本日のパフォーマンス</h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 bg-green-50 rounded">
+                    <div className="text-xs text-green-700 mb-1">総CVR</div>
+                    <div className="text-xl font-bold text-green-700">7.8%</div>
+                    <div className="text-xs text-green-600">前日比 +0.3%</div>
+                  </div>
+                  <div className="p-3 bg-blue-50 rounded">
+                    <div className="text-xs text-blue-700 mb-1">総リード数</div>
+                    <div className="text-xl font-bold text-blue-700">2,847</div>
+                    <div className="text-xs text-blue-600">前日比 +127</div>
+                  </div>
+                  <div className="p-3 bg-purple-50 rounded">
+                    <div className="text-xs text-purple-700 mb-1">平均CPL</div>
+                    <div className="text-xl font-bold text-purple-700">¥1,234</div>
+                    <div className="text-xs text-purple-600">前日比 -¥56</div>
+                  </div>
+                  <div className="p-3 bg-orange-50 rounded">
+                    <div className="text-xs text-orange-700 mb-1">総広告費</div>
+                    <div className="text-xl font-bold text-orange-700">¥3.5M</div>
+                    <div className="text-xs text-orange-600">予算進捗 68%</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* イベント種別分布 */}
+              <div className="mb-6">
+                <h4 className="text-sm font-medium text-gray-700 mb-3">イベント種別分布（24時間）</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">🎯 CVR改善</span>
+                    <span className="text-sm font-medium">45件</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">⚠️ 異常検知</span>
+                    <span className="text-sm font-medium">12件</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">👥 ユーザー行動</span>
+                    <span className="text-sm font-medium">89件</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">💰 コスト最適化</span>
+                    <span className="text-sm font-medium">23件</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* アクティブなアラート */}
+              <div className="mb-6">
+                <h4 className="text-sm font-medium text-gray-700 mb-3">🚨 アクティブなアラート</h4>
+                <div className="space-y-2">
+                  <div className="p-2 bg-red-50 border border-red-200 rounded">
+                    <div className="text-xs font-medium text-red-700">重要</div>
+                    <div className="text-sm text-red-600">Gemini AIのCVRが3%以下に低下</div>
+                  </div>
+                  <div className="p-2 bg-yellow-50 border border-yellow-200 rounded">
+                    <div className="text-xs font-medium text-yellow-700">警告</div>
+                    <div className="text-sm text-yellow-600">Claude LPのCPLが目標値を20%超過</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* クイックアクション */}
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-3">⚡ クイックアクション</h4>
+                <div className="space-y-2">
+                  <button className="w-full p-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                    全ポジションの日次レポート生成
+                  </button>
+                  <button className="w-full p-2 text-sm bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors">
+                    アラート設定を確認
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* イベント詳細モーダル */}
+      <EventDetailModal
+        isOpen={showEventDetail}
+        eventId={selectedEvent?.id || ''}
+        details={mockEventDetails}
+        onClose={() => setShowEventDetail(false)}
+        onActionApprove={handleActionApprove}
+      />
     </div>
   );
 }
