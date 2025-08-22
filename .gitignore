@@ -5,6 +5,8 @@ node_modules/
 
 # Testing
 /coverage
+/test-results
+/playwright-artifacts
 
 # Next.js
 /.next/
@@ -113,8 +115,6 @@ jspm_packages/
 
 # Playwright
 /test-results/
-/playwright-report/
-/playwright/.cache/
 
 # Google Ads API credentials
 google_ads_credentials.json
@@ -144,6 +144,8 @@ node_modules/
 
 # Testing
 /coverage
+/test-results
+/playwright-artifacts
 
 # Next.js
 /.next/
@@ -252,8 +254,6 @@ jspm_packages/
 
 # Playwright
 /test-results/
-/playwright-report/
-/playwright/.cache/
 
 # Google Ads API credentials
 google_ads_credentials.json

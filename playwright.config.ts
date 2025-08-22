@@ -16,9 +16,12 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* レポーター設定 */
   reporter: [
-    ['html'],
+    ['html', { outputFolder: 'test-results/playwright-report' }],
     ['json', { outputFile: 'test-results/e2e-results.json' }]
   ],
+  
+  /* 出力ディレクトリ設定 */
+  outputDir: 'test-results/playwright-artifacts',
 
   /* すべてのテストプロジェクトで共有される設定 */
   use: {
