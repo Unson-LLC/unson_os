@@ -5,7 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
-  Home, BarChart3, Activity, Bell, Settings 
+  Home, BarChart3, Activity, Globe, Settings 
 } from 'lucide-react';
 
 const MobileNavigation = () => {
@@ -31,11 +31,10 @@ const MobileNavigation = () => {
       isActive: pathname.startsWith('/activity')
     },
     {
-      href: '/notifications',
-      icon: Bell,
-      label: '通知',
-      isActive: pathname.startsWith('/notifications'),
-      badge: 3 // 未読通知数
+      href: '/domains',
+      icon: Globe,
+      label: 'ドメイン',
+      isActive: pathname.startsWith('/domains')
     }
   ];
 

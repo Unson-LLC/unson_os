@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   Globe, Plus, Settings, Activity, AlertTriangle, 
   CheckCircle, XCircle, RefreshCw, ExternalLink,
-  Server, Shield, Clock, DollarSign, Trash2
+  Server, Shield, Clock, DollarSign, Trash2, ChevronLeft
 } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 
@@ -127,18 +128,21 @@ export default function DomainManagementPage() {
         {/* ヘッダー */}
         <header className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
-                <Globe className="w-5 h-5 text-white" />
-              </div>
-              <div>
+            <div>
+              <div className="flex items-center space-x-3 mb-2">
+                <Link href="/" className="text-gray-500 hover:text-gray-700 transition-colors">
+                  <ChevronLeft className="w-5 h-5" />
+                </Link>
+                <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+                  <Globe className="w-5 h-5 text-white" />
+                </div>
                 <h1 className="text-2xl font-semibold text-gray-900">
                   ドメイン管理
                 </h1>
-                <p className="text-gray-600 text-sm">
-                  Route53 & Vercel 統合管理システム
-                </p>
               </div>
+              <p className="text-gray-600 text-sm ml-12">
+                Route53 & Vercel 統合管理システム・全{domains.length}ドメイン
+              </p>
             </div>
             <button
               onClick={() => setShowAddModal(true)}

@@ -9,7 +9,7 @@ import {
   TrendingUp, TrendingDown, BarChart3, Activity, Zap, Filter, 
   ArrowUpRight, ArrowDownRight, Bell, Settings, Download, 
   ChevronRight, Sparkles, Clock, Target, RefreshCw, AlertTriangle, 
-  Eye, Search, Calendar, Users, DollarSign, ExternalLink 
+  Eye, Search, Calendar, Users, DollarSign, ExternalLink, Globe 
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -152,6 +152,13 @@ export default function DashboardPage() {
                 <p className="text-gray-600 text-sm" role="doc-subtitle">全ポジション統合管理・リアルタイム分析</p>
               </div>
               <div className="flex items-center space-x-2">
+                <Link
+                  href="/domains"
+                  className="px-3 py-1.5 text-sm border border-purple-200 bg-purple-50 rounded-lg hover:bg-purple-100 text-purple-700 flex items-center transition-colors"
+                >
+                  <Globe className="w-4 h-4 mr-2" />
+                  ドメイン管理
+                </Link>
                 <button 
                   className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg hover:border-gray-300 text-gray-700 flex items-center"
                   aria-label="今日の日付でフィルタ"
