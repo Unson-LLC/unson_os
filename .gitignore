@@ -22,10 +22,35 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Local env files
+# Environment Variables
+# ローカル設定（絶対にコミットしない）
+.env.local
 .env*.local
+*/.env.local
+**/.env.local
+
+# 環境別設定（プロジェクトによってはコミット可能）
+.env.development
+.env.staging
+.env.production
+
+# デフォルト設定（通常はコミットしない）
 .env
+!/.env.template
+!/.env.example
+!/.env.shared
+!/**/.env.template
+!/**/.env.example
+
+# サービス固有
+services/**/.env
+services/**/.env.local
 scripts/**/.env
+scripts/**/.env.local
+
+# プロダクトLP固有
+products/**/.env.local
+products/**/lp/.env.local
 
 # Vercel
 .vercel
@@ -136,10 +161,35 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Local env files
+# Environment Variables
+# ローカル設定（絶対にコミットしない）
+.env.local
 .env*.local
+*/.env.local
+**/.env.local
+
+# 環境別設定（プロジェクトによってはコミット可能）
+.env.development
+.env.staging
+.env.production
+
+# デフォルト設定（通常はコミットしない）
 .env
+!/.env.template
+!/.env.example
+!/.env.shared
+!/**/.env.template
+!/**/.env.example
+
+# サービス固有
+services/**/.env
+services/**/.env.local
 scripts/**/.env
+scripts/**/.env.local
+
+# プロダクトLP固有
+products/**/.env.local
+products/**/lp/.env.local
 
 # Vercel
 .vercel
