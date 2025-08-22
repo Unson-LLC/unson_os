@@ -250,3 +250,8 @@ google-service-account.json
 temp-files/
 .env.*
 scripts/*env*.sh
+
+# Backups
+backups/
+*-backup/
+*-backup-*/

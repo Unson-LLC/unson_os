@@ -1,6 +1,8 @@
 // LP検証システム ルートレイアウト
 import { Metadata } from 'next';
 import './globals.css';
+import { ToastProvider } from '@/components/Toast';
+import MobileNavigation from '@/components/MobileNavigation';
 
 export const metadata: Metadata = {
   title: 'LP検証システム | Unson OS',
@@ -24,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className="min-h-screen bg-gray-50 font-sans antialiased">
-        {children}
+        <ToastProvider>
+          {children}
+          <MobileNavigation />
+        </ToastProvider>
       </body>
     </html>
   );

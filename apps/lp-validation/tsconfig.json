@@ -1,13 +1,22 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*"],
-      "@/lib/*": ["./src/lib/*"],
-      "@/tests/*": ["./tests/*"],
-      "@/convex/*": ["../../convex/*"]
+      "@/lib/*": ["./src/lib/*"]
     },
     "plugins": [
       {
@@ -19,14 +28,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/**/*",
-    "tests/**/*",
-    ".next/types/**/*.ts",
-    "../../convex/_generated/**/*"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    ".next",
-    "dist"
+    "node_modules"
   ]
 }

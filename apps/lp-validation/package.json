@@ -1,12 +1,12 @@
 {
   "name": "@unson-os/lp-validation",
-  "version": "1.0.0",
-  "description": "LP検証システム - ランディングページ最適化とA/Bテスト管理",
+  "version": "2.0.0",
+  "description": "LP検証システムUI v2 - モダンダッシュボード",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3002",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start --port 3002",
+    "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "test": "vitest",
