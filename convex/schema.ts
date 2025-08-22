@@ -345,7 +345,7 @@ export default defineSchema({
     price: v.optional(v.string()),
     users: v.optional(v.string()),
     rating: v.optional(v.number()),
-    status: v.union(v.literal("planning"), v.literal("development"), v.literal("testing"), v.literal("launched")),
+    status: v.union(v.literal("discovery"), v.literal("validation"), v.literal("development"), v.literal("active"), v.literal("terminated")),
     features: v.optional(v.array(v.string())),
     serviceUrl: v.optional(v.string()),
     lpUrl: v.optional(v.string()),
@@ -398,4 +398,86 @@ export default defineSchema({
     .index("by_workspace_email", ["workspace_id", "email"])
     .index("by_workspace_service_email", ["workspace_id", "serviceName", "email"])
     .index("by_workspace_service_status", ["workspace_id", "serviceName", "status"]),
+
+  // プレイブック駆動型管理システム
+  playbooks: defineTable({
+    workspace_id: v.string(),
+    id: v.string(), // pb-001, pb-002, etc.
+    name: v.string(),
+    description: v.string(),
+    version: v.string(),
+    category: v.string(), // lp-validation, mvp-development, etc.
+    steps: v.array(v.object({
+      stepNumber: v.number(),
+      title: v.string(),
+      description: v.string(),
+      estimatedTime: v.optional(v.string()),
+      requiredTools: v.optional(v.array(v.string())),
+      successCriteria: v.array(v.string()),
+    })),
+    successMetrics: v.array(v.object({
+      name: v.string(),
+      targetValue: v.string(),
+      measurement: v.string(),
+    })),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_workspace_id", ["workspace_id", "id"])
+    .index("by_workspace_category", ["workspace_id", "category"]),
+
+  playbookRuns: defineTable({
+    workspace_id: v.string(),
+    productId: v.string(), // 2025-08-001-mywa
+    productName: v.string(),
+    playbookId: v.string(), // pb-001
+    phase: v.number(), // 0=planning, 1=validation, 2=development, 3=active
+    status: v.union(v.literal("planned"), v.literal("running"), v.literal("completed"), v.literal("failed")),
+    startedAt: v.optional(v.number()),
+    completedAt: v.optional(v.number()),
+    actualMetrics: v.optional(v.array(v.object({
+      name: v.string(),
+      actualValue: v.string(),
+      achievedAt: v.number(),
+    }))),
+    lessons: v.optional(v.array(v.string())),
+    notes: v.optional(v.string()),
+    failureReason: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_workspace_product", ["workspace_id", "productId"])
+    .index("by_workspace_playbook", ["workspace_id", "playbookId"])
+    .index("by_workspace_product_phase", ["workspace_id", "productId", "phase"])
+    .index("by_workspace_status", ["workspace_id", "status"]),
+
+  phaseReviews: defineTable({
+    workspace_id: v.string(),
+    productId: v.string(),
+    productName: v.string(),
+    phase: v.number(),
+    status: v.union(v.literal("in_progress"), v.literal("completed"), v.literal("gate_passed"), v.literal("gate_failed")),
+    startDate: v.number(),
+    endDate: v.optional(v.number()),
+    kpiResults: v.array(v.object({
+      metric: v.string(),
+      target: v.string(),
+      actual: v.optional(v.string()),
+      achieved: v.optional(v.boolean()),
+    })),
+    executedPlaybooks: v.array(v.string()), // playbook IDs
+    keyLearnings: v.array(v.string()),
+    nextActions: v.array(v.string()),
+    gateDecision: v.optional(v.object({
+      decision: v.union(v.literal("proceed"), v.literal("retry"), v.literal("pivot"), v.literal("terminate")),
+      reason: v.string(),
+      decidedAt: v.number(),
+      decidedBy: v.string(),
+    })),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_workspace_product", ["workspace_id", "productId"])
+    .index("by_workspace_product_phase", ["workspace_id", "productId", "phase"])
+    .index("by_workspace_status", ["workspace_id", "status"]),
 });

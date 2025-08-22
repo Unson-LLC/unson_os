@@ -13,30 +13,48 @@
   - phases/01_LP_Validation/PB001_CVR_Test/PlaybookLog.md
   - phases/01_LP_Validation/PB001_CVR_Test/ResultSummary.md
 
-### 2. 実プロダクトの移行（実証実験）
-- [x] **MyWa** → `products/active/2024-12-001-mywa/`
+### 2. 実プロダクトの移行（全6プロダクト完了）
+- [x] **MyWa** → `products/active/2025-08-001-mywa/`
   - 本番運用中プロダクトとして移行完了
   - LP検証フェーズの履歴を復元
-- [x] **AI世代間ブリッジ** → `products/validation/2024-12-002-ai-bridge/`
-  - LP検証中プロダクトとして移行開始
+- [x] **AI世代間ブリッジ** → `products/validation/2025-08-002-ai-bridge/`
+  - LP検証中プロダクトとして配置済み
+- [x] **AI自分時間コーチ** → `products/validation/2025-08-003-ai-coach/`
+  - LP検証中プロダクトとして配置済み
+- [x] **AIレガシー・クリエーター** → `products/validation/2025-08-004-ai-legacy-creator/`
+  - LP検証中プロダクトとして配置済み
+- [x] **AIパーソナルスタイリスト** → `products/validation/2025-08-005-ai-stylist/`
+  - LP検証中プロダクトとして配置済み
+- [x] **わたしコンパス** → `products/validation/2025-08-006-watashi-compass/`
+  - LP検証中プロダクトとして配置済み
 
-## 進行中項目 🔄
+### 3. フォルダ構造の整理（完了）
+- [x] **apps/landing → apps/portal** にリネーム
+- [x] **products/*/service → products/*/lp** にリネーム
+- [x] **重複フォルダ削除** (/src, /services, /shared)
+- [x] **統一ブランドスタイルガイド** 実装
 
-### 3. 残りプロダクトの移行
-- [ ] AI自分時間コーチ → `products/validation/2024-12-003-ai-coach/`
-- [ ] AIレガシー・クリエーター → `products/validation/2024-12-004-ai-legacy-creator/`
-- [ ] AIパーソナルスタイリスト → `products/validation/2024-12-005-ai-stylist/`
-- [ ] わたしコンパス → `products/validation/2024-11-006-watashi-compass/`
+### 4. フォルダ構造の完全化（完了）
+- [x] **discovery/** フォルダ作成（フェーズ0: 課題検知）
+- [x] **development/** フォルダ作成（フェーズ2: MVP開発中）
+- [x] 各プロダクトの **phases/** 構造を完全化
+
+### 5. Convex/Neon連携基盤（完了）
+- [x] **Convexスキーマ拡張**（playbooks、playbook_runs、phase_reviews テーブル）
+- [x] **プレイブック管理API**（convex/playbooks.ts）
+- [x] **Neon pgvector連携**（setup-neon-insights.js）
+- [x] **初期データ投入スクリプト**（seed-playbooks.js）
 
 ## 未実装項目（次フェーズ）
 
-### 4. データ同期・自動化
+### 6. データ同期・自動化
 - [ ] Git → Convex 同期CI構築
 - [ ] Front Matter抽出スクリプト
-- [ ] Neon pgvector連携
+- [ ] OpenAI埋め込み生成
 
-### 5. UI統合
-- [ ] `/src/data/products.ts` → Convex API移行
+### 7. UI統合
+- [x] `/apps/portal/src/data/products.ts` に全6プロダクト登録済み
+- [ ] Convex API移行
 - [ ] プロダクト管理ダッシュボード
 - [ ] フェーズ移行承認フロー
 
@@ -56,25 +74,35 @@
 ### 実現したフォルダ構造 📁
 ```
 products/
-├── template/                    # 🆕 標準テンプレート
-├── active/                      # 🆕 本番運用中
-│   └── 2024-12-001-mywa/       # ✅ 移行完了
-├── validation/                  # 🆕 LP検証中
-│   └── 2024-12-002-ai-bridge/  # ✅ 移行開始
-└── planning/                    # 🆕 企画中（未使用）
+├── template/                     # ✅ 標準テンプレート
+├── active/                       # ✅ 本番運用中
+│   └── 2025-08-001-mywa/        # ✅ 配置完了
+├── validation/                   # ✅ LP検証中
+│   ├── 2025-08-002-ai-bridge/   # ✅ 配置完了
+│   ├── 2025-08-003-ai-coach/    # ✅ 配置完了
+│   ├── 2025-08-004-ai-legacy-creator/ # ✅ 配置完了
+│   ├── 2025-08-005-ai-stylist/  # ✅ 配置完了
+│   └── 2025-08-006-watashi-compass/ # ✅ 配置完了
+├── development/                  # 🔄 MVP開発中（作成予定）
+└── discovery/                    # ✅ 課題検知中（作成完了）
+
+apps/
+└── portal/                       # ✅ リネーム完了（旧landing）
+    └── src/data/products.ts     # ✅ 全6プロダクト登録済み
 
 docs/
-└── playbooks/                   # 🆕 プレイブック定義
-    ├── README.md               # ✅ 概要・運用ルール
-    └── pb-001-lp-cvr-test.md   # ✅ 具体的手順
+└── playbooks/                    # ✅ プレイブック定義
+    ├── README.md                # ✅ 概要・運用ルール
+    └── pb-001-lp-cvr-test.md    # ✅ 具体的手順
 ```
 
 ## 次のアクション優先度
 
-### 高優先度（1週間以内）
-1. **残り4プロダクトの移行完了**
-2. **CI基盤の基本設計**
-3. **Convexスキーマ拡張**（playbooks、playbook_runs テーブル）
+### 高優先度（実装完了 ✅）
+1. ✅ **discovery/とdevelopment/フォルダ作成**
+2. ✅ **各プロダクトのphases/構造完全化**
+3. ✅ **Convexスキーマ拡張**（playbooks、playbook_runs テーブル）
+4. ✅ **Neon pgvector連携**
 
 ### 中優先度（2週間以内）  
 1. **Git→DB同期の実装**

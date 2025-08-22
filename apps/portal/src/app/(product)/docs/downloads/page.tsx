@@ -570,7 +570,7 @@ unson deploy`}
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">コミュニティ</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
-                      <li><a href="https://discord.gg/wBaz7mpcjC" className="text-blue-600 hover:text-blue-800">Discord コミュニティ</a></li>
+                      <li><a href="https://discord.gg/ubDYjDVC" className="text-blue-600 hover:text-blue-800">Discord コミュニティ</a></li>
                       <li><a href="https://github.com/unson/discussions" className="text-blue-600 hover:text-blue-800">GitHub Discussions</a></li>
                       <li><a href="/support" className="text-blue-600 hover:text-blue-800">サポートチケット</a></li>
                     </ul>

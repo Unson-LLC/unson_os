@@ -7,7 +7,7 @@ export interface Product {
   price: string
   users: string
   rating: number
-  status: 'active' | 'beta' | 'coming-soon'
+  status: 'discovery' | 'validation' | 'development' | 'active' | 'terminated'
   features: string[]
   detailedFeatures?: DetailedFeature[]
   plans?: Plan[]
@@ -64,7 +64,7 @@ export const products: Product[] = [
     price: '月額 ¥980',
     users: '開発中',
     rating: 5.0,
-    status: 'beta',
+    status: 'active',
     features: ['1分で読める要約ニュース', 'Why-Chip（推薦理由表示）', 'AIパーソナライズ学習'],
     detailedFeatures: [
       {
@@ -126,7 +126,7 @@ export const products: Product[] = [
     price: '月額 ¥1,680',
     users: 'ベータテスト中',
     rating: 4.9,
-    status: 'beta',
+    status: 'active',
     features: ['価値観診断（120問）', 'リアルタイムAI相談', '価値観ベース支出分档分析'],
     detailedFeatures: [
       {
@@ -206,7 +206,7 @@ export const products: Product[] = [
     price: '月額 ¥3,980',
     users: 'LP検証中',
     rating: 4.7,
-    status: 'beta',
+    status: 'active',
     features: ['世代間コミュニケーション分析', 'リアルタイム翻訳', 'チームビルディング支援', 'マネジメント診断'],
     lpUrl: 'https://unson-lp-ai-bridge.vercel.app',
     isReal: false,
@@ -221,7 +221,7 @@ export const products: Product[] = [
     price: '月額 ¥2,980',
     users: 'LP検証中',
     rating: 4.8,
-    status: 'beta',
+    status: 'active',
     features: ['自分時間診断', '習慣化サポート', 'AIパーソナライズ', 'ライフスタイル最適化'],
     lpUrl: 'https://unson-lp-ai-coach.vercel.app',
     isReal: false,
@@ -236,7 +236,7 @@ export const products: Product[] = [
     price: '¥19,800',
     users: 'LP検証中',
     rating: 4.9,
-    status: 'beta',
+    status: 'active',
     features: ['知恵継承支援', 'デジタル遺産作成', 'AI分析', '家族の絆強化'],
     lpUrl: 'https://unson-lp-ai-legacy-creator.vercel.app',
     isReal: false,
@@ -251,7 +251,7 @@ export const products: Product[] = [
     price: '月額 ¥4,980',
     users: 'LP検証中',
     rating: 4.6,
-    status: 'beta',
+    status: 'active',
     features: ['体型分析', 'パーソナルスタイリング', 'ファッション提案', '自信向上'],
     lpUrl: 'https://unson-lp-ai-stylist.vercel.app',
     isReal: false,

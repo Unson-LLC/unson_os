@@ -105,7 +105,7 @@ docs/
 
 1. **Issue作成**: 問題や提案を[GitHub Issues](https://github.com/Unson-LLC/unson_os/issues)で報告
 2. **PR作成**: 直接修正して[Pull Request](https://github.com/Unson-LLC/unson_os/pulls)を送信
-3. **Discord議論**: [#docs-improvement](https://discord.gg/wBaz7mpcjC)チャンネルで議論
+3. **Discord議論**: [#docs-improvement](https://discord.gg/ubDYjDVC)チャンネルで議論
 
 ---
 
@@ -125,7 +125,7 @@ docs/
 A: あなたの役割に応じて上記の「あなたに最適なドキュメントは？」セクションから選んでください。
 
 **Q: 技術的な質問はどこですればいいですか？**  
-A: [Discord](https://discord.gg/wBaz7mpcjC)の#tech-discussionチャンネルか、[GitHub Issues](https://github.com/Unson-LLC/unson_os/issues)でお願いします。
+A: [Discord](https://discord.gg/ubDYjDVC)の#tech-discussionチャンネルか、[GitHub Issues](https://github.com/Unson-LLC/unson_os/issues)でお願いします。
 
 **Q: ドキュメントが見つからない場合は？**  
 A: このREADMEの構造図を参照するか、Discordで質問してください。
