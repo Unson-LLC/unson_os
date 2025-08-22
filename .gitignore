@@ -305,3 +305,9 @@ scripts/*env*.sh
 backups/
 *-backup/
 *-backup-*/
+
+# Python Virtual Environment
+venv/
+*-env/
+*.pyc
+__pycache__/
