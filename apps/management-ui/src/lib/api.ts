@@ -154,10 +154,12 @@ export class DashboardWebSocket {
   }
 }
 
-export default {
+const api = {
   dagAPI,
   saasAPI,
   alertAPI,
   gateAPI,
   DashboardWebSocket
 }
+
+export default api

@@ -2,6 +2,275 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+  // LP検証システム関連
+  lpValidationSessions: defineTable({
+    workspace_id: v.string(),
+    product_id: v.string(),
+    session_id: v.string(),
+    status: v.union(
+      v.literal("active"), 
+      v.literal("paused"), 
+      v.literal("completed"),
+      v.literal("failed")
+    ),
+    
+    // 基本情報
+    product_name: v.string(),
+    lp_url: v.string(),
+    start_date: v.number(),
+    end_date: v.optional(v.number()),
+    
+    // 目標設定
+    target_cvr: v.number(),
+    target_cpa: v.number(),
+    min_sessions: v.number(),
+    
+    // 現在の実績
+    current_cvr: v.number(),
+    current_cpa: v.number(),
+    total_sessions: v.number(),
+    total_conversions: v.number(),
+    total_spend: v.number(),
+    
+    // 統計
+    statistical_significance: v.boolean(),
+    confidence_interval: v.optional(v.array(v.number())),
+    
+    // 外部システム連携
+    google_ads_campaign_id: v.optional(v.string()),
+    posthog_project_id: v.optional(v.string()),
+    
+    // 自動化設定
+    automation_enabled: v.boolean(),
+    auto_optimization: v.boolean(),
+    auto_deployment: v.boolean(),
+    
+    // プレイブック連携
+    current_playbook_id: v.optional(v.string()),
+    current_playbook_status: v.optional(v.string()),
+    
+    // メタデータ
+    created_by: v.string(),
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+  .index("by_workspace", ["workspace_id"])
+  .index("by_product", ["product_id"])
+  .index("by_status", ["status"])
+  .index("by_workspace_status", ["workspace_id", "status"]),
+
+  automationExecutions: defineTable({
+    workspace_id: v.string(),
+    session_id: v.string(),
+    execution_id: v.string(),
+    
+    execution_type: v.union(
+      v.literal("google_ads_optimization"),
+      v.literal("lp_content_optimization"),
+      v.literal("phase_gate_evaluation"),
+      v.literal("playbook_step_execution"),
+      v.literal("playbook_phase_transition")
+    ),
+    
+    status: v.union(
+      v.literal("running"),
+      v.literal("completed"),
+      v.literal("failed"),
+      v.literal("cancelled")
+    ),
+    
+    // 実行内容
+    input_data: v.any(),
+    execution_details: v.any(),
+    output_data: v.any(),
+    
+    // 結果・効果測定
+    metrics_before: v.optional(v.any()),
+    metrics_after: v.optional(v.any()),
+    impact_analysis: v.optional(v.string()),
+    
+    // AI分析
+    ai_reasoning: v.optional(v.string()),
+    confidence_score: v.optional(v.number()),
+    
+    // 実行時間
+    started_at: v.number(),
+    completed_at: v.optional(v.number()),
+    duration_ms: v.optional(v.number()),
+    
+    // エラー情報
+    error_message: v.optional(v.string()),
+    retry_count: v.number(),
+    
+    created_at: v.number(),
+  })
+  .index("by_workspace", ["workspace_id"])
+  .index("by_session", ["session_id"])
+  .index("by_type", ["execution_type"])
+  .index("by_status", ["status"]),
+
+  // プレイブック実行管理
+  playbookExecutions: defineTable({
+    workspace_id: v.string(),
+    session_id: v.string(),
+    execution_id: v.string(),
+    
+    // プレイブック情報
+    playbook_id: v.string(),
+    playbook_name: v.string(),
+    playbook_version: v.string(),
+    
+    // 実行状態
+    status: v.union(
+      v.literal("initialized"),
+      v.literal("in_progress"),
+      v.literal("phase_gate_pending"),
+      v.literal("completed"),
+      v.literal("failed"),
+      v.literal("cancelled")
+    ),
+    
+    // フェーズ管理
+    current_phase: v.number(),
+    total_phases: v.number(),
+    phase_completion_percentage: v.number(),
+    
+    // 実行設定
+    configuration: v.any(),
+    next_actions: v.array(v.string()),
+    
+    // KPI管理
+    kpi_targets: v.any(),
+    kpi_current: v.any(),
+    success_criteria_met: v.boolean(),
+    
+    // 実行時間
+    started_at: v.number(),
+    completed_at: v.optional(v.number()),
+    estimated_completion: v.optional(v.number()),
+    
+    // 結果
+    execution_summary: v.optional(v.string()),
+    lessons_learned: v.optional(v.array(v.string())),
+    
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+  .index("by_workspace", ["workspace_id"])
+  .index("by_session", ["session_id"])
+  .index("by_playbook", ["playbook_id"])
+  .index("by_status", ["status"])
+  .index("by_workspace_playbook", ["workspace_id", "playbook_id"]),
+
+  playbookStepExecutions: defineTable({
+    workspace_id: v.string(),
+    execution_id: v.string(),
+    step_execution_id: v.string(),
+    
+    // ステップ情報
+    phase_number: v.number(),
+    step_number: v.number(),
+    step_name: v.string(),
+    step_type: v.union(
+      v.literal("validation"),
+      v.literal("optimization"),
+      v.literal("content_creation"),
+      v.literal("deployment"),
+      v.literal("measurement"),
+      v.literal("phase_gate")
+    ),
+    
+    // 実行状態
+    status: v.union(
+      v.literal("pending"),
+      v.literal("running"),
+      v.literal("completed"),
+      v.literal("failed"),
+      v.literal("skipped")
+    ),
+    
+    // 実行内容
+    input_parameters: v.any(),
+    execution_details: v.any(),
+    output_results: v.any(),
+    
+    // 成功条件
+    success_criteria: v.any(),
+    success_achieved: v.boolean(),
+    
+    // AI分析
+    ai_analysis: v.optional(v.string()),
+    recommendations: v.optional(v.array(v.string())),
+    
+    // 実行時間
+    started_at: v.optional(v.number()),
+    completed_at: v.optional(v.number()),
+    duration_ms: v.optional(v.number()),
+    
+    // エラー情報
+    error_message: v.optional(v.string()),
+    retry_count: v.number(),
+    
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+  .index("by_workspace", ["workspace_id"])
+  .index("by_execution", ["execution_id"])
+  .index("by_phase_step", ["phase_number", "step_number"])
+  .index("by_status", ["status"]),
+
+  systemAlerts: defineTable({
+    workspace_id: v.string(),
+    alert_id: v.string(),
+    
+    alert_type: v.union(
+      v.literal("cpa_exceeded"),
+      v.literal("cvr_dropped"),
+      v.literal("automation_failed"),
+      v.literal("phase_gate_ready"),
+      v.literal("phase_transition_ready"),
+      v.literal("playbook_step_failed"),
+      v.literal("budget_depleted")
+    ),
+    
+    severity: v.union(
+      v.literal("critical"),
+      v.literal("warning"),
+      v.literal("info")
+    ),
+    
+    title: v.string(),
+    message: v.string(),
+    
+    // 関連リソース
+    related_session_id: v.optional(v.string()),
+    related_product_id: v.optional(v.string()),
+    
+    // アラート状態
+    status: v.union(
+      v.literal("active"),
+      v.literal("acknowledged"),
+      v.literal("resolved"),
+      v.literal("dismissed")
+    ),
+    
+    // 通知
+    notification_sent: v.boolean(),
+    notification_channels: v.array(v.string()),
+    
+    // 解決情報
+    resolved_by: v.optional(v.string()),
+    resolved_at: v.optional(v.number()),
+    resolution_notes: v.optional(v.string()),
+    
+    created_at: v.number(),
+  })
+  .index("by_workspace", ["workspace_id"])
+  .index("by_status", ["status"])
+  .index("by_severity", ["severity"])
+  .index("by_type", ["alert_type"]),
+
+  // 既存テーブル
   discordApplications: defineTable({
     email: v.string(),
     name: v.string(),

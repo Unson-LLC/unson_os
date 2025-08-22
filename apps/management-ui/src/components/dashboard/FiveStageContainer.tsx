@@ -1267,11 +1267,6 @@ function PlaybookExecutionView({
   playbookId: string
   onSelectNode: (nodeId: string) => void 
 }) {
-  const saas = mockSaaSData.find(s => s.id === saasId)
-  const playbook = saas?.playbooks.find(p => p.id === playbookId)
-  
-  if (!playbook || !saas) return <div>Playbook not found</div>
-
   const currentTime = new Date()
   const [currentMinute, setCurrentMinute] = React.useState(currentTime.getMinutes())
 
@@ -1282,6 +1277,11 @@ function PlaybookExecutionView({
     }, 1000)
     return () => clearInterval(timer)
   }, [])
+
+  const saas = mockSaaSData.find(s => s.id === saasId)
+  const playbook = saas?.playbooks.find(p => p.id === playbookId)
+  
+  if (!playbook || !saas) return <div>Playbook not found</div>
 
   // 次のGate条件チェック
   const gateNode = playbook.nodes.find(n => n.type === 'Gate')
@@ -1535,15 +1535,20 @@ function NodePKGView({
   nodeId: string
   onSelectIndicator: (indicatorId: string) => void 
 }) {
+  const [selectedPKG, setSelectedPKG] = useState<string | null>(null)
+
   const saas = mockSaaSData.find(s => s.id === saasId)
   const playbook = saas?.playbooks.find(p => p.id === playbookId)
   const node = playbook?.nodes.find(n => n.id === nodeId)
   
+  // 初期値設定のためのeffect
+  React.useEffect(() => {
+    if (node?.pkgs && node.pkgs.length > 0 && !selectedPKG) {
+      setSelectedPKG(node.pkgs[0].id)
+    }
+  }, [node, selectedPKG])
+  
   if (!node || !playbook || !saas) return <div>Node not found</div>
-
-  const [selectedPKG, setSelectedPKG] = useState<string | null>(
-    node.pkgs && node.pkgs.length > 0 ? node.pkgs[0].id : null
-  )
 
   const currentPKG = node.pkgs?.find(p => p.id === selectedPKG)
 

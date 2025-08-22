@@ -1,0 +1,21 @@
+{
+  "name": "unson-os-convex",
+  "version": "0.1.0",
+  "description": "Convex backend for Unson OS",
+  "scripts": {
+    "dev": "convex dev",
+    "build": "convex build",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "convex": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.0",
+    "typescript": "~5.0.0",
+    "vitest": "^2.1.0"
+  },
+  "type": "module"
+}

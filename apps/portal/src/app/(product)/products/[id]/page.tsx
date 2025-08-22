@@ -276,7 +276,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                   </div>
                   <span className="text-sm text-gray-500">{review.date}</span>
                 </div>
-                <p className="text-gray-600 mb-3">"{review.comment}"</p>
+                <p className="text-gray-600 mb-3">&ldquo;{review.comment}&rdquo;</p>
                 <div className="text-sm font-medium text-gray-900">{review.user}</div>
               </div>
             ))}

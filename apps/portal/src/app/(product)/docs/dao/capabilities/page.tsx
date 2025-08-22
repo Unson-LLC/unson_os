@@ -862,7 +862,7 @@ export default function DAOCapabilitiesPage() {
                 <div key={index} className="card bg-gradient-to-r from-blue-50 to-purple-50">
                   <div className="text-4xl mb-4">💭</div>
                   <blockquote className="text-gray-700 mb-4 italic">
-                    "{testimonial.quote}"
+                    &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
                   <div className="text-sm text-gray-600 font-medium">
                     — {testimonial.author}

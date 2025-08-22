@@ -77,37 +77,37 @@ export const getById = query({
   },
 });
 
-// プロダクトリクエスト更新
-export const update = mutation({
-  args: {
-    id: v.id("productRequests"),
-    status: v.optional(v.union(
-      v.literal("submitted"),
-      v.literal("reviewing"),
-      v.literal("approved"),
-      v.literal("in_development"),
-      v.literal("completed"),
-      v.literal("rejected")
-    )),
-    priority: v.optional(v.union(
-      v.literal("low"),
-      v.literal("medium"),
-      v.literal("high")
-    )),
-    estimatedDevelopmentTime: v.optional(v.string()),
-    assignedTeam: v.optional(v.string()),
-  },
-  handler: async (ctx, args) => {
-    const { id, ...updates } = args;
+// プロダクトリクエスト更新（一時的に無効化）
+// export const update = mutation({
+//   args: {
+//     id: v.id("productRequests"),
+//     status: v.optional(v.union(
+//       v.literal("submitted"),
+//       v.literal("reviewing"),
+//       v.literal("approved"),
+//       v.literal("rejected")
+//     )),
+//     priority: v.optional(v.union(
+//       v.literal("low"),
+//       v.literal("medium"),
+//       v.literal("high")
+//     )),
+//     estimatedDevelopmentTime: v.optional(v.string()),
+//     assignedTeam: v.optional(v.string()),
+//   },
+//   handler: async (ctx, args) => {
+//     const { id, ...updates } = args;
     
-    await ctx.db.patch(id, {
-      ...updates,
-      updatedAt: Date.now(),
-    });
+//     const updateData: any = {
+//       ...updates,
+//       updatedAt: Date.now(),
+//     };
     
-    return id;
-  },
-});
+//     await ctx.db.patch(id, updateData);
+    
+//     return id;
+//   },
+// });
 
 // プロダクトリクエスト統計
 export const getStats = query({
