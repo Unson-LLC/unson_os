@@ -73,6 +73,17 @@ crons.daily(
 - `/app/(portal)/lp-validation/page.tsx` - メインページ
 - `/components/lp-validation/` - UIコンポーネント群
 
+#### Day 7: 計測基盤統合（PostHog/GA）
+```tsx
+// 必須統合
+- PostHog: ヒートマップ/スクロール/クリック計測
+- Google Analytics: セッション・参照元・イベント
+
+// 設計方針
+- 検証LPでは価格UIを出さず、ベータ登録（メール）CVRを主指標に
+- イベント命名規約を統一（lp.view, lp.form_submit, lp.scroll_75 など）
+```
+
 #### Day 8: プレイブック連携
 ```typescript
 // PB-001: LP CVRテスト＆MVP開発
@@ -165,7 +176,7 @@ GOOGLE_ADS_MAX_CPA_THRESHOLD=1000
 - 自動化カバレッジ: 80%以上
 
 ### ビジネス指標
-- LP登録率: 10%達成
+- LP登録率: 10%達成（ベータ登録/関心登録ベース）
 - CPA: ¥300以内
 - 7日後継続率: 50%以上
 - フェーズ1→2移行: 2週間以内
@@ -226,3 +237,13 @@ describe('新機能', () => {
 
 **重要**: YAGNI原則を守り、必要最小限の機能から始める。
 過度な最適化は避け、動くものを早く作ることを優先する。
+
+## 📝 補足: Vercelカスタムドメインの自動化制約
+
+- Vercelの仕様上、カスタムドメインの割り当ては完全自動化できないケースがあり、Dashboardでの手動操作が必要
+- 手順（要Dashboard）:
+  1. 対象プロジェクト → Settings → Domains
+  2. ドメインを追加（例: `lp.example.com`）
+  3. 指示通りにDNS（CNAME/ALIAS/TXT）を設定
+  4. SSL有効化を確認（自動）
+- 自動化対象外部分は運用Runbookにタスクとして残すこと
