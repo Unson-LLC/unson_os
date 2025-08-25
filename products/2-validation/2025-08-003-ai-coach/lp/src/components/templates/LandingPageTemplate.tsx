@@ -9,16 +9,16 @@ import ProblemSection from '@/components/sections/ProblemSection'
 import SolutionSection from '@/components/sections/SolutionSection'
 import ServiceSection from '@/components/sections/ServiceSection'
 import PricingSection from '@/components/sections/PricingSection'
-import FormSection from '@/components/sections/FormSection'
 import FinalCtaSection from '@/components/sections/FinalCtaSection'
 import FooterSection from '@/components/sections/FooterSection'
+import FaqSection from '@/components/sections/FaqSection'
 
 interface LandingPageTemplateProps {
   config: TemplateConfig
 }
 
 export default function LandingPageTemplate({ config }: LandingPageTemplateProps) {
-  const [showForm, setShowForm] = useState(false)
+  const [prefill, setPrefill] = useState<Record<string, string>>({})
   const engine = new TemplateEngine(config)
 
   useEffect(() => {
@@ -38,10 +38,18 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
   }, [config, engine])
 
   const handleCta = () => {
-    setShowForm(true)
+    // Scroll to the hero form (single source of truth)
     setTimeout(() => {
-      document.getElementById('form-section')?.scrollIntoView({ behavior: 'smooth' })
-    }, 100)
+      document.getElementById('hero-survey')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 50)
+  }
+
+  const handleInlineAnswer = (answer: Record<string, string>) => {
+    setPrefill(prev => ({ ...prev, ...answer }))
+  }
+
+  const handleLearnMore = () => {
+    document.getElementById('service')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleFormSubmit = async (data: Record<string, string>) => {
@@ -52,7 +60,10 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
     <main className="min-h-screen bg-white">
       <HeroSection 
         config={config.content.hero}
-        onCta={handleCta}
+        formConfig={config.content.form}
+        onFormSubmit={handleFormSubmit}
+        prefill={prefill}
+        onLearnMore={handleLearnMore}
       />
       
       <ProblemSection 
@@ -74,16 +85,16 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
         />
       )}
       
-      <div id="form-section">
-        <FormSection 
-          config={config.content.form}
-          onSubmit={handleFormSubmit}
-        />
-      </div>
+      {config.content.faq && (
+        <FaqSection config={config.content.faq} />
+      )}
       
       <FinalCtaSection 
         config={config.content.finalCta}
         onCta={handleCta}
+        formConfig={config.content.form}
+        onFormSubmit={handleFormSubmit}
+        prefill={prefill}
       />
       
       <FooterSection 

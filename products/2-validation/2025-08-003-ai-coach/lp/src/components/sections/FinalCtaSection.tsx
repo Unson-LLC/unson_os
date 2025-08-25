@@ -2,13 +2,17 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
 import { ArrowRight, CheckCircle } from 'lucide-react'
+import FormSection from '@/components/sections/FormSection'
 
 interface FinalCtaSectionProps {
   config: TemplateConfig['content']['finalCta']
   onCta?: () => void
+  formConfig?: TemplateConfig['content']['form']
+  onFormSubmit?: (data: Record<string, string>) => void
+  prefill?: Record<string, string>
 }
 
-export default function FinalCtaSection({ config, onCta }: FinalCtaSectionProps) {
+export default function FinalCtaSection({ config, onCta, formConfig, onFormSubmit, prefill }: FinalCtaSectionProps) {
   return (
     <section className="section-padding gradient-primary text-white">
       <div className="container-width">
@@ -40,17 +44,11 @@ export default function FinalCtaSection({ config, onCta }: FinalCtaSectionProps)
                 <p className="text-lg font-semibold">{config.urgencyText}</p>
               </div>
             )}
-            
-            <button
-              onClick={onCta}
-              className={cn(
-                "px-8 py-4 text-lg font-bold rounded-lg",
-                "bg-white text-primary hover:bg-gray-100",
-                "transition-all transform hover:scale-105 shadow-xl"
+            <div className="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-4 sm:p-6 text-left">
+              {formConfig && (
+                <FormSection config={formConfig} onSubmit={onFormSubmit} prefill={prefill} />
               )}
-            >
-              {config.cta}
-            </button>
+            </div>
           </div>
         </div>
       </div>

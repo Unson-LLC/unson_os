@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "title": "AI自分時間コーチ - 20年ぶりの自分時間を、最高の人生設計に変える",
+    "description": "子育てが一段落した40-55歳女性の皆さま。お疲れ様でした、お母さん。今度はあなたの番です。AIがあなたらしい時間の使い方を一緒に見つけます。",
+    "keywords": [
+      "自分時間",
+      "子育て卒業",
+      "40代女性",
+      "人生設計",
+      "趣味発見",
+      "コミュニティ",
+      "AIコーチング"
+    ]
+  },
+  "theme": {
+    "colors": {
+      "primary": "#E879F9",
+      "secondary": "#A78BFA",
+      "accent": "#FB7185",
+      "background": "#FEFEFE",
+      "text": "#374151",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'M PLUS Rounded 1c', sans-serif",
+      "body": "'Noto Sans JP', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #E879F9 0%, #C084FC 50%, #A78BFA 100%)",
+      "secondary": "linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%)",
+      "accent": "linear-gradient(135deg, #FBCFE8 0%, #F9A8D4 50%, #EC4899 100%)"
+    }
+  },
+  "lpStyleGuide": {
+    "description": "AI自分時間コーチのランディングページデザイン統一スタイルガイド",
+    "designPrinciples": [
+      "温かみがあり安心感のあるデザイン",
+      "上品で落ち着いた印象",
+      "40-55歳女性にアピールする親しみやすさ",
+      "新しい挑戦への勇気を与える明るさ"
+    ],
+    "layout": {
+      "maxWidth": "1200px",
+      "sectionSpacing": "80px",
+      "cardBorderRadius": "16px",
+      "buttonStyle": "soft rounded corners with gentle shadows"
+    },
+    "typography": {
+      "headingScale": "1.5rem, 2rem, 2.5rem, 3rem",
+      "lineHeight": "1.7",
+      "fontWeight": "400 for body, 600 for headings"
+    },
+    "componentStyle": {
+      "cards": "white background, warm shadow, generous padding",
+      "buttons": "gradient background, gentle hover effects, encouraging CTA text",
+      "sections": "alternating white/light-purple backgrounds",
+      "images": "soft corners, warm lighting, relatable scenes"
+    }
+  },
+  "visualStyleGuide": {
+    "description": "AI自分時間コーチの統一ビジュアルスタイル",
+    "artStyle": "warm lifestyle photography with soft illustration elements",
+    "colorPalette": {
+      "primary": "#E879F9",
+      "secondary": "#A78BFA",
+      "accent": "#FB7185",
+      "neutral": "#FEFEFE",
+      "text": "#374151"
+    },
+    "visualTone": "warm, nurturing, encouraging, mature elegance",
+    "imageCharacteristics": {
+      "style": "lifestyle photography with soft warm lighting",
+      "lighting": "natural golden hour lighting",
+      "mood": "hopeful, empowering, peaceful",
+      "target": "mature Japanese women aged 40-55"
+    },
+    "promptTemplate": "{content}, warm lifestyle photography with soft lighting, nurturing encouraging empowering mood, natural golden hour lighting, peaceful hopeful atmosphere, featuring mature elegant Japanese women aged 40-55, using purple (#E879F9) and pink (#FB7185) color scheme, mature sophisticated style",
+    "referenceStyles": [
+      "mature lifestyle photography",
+      "elegant home interior imagery",
+      "japanese mature woman lifestyle"
+    ]
+  },
+  "content": {
+    "hero": {
+      "title": "お疲れ様でした、お母さん。\n今度はあなたの番です。",
+      "subtitle": "短い対話から“無理のない一歩”をAIが提案。ひとりでも続く自分時間づくりを、今日から優しく始めましょう。まずは1問だけ（メールは任意）。",
+      "cta": "1問だけ答える",
+      "secondaryCta": "",
+      "backgroundImage": "/images/generated/hero-mother-freedom.jpg",
+      "backgroundGradient": true,
+      "quickPoints": [
+        "20分のAI対話で“いま”を見える化",
+        "平日15分の“小さな挑戦”を提案",
+        "同じ気持ちの人とゆるくつながる（検討中）"
+      ]
+    },
+    "problem": {
+      "title": "こんなお悩み、ありませんか？",
+      "subtitle": "“自分時間”ができたとき、最初に立ちはだかる壁",
+      "description": "カレンダーに空白が増えたのに、手が止まる。静かな午後、家の音だけが聞こえるのに、最初の一歩が出ない——そんな声をよく聞きます。",
+      "problems": [
+        {
+          "title": "時間はあるのに、最初の一歩が出ない",
+          "description": "週に2〜5時間は取れるのに、何から始めればいいか決められない。",
+          "image": "/images/generated/imagen-4_2025-08-19T16-40-20-154Z_Create_a_minimalist_lifestyle_illustration_showing_1.png"
+        },
+        {
+          "title": "話せる相手が少なく、一人で続かない",
+          "description": "LINEの履歴は家族が中心。新しい出会いのきっかけがなく、継続の自信が持てない。",
+          "image": "/images/generated/imagen-4_2025-08-19T16-40-41-677Z_Generate_a_lifestyle_illustration_representing_soc_1.png"
+        },
+        {
+          "title": "私にできること、あるのかな？",
+          "description": "家事以外の強みが見えず、挑戦する前から自信がしぼんでしまう。",
+          "image": "/images/generated/imagen-4_2025-08-19T16-41-29-909Z_Generate_a_lifestyle_illustration_representing_los_1.png"
+        },
+        {
+          "title": "“母親”の次のわたしが、ぼんやり",
+          "description": "長いあいだ家族優先。自分だけの喜びやリズムを思い出せない。",
+          "image": "/images/generated/imagen-4_2025-08-19T16-41-07-773Z_Create_a_lifestyle_illustration_showing_lack_of_co_1.png"
+        },
+        {
+          "title": "始めても、三日目で止まる",
+          "description": "一人だとペースがつかめず、習いごとも長続きしない。",
+          "image": "/images/generated/imagen-4_2025-08-19T16-41-54-588Z_Create_a_lifestyle_illustration_showing_the_challe_1.png"
+        },
+        {
+          "title": "自分の時間をとると、少し罪悪感",
+          "description": "“わたしのためだけの時間”に慣れていなくて、どこか落ち着かない。",
+          "image": "/images/generated/imagen-4_2025-08-19T16-42-39-727Z_Generate_a_lifestyle_illustration_representing_gui_1.png"
+        }
+      ]
+    },
+    "solution": {
+      "title": "なぜ“続く自分時間”になるの？",
+      "subtitle": "理由は3つ。わかりやすく、少しずつ、ひとりじゃない。",
+      "description": "まずは1問で、あなたの“いま”を知るところから。そこに合わせて小さな一歩をご提案します。",
+      "solutions": [
+        {
+          "title": "どうやって？ — AI自己分析で“いま”を見える化",
+          "description": "最近ときめいたこと、気が重いこと。短い対話で、興味のタネと負担の少ない時間帯を見つけます。",
+          "icon": "Search",
+          "image": "/images/generated/solution-ai-analysis.jpg"
+        },
+        {
+          "title": "なぜ続く？ — 小さな一歩を積み重ねる設計",
+          "description": "15分の“試し”から。見学→体験→短期→継続と、段階を用意して無理なく前進します。",
+          "icon": "TrendingUp",
+          "image": "/images/generated/solution-gradual-step.jpg"
+        },
+        {
+          "title": "ひとりじゃない — 似た“今”の人とゆるくつながる",
+          "description": "同じ悩み・ペースの人と出会える場を検討中。安心して続けられる“距離感”を大切にします。",
+          "icon": "Users",
+          "image": "/images/generated/solution-community-matching.jpg"
+        }
+      ]
+    },
+    "service": {
+      "title": "こうだったらうれしい未来（仮）",
+      "subtitle": "調査結果をもとに、無理なく“自分時間”を育てる体験を設計します",
+      "services": [
+        {
+          "title": "STEP 1: 自分を見つめ直す（仮）",
+          "description": "AI自己分析チャットで、興味関心や価値観を再発見。小さな挑戦から始めて、自分時間への罪悪感をやわらげます。",
+          "features": [
+            "20分のAI自己分析チャット",
+            "パーソナル時間プラン提示",
+            "毎日の振り返りサポート"
+          ],
+          "icon": "Compass"
+        },
+        {
+          "title": "STEP 2: 新しい体験を探索（仮）",
+          "description": "地域・予算・時間を考慮した体験を提案。写真付き日記で感情を記録し、本当に好きなことを見つけます。",
+          "features": [
+            "週次チャレンジ提案",
+            "体験日記・感情分析",
+            "興味の可視化レーダーチャート"
+          ],
+          "icon": "Telescope"
+        },
+        {
+          "title": "STEP 3: 仲間とつながる（仮）",
+          "description": "スキル交換や一緒に挑戦する仲間とマッチング。コミュニティで安心して一歩を続けられる仕組みを検討します。",
+          "features": [
+            "多様なマッチング機能",
+            "ワークショップ参加・主催",
+            "隠れたスキル診断"
+          ],
+          "icon": "Heart"
+        },
+        {
+          "title": "STEP 4: 社会に貢献する（仮）",
+          "description": "身につけたスキルを活かして、誰かの役に立つ活動へ。収益化の可否は、調査結果を踏まえて慎重に検討します。",
+          "features": [
+            "ワークショップ主催（仮）",
+            "サークル運営（仮）",
+            "必要なサポートを検討"
+          ],
+          "icon": "Award"
+        }
+      ]
+    },
+    
+    "form": {
+      "title": "1問だけ、あなたの気持ちを教えてください",
+      "subtitle": "先行テストのご案内を希望する方のみ、メールをご記入ください（任意）",
+      "fields": [
+        {
+          "type": "select",
+          "name": "mvp_intent",
+          "label": "いま、どれくらい試してみたいですか？",
+          "placeholder": "選択してください",
+          "required": true,
+          "options": [
+            "いますぐ試したい（β参加したい）",
+            "気軽に試してみたい",
+            "情報だけ知りたい",
+            "今は様子見"
+          ]
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "先行案内を受け取るメール（任意）",
+          "placeholder": "hanako@example.com",
+          "required": false
+        }
+      ],
+      "submitText": "送信する",
+      "successMessage": "ご協力ありがとうございます。いただいた内容は、サービスの改善に大切に活かします。",
+      "privacyText": "※調査目的のみに利用。しつこい連絡は一切なし。いつでも配信停止可能。"
+    },
+    "finalCta": {
+      "title": "最初の一歩、何から始めますか？",
+      "subtitle": "あなたの1問が、同じ悩みの誰かの助けになります。",
+      "cta": "1問だけ答える",
+      "urgencyText": "先行ユーザーには、AI自己分析のテスト版を優先的にご案内します（任意）",
+      "benefitsList": [
+        "あなたの状況に近い選択肢でサクッと回答",
+        "結果は開発に直結、サービス改善に反映",
+        "先行案内で最新情報をいち早くお届け"
+      ]
+    },
+    "faq": {
+      "title": "よくある質問",
+      "subtitle": "不安を先に解消して、気軽にご参加ください",
+      "items": [
+        { "question": "回答にかかる時間は？", "answer": "30秒ほどです。質問は1問、選択式です。" },
+        { "question": "対象はどんな人？", "answer": "子育てが一段落した40〜55歳の女性を想定していますが、近い状況の方も歓迎します。" },
+        { "question": "費用はかかりますか？", "answer": "かかりません。メール登録も任意です。" },
+        { "question": "いつから使えますか？", "answer": "β版の準備ができ次第、先行案内（メール登録者）から順にご連絡します。" },
+        { "question": "個人情報の扱いは？", "answer": "調査目的のみに利用し、第三者への提供はありません。匿名での回答も可能です。" }
+      ]
+    },
+    "footer": {
+      "companyName": "AI自分時間コーチ",
+      "description": "女性の新しい人生設計をAIでサポートするサービスです",
+      "sections": [
+        {
+          "title": "サービス",
+          "links": [
+            { "text": "よくある質問", "url": "#faq" }
+          ]
+        },
+        {
+          "title": "サポート",
+          "links": [
+            {
+              "text": "プライバシーポリシー",
+              "url": "/privacy"
+            },
+            {
+              "text": "利用規約",
+              "url": "/terms"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2025 AI自分時間コーチ. All rights reserved.",
+      "socialLinks": [
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/ai_jibun_coach"
+        },
+        {
+          "platform": "facebook",
+          "url": "https://facebook.com/ai.jibun.coach"
+        },
+        {
+          "platform": "instagram",
+          "url": "https://instagram.com/ai_jibun_coach"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "logo": "/images/logo-ai-coach.png",
+    "favicon": "/favicon.ico",
+    "images": {
+      "hero": "/images/hero-mother-freedom.jpg",
+      "problem1": "/images/problem-confusion.svg",
+      "problem2": "/images/problem-loneliness.svg",
+      "problem3": "/images/problem-confidence.svg",
+      "problem4": "/images/problem-identity.svg",
+      "problem5": "/images/problem-continuation.svg",
+      "problem6": "/images/problem-guilt.svg"
+    }
+  }
+}

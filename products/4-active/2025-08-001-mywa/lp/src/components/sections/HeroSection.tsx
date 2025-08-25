@@ -20,14 +20,17 @@ export default function HeroSection({ config, onCta }: HeroSectionProps) {
       {config.backgroundGradient && (
         <div className="absolute inset-0 gradient-primary opacity-80" />
       )}
+      {config.backgroundImage && (
+        <div className="absolute inset-0 bg-black/50" />
+      )}
       
       <div className="relative z-10 container-width text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
             {config.title}
           </h1>
           
-          <p className="text-lg sm:text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.45)' }}>
             {config.subtitle}
           </p>
           
