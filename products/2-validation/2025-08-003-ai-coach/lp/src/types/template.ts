@@ -34,6 +34,7 @@ export interface TemplateConfig {
       secondaryCta?: string
       backgroundImage?: string
       backgroundGradient?: boolean
+      quickPoints?: string[]
     }
     features: Array<{
       icon: string
