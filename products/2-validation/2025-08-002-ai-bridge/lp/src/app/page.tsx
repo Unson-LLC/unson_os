@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react'
 import { TemplateConfig } from '@/types/template'
 import LandingPageTemplate from '@/components/templates/LandingPageTemplate'
 import { RefreshCw, FileText, Folder } from 'lucide-react'
+import PostHogProvider from '@/components/Analytics/PostHogProvider'
+import Analytics from '@/components/Analytics/Analytics'
+import ScrollTracker from '@/components/Analytics/ScrollTracker'
+import posthog from 'posthog-js'
 
 export default function HomePage() {
   const [config, setConfig] = useState<TemplateConfig | null>(null)
@@ -53,6 +57,19 @@ export default function HomePage() {
     }
   }, [])
 
+  // Track LP view (custom event)
+  useEffect(() => {
+    if (config) {
+      try {
+        posthog.capture('lp.view', {
+          service: process.env.NEXT_PUBLIC_SERVICE_NAME || 'ai-bridge',
+        })
+      } catch (e) {
+        // no-op
+      }
+    }
+  }, [config])
+
   const openConfigFolder = () => {
     alert('Open the "configs" folder in your project directory and edit config.json with any text editor!')
   }
@@ -90,8 +107,12 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <LandingPageTemplate config={config} />
-    </div>
+    <PostHogProvider>
+      <Analytics serviceName={process.env.NEXT_PUBLIC_SERVICE_NAME || 'ai-bridge'} />
+      <ScrollTracker />
+      <div className="min-h-screen bg-white">
+        <LandingPageTemplate config={config} />
+      </div>
+    </PostHogProvider>
   )
 }

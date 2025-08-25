@@ -12,6 +12,8 @@ import PricingSection from '@/components/sections/PricingSection'
 import FormSection from '@/components/sections/FormSection'
 import FinalCtaSection from '@/components/sections/FinalCtaSection'
 import FooterSection from '@/components/sections/FooterSection'
+import { trackCTAClick, trackFormSubmission } from '@/components/Analytics/Analytics'
+import posthog from 'posthog-js'
 
 interface LandingPageTemplateProps {
   config: TemplateConfig
@@ -39,6 +41,12 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
 
   const handleCta = () => {
     setShowForm(true)
+    try {
+      trackCTAClick(process.env.NEXT_PUBLIC_SERVICE_NAME || 'ai-bridge', 'primary')
+      posthog.capture('lp.cta_click', { label: 'primary' })
+    } catch (e) {
+      // no-op
+    }
     setTimeout(() => {
       document.getElementById('form-section')?.scrollIntoView({ behavior: 'smooth' })
     }, 100)
@@ -46,6 +54,12 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
 
   const handleFormSubmit = async (data: Record<string, string>) => {
     console.log('Form submitted:', data)
+    try {
+      trackFormSubmission(process.env.NEXT_PUBLIC_SERVICE_NAME || 'ai-bridge', 'beta_signup')
+      posthog.capture('lp.form_submit', { fields: Object.keys(data).length })
+    } catch (e) {
+      // no-op
+    }
   }
 
   return (
