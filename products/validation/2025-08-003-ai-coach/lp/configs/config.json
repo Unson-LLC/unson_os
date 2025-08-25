@@ -2,12 +2,20 @@
   "meta": {
     "title": "AI自分時間コーチ - 20年ぶりの自分時間を、最高の人生設計に変える",
     "description": "子育てが一段落した40-55歳女性の皆さま。お疲れ様でした、お母さん。今度はあなたの番です。AIがあなたらしい時間の使い方を一緒に見つけます。",
-    "keywords": ["自分時間", "子育て卒業", "40代女性", "人生設計", "趣味発見", "コミュニティ", "AIコーチング"]
+    "keywords": [
+      "自分時間",
+      "子育て卒業",
+      "40代女性",
+      "人生設計",
+      "趣味発見",
+      "コミュニティ",
+      "AIコーチング"
+    ]
   },
   "theme": {
     "colors": {
       "primary": "#E879F9",
-      "secondary": "#A78BFA", 
+      "secondary": "#A78BFA",
       "accent": "#FB7185",
       "background": "#FEFEFE",
       "text": "#374151",
@@ -90,32 +98,32 @@
         {
           "title": "自分の時間ができたけど何をしていいかわからない",
           "description": "子供が手を離れて時間ができたものの、趣味もなく、何から始めればいいのか迷ってしまう。",
-          "image": "/images/generated/problem-confusion.jpg"
+          "image": "/images/generated/imagen-4_2025-08-19T16-40-20-154Z_Create_a_minimalist_lifestyle_illustration_showing_1.png"
         },
         {
           "title": "昔の友達とは疎遠になり、新しい友達もいない",
           "description": "子育て中心の生活で友人関係が希薄になり、今更新しい人間関係を築けるか不安。",
-          "image": "/images/generated/problem-loneliness.jpg"
+          "image": "/images/generated/imagen-4_2025-08-19T16-40-41-677Z_Generate_a_lifestyle_illustration_representing_soc_1.png"
         },
         {
           "title": "家事以外のスキルがない気がして自信がない",
           "description": "専業主婦期間が長く、社会復帰や新しいことへの挑戦に対して自信を失っている。",
-          "image": "/images/generated/problem-confidence.jpg"
+          "image": "/images/generated/imagen-4_2025-08-19T16-41-29-909Z_Generate_a_lifestyle_illustration_representing_los_1.png"
         },
         {
           "title": "子供のことばかり考えて自分を見失っている",
           "description": "「母親である自分」以外のアイデンティティがわからず、空虚感を感じている。",
-          "image": "/images/generated/problem-identity.jpg"
+          "image": "/images/generated/imagen-4_2025-08-19T16-41-07-773Z_Create_a_lifestyle_illustration_showing_lack_of_co_1.png"
         },
         {
           "title": "新しいことを始めても続かない",
           "description": "習い事や趣味を始めても、一人では継続が難しく、結局やめてしまう。",
-          "image": "/images/generated/problem-continuation.jpg"
+          "image": "/images/generated/imagen-4_2025-08-19T16-41-54-588Z_Create_a_lifestyle_illustration_showing_the_challe_1.png"
         },
         {
           "title": "自分の時間を取ることに罪悪感を感じる",
           "description": "長年家族優先で生きてきたため、自分のための時間を取ることに後ろめたさを感じる。",
-          "image": "/images/generated/problem-guilt.jpg"
+          "image": "/images/generated/imagen-4_2025-08-19T16-42-39-727Z_Generate_a_lifestyle_illustration_representing_gui_1.png"
         }
       ]
     },
@@ -239,7 +247,7 @@
           "required": true
         },
         {
-          "type": "email", 
+          "type": "email",
           "name": "email",
           "label": "メールアドレス",
           "placeholder": "hanako@example.com",
@@ -251,15 +259,27 @@
           "label": "年齢",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["35-39歳", "40-44歳", "45-49歳", "50-54歳", "55歳以上"]
+          "options": [
+            "35-39歳",
+            "40-44歳",
+            "45-49歳",
+            "50-54歳",
+            "55歳以上"
+          ]
         },
         {
           "type": "select",
           "name": "children_stage",
           "label": "お子様の状況",
-          "placeholder": "選択してください", 
+          "placeholder": "選択してください",
           "required": true,
-          "options": ["高校生", "大学生・専門学校生", "社会人（同居）", "社会人（独立済み）", "その他"]
+          "options": [
+            "高校生",
+            "大学生・専門学校生",
+            "社会人（同居）",
+            "社会人（独立済み）",
+            "その他"
+          ]
         },
         {
           "type": "textarea",
@@ -293,27 +313,60 @@
         {
           "title": "サービス",
           "links": [
-            { "text": "機能詳細", "url": "/features" },
-            { "text": "料金プラン", "url": "/pricing" },
-            { "text": "成功事例", "url": "/stories" },
-            { "text": "よくある質問", "url": "/faq" }
+            {
+              "text": "機能詳細",
+              "url": "/features"
+            },
+            {
+              "text": "料金プラン",
+              "url": "/pricing"
+            },
+            {
+              "text": "成功事例",
+              "url": "/stories"
+            },
+            {
+              "text": "よくある質問",
+              "url": "/faq"
+            }
           ]
         },
         {
           "title": "サポート",
           "links": [
-            { "text": "使い方ガイド", "url": "/guide" },
-            { "text": "お問い合わせ", "url": "/contact" },
-            { "text": "プライバシーポリシー", "url": "/privacy" },
-            { "text": "利用規約", "url": "/terms" }
+            {
+              "text": "使い方ガイド",
+              "url": "/guide"
+            },
+            {
+              "text": "お問い合わせ",
+              "url": "/contact"
+            },
+            {
+              "text": "プライバシーポリシー",
+              "url": "/privacy"
+            },
+            {
+              "text": "利用規約",
+              "url": "/terms"
+            }
           ]
         }
       ],
       "copyright": "© 2025 AI自分時間コーチ. All rights reserved.",
       "socialLinks": [
-        { "platform": "twitter", "url": "https://twitter.com/ai_jibun_coach" },
-        { "platform": "facebook", "url": "https://facebook.com/ai.jibun.coach" },
-        { "platform": "instagram", "url": "https://instagram.com/ai_jibun_coach" }
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/ai_jibun_coach"
+        },
+        {
+          "platform": "facebook",
+          "url": "https://facebook.com/ai.jibun.coach"
+        },
+        {
+          "platform": "instagram",
+          "url": "https://instagram.com/ai_jibun_coach"
+        }
       ]
     }
   },
