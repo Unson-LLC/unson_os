@@ -92,7 +92,10 @@ export class VercelManager {
     }
 
     if (params.environmentVariables) {
-      body.environmentVariables = params.environmentVariables;
+      body.environmentVariables = params.environmentVariables.map(env => ({
+        ...env,
+        type: 'encrypted'
+      }));
     }
 
     try {

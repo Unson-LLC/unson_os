@@ -8,7 +8,10 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "vitest",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "setup": "tsx ../../scripts/setup-domain-automation.ts",
+    "test:create-domain": "tsx src/test-create-domain.ts",
+    "test:delete-domain": "tsx src/test-delete-domain.ts"
   },
   "dependencies": {
     "@aws-sdk/client-route-53": "^3.540.0",
