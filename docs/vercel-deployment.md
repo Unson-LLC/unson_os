@@ -115,6 +115,10 @@ Domain: admin.unson.jp (または manage.unson.jp)
 
 Vercel Dashboard → Settings → Domains で設定
 
+注意（運用ポリシー）
+- Vercelのカスタムドメイン割り当てはAPIのみで完結できないケースがあるため、Dashboardでの手動操作を前提とする
+- 自動化フローでは「ドメイン割当（手動）」のチェックタスクを残し、DNS伝播とSSL有効化完了を運用で確認する
+
 ## 📊 環境別設定
 
 ### Development（開発）
