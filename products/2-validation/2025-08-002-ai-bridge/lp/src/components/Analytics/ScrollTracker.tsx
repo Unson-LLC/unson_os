@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { trackScrollDepth } from './Analytics';
+import posthog from 'posthog-js';
 
 export default function ScrollTracker() {
   useEffect(() => {
@@ -23,6 +24,15 @@ export default function ScrollTracker() {
         if (scrollPercent >= depthNum && !scrollDepthTracked[depthNum as keyof typeof scrollDepthTracked]) {
           scrollDepthTracked[depthNum as keyof typeof scrollDepthTracked] = true;
           trackScrollDepth(depthNum);
+          if (depthNum === 75) {
+            try {
+              posthog.capture('lp.scroll_75', {
+                service: process.env.NEXT_PUBLIC_SERVICE_NAME || 'ai-bridge',
+              });
+            } catch (e) {
+              // no-op
+            }
+          }
         }
       });
     };

@@ -21,6 +21,11 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
     
     try {
       // Convex API経由で送信
+      // Honeypot check (bot likely)
+      if (formData.website) {
+        throw new Error('送信に失敗しました')
+      }
+
       const response = await fetch('https://unsonos-api.vercel.app/api/service-application', {
         method: 'POST',
         headers: {
@@ -82,7 +87,7 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8">
+            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8" noValidate>
               {error && (
                 <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-800">{error}</p>
@@ -140,6 +145,19 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
                     )}
                   </div>
                 ))}
+                {/* Honeypot field */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    value={formData.website || ''}
+                    onChange={(e) => handleChange('website', e.target.value)}
+                  />
+                </div>
               </div>
               
               {config.privacyText && (
