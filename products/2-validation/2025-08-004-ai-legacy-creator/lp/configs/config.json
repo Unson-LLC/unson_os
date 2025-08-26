@@ -2,7 +2,13 @@
   "meta": {
     "title": "AIレガシー・クリエーター - あなたの経験と知識を価値ある作品として後世に残そう",
     "description": "45-65歳男性の豊富な経験と知識を体系化し、デジタル図書館として継承。個人版ウィキペディアを作成し、次世代へのメンタリングや出版活動をサポートします。",
-    "keywords": ["知識継承", "レガシー", "メンタリング", "デジタル図書館", "経験の可視化"]
+    "keywords": [
+      "知識継承",
+      "レガシー",
+      "メンタリング",
+      "デジタル図書館",
+      "経験の可視化"
+    ]
   },
   "theme": {
     "colors": {
@@ -80,7 +86,12 @@
       "cta": "無料診断を始める",
       "secondaryCta": "サービス詳細を見る",
       "backgroundImage": "/images/generated/hero-legacy.jpg",
-      "backgroundGradient": true
+      "backgroundGradient": true,
+      "quickPoints": [
+        "Z世代×管理職の認識ギャップをAIで可視化",
+        "会議・1on1・評価の「すれ違い」を具体的に改善",
+        "先行登録でベータ公開を最優先でご案内"
+      ]
     },
     "problem": {
       "title": "こんなお悩みありませんか？",
@@ -287,7 +298,17 @@
           "label": "専門分野・職種",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["管理職・経営", "技術・エンジニア", "営業・マーケティング", "財務・経理", "人事・労務", "製造・品質管理", "研究・開発", "コンサルティング", "その他"]
+          "options": [
+            "管理職・経営",
+            "技術・エンジニア",
+            "営業・マーケティング",
+            "財務・経理",
+            "人事・労務",
+            "製造・品質管理",
+            "研究・開発",
+            "コンサルティング",
+            "その他"
+          ]
         },
         {
           "type": "select",
@@ -295,7 +316,13 @@
           "label": "キャリア年数",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["20-25年", "25-30年", "30-35年", "35-40年", "40年以上"]
+          "options": [
+            "20-25年",
+            "25-30年",
+            "30-35年",
+            "35-40年",
+            "40年以上"
+          ]
         },
         {
           "type": "select",
@@ -303,7 +330,13 @@
           "label": "知識継承への関心度",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["非常に関心がある", "関心がある", "やや関心がある", "検討中", "情報収集段階"]
+          "options": [
+            "非常に関心がある",
+            "関心がある",
+            "やや関心がある",
+            "検討中",
+            "情報収集段階"
+          ]
         },
         {
           "type": "textarea",
@@ -343,36 +376,99 @@
         {
           "title": "サービス",
           "links": [
-            { "text": "機能詳細", "url": "/features" },
-            { "text": "料金プラン", "url": "/pricing" },
-            { "text": "成功事例", "url": "/cases" },
-            { "text": "よくある質問", "url": "/faq" }
+            {
+              "text": "機能詳細",
+              "url": "/features"
+            },
+            {
+              "text": "料金プラン",
+              "url": "/pricing"
+            },
+            {
+              "text": "成功事例",
+              "url": "/cases"
+            },
+            {
+              "text": "よくある質問",
+              "url": "/faq"
+            }
           ]
         },
         {
           "title": "サポート",
           "links": [
-            { "text": "ヘルプセンター", "url": "/help" },
-            { "text": "利用ガイド", "url": "/guide" },
-            { "text": "技術サポート", "url": "/support" },
-            { "text": "お問い合わせ", "url": "/contact" }
+            {
+              "text": "ヘルプセンター",
+              "url": "/help"
+            },
+            {
+              "text": "利用ガイド",
+              "url": "/guide"
+            },
+            {
+              "text": "技術サポート",
+              "url": "/support"
+            },
+            {
+              "text": "お問い合わせ",
+              "url": "/contact"
+            }
           ]
         },
         {
           "title": "会社情報",
           "links": [
-            { "text": "会社概要", "url": "/about" },
-            { "text": "プライバシーポリシー", "url": "/privacy" },
-            { "text": "利用規約", "url": "/terms" },
-            { "text": "採用情報", "url": "/careers" }
+            {
+              "text": "会社概要",
+              "url": "/about"
+            },
+            {
+              "text": "プライバシーポリシー",
+              "url": "/privacy"
+            },
+            {
+              "text": "利用規約",
+              "url": "/terms"
+            },
+            {
+              "text": "採用情報",
+              "url": "/careers"
+            }
           ]
         }
       ],
       "copyright": "© 2025 AIレガシー・クリエーター. All rights reserved.",
       "socialLinks": [
-        { "platform": "twitter", "url": "https://twitter.com/ailegacycreator" },
-        { "platform": "linkedin", "url": "https://linkedin.com/company/ailegacycreator" },
-        { "platform": "youtube", "url": "https://youtube.com/@ailegacycreator" }
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/ailegacycreator"
+        },
+        {
+          "platform": "linkedin",
+          "url": "https://linkedin.com/company/ailegacycreator"
+        },
+        {
+          "platform": "youtube",
+          "url": "https://youtube.com/@ailegacycreator"
+        }
+      ]
+    },
+    "faq": {
+      "title": "よくある質問",
+      "subtitle": "導入前によくいただくご質問にお答えします",
+      "items": [
+        {
+          "question": "ベータ先行案内に登録すると何が届きますか？",
+          "answer": "公開前に優先案内と招待リンク、導入の流れをお送りします。"
+        },
+        {
+          "question": "個人情報の取り扱いは？",
+          "answer": "案内の送付にのみ使用し、第三者提供はしません。"
+        },
+        {
+          "question": "どのような組織に向いていますか？",
+          "answer": "世代間のコミュニケーション課題を感じている管理職・人事の方におすすめです。"
+        }
       ]
     }
   },

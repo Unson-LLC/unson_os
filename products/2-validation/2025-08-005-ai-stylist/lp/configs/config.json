@@ -2,7 +2,13 @@
   "meta": {
     "title": "あなたの価値観が輝くスタイルを見つけよう - AIパーソナルスタイリスト",
     "description": "20代女性向けのAIパーソナルスタイリストサービス。価値観とおしゃれを両立し、持続可能なファッションライフを実現。環境に配慮したブランド選びから長期的なワードローブ戦略まで、AIがトータルサポート。",
-    "keywords": ["AIスタイリスト", "サステナブルファッション", "エシカルファッション", "価値観", "パーソナルスタイリング"]
+    "keywords": [
+      "AIスタイリスト",
+      "サステナブルファッション",
+      "エシカルファッション",
+      "価値観",
+      "パーソナルスタイリング"
+    ]
   },
   "theme": {
     "colors": {
@@ -56,7 +62,12 @@
       "cta": "ベータ版に参加する（無料）",
       "secondaryCta": "サービス詳細を見る",
       "backgroundImage": "/images/generated/hero-sustainable-fashion.jpg",
-      "backgroundGradient": true
+      "backgroundGradient": true,
+      "quickPoints": [
+        "Z世代×管理職の認識ギャップをAIで可視化",
+        "会議・1on1・評価の「すれ違い」を具体的に改善",
+        "先行登録でベータ公開を最優先でご案内"
+      ]
     },
     "problem": {
       "title": "こんなファッションの悩みありませんか？",
@@ -246,7 +257,12 @@
           "label": "年齢層",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["20-24歳", "25-29歳", "30-34歳", "35歳以上"]
+          "options": [
+            "20-24歳",
+            "25-29歳",
+            "30-34歳",
+            "35歳以上"
+          ]
         },
         {
           "type": "select",
@@ -254,7 +270,13 @@
           "label": "ファッションで最も重視すること",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["環境への配慮", "長く着られること", "自分らしさの表現", "コストパフォーマンス", "トレンド感"]
+          "options": [
+            "環境への配慮",
+            "長く着られること",
+            "自分らしさの表現",
+            "コストパフォーマンス",
+            "トレンド感"
+          ]
         },
         {
           "type": "textarea",
@@ -287,24 +309,51 @@
         {
           "title": "サービス",
           "links": [
-            { "text": "料金プラン", "url": "/pricing" }
+            {
+              "text": "料金プラン",
+              "url": "/pricing"
+            }
           ]
         },
         {
           "title": "サポート",
           "links": [
-            { "text": "お問い合わせ", "url": "/contact" }
+            {
+              "text": "お問い合わせ",
+              "url": "/contact"
+            }
           ]
         },
         {
           "title": "会社情報",
           "links": [
-            { "text": "プライバシーポリシー", "url": "/privacy" }
+            {
+              "text": "プライバシーポリシー",
+              "url": "/privacy"
+            }
           ]
         }
       ],
       "copyright": "© 2025 AIパーソナルスタイリスト. All rights reserved.",
       "socialLinks": []
+    },
+    "faq": {
+      "title": "よくある質問",
+      "subtitle": "導入前によくいただくご質問にお答えします",
+      "items": [
+        {
+          "question": "ベータ先行案内に登録すると何が届きますか？",
+          "answer": "公開前に優先案内と招待リンク、導入の流れをお送りします。"
+        },
+        {
+          "question": "個人情報の取り扱いは？",
+          "answer": "案内の送付にのみ使用し、第三者提供はしません。"
+        },
+        {
+          "question": "どのような組織に向いていますか？",
+          "answer": "世代間のコミュニケーション課題を感じている管理職・人事の方におすすめです。"
+        }
+      ]
     }
   },
   "visualStyleGuide": {
@@ -312,7 +361,7 @@
     "artStyle": "modern flat design illustration with soft shadows",
     "colorPalette": {
       "primary": "#4ADE80",
-      "secondary": "#059669", 
+      "secondary": "#059669",
       "accent": "#F59E0B",
       "neutral": "#F9FAFB",
       "text": "#1F2937"
@@ -327,7 +376,7 @@
     "promptTemplate": "{content}, modern flat design illustration with soft shadows, warm trustworthy approachable sustainable mood, clean minimalist style, soft natural lighting, optimistic confident atmosphere, featuring young Japanese women, using green (#4ADE80) and yellow (#F59E0B) color scheme",
     "referenceStyles": [
       "lifestyle illustration",
-      "sustainable fashion imagery", 
+      "sustainable fashion imagery",
       "modern japanese design aesthetic"
     ]
   },

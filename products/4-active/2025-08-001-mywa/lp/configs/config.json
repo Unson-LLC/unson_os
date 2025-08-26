@@ -2,12 +2,21 @@
   "meta": {
     "title": "MyWa - あなた専属のAIニュースコンシェルジュ | AI・ロボット分野特化",
     "description": "MyWaは、AI・ロボット分野に特化したパーソナライズドニュース配信サービスです。Why-Chip機能で推薦理由を透明化し、あなただけの学習体験を提供します。",
-    "keywords": ["AI", "ニュース", "パーソナライズ", "ロボット", "機械学習", "テクノロジー", "キュレーション", "透明性"]
+    "keywords": [
+      "AI",
+      "ニュース",
+      "パーソナライズ",
+      "ロボット",
+      "機械学習",
+      "テクノロジー",
+      "キュレーション",
+      "透明性"
+    ]
   },
   "theme": {
     "colors": {
       "primary": "#3B82F6",
-      "secondary": "#8B5CF6", 
+      "secondary": "#8B5CF6",
       "accent": "#EC4899",
       "background": "#FFFFFF",
       "text": "#1F2937",
@@ -80,7 +89,12 @@
       "cta": "無料で始める",
       "secondaryCta": "デモを見る",
       "backgroundImage": "/images/generated/hero-tech-bg.jpg",
-      "backgroundGradient": true
+      "backgroundGradient": true,
+      "quickPoints": [
+        "Z世代×管理職の認識ギャップをAIで可視化",
+        "会議・1on1・評価の「すれ違い」を具体的に改善",
+        "先行登録でベータ公開を最優先でご案内"
+      ]
     },
     "problem": {
       "title": "AI情報の収集、こんなお悩みありませんか？",
@@ -246,7 +260,14 @@
           "label": "職種・役職",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["エンジニア", "研究者", "プロダクトマネージャー", "経営者・役員", "学生・研究生", "その他"]
+          "options": [
+            "エンジニア",
+            "研究者",
+            "プロダクトマネージャー",
+            "経営者・役員",
+            "学生・研究生",
+            "その他"
+          ]
         },
         {
           "type": "select",
@@ -254,7 +275,12 @@
           "label": "AI・ロボット分野の経験",
           "placeholder": "選択してください",
           "required": true,
-          "options": ["初心者（1年未満）", "基礎レベル（1-3年）", "中級レベル（3-5年）", "上級レベル（5年以上）"]
+          "options": [
+            "初心者（1年未満）",
+            "基礎レベル（1-3年）",
+            "中級レベル（3-5年）",
+            "上級レベル（5年以上）"
+          ]
         },
         {
           "type": "textarea",
@@ -287,36 +313,99 @@
         {
           "title": "サービス",
           "links": [
-            { "text": "機能紹介", "url": "/features" },
-            { "text": "料金プラン", "url": "/pricing" },
-            { "text": "API仕様", "url": "/api-docs" },
-            { "text": "よくある質問", "url": "/faq" }
+            {
+              "text": "機能紹介",
+              "url": "/features"
+            },
+            {
+              "text": "料金プラン",
+              "url": "/pricing"
+            },
+            {
+              "text": "API仕様",
+              "url": "/api-docs"
+            },
+            {
+              "text": "よくある質問",
+              "url": "/faq"
+            }
           ]
         },
         {
           "title": "会社情報",
           "links": [
-            { "text": "About Us", "url": "/about" },
-            { "text": "プライバシーポリシー", "url": "/privacy" },
-            { "text": "利用規約", "url": "/terms" },
-            { "text": "お問い合わせ", "url": "/contact" }
+            {
+              "text": "About Us",
+              "url": "/about"
+            },
+            {
+              "text": "プライバシーポリシー",
+              "url": "/privacy"
+            },
+            {
+              "text": "利用規約",
+              "url": "/terms"
+            },
+            {
+              "text": "お問い合わせ",
+              "url": "/contact"
+            }
           ]
         },
         {
           "title": "サポート",
           "links": [
-            { "text": "ヘルプセンター", "url": "/help" },
-            { "text": "技術ドキュメント", "url": "/docs" },
-            { "text": "コミュニティ", "url": "/community" },
-            { "text": "ブログ", "url": "/blog" }
+            {
+              "text": "ヘルプセンター",
+              "url": "/help"
+            },
+            {
+              "text": "技術ドキュメント",
+              "url": "/docs"
+            },
+            {
+              "text": "コミュニティ",
+              "url": "/community"
+            },
+            {
+              "text": "ブログ",
+              "url": "/blog"
+            }
           ]
         }
       ],
       "copyright": "© 2025 MyWa. All rights reserved.",
       "socialLinks": [
-        { "platform": "twitter", "url": "https://twitter.com/mywa_ai" },
-        { "platform": "github", "url": "https://github.com/mywa" },
-        { "platform": "linkedin", "url": "https://linkedin.com/company/mywa" }
+        {
+          "platform": "twitter",
+          "url": "https://twitter.com/mywa_ai"
+        },
+        {
+          "platform": "github",
+          "url": "https://github.com/mywa"
+        },
+        {
+          "platform": "linkedin",
+          "url": "https://linkedin.com/company/mywa"
+        }
+      ]
+    },
+    "faq": {
+      "title": "よくある質問",
+      "subtitle": "導入前によくいただくご質問にお答えします",
+      "items": [
+        {
+          "question": "ベータ先行案内に登録すると何が届きますか？",
+          "answer": "公開前に優先案内と招待リンク、導入の流れをお送りします。"
+        },
+        {
+          "question": "個人情報の取り扱いは？",
+          "answer": "案内の送付にのみ使用し、第三者提供はしません。"
+        },
+        {
+          "question": "どのような組織に向いていますか？",
+          "answer": "世代間のコミュニケーション課題を感じている管理職・人事の方におすすめです。"
+        }
       ]
     }
   },
@@ -332,7 +421,7 @@
       "problem5": "/images/problem-timing.svg",
       "problem6": "/images/problem-speed.svg",
       "solution1": "/images/solution-transparency.svg",
-      "solution2": "/images/solution-personalize.svg", 
+      "solution2": "/images/solution-personalize.svg",
       "solution3": "/images/solution-efficiency.svg"
     }
   }
