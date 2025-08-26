@@ -8,6 +8,7 @@ import PostHogProvider from '@/components/Analytics/PostHogProvider'
 import Analytics from '@/components/Analytics/Analytics'
 import ScrollTracker from '@/components/Analytics/ScrollTracker'
 import posthog from 'posthog-js'
+import Head from 'next/head'
 
 export default function HomePage() {
   const [config, setConfig] = useState<TemplateConfig | null>(null)
@@ -106,8 +107,27 @@ export default function HomePage() {
     )
   }
 
+  const canonical = (process.env.NEXT_PUBLIC_APP_URL || '')
+    ? `${process.env.NEXT_PUBLIC_APP_URL}`
+    : undefined
+  const robots = process.env.NEXT_PUBLIC_ROBOTS || 'index,follow'
+
   return (
     <PostHogProvider>
+      <Head>
+        <title>{config.meta?.title || 'Landing'}</title>
+        {config.meta?.description && (
+          <meta name="description" content={config.meta.description} />
+        )}
+        {canonical && <link rel="canonical" href={canonical} />}
+        <meta name="robots" content={robots} />
+        {/* OGP */}
+        <meta property="og:title" content={config.meta?.title || ''} />
+        <meta property="og:description" content={config.meta?.description || ''} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={config.assets?.images?.hero || config.assets?.logo || ''} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <Analytics serviceName={process.env.NEXT_PUBLIC_SERVICE_NAME || 'ai-bridge'} />
       <ScrollTracker />
       <div className="min-h-screen bg-white">

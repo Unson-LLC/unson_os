@@ -9,6 +9,13 @@ export async function GET() {
   try {
     const configFile = await fs.readFile(configPath, 'utf8')
     const config: TemplateConfig = JSON.parse(configFile)
+    // Basic validation of essential fields
+    if (!config.meta || !config.meta.title || !config.meta.description) {
+      throw new Error('Invalid config: meta.title/description are required')
+    }
+    if (!config.content || !config.content.hero || !config.content.form) {
+      throw new Error('Invalid config: content.hero and content.form are required')
+    }
     
     return NextResponse.json({ config, lastModified: Date.now() })
   } catch (error) {
@@ -32,6 +39,19 @@ export async function POST(request: NextRequest) {
       )
     }
     
+    // enforce minimal fields before save
+    if (!config.meta?.title || !config.meta?.description) {
+      return NextResponse.json(
+        { error: 'meta.title and meta.description are required' },
+        { status: 400 }
+      )
+    }
+    if (!config.content?.hero || !config.content?.form) {
+      return NextResponse.json(
+        { error: 'content.hero and content.form are required' },
+        { status: 400 }
+      )
+    }
     await fs.writeFile(configPath, JSON.stringify(config, null, 2))
     
     return NextResponse.json({ success: true, lastModified: Date.now() })

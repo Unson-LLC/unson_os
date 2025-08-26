@@ -12,6 +12,7 @@ import PricingSection from '@/components/sections/PricingSection'
 import FormSection from '@/components/sections/FormSection'
 import FinalCtaSection from '@/components/sections/FinalCtaSection'
 import FooterSection from '@/components/sections/FooterSection'
+import FaqSection from '@/components/sections/FaqSection'
 import { trackCTAClick, trackFormSubmission } from '@/components/Analytics/Analytics'
 import posthog from 'posthog-js'
 
@@ -95,6 +96,10 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
         />
       </div>
       
+      { (config as any).content?.faq && (
+        <FaqSection config={(config as any).content.faq} />
+      )}
+
       <FinalCtaSection 
         config={config.content.finalCta}
         onCta={handleCta}
