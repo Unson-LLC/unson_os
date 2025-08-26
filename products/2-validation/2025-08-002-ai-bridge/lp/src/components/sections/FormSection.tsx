@@ -6,9 +6,10 @@ import { trackFormSubmission, trackCTAClick } from '@/components/Analytics/Analy
 interface FormSectionProps {
   config: TemplateConfig['content']['form']
   onSubmit?: (data: Record<string, string>) => void
+  compact?: boolean
 }
 
-export default function FormSection({ config, onSubmit }: FormSectionProps) {
+export default function FormSection({ config, onSubmit, compact = false }: FormSectionProps) {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -65,9 +66,12 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
+  const Wrapper: React.ElementType = compact ? 'div' : 'section'
+  const wrapperProps = compact ? { className: '' } : { className: 'section-padding bg-gray-50' }
+
   return (
-    <section className="section-padding bg-gray-50">
-      <div className="container-width">
+    <Wrapper {...wrapperProps}>
+      <div className={compact ? '' : 'container-width'}>
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6 bg-white/95 backdrop-blur rounded-xl p-5 shadow">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-900">
@@ -87,7 +91,7 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8" noValidate>
+            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 sm:p-8" noValidate>
               {error && (
                 <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-800">{error}</p>
@@ -188,6 +192,6 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
           )}
         </div>
       </div>
-    </section>
+    </Wrapper>
   )
 }

@@ -38,17 +38,17 @@ export default function HeroSection({ config, formConfig, onFormSubmit, prefill,
       )}
       
       <div className="relative z-10 container-width text-center">
-        <div className="max-w-4xl mx-auto animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-snug max-w-3xl mx-auto [text-wrap:balance]" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
+        <div className="max-w-4xl mx-auto animate-fade-in py-16 sm:py-24 space-y-6 sm:space-y-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-snug max-w-3xl mx-auto [text-wrap:balance]" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
             {config.title}
           </h1>
           
-          <p className="text-lg sm:text-xl md:text-2xl mb-8 text-white/90 max-w-2xl mx-auto text-left sm:text-center leading-relaxed [text-wrap:pretty]" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.45)' }}>
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto text-left sm:text-center leading-relaxed [text-wrap:pretty]" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.45)' }}>
             {config.subtitle}
           </p>
 
           {(config as any).quickPoints && (config as any).quickPoints.length > 0 && (
-            <div className="bg-white/90 backdrop-blur-md rounded-xl p-4 sm:p-5 max-w-3xl mx-auto text-left shadow-lg mb-6">
+            <div className="bg-white/90 backdrop-blur-md rounded-xl p-4 sm:p-5 max-w-3xl mx-auto text-left shadow-lg">
               <p className="text-sm font-semibold text-gray-800 mb-2">10秒でわかる要約</p>
               <ul className="list-disc pl-5 text-gray-800 space-y-1 [text-wrap:pretty]">
                 {(config as any).quickPoints.map((pt: string, i: number) => (
@@ -70,7 +70,7 @@ export default function HeroSection({ config, formConfig, onFormSubmit, prefill,
           )}
           
           <div id="hero-survey" className="max-w-2xl mx-auto">
-            <FormSection config={formConfig} onSubmit={onFormSubmit} prefill={prefill} />
+            <FormSection compact config={formConfig} onSubmit={onFormSubmit} prefill={prefill} />
           </div>
         </div>
       </div>

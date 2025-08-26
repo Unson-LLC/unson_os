@@ -45,7 +45,7 @@ export default function FinalCtaSection({ config, onCta, formConfig, onFormSubmi
             )}
             <div className="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-4 sm:p-6 text-left">
               {formConfig && (
-                <FormSection config={formConfig} onSubmit={onFormSubmit} prefill={prefill} />
+                <FormSection compact config={formConfig} onSubmit={onFormSubmit} prefill={prefill} />
               )}
             </div>
           </div>
