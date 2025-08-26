@@ -86,7 +86,12 @@
       "cta": "無料診断を始める",
       "secondaryCta": "サービス詳細を見る",
       "backgroundImage": "/images/generated/hero-bridge.jpg",
-      "backgroundGradient": true
+      "backgroundGradient": true,
+      "quickPoints": [
+        "Z世代×管理職の認識ギャップをAIで可視化",
+        "会議・1on1・評価の"すれ違い"を具体的に改善",
+        "先行登録でベータ公開を最優先でご案内"
+      ]
     },
     "problem": {
       "title": "こんなマネジメントの悩み、ありませんか？",

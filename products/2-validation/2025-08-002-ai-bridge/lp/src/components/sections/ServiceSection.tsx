@@ -14,7 +14,7 @@ export default function ServiceSection({ config }: ServiceSectionProps) {
   }
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section id="service" className="section-padding bg-gray-50">
       <div className="container-width">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
