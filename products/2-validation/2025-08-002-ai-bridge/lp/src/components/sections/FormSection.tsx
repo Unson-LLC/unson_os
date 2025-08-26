@@ -69,12 +69,12 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
     <section className="section-padding bg-gray-50">
       <div className="container-width">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <div className="text-center mb-6 bg-white/95 backdrop-blur rounded-xl p-5 shadow">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-900">
               {config.title}
             </h2>
             {config.subtitle && (
-              <p className="text-lg text-gray-600">
+              <p className="text-base sm:text-lg text-gray-700">
                 {config.subtitle}
               </p>
             )}
@@ -116,21 +116,28 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                       />
                     ) : field.type === 'select' && field.options ? (
-                      <select
-                        id={field.name}
-                        name={field.name}
-                        required={field.required}
-                        value={formData[field.name] || ''}
-                        onChange={(e) => handleChange(field.name, e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                      >
-                        <option value="">選択してください</option>
-                        {field.options.map((option, optIndex) => (
-                          <option key={optIndex} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
+                      <div role="radiogroup" aria-labelledby={`${field.name}-label`}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {field.options.map((option, optIndex) => {
+                            const selected = (formData[field.name] || '') === option
+                            return (
+                              <button
+                                key={optIndex}
+                                type="button"
+                                role="radio"
+                                aria-checked={selected}
+                                onClick={() => handleChange(field.name, option)}
+                                className={cn(
+                                  'text-left px-4 py-3 rounded-lg border',
+                                  selected ? 'bg-primary text-white border-primary' : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
+                                )}
+                              >
+                                {option}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
                     ) : (
                       <input
                         type={field.type}
