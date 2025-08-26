@@ -8,7 +8,7 @@ interface FormSectionProps {
   compact?: boolean
 }
 
-export default function FormSection({ config, onSubmit }: FormSectionProps) {
+export default function FormSection({ config, onSubmit, compact = false }: FormSectionProps) {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -81,7 +81,7 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8">
+            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
               {error && (
                 <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-800">{error}</p>
@@ -169,6 +169,6 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
           )}
         </div>
       </div>
-    </section>
+    </Wrapper>
   )
 }

@@ -9,7 +9,7 @@ interface FormSectionProps {
   compact?: boolean
 }
 
-export default function FormSection({ config, onSubmit }: FormSectionProps) {
+export default function FormSection({ config, onSubmit, compact = false }: FormSectionProps) {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -171,6 +171,6 @@ export default function FormSection({ config, onSubmit }: FormSectionProps) {
           )}
         </div>
       </div>
-    </section>
+    </Wrapper>
   )
 }
