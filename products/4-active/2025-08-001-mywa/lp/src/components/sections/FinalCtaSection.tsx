@@ -1,14 +1,17 @@
 import React from 'react'
-import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import * as Icons from 'lucide-react'
+import FormSection from '@/components/sections/FormSection'
 
 interface FinalCtaSectionProps {
   config: TemplateConfig['content']['finalCta']
   onCta?: () => void
+  formConfig?: TemplateConfig['content']['form']
+  onFormSubmit?: (data: Record<string, string>) => void
+  prefill?: Record<string, string>
 }
 
-export default function FinalCtaSection({ config, onCta }: FinalCtaSectionProps) {
+export default function FinalCtaSection({ config, onCta, formConfig, onFormSubmit, prefill }: FinalCtaSectionProps) {
   return (
     <section className="section-padding gradient-primary text-white">
       <div className="container-width">
@@ -18,7 +21,7 @@ export default function FinalCtaSection({ config, onCta }: FinalCtaSectionProps)
           </h2>
           
           {config.subtitle && (
-            <p className="text-xl mb-8 text-white/90">
+            <p className="text-xl mb-8 text白/90">
               {config.subtitle}
             </p>
           )}
@@ -27,7 +30,7 @@ export default function FinalCtaSection({ config, onCta }: FinalCtaSectionProps)
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-left max-w-2xl mx-auto">
               {config.benefitsList.map((benefit, index) => (
                 <div key={index} className="flex items-start">
-                  <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
+                  <Icons.CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
                   <span>{benefit}</span>
                 </div>
               ))}
@@ -40,17 +43,11 @@ export default function FinalCtaSection({ config, onCta }: FinalCtaSectionProps)
                 <p className="text-lg font-semibold">{config.urgencyText}</p>
               </div>
             )}
-            
-            <button
-              onClick={onCta}
-              className={cn(
-                "px-8 py-4 text-lg font-bold rounded-lg",
-                "bg-white text-primary hover:bg-gray-100",
-                "transition-all transform hover:scale-105 shadow-xl"
+            <div className="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-4 sm:p-6 text-left">
+              {formConfig && (
+                <FormSection compact config={formConfig} onSubmit={onFormSubmit} prefill={prefill} />
               )}
-            >
-              {config.cta}
-            </button>
+            </div>
           </div>
         </div>
       </div>
