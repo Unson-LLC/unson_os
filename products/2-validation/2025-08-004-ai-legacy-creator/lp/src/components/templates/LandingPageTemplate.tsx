@@ -38,7 +38,7 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
   const handleFormSubmit = async (data: Record<string, string>) => { console.log('Form submitted:', data) }
 
   return (
-    <main className="min-h-screen bg白">
+    <main className="min-h-screen bg-white">
       <HeroSection 
         config={config.content.hero}
         formConfig={config.content.form}

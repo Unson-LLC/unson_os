@@ -21,7 +21,7 @@ export default function FinalCtaSection({ config, onCta, formConfig, onFormSubmi
           </h2>
           
           {config.subtitle && (
-            <p className="text-xl mb-8 text白/90">
+            <p className="text-xl mb-8 text-white/90">
               {config.subtitle}
             </p>
           )}

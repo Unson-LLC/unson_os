@@ -39,7 +39,7 @@ export default function FinalCtaSection({ config, onCta, formConfig, onFormSubmi
           
           <div className="flex flex-col items-center gap-6">
             {config.urgencyText && (
-              <div className="bg白/10 backdrop-blur-sm rounded-lg p-4 inline-block">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 inline-block">
                 <p className="text-lg font-semibold">{config.urgencyText}</p>
               </div>
             )}

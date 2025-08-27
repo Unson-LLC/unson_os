@@ -1,0 +1,181 @@
+name: Deploy LPs to Vercel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  changes:
+    name: Detect changed LPs
+    runs-on: ubuntu-latest
+    outputs:
+      bridge: ${{ steps.filter.outputs.bridge }}
+      coach: ${{ steps.filter.outputs.coach }}
+      legacy: ${{ steps.filter.outputs.legacy }}
+      stylist: ${{ steps.filter.outputs.stylist }}
+      mywa: ${{ steps.filter.outputs.mywa }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            bridge:
+              - 'products/2-validation/2025-08-002-ai-bridge/lp/**'
+            coach:
+              - 'products/2-validation/2025-08-003-ai-coach/lp/**'
+            legacy:
+              - 'products/2-validation/2025-08-004-ai-legacy-creator/lp/**'
+            stylist:
+              - 'products/2-validation/2025-08-005-ai-stylist/lp/**'
+            mywa:
+              - 'products/4-active/2025-08-001-mywa/lp/**'
+
+  deploy-bridge:
+    name: Deploy ai-bridge
+    needs: changes
+    if: needs.changes.outputs.bridge == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/2-validation/2025-08-002-ai-bridge/lp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'products/2-validation/2025-08-002-ai-bridge/lp/package-lock.json'
+      - run: npm ci
+      - run: npm run build
+      - name: Pull Vercel env
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_BRIDGE }}
+      - name: Deploy to Vercel (Production)
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_BRIDGE }}
+
+  deploy-coach:
+    name: Deploy ai-coach
+    needs: changes
+    if: needs.changes.outputs.coach == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/2-validation/2025-08-003-ai-coach/lp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'products/2-validation/2025-08-003-ai-coach/lp/package-lock.json'
+      - run: npm ci
+      - run: npm run build
+      - name: Pull Vercel env
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_COACH }}
+      - name: Deploy to Vercel (Production)
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_COACH }}
+
+  deploy-legacy:
+    name: Deploy ai-legacy-creator
+    needs: changes
+    if: needs.changes.outputs.legacy == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/2-validation/2025-08-004-ai-legacy-creator/lp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'products/2-validation/2025-08-004-ai-legacy-creator/lp/package-lock.json'
+      - run: npm ci
+      - run: npm run build
+      - name: Pull Vercel env
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_LEGACY_CREATOR }}
+      - name: Deploy to Vercel (Production)
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_LEGACY_CREATOR }}
+
+  deploy-stylist:
+    name: Deploy ai-stylist
+    needs: changes
+    if: needs.changes.outputs.stylist == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/2-validation/2025-08-005-ai-stylist/lp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'products/2-validation/2025-08-005-ai-stylist/lp/package-lock.json'
+      - run: npm ci
+      - run: npm run build
+      - name: Pull Vercel env
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_STYLIST }}
+      - name: Deploy to Vercel (Production)
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_AI_STYLIST }}
+
+  deploy-mywa:
+    name: Deploy mywa
+    needs: changes
+    if: needs.changes.outputs.mywa == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/4-active/2025-08-001-mywa/lp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'products/4-active/2025-08-001-mywa/lp/package-lock.json'
+      - run: npm ci
+      - run: npm run build
+      - name: Pull Vercel env
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_MYWA }}
+      - name: Deploy to Vercel (Production)
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_MYWA }}
