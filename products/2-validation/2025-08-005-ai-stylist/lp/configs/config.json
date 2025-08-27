@@ -238,13 +238,6 @@
       "subtitle": "現在開発中のAIパーソナルスタイリストのベータ版に参加いただける方を募集しています。サービスに関するご質問・ご意見もこちらからお気軽にお問い合わせください",
       "fields": [
         {
-          "type": "text",
-          "name": "name",
-          "label": "お名前",
-          "placeholder": "山田 花子",
-          "required": true
-        },
-        {
           "type": "email",
           "name": "email",
           "label": "メールアドレス",
@@ -253,23 +246,10 @@
         },
         {
           "type": "select",
-          "name": "age",
-          "label": "年齢層",
-          "placeholder": "選択してください",
-          "required": true,
-          "options": [
-            "20-24歳",
-            "25-29歳",
-            "30-34歳",
-            "35歳以上"
-          ]
-        },
-        {
-          "type": "select",
           "name": "priority",
-          "label": "ファッションで最も重視すること",
+          "label": "重視すること（任意）",
           "placeholder": "選択してください",
-          "required": true,
+          "required": false,
           "options": [
             "環境への配慮",
             "長く着られること",
@@ -277,13 +257,6 @@
             "コストパフォーマンス",
             "トレンド感"
           ]
-        },
-        {
-          "type": "textarea",
-          "name": "concerns",
-          "label": "ご質問・ご意見（任意）",
-          "placeholder": "ベータ版への期待、サービスに関するご質問、現在のファッションの悩みなど、ご自由にお書きください",
-          "required": false
         }
       ],
       "submitText": "送信する",
