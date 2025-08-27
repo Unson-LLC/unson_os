@@ -6,7 +6,7 @@ const { execSync } = require('child_process');
 
 // Gemini API設定
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-experimental:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent';
 
 // 画像生成プロンプトテンプレート
 const IMAGE_PROMPTS = {
@@ -57,12 +57,12 @@ async function generateImage(prompt, serviceName) {
   const requestBody = {
     contents: [{
       parts: [{
-        text: `Generate an image: ${finalPrompt}. Style: professional, modern, business-focused, high quality, corporate branding suitable.`
+        text: `${finalPrompt}. Style: professional, modern, business-focused, high quality, corporate branding suitable.`
       }]
     }],
     generationConfig: {
-      temperature: 0.7,
-      maxOutputTokens: 2048
+      temperature: 0.8,
+      maxOutputTokens: 4096
     }
   };
 
@@ -80,7 +80,23 @@ async function generateImage(prompt, serviceName) {
     }
 
     const data = await response.json();
-    return data;
+    
+    // 画像データを探す
+    if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+      for (const part of data.candidates[0].content.parts) {
+        if (part.inlineData && part.inlineData.mimeType && part.inlineData.mimeType.startsWith('image/')) {
+          console.log('✅ 画像データを受信:', part.inlineData.mimeType);
+          return {
+            success: true,
+            imageData: part.inlineData.data,
+            mimeType: part.inlineData.mimeType,
+            textResponse: data.candidates[0].content.parts.find(p => p.text)?.text
+          };
+        }
+      }
+    }
+    
+    return { success: false, data };
   } catch (error) {
     console.error('❌ Gemini API呼び出しエラー:', error);
     throw error;
@@ -113,7 +129,7 @@ async function generateImagesForService(serviceName) {
     process.exit(1);
   }
 
-  const servicePath = path.join('services', serviceName);
+  const servicePath = path.join('products/2-validation', serviceName, 'lp');
   
   if (!fs.existsSync(servicePath)) {
     console.error(`❌ サービスディレクトリが見つかりません: ${servicePath}`);
@@ -134,25 +150,32 @@ async function generateImagesForService(serviceName) {
     console.log(`🎯 ${type}画像を生成中...`);
     
     try {
-      // Gemini APIで画像生成（注意: Gemini 2.0 Flashは直接画像生成をサポートしていない可能性があります）
-      // 代替案として、画像生成プロンプトをテキストで生成し、それを他の画像生成APIに送信
+      // Gemini 2.5 Flash Image Previewで画像生成
       const imageResponse = await generateImage(config.prompt, serviceName);
       
-      // 実際の実装では、生成されたプロンプトをDALL-E、Midjourney、Stable Diffusion等に送信
-      console.log(`⚠️  注意: Gemini APIからの画像生成結果をDALL-E等の画像生成APIに転送が必要です`);
-      
-      // プレースホルダー画像の情報を保存
-      const imageInfo = {
-        type,
-        prompt: config.prompt.replace('{service}', getServiceTheme(serviceName)),
-        filename: config.filename,
-        alt: config.alt,
-        generated: false,
-        geminiResponse: imageResponse
-      };
-      
-      results.push(imageInfo);
-      console.log(`✅ ${type}の画像プロンプト生成完了`);
+      if (imageResponse.success && imageResponse.imageData) {
+        // Base64画像データを保存
+        const imageBuffer = Buffer.from(imageResponse.imageData, 'base64');
+        const filepath = path.join(imagesDir, config.filename);
+        fs.writeFileSync(filepath, imageBuffer);
+        
+        console.log(`✅ ${type}画像を保存: ${filepath}`);
+        
+        const imageInfo = {
+          type,
+          prompt: config.prompt.replace('{service}', getServiceTheme(serviceName)),
+          filename: config.filename,
+          alt: config.alt,
+          generated: true,
+          filepath: filepath,
+          mimeType: imageResponse.mimeType,
+          textResponse: imageResponse.textResponse
+        };
+        
+        results.push(imageInfo);
+      } else {
+        throw new Error('画像データが受信されませんでした');
+      }
       
     } catch (error) {
       console.error(`❌ ${type}画像生成エラー:`, error);
@@ -217,7 +240,7 @@ async function main() {
 
 // 画像置換ヘルパー関数を生成
 function generateImageReplacementHelper(serviceName, imageResults) {
-  const servicePath = path.join('services', serviceName);
+  const servicePath = path.join('products/2-validation', serviceName, 'lp');
   const helperPath = path.join(servicePath, 'src', 'utils', 'imageReplacer.ts');
   
   // utils ディレクトリ作成

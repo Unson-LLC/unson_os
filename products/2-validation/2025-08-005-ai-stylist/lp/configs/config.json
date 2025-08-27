@@ -61,7 +61,7 @@
       "subtitle": "AIが価値観×スタイルを可視化。衝動買いが減り、長く着られるワードローブへ。環境にも“自分”にも気持ちいい選択を。",
       "cta": "30秒で先行登録（無料）",
       "secondaryCta": "なぜ叶うの？3つの理由",
-      "backgroundImage": "/images/generated/hero-sustainable-fashion.jpg",
+      "backgroundImage": "/images/generated/hero-bg.jpg",
       "backgroundGradient": true,
       "quickPoints": [
         "朝の支度が5分短縮（迷わないクローゼット）",
@@ -77,32 +77,32 @@
         {
           "title": "衝動買いして後悔してしまう",
           "description": "セールやトレンドに流されて買い物をしてしまい、結局あまり着ない服が増えてしまう",
-          "image": "/images/generated/problem-impulse-buy.png"
+          "image": "/images/generated/problem-1.jpg"
         },
         {
           "title": "おしゃれと価値観が両立できない",
           "description": "環境に配慮したいけれど、エシカルファッションはデザインが限られていて物足りない",
-          "image": "/images/generated/problem-values-style.jpg"
+          "image": "/images/generated/problem-2.jpg"
         },
         {
           "title": "手持ち服を活かしきれない",
           "description": "クローゼットに服はあるのに「着る服がない」と感じて、新しい服を買ってしまう",
-          "image": "/images/generated/problem-wardrobe-waste.jpg"
+          "image": "/images/generated/problem-3.jpg"
         },
         {
           "title": "長期的なスタイル戦略がない",
           "description": "その場しのぎの買い物ばかりで、一貫したスタイルや投資効率の良いワードローブが作れない",
-          "image": "/images/generated/problem-no-strategy.jpg"
+          "image": "/images/generated/problem-4.jpg"
         },
         {
           "title": "エシカルブランドの情報不足",
           "description": "環境や社会に配慮したブランドを知りたいけれど、どこで信頼できる情報を得ればよいかわからない",
-          "image": "/images/generated/problem-brand-info.jpg"
+          "image": "/images/generated/problem-5.jpg"
         },
         {
           "title": "自分に似合うスタイルがわからない",
           "description": "トレンドは追えるけれど、本当に自分らしく、価値観と一致するスタイルが見つからない",
-          "image": "/images/generated/problem-personal-style.jpg"
+          "image": "/images/generated/problem-6.jpg"
         }
       ]
     },
@@ -113,18 +113,21 @@
       "solutions": [
         {
           "title": "価値観×スタイルの完璧な融合",
-          "description": "AIが環境・社会・経済の価値観をスコア化。" ,
-          "icon": "Heart"
+          "description": "AIが環境・社会・経済の価値観をスコア化。",
+          "icon": "Heart",
+          "image": "/images/generated/solution-1.jpg"
         },
         {
           "title": "科学的ワードローブ最適化",
           "description": "手持ち服を画像認識で分析。着回し×投資効率を数値で可視化し“迷わない”を実現",
-          "icon": "TrendingUp"
+          "icon": "TrendingUp",
+          "image": "/images/generated/solution-2.jpg"
         },
         {
           "title": "透明性の高いブランド情報",
           "description": "製造過程や環境負荷まで見える化。気持ちよく選べる“エシカルな相棒”が見つかる",
-          "icon": "Shield"
+          "icon": "Shield",
+          "image": "/images/generated/solution-3.jpg"
         }
       ]
     },
