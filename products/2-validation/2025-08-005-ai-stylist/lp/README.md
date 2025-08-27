@@ -209,4 +209,4 @@ A: `theme.colors.primary` などを好きなカラーコード（#RRGGBB）に�
 
 ## 📄 ライセンス
 
-MIT
+MIT\n<!-- deploy: trigger 2025-08-27T03:09:47Z -->
