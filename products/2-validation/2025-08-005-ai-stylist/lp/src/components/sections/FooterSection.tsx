@@ -56,18 +56,15 @@ export default function FooterSection({ config }: FooterSectionProps) {
               <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => {
                   const handleClick = (e: React.MouseEvent) => {
+                    // 検証フェーズ: 価格リンクはサービス概要へ、問い合わせはヒーローフォームへスクロール
                     if (link.url === '/pricing') {
                       e.preventDefault()
-                      const pricingSection = document.getElementById('pricing-section')
-                      if (pricingSection) {
-                        pricingSection.scrollIntoView({ behavior: 'smooth' })
-                      }
+                      const service = document.getElementById('service')
+                      if (service) service.scrollIntoView({ behavior: 'smooth' })
                     } else if (link.url === '/contact') {
                       e.preventDefault()
-                      const formSection = document.getElementById('form-section')
-                      if (formSection) {
-                        formSection.scrollIntoView({ behavior: 'smooth' })
-                      }
+                      const heroForm = document.getElementById('hero-survey')
+                      if (heroForm) heroForm.scrollIntoView({ behavior: 'smooth', block: 'center' })
                     }
                   }
                   
