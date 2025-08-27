@@ -1,7 +1,7 @@
 // LP検証システム - ポジション詳細
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { 
@@ -13,61 +13,29 @@ import {
 export default function PositionDetailPage() {
   const params = useParams();
   const [activeTimeRange, setActiveTimeRange] = useState('4h');
-  
-  // ポジションIDに基づいて異なるデータを表示（実際はAPIから取得）
-  const positionId = params.id as string;
-  const positionMap: any = {
-    'ai-coach-001': {
-      name: "AI-COACH",
-      cvr: 15.2,
-      cvrPrevious: 12.6,
-      cpl: 180,
-      leads: 125,
-      grade: "A+",
-      gradeNote: "スコア: 92/100",
-      aiRecommendation: "MVP移行を強く推奨、全指標が目標を上回る",
-      status: "active",
-      trend: "up"
-    },
-    'ai-writer-001': {
-      name: "AI-WRITER",
-      cvr: 12.8,
-      cvrPrevious: 11.2,
-      cpl: 220,
-      leads: 89,
-      grade: "A",
-      gradeNote: "スコア: 85/100",
-      aiRecommendation: "ユーザーインタビュー実施タイミング、安定成長中",
-      status: "active",
-      trend: "up"
-    },
-    'ai-bridge-001': {
-      name: "AI-BRIDGE",
-      cvr: 8.2,
-      cvrPrevious: 9.1,
-      cpl: 380,
-      leads: 45,
-      grade: "B",
-      gradeNote: "スコア: 68/100",
-      aiRecommendation: "価値提案の見直し必要、競合分析推奨",
-      status: "warning",
-      trend: "down"
-    },
-    'ai-stylist-001': {
-      name: "AI-STYLIST",
-      cvr: 3.4,
-      cvrPrevious: 5.2,
-      cpl: 850,
-      leads: 12,
-      grade: "D",
-      gradeNote: "スコア: 35/100",
-      aiRecommendation: "ピボット or 終了検討、市場適合性低い",
-      status: "danger",
-      trend: "down"
+  const positionId = params.id as string
+  const [positionData, setPositionData] = useState<any>({})
+  useEffect(() => {
+    const load = async () => {
+      const res = await fetch(`/api/positions/${positionId}`, { cache: 'no-store' })
+      if (res.ok) {
+        const data = await res.json()
+        setPositionData({
+          name: data.position?.name || positionId,
+          cvr: data.position?.cvr || 0,
+          cvrPrevious: data.position?.cvr || 0,
+          cpl: Number(String(data.position?.cpl || 0).replace(/[^0-9]/g, '')),
+          leads: data.position?.leads || 0,
+          grade: data.position?.grade || '',
+          gradeNote: '',
+          aiRecommendation: data.position?.performance || '',
+          status: data.position?.status || 'active',
+          trend: (data.position?.cvr || 0) >= 10 ? 'up' : 'down',
+        })
+      }
     }
-  };
-
-  const positionData = positionMap[positionId] || positionMap['ai-coach-001'];
+    load()
+  }, [positionId])
   
   const actionLogs = [
     {

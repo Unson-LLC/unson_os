@@ -32,85 +32,28 @@ export default function DashboardPage() {
     return <DashboardSkeleton />;
   }
 
-  const positions = [
-    {
-      id: 'ai-coach-001',
-      name: 'AI-COACH',
-      lpUrl: 'https://ai-coach.unson.jp', // 実際のLP URL
-      status: 'active',
-      cvr: 15.2,
-      cvrTrend: 'up',
-      cpl: '¥180',
-      leads: 125,
-      grade: 'A+',
-      performance: 'MVP移行準備',
-      description: 'MVP移行を強く推奨、全指標が目標を上回る'
-    },
-    {
-      id: 'ai-writer-001',
-      name: 'AI-WRITER',
-      lpUrl: 'https://ai-writer.unson.jp', // 実際のLP URL
-      status: 'active',
-      cvr: 12.8,
-      cvrTrend: 'down',
-      cpl: '¥220',
-      leads: 89,
-      grade: 'A',
-      performance: '継続検証',
-      description: 'ユーザーインタビュー実施タイミング、安定成長中'
-    },
-    {
-      id: 'ai-bridge-001',
-      name: 'AI-BRIDGE',
-      lpUrl: 'https://ai-bridge.unson.jp', // 実際のLP URL
-      status: 'warning',
-      cvr: 8.2,
-      cvrTrend: 'up',
-      cpl: '¥380',
-      leads: 45,
-      grade: 'B',
-      performance: '改善必要',
-      description: '価値提案の見直し必要、競合分析推奨'
-    },
-    {
-      id: 'ai-stylist-001',
-      name: 'AI-STYLIST',
-      lpUrl: 'https://ai-stylist.unson.jp', // 実際のLP URL
-      status: 'danger',
-      cvr: 3.4,
-      cvrTrend: 'down',
-      cpl: '¥850',
-      leads: 12,
-      grade: 'D',
-      performance: '撤退推奨',
-      description: 'ピボット or 終了検討、市場適合性低い'
-    }
-  ];
+  const [positions, setPositions] = useState<any[]>([])
 
-  const actionLogs = [
-    {
-      time: '15:30',
-      cvr: 15.2,
-      sessions: 89,
-      cpl: '¥180',
-      optimization: 'キーワード3件調整 → CPL-¥25',
-      ai: '最適化効果期待通り、トレンド継続推奨'
-    },
-    {
-      time: '11:30',
-      cvr: 12.8,
-      sessions: 156,
-      cpl: '¥205',
-      optimization: '入札調整実行',
-      ai: '競合影響の可能性大、価格訴求強化を推奨'
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await fetch('/api/positions', { cache: 'no-store' })
+        if (res.ok) {
+          const data = await res.json()
+          setPositions(data.positions || [])
+        }
+      } catch {}
     }
-  ];
+    load()
+  }, [])
+
+  const actionLogs: any[] = []
 
   const summaryStats = {
-    totalCvr: 7.8,
-    totalLeads: 2847,
-    totalCpl: '¥1,234',
-    totalRevenue: '¥3.5M'
+    totalCvr: positions.length ? Math.round((positions.reduce((a, p) => a + (p.cvr || 0), 0) / positions.length) * 10) / 10 : 0,
+    totalLeads: positions.reduce((a, p) => a + (p.leads || 0), 0),
+    totalCpl: '—',
+    totalRevenue: '—'
   };
 
   const getStatusColor = (status: string) => {
@@ -158,6 +101,12 @@ export default function DashboardPage() {
                 >
                   <Globe className="w-4 h-4 mr-2" />
                   ドメイン管理
+                </Link>
+                <Link
+                  href="/position/new"
+                  className="px-3 py-1.5 text-sm border border-blue-200 bg-blue-50 rounded-lg hover:bg-blue-100 text-blue-700 flex items-center transition-colors"
+                >
+                  新規ポジション
                 </Link>
                 <button 
                   className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg hover:border-gray-300 text-gray-700 flex items-center"
@@ -310,7 +259,7 @@ export default function DashboardPage() {
                             <div className="flex items-center space-x-1">
                               <span className="text-gray-500">CVR:</span>
                               <span className="font-medium text-gray-900">{position.cvr}%</span>
-                              {position.cvrTrend === 'up' ? (
+                            {(position.cvr ?? 0) >= 10 ? (
                                 <TrendingUp className="w-3 h-3 text-green-500" />
                               ) : (
                                 <TrendingDown className="w-3 h-3 text-red-500" />
@@ -318,7 +267,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex items-center space-x-1">
                               <span className="text-gray-500">CPL:</span>
-                              <span className="font-medium text-gray-900">{position.cpl}</span>
+                              <span className="font-medium text-gray-900">{position.cpl || '—'}</span>
                             </div>
                             <div className="flex items-center space-x-1">
                               <span className="text-gray-500">リード:</span>
