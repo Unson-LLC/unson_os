@@ -1,0 +1,27 @@
+[
+  {
+    "type": "hero",
+    "error": "Gemini API error: 400 Bad Request",
+    "generated": false
+  },
+  {
+    "type": "feature1",
+    "error": "Gemini API error: 400 Bad Request",
+    "generated": false
+  },
+  {
+    "type": "feature2",
+    "error": "Gemini API error: 400 Bad Request",
+    "generated": false
+  },
+  {
+    "type": "feature3",
+    "error": "Gemini API error: 400 Bad Request",
+    "generated": false
+  },
+  {
+    "type": "cta",
+    "error": "Gemini API error: 400 Bad Request",
+    "generated": false
+  }
+]

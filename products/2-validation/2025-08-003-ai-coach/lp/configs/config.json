@@ -87,7 +87,7 @@
       "subtitle": "短い対話から“無理のない一歩”をAIが提案。ひとりでも続く自分時間づくりを、今日から優しく始めましょう。まずは1問だけ（メールは任意）。",
       "cta": "1問だけ答える",
       "secondaryCta": "",
-      "backgroundImage": "/images/generated/hero-mother-freedom.jpg",
+      "backgroundImage": "/images/generated/hero-bg.jpg",
       "backgroundGradient": true,
       "quickPoints": [
         "20分のAI対話で“いま”を見える化",
@@ -103,32 +103,32 @@
         {
           "title": "時間はあるのに、最初の一歩が出ない",
           "description": "週に2〜5時間は取れるのに、何から始めればいいか決められない。",
-          "image": "/images/generated/imagen-4_2025-08-19T16-40-20-154Z_Create_a_minimalist_lifestyle_illustration_showing_1.png"
+          "image": "/images/generated/problem-1.jpg"
         },
         {
           "title": "話せる相手が少なく、一人で続かない",
           "description": "LINEの履歴は家族が中心。新しい出会いのきっかけがなく、継続の自信が持てない。",
-          "image": "/images/generated/imagen-4_2025-08-19T16-40-41-677Z_Generate_a_lifestyle_illustration_representing_soc_1.png"
+          "image": "/images/generated/problem-2.jpg"
         },
         {
           "title": "私にできること、あるのかな？",
           "description": "家事以外の強みが見えず、挑戦する前から自信がしぼんでしまう。",
-          "image": "/images/generated/imagen-4_2025-08-19T16-41-29-909Z_Generate_a_lifestyle_illustration_representing_los_1.png"
+          "image": "/images/generated/problem-3.jpg"
         },
         {
           "title": "“母親”の次のわたしが、ぼんやり",
           "description": "長いあいだ家族優先。自分だけの喜びやリズムを思い出せない。",
-          "image": "/images/generated/imagen-4_2025-08-19T16-41-07-773Z_Create_a_lifestyle_illustration_showing_lack_of_co_1.png"
+          "image": "/images/generated/problem-4.jpg"
         },
         {
           "title": "始めても、三日目で止まる",
           "description": "一人だとペースがつかめず、習いごとも長続きしない。",
-          "image": "/images/generated/imagen-4_2025-08-19T16-41-54-588Z_Create_a_lifestyle_illustration_showing_the_challe_1.png"
+          "image": "/images/generated/problem-5.jpg"
         },
         {
           "title": "自分の時間をとると、少し罪悪感",
           "description": "“わたしのためだけの時間”に慣れていなくて、どこか落ち着かない。",
-          "image": "/images/generated/imagen-4_2025-08-19T16-42-39-727Z_Generate_a_lifestyle_illustration_representing_gui_1.png"
+          "image": "/images/generated/problem-6.jpg"
         }
       ]
     },
@@ -141,19 +141,19 @@
           "title": "どうやって？ — AI自己分析で“いま”を見える化",
           "description": "最近ときめいたこと、気が重いこと。短い対話で、興味のタネと負担の少ない時間帯を見つけます。",
           "icon": "Search",
-          "image": "/images/generated/solution-ai-analysis.jpg"
+          "image": "/images/generated/solution-1.jpg"
         },
         {
           "title": "なぜ続く？ — 小さな一歩を積み重ねる設計",
           "description": "15分の“試し”から。見学→体験→短期→継続と、段階を用意して無理なく前進します。",
           "icon": "TrendingUp",
-          "image": "/images/generated/solution-gradual-step.jpg"
+          "image": "/images/generated/solution-2.jpg"
         },
         {
           "title": "ひとりじゃない — 似た“今”の人とゆるくつながる",
           "description": "同じ悩み・ペースの人と出会える場を検討中。安心して続けられる“距離感”を大切にします。",
           "icon": "Users",
-          "image": "/images/generated/solution-community-matching.jpg"
+          "image": "/images/generated/solution-3.jpg"
         }
       ]
     },
@@ -203,7 +203,6 @@
         }
       ]
     },
-    
     "form": {
       "title": "1問だけ、あなたの気持ちを教えてください",
       "subtitle": "先行テストのご案内を希望する方のみ、メールをご記入ください（任意）",
@@ -248,11 +247,26 @@
       "title": "よくある質問",
       "subtitle": "不安を先に解消して、気軽にご参加ください",
       "items": [
-        { "question": "回答にかかる時間は？", "answer": "30秒ほどです。質問は1問、選択式です。" },
-        { "question": "対象はどんな人？", "answer": "子育てが一段落した40〜55歳の女性を想定していますが、近い状況の方も歓迎します。" },
-        { "question": "費用はかかりますか？", "answer": "かかりません。メール登録も任意です。" },
-        { "question": "いつから使えますか？", "answer": "β版の準備ができ次第、先行案内（メール登録者）から順にご連絡します。" },
-        { "question": "個人情報の扱いは？", "answer": "調査目的のみに利用し、第三者への提供はありません。匿名での回答も可能です。" }
+        {
+          "question": "回答にかかる時間は？",
+          "answer": "30秒ほどです。質問は1問、選択式です。"
+        },
+        {
+          "question": "対象はどんな人？",
+          "answer": "子育てが一段落した40〜55歳の女性を想定していますが、近い状況の方も歓迎します。"
+        },
+        {
+          "question": "費用はかかりますか？",
+          "answer": "かかりません。メール登録も任意です。"
+        },
+        {
+          "question": "いつから使えますか？",
+          "answer": "β版の準備ができ次第、先行案内（メール登録者）から順にご連絡します。"
+        },
+        {
+          "question": "個人情報の扱いは？",
+          "answer": "調査目的のみに利用し、第三者への提供はありません。匿名での回答も可能です。"
+        }
       ]
     },
     "footer": {
@@ -262,7 +276,10 @@
         {
           "title": "サービス",
           "links": [
-            { "text": "よくある質問", "url": "#faq" }
+            {
+              "text": "よくある質問",
+              "url": "#faq"
+            }
           ]
         },
         {
