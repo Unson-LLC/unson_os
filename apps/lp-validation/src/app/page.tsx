@@ -97,6 +97,23 @@ export default function DashboardPage() {
     return position // 該当データなし、または取得失敗時は元のデータを返す
   }
 
+  // 古いサービス名を正式名にマッピング
+  const mapServiceName = (oldName: string) => {
+    const nameMapping: Record<string, string> = {
+      'AI-BRIDGE': '世代bridge',
+      'AI世代間ブリッジ': '世代bridge',
+      'AI-COACH': 'じぶん lab',
+      'AI自分時間コーチ': 'じぶん lab',
+      'AI-STYLIST': 'きこなし',
+      'AIパーソナルスタイリスト': 'きこなし',
+      'AI-LEGACY-CREATOR': '想い帳',
+      'AIレガシー・クリエーター': '想い帳',
+      'WATASHI-COMPASS': 'わたしコンパス',
+      'MYWA': 'MYWA'
+    }
+    return nameMapping[oldName] || oldName
+  }
+
   useEffect(() => {
     const load = async () => {
       try {
@@ -105,9 +122,15 @@ export default function DashboardPage() {
           const data = await res.json()
           const basePositions = data.positions || []
           
+          // サービス名を正式名にマッピング
+          const mappedPositions = basePositions.map((position: any) => ({
+            ...position,
+            name: mapServiceName(position.name)
+          }))
+          
           // 各ポジションに実データを統合
           const enrichedPositions = await Promise.all(
-            basePositions.map(enrichPositionWithRealData)
+            mappedPositions.map(enrichPositionWithRealData)
           )
           
           setPositions(enrichedPositions)

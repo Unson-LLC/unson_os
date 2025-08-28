@@ -27,7 +27,7 @@ describe('TradingDashboard', () => {
       expect(screen.getByText('(+45/日)')).toBeInTheDocument();
       
       // ポジション行の確認
-      expect(screen.getByText('AI-COACH')).toBeInTheDocument();
+      expect(screen.getByText('じぶん lab')).toBeInTheDocument();
       expect(screen.getByText('15.2%')).toBeInTheDocument(); // CVR
       expect(screen.getByText('¥180')).toBeInTheDocument();  // CPL
       expect(screen.getByText('125')).toBeInTheDocument();   // リード数
@@ -42,9 +42,9 @@ describe('TradingDashboard', () => {
       const warningPositions = screen.getAllByText('🟡');
       const errorPositions = screen.getAllByText('🔴');
       
-      expect(runningPositions).toHaveLength(2); // AI-COACH, AI-WRITER
-      expect(warningPositions).toHaveLength(1); // AI-BRIDGE
-      expect(errorPositions).toHaveLength(1);   // AI-STYLIST
+      expect(runningPositions).toHaveLength(2); // じぶん lab, AI-WRITER
+      expect(warningPositions).toHaveLength(1); // 世代bridge
+      expect(errorPositions).toHaveLength(1);   // きこなし
     });
 
     it('AIコメントが各ポジションに表示される', () => {
@@ -66,10 +66,10 @@ describe('TradingDashboard', () => {
       
       // ソート後の順序確認
       const positionRows = screen.getAllByTestId('position-row');
-      expect(positionRows[0]).toHaveTextContent('AI-COACH'); // 15.2%
+      expect(positionRows[0]).toHaveTextContent('じぶん lab'); // 15.2%
       expect(positionRows[1]).toHaveTextContent('AI-WRITER'); // 12.8%
-      expect(positionRows[2]).toHaveTextContent('AI-BRIDGE'); // 8.2%
-      expect(positionRows[3]).toHaveTextContent('AI-STYLIST'); // 3.4%
+      expect(positionRows[2]).toHaveTextContent('世代bridge'); // 8.2%
+      expect(positionRows[3]).toHaveTextContent('きこなし'); // 3.4%
     });
 
     it('実行中のみフィルターができる', async () => {
@@ -79,9 +79,9 @@ describe('TradingDashboard', () => {
       fireEvent.click(filterButton);
       
       // フィルター後の表示確認
-      expect(screen.getByText('AI-COACH')).toBeInTheDocument();
+      expect(screen.getByText('じぶん lab')).toBeInTheDocument();
       expect(screen.getByText('AI-WRITER')).toBeInTheDocument();
-      expect(screen.queryByText('AI-STYLIST')).not.toBeInTheDocument(); // 停止中は非表示
+      expect(screen.queryByText('きこなし')).not.toBeInTheDocument(); // 停止中は非表示
     });
   });
 
