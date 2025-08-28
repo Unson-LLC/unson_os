@@ -451,6 +451,22 @@ export default defineSchema({
     .index("by_workspace_product_phase", ["workspace_id", "productId", "phase"])
     .index("by_workspace_status", ["workspace_id", "status"]),
 
+  // Google Ads 日次メトリクス（プロダクト別）
+  adsDailyMetrics: defineTable({
+    workspace_id: v.string(),
+    product_id: v.string(),
+    platform: v.optional(v.string()), // 'Google Ads'
+    date: v.string(), // 'YYYY-MM-DD'
+    impressions: v.number(),
+    clicks: v.number(),
+    cost: v.number(), // JPY
+    conversions: v.number(),
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+    .index("by_product_date", ["product_id", "date"]) 
+    .index("by_workspace_product", ["workspace_id", "product_id"]),
+
   phaseReviews: defineTable({
     workspace_id: v.string(),
     productId: v.string(),
