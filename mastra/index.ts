@@ -63,3 +63,21 @@ export {
 
 export { AdsApiExecutor } from './agents/ads-api-executor'
 export type { ApiExecutionResult, AdsApiConfig } from './agents/ads-api-executor'
+
+export { 
+  comprehensiveAdsAgent,
+  generateComprehensiveOptimizations
+} from './agents/comprehensive-google-ads-agent'
+export type { ComprehensiveOptimizationAction } from './agents/comprehensive-google-ads-agent'
+
+export { GoogleAdsComprehensiveExecutor } from './agents/google-ads-comprehensive-executor'
+export type { ComprehensiveExecutionResult } from './agents/google-ads-comprehensive-executor'
+
+export {
+  comprehensiveAdsAutomationWorkflow,
+  runComprehensiveAutomation
+} from './workflows/comprehensive-ads-automation'
+export type { 
+  ComprehensiveAutomationConfig,
+  ComprehensiveAutomationResult 
+} from './workflows/comprehensive-ads-automation'
