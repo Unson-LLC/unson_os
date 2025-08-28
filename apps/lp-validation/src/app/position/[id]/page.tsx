@@ -16,6 +16,7 @@ export default function PositionDetailPage() {
   const positionId = params.id as string
   const [positionData, setPositionData] = useState<any>({})
   const [logs, setLogs] = useState<any[]>([])
+  const [ads, setAds] = useState<any[]>([])
   useEffect(() => {
     const load = async () => {
       const res = await fetch(`/api/positions/${positionId}`, { cache: 'no-store' })
@@ -41,6 +42,12 @@ export default function PositionDetailPage() {
       if (ex.ok) {
         const data = await ex.json()
         setLogs(data.executions || [])
+      }
+      // google ads history (ファイルベース; あれば表示)
+      const adsRes = await fetch(`/api/positions/${positionId}/ads`, { cache: 'no-store' })
+      if (adsRes.ok) {
+        const { ads } = await adsRes.json()
+        if (Array.isArray(ads)) setAds(ads)
       }
     }
     load()
@@ -302,6 +309,35 @@ export default function PositionDetailPage() {
 
           {/* サイドバー */}
           <div className="space-y-6">
+            {/* Google Ads 履歴 */}
+            {ads.length > 0 && (
+              <div className="bg-white border border-gray-200 rounded-lg">
+                <div className="bg-gray-50 border-b border-gray-200 p-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center">
+                      <BarChart3 className="w-3 h-3 text-white" />
+                    </div>
+                    <h2 className="text-lg font-semibold text-gray-900">広告履歴（Google Ads）</h2>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-1">インプレッション / クリック / コスト / CV</p>
+                </div>
+                <div className="p-6 space-y-3">
+                  {ads.slice(0, 10).map((d, i) => {
+                    const ctr = d.impressions ? Math.round((d.clicks / d.impressions) * 1000) / 10 : 0
+                    const cpc = d.clicks ? Math.round((d.cost / d.clicks)) : 0
+                    return (
+                      <div key={i} className="grid grid-cols-5 gap-2 text-sm items-center border border-gray-100 rounded-lg p-3">
+                        <div className="text-gray-600">{d.date}</div>
+                        <div className="text-gray-900">Imp {d.impressions?.toLocaleString?.() || d.impressions}</div>
+                        <div className="text-gray-900">Clk {d.clicks?.toLocaleString?.() || d.clicks} <span className="text-xs text-gray-500">({ctr}%)</span></div>
+                        <div className="text-gray-900">Cost ¥{d.cost?.toLocaleString?.() || d.cost} <span className="text-xs text-gray-500">(CPC ¥{cpc})</span></div>
+                        <div className="text-gray-900">CV {d.conversions?.toLocaleString?.() || d.conversions}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
             {/* ユーザー行動フロー */}
             <div className="bg-white border border-gray-200 rounded-lg">
               <div className="bg-gray-50 border-b border-gray-200 p-6">
