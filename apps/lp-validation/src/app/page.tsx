@@ -15,7 +15,9 @@ import {
 export default function DashboardPage() {
   const [selectedTab, setSelectedTab] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
-  const [unresolvedAlerts, setUnresolvedAlerts] = useState(3);
+  // 通知モックの表示可否（本番では非表示）
+  const showNotificationMock = process.env.NEXT_PUBLIC_SHOW_ALERT_MOCK === 'true';
+  const [unresolvedAlerts, setUnresolvedAlerts] = useState(showNotificationMock ? 3 : 0);
   const toast = useToast();
 
   // フックは早期returnより前に宣言する必要がある
@@ -131,27 +133,31 @@ export default function DashboardPage() {
                   <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
                   今日
                 </button>
-                <button 
-                  className="relative p-1.5 border border-gray-200 rounded-lg hover:border-gray-300 text-gray-700"
-                  onClick={() => toast.info('通知機能', '開発中の機能です')}
-                  aria-label={`通知 ${unresolvedAlerts > 0 ? `${unresolvedAlerts}件の未読あり` : ''}`}
-                >
-                  <Bell className="w-4 h-4" aria-hidden="true" />
-                  {unresolvedAlerts > 0 && (
-                    <span 
-                      className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium"
-                      aria-label={`${unresolvedAlerts}件の未読通知`}
+                {showNotificationMock && (
+                  <>
+                    <button 
+                      className="relative p-1.5 border border-gray-200 rounded-lg hover:border-gray-300 text-gray-700"
+                      onClick={() => toast.info('通知機能', '開発中の機能です')}
+                      aria-label={`通知 ${unresolvedAlerts > 0 ? `${unresolvedAlerts}件の未読あり` : ''}`}
                     >
-                      {unresolvedAlerts}
-                    </span>
-                  )}
-                </button>
-                {/* 未解決アラート表示 */}
-                {unresolvedAlerts > 0 && (
-                  <div className="flex items-center space-x-1 px-3 py-1.5 bg-red-50 text-red-700 rounded-lg border border-red-200">
-                    <AlertTriangle className="w-4 h-4" />
-                    <span className="text-sm font-medium">要対応 {unresolvedAlerts}件</span>
-                  </div>
+                      <Bell className="w-4 h-4" aria-hidden="true" />
+                      {unresolvedAlerts > 0 && (
+                        <span 
+                          className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium"
+                          aria-label={`${unresolvedAlerts}件の未読通知`}
+                        >
+                          {unresolvedAlerts}
+                        </span>
+                      )}
+                    </button>
+                    {/* 未解決アラート表示（モック） */}
+                    {unresolvedAlerts > 0 && (
+                      <div className="flex items-center space-x-1 px-3 py-1.5 bg-red-50 text-red-700 rounded-lg border border-red-200">
+                        <AlertTriangle className="w-4 h-4" />
+                        <span className="text-sm font-medium">要対応 {unresolvedAlerts}件</span>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
