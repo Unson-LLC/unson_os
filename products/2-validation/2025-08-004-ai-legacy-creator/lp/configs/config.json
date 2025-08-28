@@ -261,8 +261,8 @@
       ]
     },
     "form": {
-      "title": "無料診断・先行案内（30秒）",
-      "subtitle": "メールだけで登録完了。必要であれば分野を1つ選択してください",
+      "title": "先行案内（30秒）",
+      "subtitle": "メール＋任意で関心分野を1つ選択",
       "fields": [
         {
           "type": "email",
@@ -283,103 +283,6 @@
       "submitText": "登録する",
       "successMessage": "ありがとうございます。ご登録のメールにご案内をお送りします。",
       "privacyText": "入力いただいた情報は先行案内の送付にのみ利用し、第三者提供は行いません。"
-    },
-    "form": {
-      "title": "無料知識診断・お問い合わせ",
-      "subtitle": "あなたの知識の価値と継承可能性を無料で診断します",
-      "fields": [
-        {
-          "type": "text",
-          "name": "name",
-          "label": "お名前",
-          "placeholder": "山田 太郎",
-          "required": true
-        },
-        {
-          "type": "email",
-          "name": "email",
-          "label": "メールアドレス",
-          "placeholder": "example@email.com",
-          "required": true
-        },
-        {
-          "type": "tel",
-          "name": "phone",
-          "label": "電話番号",
-          "placeholder": "090-1234-5678",
-          "required": false
-        },
-        {
-          "type": "text",
-          "name": "age",
-          "label": "年齢",
-          "placeholder": "50",
-          "required": false
-        },
-        {
-          "type": "select",
-          "name": "career_field",
-          "label": "専門分野・職種",
-          "placeholder": "選択してください",
-          "required": true,
-          "options": [
-            "管理職・経営",
-            "技術・エンジニア",
-            "営業・マーケティング",
-            "財務・経理",
-            "人事・労務",
-            "製造・品質管理",
-            "研究・開発",
-            "コンサルティング",
-            "その他"
-          ]
-        },
-        {
-          "type": "select",
-          "name": "career_years",
-          "label": "キャリア年数",
-          "placeholder": "選択してください",
-          "required": true,
-          "options": [
-            "20-25年",
-            "25-30年",
-            "30-35年",
-            "35-40年",
-            "40年以上"
-          ]
-        },
-        {
-          "type": "select",
-          "name": "interest_level",
-          "label": "知識継承への関心度",
-          "placeholder": "選択してください",
-          "required": true,
-          "options": [
-            "非常に関心がある",
-            "関心がある",
-            "やや関心がある",
-            "検討中",
-            "情報収集段階"
-          ]
-        },
-        {
-          "type": "textarea",
-          "name": "knowledge_description",
-          "label": "継承したい知識・経験（簡単にご記入ください）",
-          "placeholder": "例：IT業界での30年の経験、プロジェクトマネジメントのノウハウ、チームビルディングの実践知など",
-          "required": false
-        },
-        {
-          "type": "textarea",
-          "name": "message",
-          "label": "その他ご質問・ご要望",
-          "placeholder": "サービスについてのご質問やご要望をお聞かせください",
-          "required": false
-        }
-      ],
-      "submitText": "無料診断を申し込む",
-      "successMessage": "お申し込みありがとうございます！3営業日以内に詳細なご案内をお送りします。",
-      "privacyText": "お預かりした個人情報は、弊社プライバシーポリシーに基づき適切に管理し、サービス提供以外の目的には使用いたしません。"
     },
     "finalCta": {
       "title": "あなたの知識を、永続する価値に変換しませんか？",
