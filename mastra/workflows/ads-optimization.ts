@@ -1,5 +1,5 @@
 // Google Ads完全自動最適化パイプライン（リファクタリング済み）
-import { Workflow } from 'mastra'
+import { Workflow } from '@mastra/core'
 import { analyzeAdsPerformance } from './ads-analysis'
 import { adsOptimizerAgent, generateOptimizationActions } from '../agents/ads-optimizer'
 import { OptimizationExecutor } from '../tools/optimization-executor'

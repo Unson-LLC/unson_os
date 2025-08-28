@@ -1,6 +1,6 @@
 // Mastra統一設定（全マイクロSaaS共通）
-import { Mastra } from 'mastra'
-import { openai } from 'mastra/providers/openai'
+import { Mastra } from '@mastra/core'
+import { openai } from '@mastra/core'
 
 export const mastraConfig = new Mastra({
   providers: {

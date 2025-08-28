@@ -1,5 +1,5 @@
 // Google Ads 4時間自動化ワークフロー（MCP統合版）
-import { Workflow } from 'mastra'
+import { Workflow } from '@mastra/core'
 import { fetchAndAnalyzeAds } from './ads-data-fetcher'
 import { generateOptimizationActions } from '../agents/ads-optimizer'
 import { AdsApiExecutor } from '../agents/ads-api-executor'

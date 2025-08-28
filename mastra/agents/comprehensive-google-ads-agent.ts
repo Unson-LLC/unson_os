@@ -1,5 +1,5 @@
 // 包括的Google Ads AI エージェント（Google Ads APIの全機能対応）
-import { Agent } from 'mastra'
+import { Agent } from '@mastra/core'
 import { mastraConfig } from '../config'
 import { GOOGLE_ADS_CONFIG } from '../config/google-ads-constants'
 import { PerformanceAnalysis } from '../types'

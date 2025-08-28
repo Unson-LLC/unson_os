@@ -2,6 +2,7 @@
 
 export interface EventLog {
   time: string
+  sortTime?: string // ソート用のISO日時文字列
   type: 'event' | 'ads'
   cvr?: number
   sessions?: number
@@ -19,27 +20,56 @@ export interface EventLog {
 
 export interface AdsData {
   date: string
+  dateStr?: string
+  timeWindow?: string
   impressions: number
   clicks: number
   cost: number
   conversions: number
+  ctr?: number
+  cvr?: number
+  cpc?: number
+  isRealData?: boolean // 実際のGoogle Adsデータかどうか
 }
 
 // ベタ書きでGoogle Ads実績をイベント形式に変換
 export function formatGoogleAdsEvent(ads: AdsData): EventLog {
-  const ctr = ads.impressions > 0 ? ((ads.clicks / ads.impressions) * 100).toFixed(1) : '0.0'
-  const cpc = ads.clicks > 0 ? Math.round(ads.cost / ads.clicks) : 0
-  const cvr = ads.clicks > 0 ? ((ads.conversions / ads.clicks) * 100).toFixed(1) : '0.0'
+  // null安全性チェック
+  const impressions = ads?.impressions ?? 0
+  const clicks = ads?.clicks ?? 0
+  const cost = ads?.cost ?? 0
+  const conversions = ads?.conversions ?? 0
+  const date = ads?.date ?? new Date().toISOString().split('T')[0]
+  
+  const ctr = ads.ctr !== undefined ? ads.ctr.toString() : (impressions > 0 ? ((clicks / impressions) * 100).toFixed(1) : '0.0')
+  const cpc = ads.cpc !== undefined ? ads.cpc : (clicks > 0 ? Math.round(cost / clicks) : 0)
+  const cvr = ads.cvr !== undefined ? ads.cvr.toString() : (clicks > 0 ? ((conversions / clicks) * 100).toFixed(1) : '0.0')
+  
+  // パフォーマンス評価（ユーザー視点の改善）
+  const ctrRating = parseFloat(ctr) >= 3.0 ? 'good' : parseFloat(ctr) >= 1.5 ? 'average' : 'poor'
+  const cvrRating = parseFloat(cvr) >= 8.0 ? 'good' : parseFloat(cvr) >= 4.0 ? 'average' : 'poor'
+  const performanceEmoji = cvrRating === 'good' ? '🎯' : cvrRating === 'average' ? '📊' : '⚠️'
+  
+  // 時刻表示（4時間間隔は短縮形、それ以外はそのまま）
+  const displayTime = ads.timeWindow ? `${ads.dateStr} ${ads.timeWindow.split(':')[0]}h~` : ads.dateStr || date
   
   return {
-    time: ads.date,
+    time: displayTime,
+    sortTime: date, // ソート用に元のISO日時を保持
     type: 'ads',
-    impressions: ads.impressions,
-    clicks: ads.clicks, 
-    cost: ads.cost,
-    conversions: ads.conversions,
-    optimization: `Imp: ${ads.impressions.toLocaleString()} | Clk: ${ads.clicks} (CTR ${ctr}%) | Cost: ¥${ads.cost.toLocaleString()} (CPC ¥${cpc}) | CV: ${ads.conversions}`,
-    ai: `Google Ads実績 - CVR ${cvr}%、4時間での広告パフォーマンス`
+    impressions,
+    clicks, 
+    cost,
+    conversions,
+    ctr: parseFloat(ctr),
+    cvr: parseFloat(cvr),
+    cpc,
+    ctrRating,
+    cvrRating,
+    performanceEmoji,
+    // 重複を避けてシンプルに（実データかサンプルかを表示）
+    optimization: ads.isRealData ? `Ads実績` : `Ads実績（サンプル）`,
+    ai: `CVR ${cvr}% CTR ${ctr}% ${cvrRating === 'good' ? '好調🎯' : cvrRating === 'poor' ? '要改善⚠️' : '普通📊'}${ads.isRealData ? '' : ' ※サンプルデータ'}`
   }
 }
 
@@ -60,11 +90,11 @@ export function mergeEventsAndAds(events: any[], adsData: AdsData[]): EventLog[]
   
   const allLogs = [...eventLogs, ...adsLogs]
   
-  // ベタ書きで時系列ソート
+  // ベタ書きで時系列ソート（新しい順）
   allLogs.sort((a, b) => {
-    const timeA = new Date(a.time).getTime()
-    const timeB = new Date(b.time).getTime()
-    return timeA - timeB
+    const timeA = new Date(a.sortTime || a.time).getTime()
+    const timeB = new Date(b.sortTime || b.time).getTime()
+    return timeB - timeA // 降順に変更（新しい→古い）
   })
   
   return allLogs

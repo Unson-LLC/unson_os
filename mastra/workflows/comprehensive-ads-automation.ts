@@ -1,5 +1,5 @@
 // 包括的Google Ads自動化ワークフロー（AI判断による全操作対応）
-import { Workflow } from 'mastra'
+import { Workflow } from '@mastra/core'
 import { fetchAndAnalyzeAds } from './ads-data-fetcher'
 import { 
   comprehensiveAdsAgent, 

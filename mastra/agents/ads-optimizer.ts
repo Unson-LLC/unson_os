@@ -1,5 +1,5 @@
 // Google Ads最適化エージェント（リファクタリング済み）
-import { Agent } from 'mastra'
+import { Agent } from '@mastra/core'
 import { mastraConfig } from '../config'
 import { OPTIMIZATION_SAFETY_LIMITS, ADS_ANALYSIS_THRESHOLDS } from '../config/constants'
 import { OptimizationActionGenerator } from '../tools/optimization-action-generator'

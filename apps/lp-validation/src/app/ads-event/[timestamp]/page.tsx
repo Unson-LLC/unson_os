@@ -162,17 +162,17 @@ export default function AdsEventDetailPage() {
                   <div className="bg-blue-50 rounded-lg p-3">
                     <h4 className="text-sm font-medium text-blue-900 mb-2">パフォーマンス変化</h4>
                     <div className="text-xs space-y-1">
-                      <div>CTR: {optimization.analysis.ctr.current}% ({optimization.analysis.ctr.change > 0 ? '+' : ''}{optimization.analysis.ctr.change}%)</div>
-                      <div>CVR: {optimization.analysis.cvr.current}% ({optimization.analysis.cvr.change > 0 ? '+' : ''}{optimization.analysis.cvr.change}%)</div>
-                      <div>CPC: ¥{optimization.analysis.cpc.current} ({optimization.analysis.cpc.change > 0 ? '+' : ''}{optimization.analysis.cpc.change}%)</div>
+                      <div>CTR: {optimization.analysis.ctr?.current ?? 0}% ({(optimization.analysis.ctr?.change ?? 0) > 0 ? '+' : ''}{optimization.analysis.ctr?.change ?? 0}%)</div>
+                      <div>CVR: {optimization.analysis.cvr?.current ?? 0}% ({(optimization.analysis.cvr?.change ?? 0) > 0 ? '+' : ''}{optimization.analysis.cvr?.change ?? 0}%)</div>
+                      <div>CPC: ¥{optimization.analysis.cpc?.current ?? 0} ({(optimization.analysis.cpc?.change ?? 0) > 0 ? '+' : ''}{optimization.analysis.cpc?.change ?? 0}%)</div>
                     </div>
                   </div>
                   
-                  {optimization.analysis.issues.length > 0 && (
+                  {(optimization.analysis.issues?.length ?? 0) > 0 && (
                     <div className="bg-yellow-50 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-yellow-900 mb-2">検出された問題</h4>
                       <ul className="text-xs text-yellow-800 space-y-1">
-                        {optimization.analysis.issues.map((issue: string, index: number) => (
+                        {(optimization.analysis.issues ?? []).map((issue: string, index: number) => (
                           <li key={index} className="flex items-center">
                             <AlertTriangle className="w-3 h-3 mr-1" />
                             {issue}
