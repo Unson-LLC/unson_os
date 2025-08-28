@@ -1,48 +1,74 @@
-import { NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
+import { NextRequest, NextResponse } from 'next/server'
+import { ConvexHttpClient } from 'convex/browser'
+import { api } from '../../../../../../../../convex/_generated/api'
 
-// シンプルなファイルベース取り込み: products/**/<productId>/ads/history.json を探す
-async function findHistoryPath(productId: string): Promise<string | null> {
-  // 既知の配置パターン: products/2-validation/<id>/ads/history.json
-  const candidate = path.join(process.cwd(), 'products', '2-validation', productId, 'ads', 'history.json')
+function env(key: string): string {
   try {
-    await fs.access(candidate)
-    return candidate
-  } catch {}
-
-  // 汎用探索（浅め）: products/*/*/<id>/ads/history.json
-  const productsRoot = path.join(process.cwd(), 'products')
-  const stages = await fs.readdir(productsRoot).catch(() => [])
-  for (const stage of stages) {
-    const stageDir = path.join(productsRoot, stage)
-    try {
-      const entries = await fs.readdir(stageDir)
-      for (const e of entries) {
-        if (e === productId) {
-          const p = path.join(stageDir, e, 'ads', 'history.json')
-          try {
-            await fs.access(p)
-            return p
-          } catch {}
-        }
-      }
-    } catch {}
+    // @ts-ignore
+    return (process.env && (process.env as any)[key]) || ''
+  } catch {
+    return ''
   }
-  return null
+}
+
+function resolveConvexUrl(): string {
+  const val = (env('NEXT_PUBLIC_CONVEX_URL') || env('CONVEX_URL') || '').trim()
+  const dep = (env('CONVEX_DEPLOYMENT') || '').trim()
+  if (val && val !== 'default') return val
+  if (val === 'default' || dep.startsWith('dev:') || dep === 'default') {
+    return 'http://127.0.0.1:3210'
+  }
+  throw new Error('Convex URL is not configured')
+}
+
+function client() {
+  return new ConvexHttpClient(resolveConvexUrl())
 }
 
 export async function GET(_req: Request, { params }: { params: { id: string } }) {
   try {
-    const p = await findHistoryPath(params.id)
-    if (!p) return NextResponse.json({ ads: [] })
-    const raw = await fs.readFile(p, 'utf8')
-    const data = JSON.parse(raw)
-    // 期待スキーマ: [{ date: '2025-08-01', impressions: 1234, clicks: 56, cost: 1234, conversions: 7 }]
-    const ads = Array.isArray(data) ? data : (data.items || [])
+    const c = client()
+    const items = await c.query(api.ads.getDailyMetricsByProduct, { product_id: params.id, limit: 30 })
+    // normalize to UI shape
+    const ads = (items || []).map((it: any) => ({
+      date: it.date,
+      impressions: it.impressions,
+      clicks: it.clicks,
+      cost: it.cost,
+      conversions: it.conversions,
+    }))
     return NextResponse.json({ ads })
   } catch (e) {
     return NextResponse.json({ ads: [] })
   }
 }
 
+export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    const body = await req.json()
+    const items = Array.isArray(body) ? body : body.items
+    if (!Array.isArray(items)) {
+      return NextResponse.json({ error: 'Invalid payload' }, { status: 400 })
+    }
+    // workspaceを最新セッションから推定する
+    const c = client()
+    const sessions = await c.query(api.lpValidation.getSessionsByProduct, { productId: params.id, limit: 1 })
+    const s = sessions[0]
+    const workspace_id = s?.workspace_id || 'unson_main'
+    await c.mutation(api.ads.importDailyMetrics, {
+      workspace_id,
+      product_id: params.id,
+      items: items.map((d: any) => ({
+        date: d.date,
+        impressions: Number(d.impressions || 0),
+        clicks: Number(d.clicks || 0),
+        cost: Number(d.cost || 0),
+        conversions: Number(d.conversions || 0),
+        platform: d.platform || 'Google Ads',
+      }))
+    })
+    return NextResponse.json({ success: true, count: items.length })
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message || 'Failed to import' }, { status: 500 })
+  }
+}
