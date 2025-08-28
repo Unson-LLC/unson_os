@@ -13,6 +13,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as ads from "../ads.js";
 import type * as automation from "../automation.js";
 import type * as automationExecutions from "../automationExecutions.js";
 import type * as careers from "../careers.js";
@@ -38,6 +39,7 @@ import type * as waitlist from "../waitlist.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  ads: typeof ads;
   automation: typeof automation;
   automationExecutions: typeof automationExecutions;
   careers: typeof careers;
