@@ -1,4 +1,3 @@
 {
-  "functions": "convex/",
   "crons": "convex/crons.ts"
 }

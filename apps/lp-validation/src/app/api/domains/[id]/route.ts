@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { DomainAutomationService } from '../../../../../../services/domain-automation/src/services/domain-automation-service';
-
-const domainService = new DomainAutomationService();
+// DomainAutomationService は重依存（AWS等）を要求するため、
+// ビルド時評価を避ける目的で動的インポートに切替
 
 /**
  * GET /api/domains/[id]/health - ドメインヘルスチェック
@@ -12,6 +11,8 @@ export async function GET(
 ) {
   try {
     const productId = params.id;
+    const { DomainAutomationService } = await import('../../../../../../../services/domain-automation/src/services/domain-automation-service');
+    const domainService = new DomainAutomationService();
     const health = await domainService.checkDomainHealth(productId);
     
     return NextResponse.json({
@@ -37,6 +38,8 @@ export async function DELETE(
 ) {
   try {
     const productId = params.id;
+    const { DomainAutomationService } = await import('../../../../../../../services/domain-automation/src/services/domain-automation-service');
+    const domainService = new DomainAutomationService();
     await domainService.removeProductDomain(productId);
     
     return NextResponse.json({

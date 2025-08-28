@@ -1,73 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PR_AUTOMATION_CONSTANTS } from '@/lib/constants/pr-automation-constants'
+import { ConvexHttpClient } from 'convex/browser'
+import { api } from '../../../../../../../convex/_generated/api'
 
-const DATA_PATH = 'apps/lp-validation/data/positions.json'
-
-async function ghRequest(endpoint: string, init: RequestInit = {}) {
-  const token = process.env[PR_AUTOMATION_CONSTANTS.ENV_VARS.GITHUB_TOKEN]
-  const owner = process.env[PR_AUTOMATION_CONSTANTS.ENV_VARS.GITHUB_OWNER] || PR_AUTOMATION_CONSTANTS.GITHUB_API.DEFAULT_OWNER
-  const repo = process.env[PR_AUTOMATION_CONSTANTS.ENV_VARS.GITHUB_REPO] || PR_AUTOMATION_CONSTANTS.GITHUB_API.DEFAULT_REPO
-  const url = `${PR_AUTOMATION_CONSTANTS.GITHUB_API.BASE_URL}/repos/${owner}/${repo}/${endpoint}`
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      'Authorization': token ? `token ${token}` : '',
-      'Accept': PR_AUTOMATION_CONSTANTS.GITHUB_API.ACCEPT_HEADER,
-      'Content-Type': 'application/json',
-      ...(init.headers || {}),
-    },
-    cache: 'no-store',
-  })
-  return res
-}
-
-async function readPositions() {
+function env(key: string): string {
   try {
-    const res = await ghRequest(`contents/${DATA_PATH}?ref=${PR_AUTOMATION_CONSTANTS.DEFAULT_CONFIG.BASE_BRANCH}`)
-    if (!res.ok) return { positions: [], sha: undefined as string | undefined }
-    const json = await res.json()
-    const content = Buffer.from(json.content || '', 'base64').toString('utf8')
-    const data = JSON.parse(content)
-    return { positions: Array.isArray(data) ? data : [], sha: json.sha as string }
+    // @ts-ignore
+    return (process.env && (process.env as any)[key]) || ''
   } catch {
-    return { positions: [], sha: undefined as string | undefined }
+    return ''
   }
 }
 
-async function writePositions(positions: any[], sha?: string) {
-  const message = `chore(lp-validation): update positions data (${new Date().toISOString()})`
-  const body: any = {
-    message,
-    content: Buffer.from(JSON.stringify(positions, null, 2), 'utf8').toString('base64'),
-    branch: PR_AUTOMATION_CONSTANTS.DEFAULT_CONFIG.BASE_BRANCH,
+function resolveConvexUrl(): string {
+  const val = (env('NEXT_PUBLIC_CONVEX_URL') || env('CONVEX_URL') || '').trim()
+  const dep = (env('CONVEX_DEPLOYMENT') || '').trim()
+  if (val && val !== 'default') return val
+  if (val === 'default' || dep.startsWith('dev:') || dep === 'default') {
+    return 'http://127.0.0.1:3210'
   }
-  if (sha) body.sha = sha
-  const res = await ghRequest(`contents/${DATA_PATH}`, {
-    method: 'PUT',
-    body: JSON.stringify(body),
-  })
-  if (!res.ok) {
-    const t = await res.text()
-    throw new Error(`Failed to write positions: ${res.status} ${t}`)
-  }
+  throw new Error('Convex URL is not configured')
+}
+
+function client() {
+  return new ConvexHttpClient(resolveConvexUrl())
 }
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
-  const { positions } = await readPositions()
-  const p = positions.find((x: any) => x.id === params.id)
-  if (!p) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  return NextResponse.json({ position: p })
+  const c = client()
+  // product_idで最新セッションを取得
+  const sessions = await c.query(api.lpValidation.getSessionsByProduct, { productId: params.id, limit: 1 })
+  const s = sessions[0]
+  if (!s) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  const position = {
+    id: s.product_id,
+    name: s.product_name,
+    lpUrl: s.lp_url,
+    status: s.status,
+    cvr: s.current_cvr,
+    cpl: s.current_cpa ? `¥${Math.round(s.current_cpa)}` : '',
+    leads: s.total_conversions,
+    grade: '',
+    performance: s.current_playbook_status || '',
+    description: '',
+  }
+  return NextResponse.json({ position })
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const body = await req.json()
-    const { positions, sha } = await readPositions()
-    const idx = positions.findIndex((p: any) => p.id === params.id)
-    if (idx < 0) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-    positions[idx] = { ...positions[idx], ...body, id: params.id, updatedAt: new Date().toISOString() }
-    await writePositions(positions, sha)
-    return NextResponse.json({ ok: true, position: positions[idx] })
+    // ここでは簡易対応: 直接更新APIは未提供のためNot Implemented
+    return NextResponse.json({ error: 'Not Implemented' }, { status: 501 })
   } catch (e: any) {
     return NextResponse.json({ error: e.message || 'Failed to update' }, { status: 500 })
   }
@@ -75,13 +57,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const { positions, sha } = await readPositions()
-    const next = positions.filter((p: any) => p.id !== params.id)
-    if (next.length === positions.length) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-    await writePositions(next, sha)
-    return NextResponse.json({ ok: true })
+    // ここでは簡易対応: セッション削除はドキュメントIDが必要なため未実装
+    return NextResponse.json({ error: 'Not Implemented' }, { status: 501 })
   } catch (e: any) {
     return NextResponse.json({ error: e.message || 'Failed to delete' }, { status: 500 })
   }
 }
-

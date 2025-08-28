@@ -1,59 +1,51 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PR_AUTOMATION_CONSTANTS } from '@/lib/constants/pr-automation-constants'
+import { ConvexHttpClient } from 'convex/browser'
+import { api } from '../../../../../../convex/_generated/api'
 
-const DATA_PATH = 'apps/lp-validation/data/positions.json'
-
-async function ghRequest(endpoint: string, init: RequestInit = {}) {
-  const token = process.env[PR_AUTOMATION_CONSTANTS.ENV_VARS.GITHUB_TOKEN]
-  const owner = process.env[PR_AUTOMATION_CONSTANTS.ENV_VARS.GITHUB_OWNER] || PR_AUTOMATION_CONSTANTS.GITHUB_API.DEFAULT_OWNER
-  const repo = process.env[PR_AUTOMATION_CONSTANTS.ENV_VARS.GITHUB_REPO] || PR_AUTOMATION_CONSTANTS.GITHUB_API.DEFAULT_REPO
-  const url = `${PR_AUTOMATION_CONSTANTS.GITHUB_API.BASE_URL}/repos/${owner}/${repo}/${endpoint}`
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      'Authorization': token ? `token ${token}` : '',
-      'Accept': PR_AUTOMATION_CONSTANTS.GITHUB_API.ACCEPT_HEADER,
-      'Content-Type': 'application/json',
-      ...(init.headers || {}),
-    },
-    cache: 'no-store',
-  })
-  return res
-}
-
-async function readPositions() {
+// Read env at runtime using bracket notation to avoid compile-time inlining
+function env(key: string): string {
   try {
-    const res = await ghRequest(`contents/${DATA_PATH}?ref=${PR_AUTOMATION_CONSTANTS.DEFAULT_CONFIG.BASE_BRANCH}`)
-    if (!res.ok) return { positions: [], sha: undefined as string | undefined }
-    const json = await res.json()
-    const content = Buffer.from(json.content || '', 'base64').toString('utf8')
-    const data = JSON.parse(content)
-    return { positions: Array.isArray(data) ? data : [], sha: json.sha as string }
+    // @ts-ignore
+    return (process.env && (process.env as any)[key]) || ''
   } catch {
-    return { positions: [], sha: undefined as string | undefined }
+    return ''
   }
 }
 
-async function writePositions(positions: any[], sha?: string) {
-  const message = `chore(lp-validation): update positions data (${new Date().toISOString()})`
-  const body: any = {
-    message,
-    content: Buffer.from(JSON.stringify(positions, null, 2), 'utf8').toString('base64'),
-    branch: PR_AUTOMATION_CONSTANTS.DEFAULT_CONFIG.BASE_BRANCH,
+const DEFAULT_WORKSPACE = env('NEXT_PUBLIC_DEFAULT_WORKSPACE_ID') || 'unson_main'
+
+function resolveConvexUrl(): string {
+  const val = (env('NEXT_PUBLIC_CONVEX_URL') || env('CONVEX_URL') || '').trim()
+  const dep = (env('CONVEX_DEPLOYMENT') || '').trim()
+  // Prefer explicit URL when provided and not default
+  if (val && val !== 'default') return val
+  // If convex dev is running (dev:xxxx) or URL is default, use local dev server
+  if (val === 'default' || dep.startsWith('dev:') || dep === 'default') {
+    return 'http://127.0.0.1:3210'
   }
-  if (sha) body.sha = sha
-  const res = await ghRequest(`contents/${DATA_PATH}`, {
-    method: 'PUT',
-    body: JSON.stringify(body),
-  })
-  if (!res.ok) {
-    const t = await res.text()
-    throw new Error(`Failed to write positions: ${res.status} ${t}`)
-  }
+  throw new Error('Convex URL is not configured')
+}
+
+function client() {
+  return new ConvexHttpClient(resolveConvexUrl())
 }
 
 export async function GET() {
-  const { positions } = await readPositions()
+  const c = client()
+  // 当面はワークスペースのアクティブセッション＝ポジションとして扱う
+  const sessions = await c.query(api.lpValidation.getActiveSessionsByWorkspace, { workspaceId: DEFAULT_WORKSPACE })
+  const positions = sessions.map((s: any) => ({
+    id: s.product_id,
+    name: s.product_name,
+    lpUrl: s.lp_url,
+    status: 'active',
+    cvr: s.current_cvr,
+    cpl: s.current_cpa ? `¥${Math.round(s.current_cpa)}` : '',
+    leads: s.total_conversions,
+    grade: '',
+    performance: s.current_playbook_status || '',
+    description: '',
+  }))
   return NextResponse.json({ positions })
 }
 
@@ -64,28 +56,25 @@ export async function POST(req: NextRequest) {
     for (const k of required) {
       if (!body[k]) return NextResponse.json({ error: `${k} is required` }, { status: 400 })
     }
-    const { positions, sha } = await readPositions()
-    const idx = positions.findIndex((p: any) => p.id === body.id)
-    const record = {
-      id: body.id,
-      name: body.name,
-      lpUrl: body.lpUrl,
-      status: body.status || 'active',
-      cvr: Number(body.cvr ?? 0),
-      cpl: body.cpl ?? '',
-      leads: Number(body.leads ?? 0),
-      grade: body.grade || '',
-      performance: body.performance || '',
-      description: body.description || '',
-      createdAt: positions[idx]?.createdAt || new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    }
-    if (idx >= 0) positions[idx] = record
-    else positions.push(record)
-    await writePositions(positions, sha)
-    return NextResponse.json({ ok: true, position: record })
+    const c = client()
+    await c.mutation(api.lpValidation.createSession, {
+      workspace_id: DEFAULT_WORKSPACE,
+      product_id: body.id,
+      product_name: body.name,
+      lp_url: body.lpUrl,
+      status: (body.status as any) || 'active',
+      target_cvr: Number(body.targetCvr ?? 5),
+      target_cpa: Number(body.targetCpa ?? 2000),
+      min_sessions: Number(body.minSessions ?? 100),
+      google_ads_campaign_id: body.googleAdsCampaignId,
+      automation_enabled: body.automationEnabled ?? true,
+      auto_optimization: body.autoOptimization ?? true,
+      auto_deployment: body.autoDeployment ?? false,
+      current_playbook_id: body.playbookId,
+      created_by: body.createdBy || 'lp-validation-ui',
+    })
+    return NextResponse.json({ ok: true })
   } catch (e: any) {
-    return NextResponse.json({ error: e.message || 'Failed to upsert position' }, { status: 500 })
+    return NextResponse.json({ error: e.message || 'Failed to create session' }, { status: 500 })
   }
 }
-

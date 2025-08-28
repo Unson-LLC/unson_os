@@ -49,7 +49,9 @@ export default function LandingPageTemplate({ config }: LandingPageTemplateProps
       <ProblemSection config={config.content.problem} />
       <SolutionSection config={config.content.solution} />
       <ServiceSection config={config.content.service} />
-      {config.content.pricing && (<PricingSection config={config.content.pricing} onCta={handleCta} />)}
+      {process.env.NEXT_PUBLIC_SHOW_PRICING === 'true' && config.content.pricing && (
+        <PricingSection config={config.content.pricing} onCta={handleCta} />
+      )}
       {config.content.faq && (<FaqSection config={config.content.faq} />)}
       <FinalCtaSection config={config.content.finalCta} onCta={handleCta} formConfig={config.content.form} onFormSubmit={handleFormSubmit} prefill={prefill} />
       <FooterSection config={config.content.footer} />
