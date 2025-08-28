@@ -467,6 +467,23 @@ export default defineSchema({
     .index("by_product_date", ["product_id", "date"]) 
     .index("by_workspace_product", ["workspace_id", "product_id"]),
 
+  // Google Ads 時間窓メトリクス（例: 4時間）
+  adsWindowMetrics: defineTable({
+    workspace_id: v.string(),
+    product_id: v.string(),
+    platform: v.optional(v.string()), // 'Google Ads'
+    ts_start: v.number(), // window start timestamp (ms)
+    window_hours: v.number(), // e.g., 4
+    impressions: v.number(),
+    clicks: v.number(),
+    cost: v.number(), // JPY
+    conversions: v.number(),
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+    .index("by_product_ts", ["product_id", "ts_start"]) 
+    .index("by_workspace_product", ["workspace_id", "product_id"]),
+
   phaseReviews: defineTable({
     workspace_id: v.string(),
     productId: v.string(),
