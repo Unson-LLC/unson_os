@@ -85,7 +85,7 @@
       "subtitle": "Z世代部下との関係に悩む管理職の方へ。AI技術で世代間ギャップを解決し、全世代が活躍できる革新的なチーム作りを実現します。",
       "cta": "無料診断を始める",
       "secondaryCta": "サービス詳細を見る",
-      "backgroundImage": "/images/generated/hero-bridge.jpg",
+      "backgroundImage": "/images/generated/hero-bg.jpg",
       "backgroundGradient": true,
       "quickPoints": [
         "Z世代×管理職の認識ギャップをAIで可視化",
@@ -101,32 +101,32 @@
         {
           "title": "Z世代部下の考えが理解できない",
           "description": "「なぜすぐに転職を考えるのか」「リモートワークにこだわる理由は」など、若手の価値観が理解しにくい",
-          "image": "/images/generated/problem-understanding.jpg"
+          "image": "/images/generated/problem-1.jpg"
         },
         {
           "title": "指導方法が響かない",
           "description": "従来の指導方法では成果が出ず、部下のモチベーションが上がらない。何をどう伝えればいいのか分からない",
-          "image": "/images/generated/problem-guidance.jpg"
+          "image": "/images/generated/problem-2.jpg"
         },
         {
           "title": "チーム内の世代間対立",
           "description": "ベテランと若手の間で価値観の衝突が起き、チームの雰囲気が悪化。生産性の低下が深刻",
-          "image": "/images/generated/problem-conflict.jpg"
+          "image": "/images/generated/problem-3.jpg"
         },
         {
           "title": "評価面談で何を話せばいいか困る",
           "description": "世代が違うと何をフィードバックすべきか悩む。相手に響く評価方法が分からない",
-          "image": "/images/generated/problem-evaluation.jpg"
+          "image": "/images/generated/problem-4.jpg"
         },
         {
           "title": "会議で発言に偏りが出る",
           "description": "ベテランばかりが話し、若手が発言しない。または逆のパターンで、バランスの取れた議論ができない",
-          "image": "/images/generated/problem-meeting.jpg"
+          "image": "/images/generated/problem-5.jpg"
         },
         {
           "title": "組織変革への抵抗がある",
           "description": "新しい取り組みを始めようとすると、世代によって反応が大きく異なり、全体の合意形成が困難",
-          "image": "/images/generated/problem-change.jpg"
+          "image": "/images/generated/problem-6.jpg"
         }
       ]
     },
@@ -202,7 +202,6 @@
         }
       ]
     },
-    
     "form": {
       "title": "世代間コミュニケーション無料診断（ベータ先行）",
       "subtitle": "まずはメールアドレスだけで登録。ベータ公開前に優先案内します",

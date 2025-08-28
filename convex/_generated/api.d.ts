@@ -13,13 +13,20 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as automation from "../automation.js";
+import type * as automationExecutions from "../automationExecutions.js";
 import type * as careers from "../careers.js";
 import type * as contacts from "../contacts.js";
+import type * as crons from "../crons.js";
 import type * as discordApplications from "../discordApplications.js";
 import type * as lib_tenantUtils from "../lib/tenantUtils.js";
+import type * as lpValidation from "../lpValidation.js";
+import type * as playbook from "../playbook.js";
+import type * as playbooks from "../playbooks.js";
 import type * as productRequests from "../productRequests.js";
 import type * as products from "../products.js";
 import type * as serviceApplications from "../serviceApplications.js";
+import type * as systemAlerts from "../systemAlerts.js";
 import type * as waitlist from "../waitlist.js";
 
 /**
@@ -31,13 +38,20 @@ import type * as waitlist from "../waitlist.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  automation: typeof automation;
+  automationExecutions: typeof automationExecutions;
   careers: typeof careers;
   contacts: typeof contacts;
+  crons: typeof crons;
   discordApplications: typeof discordApplications;
   "lib/tenantUtils": typeof lib_tenantUtils;
+  lpValidation: typeof lpValidation;
+  playbook: typeof playbook;
+  playbooks: typeof playbooks;
   productRequests: typeof productRequests;
   products: typeof products;
   serviceApplications: typeof serviceApplications;
+  systemAlerts: typeof systemAlerts;
   waitlist: typeof waitlist;
 }>;
 export declare const api: FilterApi<

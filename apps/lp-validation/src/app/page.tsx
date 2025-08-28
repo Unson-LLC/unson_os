@@ -18,20 +18,7 @@ export default function DashboardPage() {
   const [unresolvedAlerts, setUnresolvedAlerts] = useState(3);
   const toast = useToast();
 
-  useEffect(() => {
-    // データ読み込みシミュレーション
-    setTimeout(() => {
-      setIsLoading(false);
-      // 初回アクセス時のウェルカム通知
-      toast.success('ダッシュボード更新完了', '最新データを取得しました');
-    }, 1500);
-  }, []); // 空の依存配列で初回のみ実行
-
-  // ローディング中はスケルトンスクリーンを表示
-  if (isLoading) {
-    return <DashboardSkeleton />;
-  }
-
+  // フックは早期returnより前に宣言する必要がある
   const [positions, setPositions] = useState<any[]>([])
 
   useEffect(() => {
@@ -46,6 +33,35 @@ export default function DashboardPage() {
     }
     load()
   }, [])
+
+  // アクティブアラート（Convexから取得）
+  const [alerts, setAlerts] = useState<any[]>([])
+  useEffect(() => {
+    const loadAlerts = async () => {
+      try {
+        const res = await fetch('/api/alerts', { cache: 'no-store' })
+        if (res.ok) {
+          const data = await res.json()
+          setAlerts(data.alerts || [])
+        }
+      } catch {}
+    }
+    loadAlerts()
+  }, [])
+
+  useEffect(() => {
+    // データ読み込みシミュレーション
+    setTimeout(() => {
+      setIsLoading(false);
+      // 初回アクセス時のウェルカム通知
+      toast.success('ダッシュボード更新完了', '最新データを取得しました');
+    }, 1500);
+  }, []); // 空の依存配列で初回のみ実行
+
+  // ローディング中はスケルトンスクリーンを表示
+  if (isLoading) {
+    return <DashboardSkeleton />;
+  }
 
   const actionLogs: any[] = []
 
@@ -347,7 +363,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* アラート */}
+            {/* アラート（Convexのアクティブアラートを表示） */}
             <div className="bg-white rounded-lg border border-gray-200">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center space-x-2">
@@ -356,24 +372,24 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div className="p-4 space-y-3">
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                  <div className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-1.5" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-red-900">AI-STYLISTのCVRが3%以下</p>
-                      <p className="text-xs text-red-700 mt-1">即座の対応が必要です</p>
+                {alerts.length === 0 ? (
+                  <p className="text-sm text-gray-500">アクティブなアラートはありません</p>
+                ) : (
+                  alerts.map((a, idx) => (
+                    <div
+                      key={idx}
+                      className={`p-3 rounded-lg border ${a.severity === 'critical' ? 'bg-red-50 border-red-200' : a.severity === 'warning' ? 'bg-amber-50 border-amber-200' : 'bg-blue-50 border-blue-200'}`}
+                    >
+                      <div className="flex items-start space-x-2">
+                        <div className={`w-2 h-2 rounded-full mt-1.5 ${a.severity === 'critical' ? 'bg-red-500' : a.severity === 'warning' ? 'bg-amber-500' : 'bg-blue-500'}`} />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900">{a.title || a.alert_type}</p>
+                          {a.message && <p className="text-xs text-gray-700 mt-1">{a.message}</p>}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
-                  <div className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full mt-1.5" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-amber-900">AI-BRIDGEのCPLが目標超過</p>
-                      <p className="text-xs text-amber-700 mt-1">最適化の検討をお勧めします</p>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                )}
               </div>
             </div>
           </section>

@@ -85,7 +85,7 @@
       "subtitle": "45年間の経験が眠っていませんか？AIが個人の知識を体系化し、次世代への継承をサポート。あなただけの「個人版ウィキペディア」を作成しましょう。",
       "cta": "無料診断を始める",
       "secondaryCta": "サービス詳細を見る",
-      "backgroundImage": "/images/generated/hero-legacy.jpg",
+      "backgroundImage": "/images/generated/hero-bg.jpg",
       "backgroundGradient": true,
       "quickPoints": [
         "Z世代×管理職の認識ギャップをAIで可視化",
@@ -101,32 +101,32 @@
         {
           "title": "自分の知識が失われる危機感",
           "description": "40年以上のキャリアで培った専門知識やノウハウが、退職と共に組織から消えてしまう不安を感じている",
-          "image": "/images/generated/problem-knowledge-chaos.jpg"
+          "image": "/images/generated/problem-1.jpg"
         },
         {
           "title": "経験をどう整理していいかわからない",
           "description": "散在する記憶や資料を体系的にまとめる方法がわからず、貴重な経験が埋もれたままになっている",
-          "image": "/images/generated/problem-generation-gap.jpg"
+          "image": "/images/generated/problem-2.jpg"
         },
         {
           "title": "若手に伝える機会が少ない",
           "description": "メンタリングや指導の機会があっても、効果的に知識を伝える手法やプラットフォームがない",
-          "image": "/images/generated/problem-time-pressure.jpg"
+          "image": "/images/generated/problem-3.jpg"
         },
         {
           "title": "退職後の社会貢献に不安",
           "description": "定年後も社会に貢献したいが、具体的にどのような形で知識を活かせるのかわからない",
-          "image": "/images/generated/problem-digital-obsolescence.jpg"
+          "image": "/images/generated/problem-4.jpg"
         },
         {
           "title": "デジタル化への取り組みが進まない",
           "description": "紙の資料や頭の中の知識をデジタル化したいが、技術的なハードルが高く手が付けられない",
-          "image": "/images/generated/problem-knowledge-drain.jpg"
+          "image": "/images/generated/problem-5.jpg"
         },
         {
           "title": "知識の価値が正当に評価されない",
           "description": "長年の経験から得た知見の価値が組織や社会で適切に認識・評価されていないと感じる",
-          "image": "/images/generated/problem-family-legacy.jpg"
+          "image": "/images/generated/problem-6.jpg"
         }
       ]
     },
@@ -139,19 +139,19 @@
           "title": "AI知識抽出・構造化",
           "description": "自然言語処理技術で、これまでの経験談から核心的な知識を自動抽出。バラバラな記憶を体系的な知識グラフとして整理します。",
           "icon": "Brain",
-          "image": "/images/generated/solution-ai-extraction.jpg"
+          "image": "/images/generated/solution-1.jpg"
         },
         {
           "title": "個人版ウィキペディア作成",
           "description": "あなた専用のデジタル図書館を構築。検索可能な形で知識を保存し、いつでもアクセス・更新できる永続的なアーカイブを作成。",
           "icon": "Library",
-          "image": "/images/generated/solution-automated-system.jpg"
+          "image": "/images/generated/solution-2.jpg"
         },
         {
           "title": "次世代継承マッチング",
           "description": "知識を求める若手専門職と自動マッチング。効果的なメンタリング関係を構築し、知識継承の成果を可視化します。",
           "icon": "Users",
-          "image": "/images/generated/solution-legacy-platform.jpg"
+          "image": "/images/generated/solution-3.jpg"
         }
       ]
     },
@@ -259,6 +259,30 @@
           "popular": false
         }
       ]
+    },
+    "form": {
+      "title": "無料診断・先行案内（30秒）",
+      "subtitle": "メールだけで登録完了。必要であれば分野を1つ選択してください",
+      "fields": [
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@email.com",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "interest",
+          "label": "関心分野（任意）",
+          "placeholder": "選択してください",
+          "required": false,
+          "options": ["知識の体系化", "出版・発信", "メンタリング", "その他"]
+        }
+      ],
+      "submitText": "登録する",
+      "successMessage": "ありがとうございます。ご登録のメールにご案内をお送りします。",
+      "privacyText": "入力いただいた情報は先行案内の送付にのみ利用し、第三者提供は行いません。"
     },
     "form": {
       "title": "無料知識診断・お問い合わせ",

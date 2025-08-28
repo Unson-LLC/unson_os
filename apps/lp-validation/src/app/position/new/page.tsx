@@ -9,12 +9,14 @@ export default function NewPositionPage() {
     name: '',
     lpUrl: '',
     status: 'active',
-    cvr: '',
-    cpl: '',
-    leads: '',
-    grade: '',
-    performance: '',
-    description: '',
+    targetCvr: '5',
+    targetCpa: '2000',
+    minSessions: '100',
+    googleAdsCampaignId: '',
+    playbookId: '',
+    automationEnabled: true,
+    autoOptimization: true,
+    autoDeployment: false,
   })
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -31,8 +33,9 @@ export default function NewPositionPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
-          cvr: form.cvr ? Number(form.cvr) : 0,
-          leads: form.leads ? Number(form.leads) : 0,
+          targetCvr: form.targetCvr ? Number(form.targetCvr) : 5,
+          targetCpa: form.targetCpa ? Number(form.targetCpa) : 2000,
+          minSessions: form.minSessions ? Number(form.minSessions) : 100,
         })
       })
       if (!res.ok) {
@@ -76,37 +79,63 @@ export default function NewPositionPage() {
             <div>
               <label className="block text-sm text-gray-700 mb-1">ステータス</label>
               <select value={form.status} onChange={e => onChange('status', e.target.value)} className="w-full border rounded px-3 py-2">
-                <option value="active">稼働中</option>
-                <option value="warning">要注意</option>
-                <option value="danger">停止</option>
+                <option value="active">active（稼働中）</option>
+                <option value="paused">paused（一時停止）</option>
+                <option value="completed">completed（完了）</option>
+                <option value="failed">failed（失敗）</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">CVR (%)</label>
-              <input value={form.cvr} onChange={e => onChange('cvr', e.target.value)} className="w-full border rounded px-3 py-2" />
+              <label className="block text-sm text-gray-700 mb-1">目標CVR (%)</label>
+              <input value={form.targetCvr} onChange={e => onChange('targetCvr', e.target.value)} className="w-full border rounded px-3 py-2" />
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">リード数</label>
-              <input value={form.leads} onChange={e => onChange('leads', e.target.value)} className="w-full border rounded px-3 py-2" />
+              <label className="block text-sm text-gray-700 mb-1">目標CPA (円)</label>
+              <input value={form.targetCpa} onChange={e => onChange('targetCpa', e.target.value)} className="w-full border rounded px-3 py-2" />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm text-gray-700 mb-1">CPL</label>
-              <input value={form.cpl} onChange={e => onChange('cpl', e.target.value)} className="w-full border rounded px-3 py-2" />
+              <label className="block text-sm text-gray-700 mb-1">目標CVR (%)</label>
+              <input value={form.targetCvr} onChange={e => onChange('targetCvr', e.target.value)} className="w-full border rounded px-3 py-2" />
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">グレード</label>
-              <input value={form.grade} onChange={e => onChange('grade', e.target.value)} className="w-full border rounded px-3 py-2" />
+              <label className="block text-sm text-gray-700 mb-1">目標CPA (円)</label>
+              <input value={form.targetCpa} onChange={e => onChange('targetCpa', e.target.value)} className="w-full border rounded px-3 py-2" />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">最小セッション数</label>
+              <input value={form.minSessions} onChange={e => onChange('minSessions', e.target.value)} className="w-full border rounded px-3 py-2" />
             </div>
           </div>
-          <div>
-            <label className="block text-sm text-gray-700 mb-1">一言（状況/次アクション）</label>
-            <input value={form.performance} onChange={e => onChange('performance', e.target.value)} className="w-full border rounded px-3 py-2" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">最小セッション数</label>
+              <input value={form.minSessions} onChange={e => onChange('minSessions', e.target.value)} className="w-full border rounded px-3 py-2" />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">Google Ads キャンペーンID（任意）</label>
+              <input value={form.googleAdsCampaignId} onChange={e => onChange('googleAdsCampaignId', e.target.value)} className="w-full border rounded px-3 py-2" />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">プレイブックID（任意）</label>
+              <input value={form.playbookId} onChange={e => onChange('playbookId', e.target.value)} className="w-full border rounded px-3 py-2" />
+            </div>
           </div>
-          <div>
-            <label className="block text-sm text-gray-700 mb-1">説明</label>
-            <textarea value={form.description} onChange={e => onChange('description', e.target.value)} rows={3} className="w-full border rounded px-3 py-2" />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <label className="inline-flex items-center space-x-2">
+              <input type="checkbox" checked={form.automationEnabled} onChange={e => setForm(prev => ({...prev, automationEnabled: e.target.checked}))} />
+              <span className="text-sm text-gray-700">自動化ON</span>
+            </label>
+            <label className="inline-flex items-center space-x-2">
+              <input type="checkbox" checked={form.autoOptimization} onChange={e => setForm(prev => ({...prev, autoOptimization: e.target.checked}))} />
+              <span className="text-sm text-gray-700">最適化ON</span>
+            </label>
+            <label className="inline-flex items-center space-x-2">
+              <input type="checkbox" checked={form.autoDeployment} onChange={e => setForm(prev => ({...prev, autoDeployment: e.target.checked}))} />
+              <span className="text-sm text-gray-700">自動デプロイON</span>
+            </label>
           </div>
 
           <div className="pt-2">
@@ -119,4 +148,3 @@ export default function NewPositionPage() {
     </main>
   )
 }
-

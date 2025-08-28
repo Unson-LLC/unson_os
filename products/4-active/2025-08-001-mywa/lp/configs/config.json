@@ -88,7 +88,7 @@
       "subtitle": "あなた専属のコンシェルジュが、Why-Chip機能を通じて推薦理由を透明化。AI・ロボット分野の情報を1分でキャッチアップし、次の一手が見つかる。",
       "cta": "無料で始める",
       "secondaryCta": "デモを見る",
-      "backgroundImage": "/images/generated/hero-tech-bg.jpg",
+      "backgroundImage": "/images/generated/hero-bg.jpg",
       "backgroundGradient": true,
       "quickPoints": [
         "Z世代×管理職の認識ギャップをAIで可視化",
@@ -104,32 +104,32 @@
         {
           "title": "情報が多すぎて選別できない",
           "description": "毎日大量のAI関連ニュースが配信されるが、自分に関係のない情報ばかりで時間を無駄にしている",
-          "image": "/images/generated/problem-information-overload.jpg"
+          "image": "/images/generated/problem-1.jpg"
         },
         {
           "title": "なぜその記事が重要なのかわからない",
           "description": "推薦されたニュースの選択理由が不明で、信頼して読み進めることができない",
-          "image": "/images/generated/problem-misinformation.jpg"
+          "image": "/images/generated/problem-2.jpg"
         },
         {
           "title": "パーソナライズが不十分",
           "description": "一般的なニュースアプリでは、自分の専門分野や興味レベルに合った記事が見つからない",
-          "image": "/images/generated/problem-time-scarcity.jpg"
+          "image": "/images/generated/problem-3.jpg"
         },
         {
           "title": "学習効果が実感できない",
           "description": "記事を読んでも知識として定着せず、実務に活かせる情報が得られない",
-          "image": "/images/generated/problem-fragmentation.jpg"
+          "image": "/images/generated/problem-4.jpg"
         },
         {
           "title": "更新頻度がバラバラ",
           "description": "複数のニュースソースを使っているが、更新タイミングが異なり情報収集が非効率",
-          "image": "/images/generated/problem-filter-bubble.jpg"
+          "image": "/images/generated/problem-5.jpg"
         },
         {
           "title": "AIの進歩についていけない",
           "description": "技術の進歩が速すぎて、基礎知識が不足していることを実感している",
-          "image": "/images/generated/problem-news-fatigue.jpg"
+          "image": "/images/generated/problem-6.jpg"
         }
       ]
     },
@@ -142,19 +142,19 @@
           "title": "透明性 - Why-Chip機能",
           "description": "なぜその記事があなたに推薦されたかを35文字以内で明確に説明。推薦理由が見えるから安心して学習できます。",
           "icon": "Eye",
-          "image": "/images/generated/solution-ai-curation.jpg"
+          "image": "/images/generated/solution-1.jpg"
         },
         {
           "title": "完全パーソナライズ",
           "description": "あなたのプロファイル・行動履歴・学習目標に基づいてAIがカスタムプロンプトを生成。本当に必要な情報だけをお届けします。",
           "icon": "Target",
-          "image": "/images/generated/solution-streamlined-delivery.jpg"
+          "image": "/images/generated/solution-2.jpg"
         },
         {
           "title": "効率的学習サイクル",
           "description": "1分でキャッチアップできる最適な情報量と、フィードバックによる継続的な精度向上で学習効果を最大化します。",
           "icon": "Zap",
-          "image": "/images/generated/solution-credibility-verification.jpg"
+          "image": "/images/generated/solution-3.jpg"
         }
       ]
     },
