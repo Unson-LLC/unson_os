@@ -9,6 +9,7 @@ import {
   Calendar, Users, Target, AlertTriangle, Brain, ChevronDown, 
   ExternalLink, Sparkles, Activity 
 } from 'lucide-react';
+import { mergeEventsAndAds } from './utils/eventIntegration';
 
 export default function PositionDetailPage() {
   const params = useParams();
@@ -41,26 +42,32 @@ export default function PositionDetailPage() {
       const ex = await fetch(`/api/positions/${positionId}/executions`, { cache: 'no-store' })
       if (ex.ok) {
         const data = await ex.json()
+        console.log('Executions data:', data.executions)
         setLogs(data.executions || [])
+      } else {
+        console.error('Executions API failed:', ex.statusText)
       }
       // google ads history (ファイルベース; あれば表示)
-      const adsRes = await fetch(`/api/positions/${positionId}/ads`, { cache: 'no-store' })
+      const adsRes = await fetch(`/api/positions/${positionId}/ads?granularity=4h`, { cache: 'no-store' })
+      console.log('Google Ads API Response Status:', adsRes.status)
       if (adsRes.ok) {
-        const { ads } = await adsRes.json()
-        if (Array.isArray(ads)) setAds(ads)
+        const adsData = await adsRes.json()
+        console.log('Google Ads API Data:', adsData)
+        if (Array.isArray(adsData.ads)) {
+          console.log('Setting ads data:', adsData.ads.length, 'items')
+          setAds(adsData.ads)
+        }
+      } else {
+        console.error('Google Ads API failed:', adsRes.statusText)
       }
     }
     load()
   }, [positionId])
   
-  const actionLogs = logs.map((e) => ({
-    time: e.time,
-    cvr: positionData.cvr,
-    sessions: positionData.sessions,
-    cpl: positionData.cpl,
-    optimization: e.summary || (e.progress !== undefined ? `フェーズ${e.phase} 進捗 ${e.progress}%` : '進捗更新'),
-    ai: e.nextActions && e.nextActions.length ? `AI: 次アクション - ${e.nextActions.join(' / ')}` : `状態: ${e.status}`,
-  }))
+  // イベントログとGoogle Ads実績を統合
+  console.log('Merging logs:', logs.length, 'ads:', ads.length)
+  const actionLogs = mergeEventsAndAds(logs, ads)
+  console.log('Merged action logs:', actionLogs.length, actionLogs)
 
   const totalSessions = Number(positionData.sessions || 0)
   const totalLeads = Number(positionData.leads || 0)
@@ -272,28 +279,59 @@ export default function PositionDetailPage() {
                 <div className="space-y-4">
                   <h3 className="font-semibold text-gray-900 flex items-center">
                     <Activity className="w-4 h-4 mr-2 text-blue-600" />
-                    {positionData.name}-001 イベントログ
-                    <BarChart3 className="w-4 h-4 ml-2 text-gray-400" />
+                    {positionData.name}-001 統合イベントログ
+                    <BarChart3 className="w-4 h-4 ml-2 text-red-400" />
+                    <span className="text-xs text-gray-500 ml-2">Google Ads実績統合済み</span>
                   </h3>
                   
                   {actionLogs.map((log, index) => (
-                    <div key={index} className="border border-gray-200 rounded-lg p-4">
+                    <div key={index} className={`border rounded-lg p-4 ${
+                      log.type === 'ads' ? 'border-gray-200 bg-gradient-to-r from-gray-50 to-red-50' : 'border-gray-200'
+                    }`}>
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-4 text-sm">
                           <div className="flex items-center text-gray-600">
-                            <Clock className="w-3 h-3 mr-1" />
+                            {log.type === 'ads' ? (
+                              <BarChart3 className="w-3 h-3 mr-1 text-red-500" />
+                            ) : (
+                              <Clock className="w-3 h-3 mr-1" />
+                            )}
                             {log.time}
                           </div>
-                          <div className="text-green-600 font-medium">CVR: {log.cvr}%</div>
-                          <div className="text-gray-600">セッション: {log.sessions}</div>
-                          <div className="text-gray-600">CPL: ¥{log.cpl}</div>
+                          {log.type === 'ads' && (
+                            <>
+                              <div className="text-red-600 font-medium">Google Ads</div>
+                              <div className="text-gray-600">Imp: {log.impressions?.toLocaleString()}</div>
+                              <div className="text-gray-600">CV: {log.conversions}</div>
+                            </>
+                          )}
+                          {log.type === 'event' && (
+                            <>
+                              <div className="text-green-600 font-medium">CVR: {positionData.cvr}%</div>
+                              <div className="text-gray-600">セッション: {positionData.sessions}</div>
+                              <div className="text-gray-600">CPL: ¥{positionData.cpl}</div>
+                            </>
+                          )}
                         </div>
-                        <Link href={`/event/${index + 1}`}>
-                          <button className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded flex items-center">
-                            詳細
-                            <ExternalLink className="w-3 h-3 ml-1" />
-                          </button>
-                        </Link>
+                        {log.type === 'event' && (
+                          <Link href={`/event/${(log.originalIndex ?? 0) + 1}`}>
+                            <button 
+                              className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded flex items-center"
+                              onClick={() => console.log('Event link clicked:', `/event/${(log.originalIndex ?? 0) + 1}`)}
+                            >
+                              詳細
+                              <ExternalLink className="w-3 h-3 ml-1" />
+                            </button>
+                          </Link>
+                        )}
+                        {log.type === 'ads' && (
+                          <Link href={`/ads-event/${encodeURIComponent(log.time)}`}>
+                            <button className="px-3 py-1 text-sm text-red-700 hover:bg-red-50 rounded flex items-center">
+                              AI分析詳細
+                              <Brain className="w-3 h-3 ml-1" />
+                            </button>
+                          </Link>
+                        )}
                       </div>
                       <div className="text-sm text-gray-800 mb-1">{log.optimization}</div>
                       <div className="flex items-start text-sm text-blue-700">
@@ -309,35 +347,6 @@ export default function PositionDetailPage() {
 
           {/* サイドバー */}
           <div className="space-y-6">
-            {/* Google Ads 履歴 */}
-            {ads.length > 0 && (
-              <div className="bg-white border border-gray-200 rounded-lg">
-                <div className="bg-gray-50 border-b border-gray-200 p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center">
-                      <BarChart3 className="w-3 h-3 text-white" />
-                    </div>
-                    <h2 className="text-lg font-semibold text-gray-900">広告履歴（Google Ads）</h2>
-                  </div>
-                  <p className="text-sm text-gray-600 mt-1">インプレッション / クリック / コスト / CV</p>
-                </div>
-                <div className="p-6 space-y-3">
-                  {ads.slice(0, 10).map((d, i) => {
-                    const ctr = d.impressions ? Math.round((d.clicks / d.impressions) * 1000) / 10 : 0
-                    const cpc = d.clicks ? Math.round((d.cost / d.clicks)) : 0
-                    return (
-                      <div key={i} className="grid grid-cols-5 gap-2 text-sm items-center border border-gray-100 rounded-lg p-3">
-                        <div className="text-gray-600">{d.date}</div>
-                        <div className="text-gray-900">Imp {d.impressions?.toLocaleString?.() || d.impressions}</div>
-                        <div className="text-gray-900">Clk {d.clicks?.toLocaleString?.() || d.clicks} <span className="text-xs text-gray-500">({ctr}%)</span></div>
-                        <div className="text-gray-900">Cost ¥{d.cost?.toLocaleString?.() || d.cost} <span className="text-xs text-gray-500">(CPC ¥{cpc})</span></div>
-                        <div className="text-gray-900">CV {d.conversions?.toLocaleString?.() || d.conversions}</div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
             {/* ユーザー行動フロー */}
             <div className="bg-white border border-gray-200 rounded-lg">
               <div className="bg-gray-50 border-b border-gray-200 p-6">

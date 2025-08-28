@@ -23,6 +23,7 @@
     "google-ads-api": "^20.0.1",
     "google-auth-library": "^9.0.0",
     "lucide-react": "^0.303.0",
+    "mastra": "^0.11.2",
     "next": "^14.0.4",
     "openai": "^5.13.1",
     "react": "^18.3.1",
