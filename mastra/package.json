@@ -1,0 +1,39 @@
+{
+  "name": "@unson-os/mastra",
+  "version": "1.0.0",
+  "description": "Mastra AI エージェント・ワークフロー統合ライブラリ（全マイクロSaaS共通）",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
+  },
+  "dependencies": {
+    "mastra": "^0.11.2",
+    "openai": "^5.13.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5.9.2",
+    "vitest": "^2.0.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./config": "./config/index.ts",
+    "./types": "./types/index.ts",
+    "./workflows/*": "./workflows/*.ts",
+    "./agents/*": "./agents/*.ts"
+  },
+  "keywords": [
+    "mastra",
+    "ai-agents", 
+    "google-ads",
+    "automation",
+    "workflow",
+    "saas"
+  ],
+  "author": "Unson LLC",
+  "license": "MIT"
+}
