@@ -15,17 +15,20 @@ export default function PositionDetailPage() {
   const [activeTimeRange, setActiveTimeRange] = useState('4h');
   const positionId = params.id as string
   const [positionData, setPositionData] = useState<any>({})
+  const [logs, setLogs] = useState<any[]>([])
   useEffect(() => {
     const load = async () => {
       const res = await fetch(`/api/positions/${positionId}`, { cache: 'no-store' })
       if (res.ok) {
         const data = await res.json()
+        const cplNum = Number(String(data.position?.cpl || 0).replace(/[^0-9]/g, ''))
         setPositionData({
           name: data.position?.name || positionId,
           cvr: data.position?.cvr || 0,
           cvrPrevious: data.position?.cvr || 0,
-          cpl: Number(String(data.position?.cpl || 0).replace(/[^0-9]/g, '')),
+          cpl: cplNum,
           leads: data.position?.leads || 0,
+          sessions: data.position?.sessions || 0,
           grade: data.position?.grade || '',
           gradeNote: '',
           aiRecommendation: data.position?.performance || '',
@@ -33,95 +36,39 @@ export default function PositionDetailPage() {
           trend: (data.position?.cvr || 0) >= 10 ? 'up' : 'down',
         })
       }
+      // executions
+      const ex = await fetch(`/api/positions/${positionId}/executions`, { cache: 'no-store' })
+      if (ex.ok) {
+        const data = await ex.json()
+        setLogs(data.executions || [])
+      }
     }
     load()
   }, [positionId])
   
-  const actionLogs = [
-    {
-      time: "15:30",
-      cvr: positionData.cvr,
-      sessions: 89,
-      cpl: positionData.cpl,
-      optimization: `最適化: キーワード3件削除 → CPL-¥25`,
-      ai: "AI: 最適化改善項目登録済み、トレンド継続調査"
-    },
-    {
-      time: "11:30",
-      cvr: positionData.cvrPrevious,
-      sessions: 156,
-      cpl: positionData.cpl + 25,
-      optimization: "最適化: 入札調整実行",
-      ai: "AI: 競合影響の可能性大、価格訴求強化を推奨"
-    },
-    {
-      time: "08:15",
-      cvr: positionData.cvrPrevious - 0.5,
-      sessions: 203,
-      cpl: positionData.cpl + 40,
-      optimization: "最適化: 広告文A/Bテスト開始",
-      ai: "AI: クリック率改善の兆候あり、継続観察"
-    }
-  ];
+  const actionLogs = logs.map((e) => ({
+    time: e.time,
+    cvr: positionData.cvr,
+    sessions: positionData.sessions,
+    cpl: positionData.cpl,
+    optimization: e.summary || (e.progress !== undefined ? `フェーズ${e.phase} 進捗 ${e.progress}%` : '進捗更新'),
+    ai: e.nextActions && e.nextActions.length ? `AI: 次アクション - ${e.nextActions.join(' / ')}` : `状態: ${e.status}`,
+  }))
 
+  const totalSessions = Number(positionData.sessions || 0)
+  const totalLeads = Number(positionData.leads || 0)
+  const convPct = totalSessions > 0 ? Math.round((totalLeads / totalSessions) * 1000) / 10 : 0
   const userFlow = [
-    {
-      stage: "Google広告",
-      count: 1247,
-      percentage: 100,
-      change: -58,
-      changePercentage: -4.7
-    },
-    {
-      stage: "ヒーロー",
-      count: 1189,
-      percentage: 95.3,
-      change: -297,
-      changePercentage: -23.8
-    },
-    {
-      stage: "価値提案",
-      count: 892,
-      percentage: 71.5,
-      change: -471,
-      changePercentage: -37.8
-    },
-    {
-      stage: "フォーム",
-      count: 421,
-      percentage: 33.7,
-      change: null,
-      changePercentage: null,
-      isConversion: true
-    }
-  ];
+    { stage: '流入', count: totalSessions, percentage: 100, change: null, changePercentage: null },
+    { stage: 'フォーム', count: totalLeads, percentage: convPct, change: null, changePercentage: null, isConversion: true },
+  ]
 
   const performanceSummary = [
-    {
-      title: "本日のCVR改善",
-      value: "+2.3%",
-      color: "text-green-600",
-      bgColor: "bg-green-50"
-    },
-    {
-      title: "週間平均CVR",
-      value: "8.5%",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
-    },
-    {
-      title: "月間リード数",
-      value: "12,847",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50"
-    },
-    {
-      title: "ROI",
-      value: "247%",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50"
-    }
-  ];
+    { title: '現在のCVR', value: `${positionData.cvr || 0}%`, color: 'text-green-600', bgColor: 'bg-green-50' },
+    { title: '累計セッション', value: String(totalSessions), color: 'text-blue-600', bgColor: 'bg-blue-50' },
+    { title: '累計リード', value: String(totalLeads), color: 'text-purple-600', bgColor: 'bg-purple-50' },
+    { title: 'CPL(概算)', value: `¥${positionData.cpl || 0}`, color: 'text-orange-600', bgColor: 'bg-orange-50' },
+  ]
 
   const getStatusColor = (status: string) => {
     switch(status) {
