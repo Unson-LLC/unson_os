@@ -1,3 +1,5 @@
+const path = require('path')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // 本番環境最適化
@@ -17,6 +19,45 @@ const nextConfig = {
   },
   
   transpilePackages: ['convex'],
+  
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // fsevents問題解決：サーバーサイドでの除外
+    if (isServer) {
+      config.externals = config.externals || []
+      config.externals.push('fsevents')
+    }
+    
+    // Mastra関連のバイナリファイル除外
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      net: false,
+      tls: false,
+      crypto: false,
+      stream: false,
+      url: false,
+      zlib: false,
+      http: false,
+      https: false,
+      assert: false,
+      os: false,
+      path: false,
+    }
+    
+    // バイナリファイルの除外ルール
+    config.module.rules.push({
+      test: /\.node$/,
+      loader: 'ignore-loader'
+    })
+    
+    // Mastraモジュールのパス解決
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'mastra': path.resolve(__dirname, '../../mastra')
+    }
+    
+    return config
+  },
   
   // 環境変数（デフォルト値設定）
   env: {

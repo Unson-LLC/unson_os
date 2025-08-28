@@ -82,7 +82,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
         product_id: params.id,
         window_hours: Number(body.windowHours || 4),
         items: items.map((d: any) => ({
-          ts_start: Number(d.ts_start ?? d.timestamp ?? Date.parse(d.datetime || d.date) || 0),
+          ts_start: Number(d.ts_start ?? d.timestamp ?? (Date.parse(d.datetime || d.date) || 0)),
           impressions: Number(d.impressions || 0),
           clicks: Number(d.clicks || 0),
           cost: Number(d.cost || 0),

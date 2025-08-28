@@ -1,5 +1,5 @@
 // Google Ads 4時間窓分析ワークフロー（リファクタリング済み）
-import { Workflow } from 'mastra'
+import { Workflow } from '@mastra/core'
 import { AdsWindow, PerformanceAnalysis } from '../types'
 import { MetricsCalculator } from '../tools/metrics-calculator'
 import { IssueDetector } from '../tools/issue-detector'

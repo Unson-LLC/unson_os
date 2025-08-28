@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 import { 
   ArrowLeft, TrendingUp, TrendingDown, BarChart3, Clock, RefreshCw, 
   Calendar, Users, Target, AlertTriangle, Brain, ChevronDown, 
-  ExternalLink, Sparkles, Activity 
+  ExternalLink, Sparkles, Activity, Minus
 } from 'lucide-react';
 import { mergeEventsAndAds } from './utils/eventIntegration';
 
@@ -18,6 +18,79 @@ export default function PositionDetailPage() {
   const [positionData, setPositionData] = useState<any>({})
   const [logs, setLogs] = useState<any[]>([])
   const [ads, setAds] = useState<any[]>([])
+  
+  // Google Adsデータを時間範囲に応じて取得
+  const loadAdsData = async (timeRange: string) => {
+    // まず実際のGoogle Ads APIを試行し、失敗時はサンプルデータにフォールバック
+    const realDataEndpoint = `/api/real-ads-data?timeRange=${timeRange}`
+    const fallbackEndpoints = {
+      '4h': '/api/test-ads-4h-data',
+      '1d': '/api/test-ads-daily-data', 
+      '1w': '/api/test-ads-weekly-data'
+    }
+    
+    try {
+      // Step 1: 実際のGoogle Ads APIを試行
+      console.log(`実際のGoogle Ads API (${timeRange}) 試行中...`)
+      const realRes = await fetch(realDataEndpoint, { cache: 'no-store' })
+      
+      if (realRes.ok) {
+        const realData = await realRes.json()
+        console.log(`実際のGoogle Ads API (${timeRange}) レスポンス:`, realData)
+        
+        if (realData.success && Array.isArray(realData.data.records)) {
+          console.log(`実際のGoogle Adsデータ取得成功 (${timeRange}):`, realData.data.records.length, '件')
+          const transformedAds = realData.data.records.map((record: any) => ({
+            date: record.date,
+            dateStr: record.dateStr,
+            timeWindow: record.timeWindow, // 4時間データのみ
+            impressions: record.impressions,
+            clicks: record.clicks,
+            cost: record.cost,
+            conversions: record.conversions,
+            ctr: record.ctr,
+            cvr: record.cvr,
+            cpc: record.cpc,
+            isRealData: true
+          }))
+          setAds(transformedAds)
+          return // 成功時は早期リターン
+        }
+      }
+      
+      // Step 2: 実API失敗時はサンプルデータにフォールバック
+      console.warn(`実際のGoogle Ads API失敗、サンプルデータにフォールバック (${timeRange})`)
+      const fallbackEndpoint = fallbackEndpoints[timeRange as keyof typeof fallbackEndpoints] || fallbackEndpoints['4h']
+      const fallbackRes = await fetch(fallbackEndpoint, { cache: 'no-store' })
+      
+      if (fallbackRes.ok) {
+        const fallbackData = await fallbackRes.json()
+        console.log(`サンプルGoogle Ads API (${timeRange}) Data:`, fallbackData)
+        if (fallbackData.success && Array.isArray(fallbackData.data.records)) {
+          console.log(`サンプルデータ取得成功 (${timeRange}):`, fallbackData.data.records.length, '件')
+          const transformedAds = fallbackData.data.records.map((record: any) => ({
+            date: record.date,
+            dateStr: record.dateStr,
+            timeWindow: record.timeWindow,
+            impressions: record.impressions,
+            clicks: record.clicks,
+            cost: record.cost,
+            conversions: record.conversions,
+            ctr: record.ctr,
+            cvr: record.cvr,
+            cpc: record.cpc,
+            isRealData: false
+          }))
+          setAds(transformedAds)
+        }
+      } else {
+        console.error(`サンプルGoogle Ads API (${timeRange}) failed:`, fallbackRes.statusText)
+      }
+    } catch (error) {
+      console.error(`Google Ads API (${timeRange}) error:`, error)
+    }
+  }
+  
   useEffect(() => {
     const load = async () => {
       const res = await fetch(`/api/positions/${positionId}`, { cache: 'no-store' })
@@ -47,41 +120,215 @@ export default function PositionDetailPage() {
       } else {
         console.error('Executions API failed:', ex.statusText)
       }
-      // google ads history (ファイルベース; あれば表示)
-      const adsRes = await fetch(`/api/positions/${positionId}/ads?granularity=4h`, { cache: 'no-store' })
-      console.log('Google Ads API Response Status:', adsRes.status)
-      if (adsRes.ok) {
-        const adsData = await adsRes.json()
-        console.log('Google Ads API Data:', adsData)
-        if (Array.isArray(adsData.ads)) {
-          console.log('Setting ads data:', adsData.ads.length, 'items')
-          setAds(adsData.ads)
-        }
-      } else {
-        console.error('Google Ads API failed:', adsRes.statusText)
-      }
+      
+      // 初期時間範囲のGoogle Adsデータを取得
+      await loadAdsData(activeTimeRange)
     }
     load()
-  }, [positionId])
+  }, [positionId, activeTimeRange])
+  
+  // 時間範囲変更時にGoogle Adsデータを再読み込み
+  useEffect(() => {
+    loadAdsData(activeTimeRange)
+  }, [activeTimeRange])
   
   // イベントログとGoogle Ads実績を統合
   console.log('Merging logs:', logs.length, 'ads:', ads.length)
   const actionLogs = mergeEventsAndAds(logs, ads)
   console.log('Merged action logs:', actionLogs.length, actionLogs)
 
-  const totalSessions = Number(positionData.sessions || 0)
-  const totalLeads = Number(positionData.leads || 0)
+  // Google Adsデータから実際の指標を計算
+  const adsMetrics = ads.reduce((acc, ad) => ({
+    totalImpressions: acc.totalImpressions + (ad.impressions || 0),
+    totalClicks: acc.totalClicks + (ad.clicks || 0),
+    totalCost: acc.totalCost + (ad.cost || 0),
+    totalConversions: acc.totalConversions + (ad.conversions || 0)
+  }), { totalImpressions: 0, totalClicks: 0, totalCost: 0, totalConversions: 0 })
+
+  // 計算された指標
+  const totalSessions = adsMetrics.totalClicks // クリック数をセッション数とみなす
+  const totalLeads = adsMetrics.totalConversions // コンバージョン数をリード数とみなす
+  const actualCVR = totalSessions > 0 ? Math.round((totalLeads / totalSessions) * 1000) / 10 : 0
+  const actualCPL = totalSessions > 0 ? Math.round(adsMetrics.totalCost / totalSessions) : 0 // CPC（Cost Per Click）として計算
+  const actualCTR = adsMetrics.totalImpressions > 0 ? Math.round((adsMetrics.totalClicks / adsMetrics.totalImpressions) * 1000) / 10 : 0
   const convPct = totalSessions > 0 ? Math.round((totalLeads / totalSessions) * 1000) / 10 : 0
+  
+  // 品質評価の計算
+  const getQualityGrade = (ctr: number, cvr: number, cpc: number): {grade: string, score: number, note: string} => {
+    let score = 0
+    let notes = []
+    
+    // CTR評価（業界平均2-5%）
+    if (ctr >= 4.0) {
+      score += 40
+      notes.push('CTR優秀')
+    } else if (ctr >= 2.0) {
+      score += 25
+      notes.push('CTR良好')
+    } else if (ctr >= 1.0) {
+      score += 15
+      notes.push('CTR平均以下')
+    } else {
+      score += 5
+      notes.push('CTR要改善')
+    }
+    
+    // CVR評価（目標1%以上）- 十分なトラフィックでのCVR 0%は致命的
+    if (cvr >= 3.0) {
+      score += 30
+      notes.push('CVR優秀')
+    } else if (cvr >= 1.0) {
+      score += 20
+      notes.push('CVR良好')
+    } else if (cvr >= 0.5) {
+      score += 10
+      notes.push('CVR平均')
+    } else if (cvr === 0) {
+      // CVR 0%の場合、トラフィック量に応じて厳しく減点
+      const hasTraffic = actualCTR > 0 // クリックがあることを示す
+      if (hasTraffic) {
+        score -= 60 // 致命的減点：トラフィックがあるのにコンバージョンなし
+        notes.push('CVR致命的課題')
+      } else {
+        score += 0
+        notes.push('CVR要改善')
+      }
+    } else {
+      score += 0
+      notes.push('CVR要改善')
+    }
+    
+    // CPC評価（業界により異なるが、100円以下を良好とする）
+    if (cpc <= 30) {
+      score += 30
+      notes.push('CPC優秀')
+    } else if (cpc <= 50) {
+      score += 20
+      notes.push('CPC良好')  
+    } else if (cpc <= 100) {
+      score += 15
+      notes.push('CPC平均')
+    } else {
+      score += 5
+      notes.push('CPC高め')
+    }
+    
+    // グレード判定
+    let grade = 'D'
+    if (score >= 85) grade = 'A+'
+    else if (score >= 75) grade = 'A'
+    else if (score >= 65) grade = 'B+'
+    else if (score >= 55) grade = 'B'
+    else if (score >= 45) grade = 'C+'
+    else if (score >= 35) grade = 'C'
+    else if (score >= 25) grade = 'D+'
+    
+    return {
+      grade,
+      score,
+      note: notes.join('、')
+    }
+  }
+  
+  const qualityEvaluation = getQualityGrade(actualCTR, actualCVR, actualCPL)
+
+  // 脱落ポイントの動的計算
+  const calculateDropOffPoints = () => {
+    const totalImpressions = adsMetrics.totalImpressions
+    const totalClicks = adsMetrics.totalClicks  
+    const totalConversions = adsMetrics.totalConversions
+    
+    if (totalImpressions === 0) {
+      return [
+        { stage: '価値提案セクション', count: 0, percentage: 0 },
+        { stage: 'フォーム入力画面', count: 0, percentage: 0 }
+      ]
+    }
+    
+    // 1. 表示からクリックまでの脱落 (CTRの逆)
+    const impressionDropOff = totalImpressions - totalClicks
+    const impressionDropOffRate = totalImpressions > 0 ? (impressionDropOff / totalImpressions * 100) : 0
+    
+    // 2. クリックからコンバージョンまでの脱落 (CVRの逆)  
+    const clickDropOff = totalClicks - totalConversions
+    const clickDropOffRate = totalClicks > 0 ? (clickDropOff / totalClicks * 100) : 0
+    
+    return [
+      { 
+        stage: '価値提案セクション', 
+        count: impressionDropOff, 
+        percentage: Math.round(impressionDropOffRate * 10) / 10 
+      },
+      { 
+        stage: 'フォーム入力画面', 
+        count: clickDropOff, 
+        percentage: Math.round(clickDropOffRate * 10) / 10 
+      }
+    ]
+  }
+  
+  const dropOffPoints = calculateDropOffPoints()
+
+  console.log('計算された指標:', {
+    totalSessions,
+    totalLeads,
+    totalCost: adsMetrics.totalCost,
+    actualCVR,
+    actualCPL,
+    actualCTR,
+    dropOffPoints,
+    rawData: adsMetrics
+  })
+
+  // 動的ステータス計算
+  const calculateDynamicStatus = () => {
+    // トレンド: CTRとCVRの組み合わせで判定
+    let trend = 'down'
+    if (actualCTR >= 4.0) trend = 'up'        // CTR優秀なら上昇
+    else if (actualCTR >= 2.0) trend = 'stable' // CTR良好なら安定
+    // それ以外（CTR 2%未満）は下降
+    
+    // ステータス: パフォーマンスに基づいて判定
+    let status = 'inactive'
+    if (qualityEvaluation.grade.includes('A')) status = 'active'
+    else if (qualityEvaluation.grade.includes('B')) status = 'warning' 
+    else if (qualityEvaluation.grade.includes('C')) status = 'paused'
+    
+    // 最終更新: 最新のGoogle Adsデータから取得
+    const latestDataDate = ads.length > 0 ? 
+      new Date(ads[0].date).toLocaleDateString('ja-JP') : 
+      new Date().toLocaleDateString('ja-JP')
+    
+    return { trend, status, lastUpdate: latestDataDate }
+  }
+  
+  const dynamicStatus = calculateDynamicStatus()
+
+  // positionDataの値をGoogle Adsデータで上書き
+  const calculatedPositionData = {
+    ...positionData,
+    cvr: actualCVR,
+    cpl: actualCPL,
+    leads: totalLeads,
+    sessions: totalSessions,
+    trend: dynamicStatus.trend,
+    status: dynamicStatus.status,
+    grade: qualityEvaluation.grade,
+    gradeNote: qualityEvaluation.note,
+    ctr: actualCTR,
+    lastUpdate: dynamicStatus.lastUpdate
+  }
   const userFlow = [
     { stage: '流入', count: totalSessions, percentage: 100, change: null, changePercentage: null },
     { stage: 'フォーム', count: totalLeads, percentage: convPct, change: null, changePercentage: null, isConversion: true },
   ]
 
   const performanceSummary = [
-    { title: '現在のCVR', value: `${positionData.cvr || 0}%`, color: 'text-green-600', bgColor: 'bg-green-50' },
+    { title: '現在のCVR', value: `${calculatedPositionData.cvr || 0}%`, color: 'text-green-600', bgColor: 'bg-green-50' },
+    { title: '現在のCTR', value: `${calculatedPositionData.ctr || 0}%`, color: 'text-indigo-600', bgColor: 'bg-indigo-50' },
     { title: '累計セッション', value: String(totalSessions), color: 'text-blue-600', bgColor: 'bg-blue-50' },
     { title: '累計リード', value: String(totalLeads), color: 'text-purple-600', bgColor: 'bg-purple-50' },
-    { title: 'CPL(概算)', value: `¥${positionData.cpl || 0}`, color: 'text-orange-600', bgColor: 'bg-orange-50' },
+    { title: 'CPC(実績)', value: `¥${calculatedPositionData.cpl || 0}`, color: 'text-orange-600', bgColor: 'bg-orange-50' },
   ]
 
   const getStatusColor = (status: string) => {
@@ -149,22 +396,31 @@ export default function PositionDetailPage() {
             </div>
           </div>
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
               {/* CVR */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">CVR</span>
                 </div>
-                <div className="text-3xl font-bold text-green-600">{positionData.cvr}%</div>
+                <div className="text-3xl font-bold text-green-600">{calculatedPositionData.cvr}%</div>
                 <div className="text-xs text-gray-500">前日比: {positionData.cvrPrevious}%</div>
               </div>
 
-              {/* CPL */}
+              {/* CTR */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">CPL</span>
+                  <span className="text-sm text-gray-600">CTR</span>
                 </div>
-                <div className="text-3xl font-bold text-gray-900">¥{positionData.cpl}</div>
+                <div className="text-3xl font-bold text-indigo-600">{calculatedPositionData.ctr}%</div>
+                <div className="text-xs text-gray-500">クリック率</div>
+              </div>
+
+              {/* CPC(実績) */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">CPC(実績)</span>
+                </div>
+                <div className="text-3xl font-bold text-gray-900">¥{calculatedPositionData.cpl}</div>
                 <div className="text-xs text-gray-500">コスト良好</div>
               </div>
 
@@ -173,7 +429,7 @@ export default function PositionDetailPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">リード数</span>
                 </div>
-                <div className="text-3xl font-bold text-gray-900">{positionData.leads}</div>
+                <div className="text-3xl font-bold text-gray-900">{calculatedPositionData.leads}</div>
                 <div className="text-xs text-gray-500">累計リード数</div>
               </div>
 
@@ -182,8 +438,8 @@ export default function PositionDetailPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">品質</span>
                 </div>
-                <div className="text-3xl font-bold text-blue-600">{positionData.grade}</div>
-                <div className="text-xs text-gray-500">{positionData.gradeNote}</div>
+                <div className="text-3xl font-bold text-blue-600">{calculatedPositionData.grade}</div>
+                <div className="text-xs text-gray-500">{calculatedPositionData.gradeNote}</div>
               </div>
             </div>
 
@@ -205,10 +461,15 @@ export default function PositionDetailPage() {
               <div className="text-center">
                 <div className="text-sm text-gray-600 mb-1">トレンド</div>
                 <div className="flex items-center justify-center text-green-600 font-medium">
-                  {positionData.trend === 'up' ? (
+                  {calculatedPositionData.trend === 'up' ? (
                     <>
-                      <TrendingUp className="w-4 h-4 mr-1" />
-                      順調↑
+                      <TrendingUp className="w-4 h-4 mr-1 text-green-600" />
+                      <span className="text-green-600">上昇↑</span>
+                    </>
+                  ) : calculatedPositionData.trend === 'stable' ? (
+                    <>
+                      <Minus className="w-4 h-4 mr-1 text-blue-600" />
+                      <span className="text-blue-600">安定→</span>
                     </>
                   ) : (
                     <>
@@ -221,17 +482,17 @@ export default function PositionDetailPage() {
               <div className="text-center">
                 <div className="text-sm text-gray-600 mb-1">ステータス</div>
                 <span className={`px-2 py-1 text-xs rounded-full ${
-                  positionData.status === 'active' ? 'bg-green-100 text-green-800 border-green-200' :
-                  positionData.status === 'warning' ? 'bg-amber-100 text-amber-800 border-amber-200' :
+                  calculatedPositionData.status === 'active' ? 'bg-green-100 text-green-800 border-green-200' :
+                  calculatedPositionData.status === 'warning' ? 'bg-amber-100 text-amber-800 border-amber-200' :
                   'bg-red-100 text-red-800 border-red-200'
                 } border`}>
-                  {positionData.status === 'active' ? '稼働中' :
-                   positionData.status === 'warning' ? '要注意' : '危険'}
+                  {calculatedPositionData.status === 'active' ? '稼働中' :
+                   calculatedPositionData.status === 'warning' ? '要注意' : '要改善'}
                 </span>
               </div>
               <div className="text-center">
                 <div className="text-sm text-gray-600 mb-1">最終更新</div>
-                <div className="text-sm font-medium text-gray-900">2025/8/22</div>
+                <div className="text-sm font-medium text-gray-900">{calculatedPositionData.lastUpdate}</div>
               </div>
             </div>
           </div>
@@ -301,18 +562,35 @@ export default function PositionDetailPage() {
                           {log.type === 'ads' && (
                             <>
                               <div className="text-red-600 font-medium">Google Ads</div>
-                              <div className="text-gray-600">Imp: {log.impressions?.toLocaleString()}</div>
-                              <div className="text-gray-600">CV: {log.conversions}</div>
+                              <div className="flex items-center space-x-4 text-sm text-gray-600">
+                                <div>📊 {log.impressions?.toLocaleString()}表示</div>
+                                <div>👆 {log.clicks}クリック</div>
+                                <div>💰 ¥{log.cost?.toLocaleString()}</div>
+                                <div className={`font-medium ${
+                                  log.conversions > 0 ? 'text-green-700' : 'text-gray-500'
+                                }`}>
+                                  🎯 {log.conversions}件成約
+                                </div>
+                              </div>
                             </>
                           )}
                           {log.type === 'event' && (
                             <>
-                              <div className="text-green-600 font-medium">CVR: {positionData.cvr}%</div>
-                              <div className="text-gray-600">セッション: {positionData.sessions}</div>
-                              <div className="text-gray-600">CPL: ¥{positionData.cpl}</div>
+                              <div className="text-green-600 font-medium">CVR: {calculatedPositionData.cvr}%</div>
+                              <div className="text-indigo-600 font-medium">CTR: {calculatedPositionData.ctr}%</div>
+                              <div className="text-gray-600">セッション: {calculatedPositionData.sessions}</div>
+                              <div className="text-gray-600">CPC: ¥{calculatedPositionData.cpl}</div>
                             </>
                           )}
                         </div>
+                        {log.type === 'ads' && (
+                          <Link href={`/ads-event/${log.time}`}>
+                            <button className="px-3 py-1 text-sm bg-red-50 text-red-700 hover:bg-red-100 rounded-full flex items-center font-medium">
+                              AI分析詳細
+                              <ExternalLink className="w-3 h-3 ml-1" />
+                            </button>
+                          </Link>
+                        )}
                         {log.type === 'event' && (
                           <Link href={`/event/${(log.originalIndex ?? 0) + 1}`}>
                             <button 
@@ -321,14 +599,6 @@ export default function PositionDetailPage() {
                             >
                               詳細
                               <ExternalLink className="w-3 h-3 ml-1" />
-                            </button>
-                          </Link>
-                        )}
-                        {log.type === 'ads' && (
-                          <Link href={`/ads-event/${encodeURIComponent(log.time)}`}>
-                            <button className="px-3 py-1 text-sm text-red-700 hover:bg-red-50 rounded flex items-center">
-                              AI分析詳細
-                              <Brain className="w-3 h-3 ml-1" />
                             </button>
                           </Link>
                         )}
@@ -396,8 +666,8 @@ export default function PositionDetailPage() {
                     <div className="text-sm">
                       <div className="font-medium text-yellow-800 mb-1">主要脱落ポイント</div>
                       <div className="text-yellow-700">
-                        1. 価値提案セクション (297人/23.8%)<br />
-                        2. フォーム入力画面 (471人/37.8%)
+                        1. {dropOffPoints[0].stage} ({dropOffPoints[0].count?.toLocaleString()}人/{dropOffPoints[0].percentage}%)<br />
+                        2. {dropOffPoints[1].stage} ({dropOffPoints[1].count?.toLocaleString()}人/{dropOffPoints[1].percentage}%)
                       </div>
                     </div>
                   </div>

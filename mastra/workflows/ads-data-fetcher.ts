@@ -1,5 +1,5 @@
 // Google Ads データ取得ワークフロー（t_wada式TDD - GREENフェーズ ベタ書き実装）
-import { Workflow } from 'mastra'
+import { Workflow } from '@mastra/core'
 import { GoogleAdsMcpClient, GoogleAdsMetric } from '../tools/google-ads-mcp-client'
 import { analyzeAdsPerformance } from './ads-analysis'
 import { AdsWindow, PerformanceAnalysis } from '../types'
