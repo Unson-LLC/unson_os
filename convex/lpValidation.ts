@@ -226,3 +226,17 @@ export const deleteSession = mutation({
     await ctx.db.delete(args.sessionId);
   },
 });
+
+// 製品名更新（サービス名移行用）
+export const updateProductName = mutation({
+  args: {
+    sessionId: v.id("lpValidationSessions"),
+    newProductName: v.string(),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.sessionId, {
+      product_name: args.newProductName,
+      updated_at: Date.now(),
+    });
+  },
+});

@@ -20,7 +20,7 @@ export default function EventDetailPage() {
     time: '15:30',
     date: '2025/08/22',
     sessionId: 'ai-coach-001',
-    positionName: 'AI-COACH',
+    positionName: 'じぶん lab',
     type: 'optimization',
     status: 'completed',
     metrics: {

@@ -20,7 +20,7 @@ describe('TimeSeriesList', () => {
       render(<TimeSeriesList {...mockProps} />);
       
       // ヘッダー確認
-      expect(screen.getByText('AI-COACH 行動ログ')).toBeInTheDocument();
+      expect(screen.getByText('じぶん lab 行動ログ')).toBeInTheDocument();
       
       // 時間範囲フィルター確認
       expect(screen.getByText('4時間')).toBeInTheDocument();

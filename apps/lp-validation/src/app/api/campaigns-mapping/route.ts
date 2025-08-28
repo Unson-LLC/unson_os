@@ -62,17 +62,17 @@ export async function GET(req: NextRequest) {
       const campaignNameLower = name.toLowerCase()
       
       if (campaignNameLower.includes('watashi') || campaignNameLower.includes('わたし') || campaignNameLower.includes('compass')) {
-        productName = 'WATASHI-COMPASS'
+        productName = 'わたしコンパス'
       } else if (campaignNameLower.includes('ai-bridge') || campaignNameLower.includes('bridge')) {
-        productName = 'AI-BRIDGE'
+        productName = '世代bridge'
       } else if (campaignNameLower.includes('ai-coach') || campaignNameLower.includes('coach')) {
-        productName = 'AI-COACH'
+        productName = 'じぶん lab'
       } else if (campaignNameLower.includes('ai-stylist') || campaignNameLower.includes('stylist')) {
-        productName = 'AI-STYLIST'
+        productName = 'きこなし'
       } else if (campaignNameLower.includes('mywa')) {
         productName = 'MYWA'
       } else if (campaignNameLower.includes('legacy') || campaignNameLower.includes('creator')) {
-        productName = 'AI-LEGACY-CREATOR'
+        productName = '想い帳'
       }
       
       // メトリクス計算
