@@ -12,6 +12,10 @@ import PricingSection from '@/components/sections/PricingSection'
 import FormSection from '@/components/sections/FormSection'
 import FinalCtaSection from '@/components/sections/FinalCtaSection'
 import FooterSection from '@/components/sections/FooterSection'
+import Analytics from '@/components/Analytics/Analytics'
+import PostHogProvider from '@/components/Analytics/PostHogProvider'
+import ScrollTracker from '@/components/Analytics/ScrollTracker'
+import ContextualTips from '@/components/CopywritingGuidance/ContextualTips'
 
 interface LandingPageTemplateProps {
   config: TemplateConfig
@@ -49,48 +53,113 @@ export default function LandingPageTemplate({ config, serviceName }: LandingPage
     console.log('Form submitted:', data)
   }
 
+  // 開発者モード設定
+  const devSettings = config.settings?.development || {}
+  const showTips = devSettings.showCopywritingTips || false
+  const tipsPosition = devSettings.copywritingTipsPosition || 'bottom'
+
+  // セクションにコンテキスト別ガイダンスを追加するヘルパー
+  const withGuidance = (
+    component: React.ReactNode,
+    context: 'hero' | 'problem' | 'solution' | 'pricing' | 'cta' | 'form'
+  ) => {
+    if (!showTips) return component
+
+    const guidance = (
+      <ContextualTips 
+        context={context} 
+        className="mx-auto max-w-4xl mb-4" 
+        maxTips={2}
+      />
+    )
+
+    if (tipsPosition === 'top') {
+      return (
+        <>
+          {guidance}
+          {component}
+        </>
+      )
+    } else {
+      return (
+        <>
+          {component}
+          {guidance}
+        </>
+      )
+    }
+  }
+
   return (
-    <main className="min-h-screen bg-white">
-      <HeroSection 
-        config={config.content.hero}
-        onCta={handleCta}
-      />
-      
-      <ProblemSection 
-        config={config.content.problem}
-      />
-      
-      <SolutionSection 
-        config={config.content.solution}
-      />
-      
-      <ServiceSection 
-        config={config.content.service}
-      />
-      
-      {config.content.pricing && (
-        <PricingSection 
-          config={config.content.pricing}
-          onCta={handleCta}
+    <PostHogProvider
+      postHogKey={config.settings?.analytics?.postHogKey}
+      postHogHost={config.settings?.analytics?.postHogHost}
+    >
+      <main className="min-h-screen bg-white">
+        <Analytics
+          serviceName={serviceName || 'unknown'}
+          config={config.settings?.analytics}
         />
-      )}
-      
-      <div id="form-section">
-        <FormSection 
-          config={config.content.form}
-          serviceName={serviceName}
-          onSubmit={handleFormSubmit}
+        <ScrollTracker />
+        
+        {withGuidance(
+          <HeroSection 
+            config={config.content.hero}
+            onCta={handleCta}
+          />,
+          'hero'
+        )}
+        
+        {withGuidance(
+          <ProblemSection 
+            config={config.content.problem}
+          />,
+          'problem'
+        )}
+        
+        {withGuidance(
+          <SolutionSection 
+            config={config.content.solution}
+          />,
+          'solution'
+        )}
+        
+        <ServiceSection 
+          config={config.content.service}
         />
-      </div>
-      
-      <FinalCtaSection 
-        config={config.content.finalCta}
-        onCta={handleCta}
-      />
+        
+        {config.content.pricing && withGuidance(
+          <PricingSection 
+            config={config.content.pricing}
+            onCta={handleCta}
+          />,
+          'pricing'
+        )}
+        
+        <div id="form-section">
+          {withGuidance(
+            <FormSection 
+              config={config.content.form}
+              serviceName={serviceName}
+              analyticsConfig={config.settings?.analytics}
+              onSubmit={handleFormSubmit}
+            />,
+            'form'
+          )}
+        </div>
+        
+        {withGuidance(
+          <FinalCtaSection 
+            config={config.content.finalCta}
+            onCta={handleCta}
+          />,
+          'cta'
+        )}
       
       <FooterSection 
         config={config.content.footer}
       />
-    </main>
+      </main>
+    </PostHogProvider>
   )
 }
