@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react'
 import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
 import { useAnalytics } from '@/components/Analytics/PostHogAnalytics'
+import { trackFormSubmission, trackCTAClick } from '@/components/Analytics/Analytics'
+import { trackFormConversion } from '@/components/Analytics/GoogleAdsTracking'
 
 interface FormSectionProps {
   config: TemplateConfig['content']['form']
@@ -62,6 +64,12 @@ export default function FormSection({ config, onSubmit, prefill }: FormSectionPr
       if (!result.success) {
         throw new Error(result.error || '送信に失敗しました')
       }
+      
+      // フォーム送信成功イベントを追跡
+      trackFormSubmission('ai-coach', 'contact')
+      
+      // Google Ads コンバージョン送信
+      trackFormConversion('ai-coach')
       
       trackEvent('survey_submit', {
         location: 'form',
