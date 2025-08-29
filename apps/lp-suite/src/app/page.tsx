@@ -9,7 +9,6 @@ import {
   DollarSign,
   Target,
   FileText,
-  TestTube,
   Zap,
   Activity,
   RefreshCw,
@@ -37,7 +36,7 @@ const mockData = {
   
   recentEvents: [
     { id: 1, type: 'success', message: 'LP生成→検証ワークフロー完了（Position ID 42）', time: '5分前', category: 'integration' },
-    { id: 2, type: 'info', message: 'PostHog A/Bテストが自動開始されました', time: '12分前', category: 'generator' },
+    
     { id: 3, type: 'warning', message: 'Google Adsキャンペーンの予算上限に近づいています', time: '15分前', category: 'validation' },
     { id: 4, type: 'success', message: 'AI最適化によりCVRが12%向上しました', time: '1時間前', category: 'optimization' },
   ]
@@ -180,28 +179,7 @@ export default function IntegratedDashboard() {
             </div>
           </div>
 
-          {/* A/Bテスト */}
-          <div className="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
-            <div className="p-5">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <ClientOnlyIcon icon={TestTube} className="h-6 w-6 text-purple-500" />
-                </div>
-                <div className="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt className="text-sm font-medium text-gray-500 truncate">A/Bテスト</dt>
-                    <dd className="flex items-baseline">
-                      <div className="text-2xl font-semibold text-gray-900">{mockData.activeTests}</div>
-                      <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
-                        <ClientOnlyIcon icon={TrendingUp} className="self-center flex-shrink-0 h-3 w-3 text-green-500" />
-                        12.5%
-                      </div>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* A/Bテストカードは廃止 */}
 
           {/* 自動最適化 */}
           <div className="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
@@ -235,7 +213,7 @@ export default function IntegratedDashboard() {
                 🚀 統合ワークフロー
               </h2>
               <p className="text-gray-600 text-sm">
-                LP生成 → 検証 → A/Bテスト → 最適化の完全自動化
+                LP生成 → 検証 → 最適化の完全自動化
               </p>
             </div>
             <div className="text-right">

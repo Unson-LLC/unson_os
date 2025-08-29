@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import { 
   BarChart3, 
   FileText, 
-  TestTube, 
   Settings,
   Menu,
   X,
@@ -45,12 +44,6 @@ const navigation = [
     href: '/trading',
     icon: TrendingUp,
     description: '最適化分析画面'
-  },
-  {
-    name: 'A/Bテスト',
-    href: '/ab-tests',
-    icon: TestTube,
-    description: 'PostHog A/Bテスト管理'
   },
   {
     name: '管理',

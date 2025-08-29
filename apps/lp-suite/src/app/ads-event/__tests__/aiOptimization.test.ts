@@ -45,7 +45,7 @@ describe('Google Ads 4時間窓 AI最適化', () => {
     expect(actions[1].type).toBe('bid_adjustment')
     expect(actions[1].description).toContain('入札単価')
     expect(actions[2].type).toBe('ad_test')
-    expect(actions[2].description).toContain('広告文A/Bテスト')
+    expect(actions[2].description).toContain('広告文最適化')
   })
   
   it('should execute optimizations via Google Ads API', async () => {
