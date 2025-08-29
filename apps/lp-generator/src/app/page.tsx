@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react'
 import { TemplateConfig } from '@/types/template'
 import LandingPageTemplate from '@/components/templates/LandingPageTemplate'
-import { RefreshCw, FileText, Folder } from 'lucide-react'
+import SettingsPanel from '@/components/SettingsPanel/SettingsPanel'
+import { RefreshCw, FileText, Folder, Settings } from 'lucide-react'
 
 export default function HomePage() {
   const [config, setConfig] = useState<TemplateConfig | null>(null)
   const [loading, setLoading] = useState(true)
   const [lastModified, setLastModified] = useState<number>(0)
+  const [showSettingsPanel, setShowSettingsPanel] = useState(false)
 
   // Load config from API
   const loadConfig = async () => {
@@ -57,6 +59,17 @@ export default function HomePage() {
     alert('Open the "configs" folder in your project directory and edit config.json with any text editor!')
   }
 
+  const handleConfigUpdate = (updates: Partial<TemplateConfig>) => {
+    if (config) {
+      setConfig({
+        ...config,
+        ...updates
+      });
+    }
+  }
+
+  const serviceName = config?.meta.title?.toLowerCase().replace(/[^a-z0-9]/g, '-') || 'lp-service';
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -91,7 +104,40 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <LandingPageTemplate config={config} />
+      {/* フローティングボタン */}
+      <button
+        onClick={() => setShowSettingsPanel(!showSettingsPanel)}
+        className="fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors"
+        title="設定パネル"
+      >
+        <Settings className="w-6 h-6" />
+      </button>
+
+      {/* 設定パネル */}
+      {showSettingsPanel && (
+        <div className="fixed inset-0 z-40 bg-black/50 flex items-start justify-end">
+          <div className="bg-white h-full w-96 shadow-xl">
+            <div className="flex items-center justify-between p-4 border-b">
+              <h2 className="text-lg font-semibold">設定</h2>
+              <button
+                onClick={() => setShowSettingsPanel(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="h-[calc(100%-73px)]">
+              <SettingsPanel
+                config={config}
+                serviceName={serviceName}
+                onConfigUpdate={handleConfigUpdate}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+      
+      <LandingPageTemplate config={config} serviceName={serviceName} />
     </div>
   )
 }

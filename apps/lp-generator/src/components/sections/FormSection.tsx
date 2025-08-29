@@ -1,18 +1,26 @@
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
+import { trackFormSubmission } from '@/components/Analytics/Analytics'
+import { trackFormConversion } from '@/components/Analytics/GoogleAdsTracking'
+import { useAnalytics } from '@/components/Analytics/PostHogAnalytics'
 
 interface FormSectionProps {
   config: TemplateConfig['content']['form']
   serviceName?: string // サービス名を受け取る
+  analyticsConfig?: {
+    googleAdsId?: string;
+    googleAdsConversionLabel?: string;
+  }
   onSubmit?: (data: Record<string, string>) => void
 }
 
-export default function FormSection({ config, serviceName, onSubmit }: FormSectionProps) {
+export default function FormSection({ config, serviceName, analyticsConfig, onSubmit }: FormSectionProps) {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const { trackFormSubmission: trackPostHogFormSubmission } = useAnalytics()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -49,6 +57,23 @@ export default function FormSection({ config, serviceName, onSubmit }: FormSecti
         throw new Error(result.error || 'エラーが発生しました')
       }
 
+      // アナリティクス追跡
+      if (serviceName) {
+        trackFormSubmission(serviceName, 'contact')
+      }
+      
+      // PostHog追跡
+      trackPostHogFormSubmission('contact')
+      
+      // Google Ads コンバージョン送信
+      if (analyticsConfig?.googleAdsId && analyticsConfig?.googleAdsConversionLabel) {
+        trackFormConversion(
+          analyticsConfig.googleAdsId,
+          analyticsConfig.googleAdsConversionLabel,
+          serviceName
+        )
+      }
+      
       // 成功処理
       setSubmitted(true)
       onSubmit?.(formData) // 既存のコールバックも呼び出し

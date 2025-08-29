@@ -151,16 +151,34 @@ export interface TemplateConfig {
     images: Record<string, string>
   }
   
+  imageGeneration?: {
+    enabled?: boolean
+    target?: string // ターゲット層
+    theme?: string // テーマ・コンセプト
+    colors?: string // ブランドカラー
+    mood?: string // ムード・雰囲気
+    style?: string // スタイル
+  }
+  
   settings?: {
     animations?: boolean
     analytics?: {
       googleAnalytics?: string
+      googleAdsId?: string
+      googleAdsConversionLabel?: string
+      postHogKey?: string
+      postHogHost?: string
       facebookPixel?: string
     }
     seo?: {
       canonicalUrl?: string
       locale?: string
       twitterHandle?: string
+    }
+    development?: {
+      showCopywritingTips?: boolean
+      copywritingTipsPosition?: 'top' | 'bottom' | 'sidebar'
+      showSectionGuides?: boolean
     }
   }
 }
