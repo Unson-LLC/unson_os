@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { TemplateConfig } from '@/types/template'
 import { trackFormSubmission, trackCTAClick } from '@/components/Analytics/Analytics'
+import { trackFormConversion } from '@/components/Analytics/GoogleAdsTracking'
 
 interface FormSectionProps {
   config: TemplateConfig['content']['form']
@@ -45,6 +46,9 @@ export default function FormSection({ config, onSubmit, compact = false }: FormS
       
       // フォーム送信成功イベントを追跡
       trackFormSubmission('mywa', 'contact')
+      
+      // Google Ads コンバージョン送信
+      trackFormConversion('mywa')
       
       onSubmit?.(formData)
       setSubmitted(true)

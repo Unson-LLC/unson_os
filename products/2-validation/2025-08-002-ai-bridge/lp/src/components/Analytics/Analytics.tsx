@@ -1,4 +1,5 @@
 import GoogleAnalytics from './GoogleAnalytics';
+import GoogleAdsTracking from './GoogleAdsTracking';
 import PostHogAnalytics from './PostHogAnalytics';
 
 interface AnalyticsProps {
@@ -13,6 +14,7 @@ export default function Analytics({
   return (
     <>
       <GoogleAnalytics measurementId={ga4MeasurementId} />
+      <GoogleAdsTracking />
       <PostHogAnalytics serviceName={serviceName} />
     </>
   );
