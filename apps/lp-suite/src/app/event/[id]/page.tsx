@@ -43,7 +43,7 @@ export default function EventDetailPage() {
       confidence: 92,
       suggestions: [
         '競合の入札強化を検知、上限入札額の調整を推奨',
-        'CTRが改善傾向、広告文のA/Bテスト継続推奨',
+        'CTRが改善傾向、広告文の最適化継続推奨',
         '時間帯別パフォーマンスに基づく配信スケジュール最適化'
       ],
       risks: [

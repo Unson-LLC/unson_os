@@ -61,29 +61,7 @@ export async function POST(request: NextRequest) {
 
     const positionResult = await positionResponse.json();
 
-    // 4. 自動A/Bテスト開始（オプション）
-    let abTestResult = null;
-    if (autoStart && validationConfig.enableAbTest) {
-      console.log('🧪 A/Bテスト自動開始:', positionData.id);
-      try {
-        const abTestResponse = await fetch(`${request.url.replace('/api/integration/generate-to-validation', '/api/integration/start-ab-test')}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            positionId: positionResult.id,
-            testConfig: validationConfig.abTestConfig || {}
-          }),
-        });
-        
-        if (abTestResponse.ok) {
-          abTestResult = await abTestResponse.json();
-        }
-      } catch (error) {
-        console.error('A/Bテスト開始エラー:', error);
-      }
-    }
+    // 4. A/Bテスト機能は廃止のためスキップ
 
     // 5. 統合結果返却
     return NextResponse.json({
@@ -109,7 +87,7 @@ export async function POST(request: NextRequest) {
       nextSteps: [
         'LP生成完了',
         '検証ポジション作成完了',
-        autoStart ? 'A/Bテスト開始完了' : 'A/Bテスト手動開始可能',
+        '最適化準備完了',
         'Google Ads連携待機中'
       ],
       timestamp: new Date().toISOString()

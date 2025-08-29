@@ -250,14 +250,14 @@ export const copywritingTips: CopywritingTip[] = [
     tags: ["速度", "パフォーマンス", "モバイル"]
   },
 
-  // A/Bテスト観点
+  // 検証・最適化の観点
   {
     id: "single-variable",
     category: "テスト",
     title: "一度に一つの要素",
-    description: "A/Bテストでは変更要素を一つに絞る",
+    description: "検証では変更要素を一つに絞る",
     examples: ["ヘッドラインのみ変更", "CTAボタンの色のみ変更"],
-    tags: ["A/Bテスト", "変数統制", "効果測定"]
+    tags: ["検証", "変数統制", "効果測定"]
   },
   {
     id: "statistical-significance",

@@ -6,7 +6,6 @@ import {
   ArrowRight, 
   FileText, 
   Target, 
-  TestTube, 
   TrendingUp,
   CheckCircle,
   Clock,
@@ -38,7 +37,7 @@ const mockWorkflows = [
     steps: [
       { id: 'gen', name: 'LP生成', description: 'AI支援LP作成完了', status: 'completed', duration: '45秒', icon: FileText },
       { id: 'val', name: '検証開始', description: 'Position ID 42で検証中', status: 'completed', duration: '30秒', icon: Target },
-      { id: 'ab', name: 'A/Bテスト', description: 'PostHog統合テスト実行中', status: 'in_progress', icon: TestTube },
+      
       { id: 'opt', name: '最適化', description: 'AI自動最適化待機', status: 'pending', icon: TrendingUp }
     ] as WorkflowStep[],
     metrics: {
@@ -57,7 +56,7 @@ const mockWorkflows = [
     steps: [
       { id: 'gen', name: 'LP生成', description: 'コピーライティング完了', status: 'completed', duration: '38秒', icon: FileText },
       { id: 'val', name: '検証開始', description: 'ドメイン設定中', status: 'in_progress', icon: Target },
-      { id: 'ab', name: 'A/Bテスト', description: '検証完了後開始予定', status: 'pending', icon: TestTube },
+      
       { id: 'opt', name: '最適化', description: 'AI最適化待機', status: 'pending', icon: TrendingUp }
     ] as WorkflowStep[]
   }
@@ -93,9 +92,7 @@ export default function IntegrationPage() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               統合ワークフロー管理
             </h1>
-            <p className="text-gray-600">
-              LP生成→検証→A/Bテスト→最適化の完全自動化プロセス
-            </p>
+            <p className="text-gray-600">LP生成→検証→最適化の完全自動化プロセス</p>
           </div>
           <div className="flex items-center space-x-4">
             <Link

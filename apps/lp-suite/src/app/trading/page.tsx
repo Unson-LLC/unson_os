@@ -290,7 +290,7 @@ export default function TradingDashboard() {
           </div>
           <div className="bg-white rounded-lg p-4">
             <h3 className="font-medium text-red-700 mb-2">🔴 最適化必要</h3>
-            <p className="text-sm text-gray-600">Position #28 の A/Bテスト実行推奨</p>
+            <p className="text-sm text-gray-600">Position #28 の 最適化実行推奨</p>
           </div>
         </div>
       </div>

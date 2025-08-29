@@ -12,7 +12,6 @@ export const metadata: Metadata = {
     'LP生成',
     'LP検証',
     'ランディングページ',
-    'A/Bテスト',
     'Google Ads',
     'PostHog',
     '自動最適化',
