@@ -4,9 +4,11 @@
   "description": "統合LP管理システム - 生成・検証・最適化の完全自動化",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3000",
+    "dev:auto": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port 3000",
+    "start:auto": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "test": "vitest",

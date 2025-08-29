@@ -1,13 +1,16 @@
 // Google Adsキャンペーンと製品の動的マッピングAPI
 import { NextRequest, NextResponse } from 'next/server'
+import { getApiBaseUrl } from '@/lib/utils'
 
 // Google Ads全キャンペーンを取得し、製品名とマッピング
 export async function GET(req: NextRequest) {
   try {
     console.log('Google Adsキャンペーン動的マッピング開始')
     
+    const baseUrl = getApiBaseUrl()
+    
     // MCPツール経由でGoogle Adsアカウント取得
-    const accountsResponse = await fetch('http://localhost:3001/api/mcp-googleads-accounts', {
+    const accountsResponse = await fetch(`${baseUrl}/api/mcp-googleads-accounts`, {
       method: 'GET',
       cache: 'no-store'
     })
@@ -30,7 +33,7 @@ export async function GET(req: NextRequest) {
     console.log(`アカウント: ${account.name} (${customerId})`)
     
     // 全キャンペーン取得
-    const campaignsResponse = await fetch('http://localhost:3001/api/mcp-googleads-query', {
+    const campaignsResponse = await fetch(`${baseUrl}/api/mcp-googleads-query`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

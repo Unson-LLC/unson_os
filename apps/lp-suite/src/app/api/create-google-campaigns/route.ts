@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getApiBaseUrl } from '@/lib/utils'
 
 // Google Adsキャンペーン作成用のAPI
 // 実際のGoogle Ads APIでキャンペーン、広告グループ、キーワード、広告を作成
@@ -152,7 +153,8 @@ export async function POST(req: NextRequest) {
     console.log('🚀 Google Adsキャンペーン一括作成開始')
     
     // MCP Google Adsツール経由でアカウント取得
-    const accountsResponse = await fetch('http://localhost:3001/api/mcp-googleads-accounts', {
+    const baseUrl = getApiBaseUrl()
+    const accountsResponse = await fetch(`${baseUrl}/api/mcp-googleads-accounts`, {
       method: 'GET',
       cache: 'no-store'
     })
