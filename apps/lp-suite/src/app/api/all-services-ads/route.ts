@@ -24,14 +24,28 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const timeRange = searchParams.get('timeRange') || '7d'
     const syncToConvex = searchParams.get('sync') === 'true'
+    const productId = searchParams.get('productId') // 特定プロダクト指定
 
-    console.log('全サービス実データ統合開始')
+    console.log('全サービス実データ統合開始', productId ? `(${productId}のみ)` : '(全サービス)')
 
     const convexSync = new ConvexSyncService()
     
+    // プロダクト指定がある場合はフィルタリング
+    const targetServices = productId 
+      ? ALL_SERVICES.filter(s => s.id === productId) 
+      : ALL_SERVICES
+      
+    if (productId && targetServices.length === 0) {
+      return NextResponse.json({
+        success: false,
+        error: `プロダクトID '${productId}' が見つかりません`,
+        availableServices: ALL_SERVICES.map(s => s.id)
+      }, { status: 404 })
+    }
+    
     const servicesData = []
 
-    for (const service of ALL_SERVICES) {
+    for (const service of targetServices) {
       let adsMetrics
 
       if (service.hasRealData) {
@@ -84,10 +98,11 @@ export async function GET(request: NextRequest) {
 
     const response = {
       success: true,
-      totalServices: ALL_SERVICES.length,
-      realDataServices: ALL_SERVICES.filter(s => s.hasRealData).length,
+      totalServices: targetServices.length,
+      realDataServices: targetServices.filter(s => s.hasRealData).length,
       source: 'google-ads-mcp-all-services',
       timeRange,
+      productId: productId || null,
       services: servicesData,
       convexSync: syncResults,
       meta: {

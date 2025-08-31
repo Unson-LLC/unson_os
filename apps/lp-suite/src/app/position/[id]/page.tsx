@@ -25,10 +25,69 @@ export default function PositionDetailPage() {
     setIsClient(true)
   }, [])
   
+  // 予測メトリクスを時系列データに変換するヘルパー関数
+  const generateMockTimeSeries = (metrics: any, timeRange: string) => {
+    const periods = timeRange === '4h' ? 6 : timeRange === '1d' ? 4 : timeRange === '1w' ? 5 : 6
+    const data = []
+    
+    for (let i = 0; i < periods; i++) {
+      const baseDate = new Date()
+      let dateStr = ''
+      let timeWindow = ''
+      
+      if (timeRange === '4h') {
+        const hoursAgo = i * 4
+        baseDate.setHours(baseDate.getHours() - hoursAgo)
+        const hour = baseDate.getHours()
+        timeWindow = `${hour}:00-${(hour + 4) % 24}:00`
+        dateStr = baseDate.toLocaleDateString('ja-JP')
+      } else if (timeRange === '1d') {
+        baseDate.setDate(baseDate.getDate() - i)
+        dateStr = baseDate.toLocaleDateString('ja-JP')
+      } else {
+        baseDate.setDate(baseDate.getDate() - (i * 7))
+        const endDate = new Date(baseDate)
+        endDate.setDate(endDate.getDate() + 6)
+        dateStr = `${baseDate.toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' })}~${endDate.toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' })}`
+      }
+      
+      // メトリクスを時系列に分散（ランダム要素を追加）
+      const variance = 0.3 + Math.random() * 0.4 // 30-70%の幅
+      const impressions = Math.floor(metrics.impressions * variance / periods)
+      const clicks = Math.floor(metrics.clicks * variance / periods)
+      const cost = Math.floor(metrics.cost * variance / periods)
+      const conversions = Math.floor(metrics.conversions * variance / periods)
+      
+      data.unshift({
+        date: baseDate.toISOString(),
+        dateStr,
+        timeWindow,
+        impressions,
+        clicks,
+        cost,
+        conversions,
+        ctr: impressions > 0 ? Math.round((clicks / impressions) * 1000) / 10 : 0,
+        cvr: clicks > 0 ? Math.round((conversions / clicks) * 1000) / 10 : 0,
+        cpc: clicks > 0 ? Math.round(cost / clicks) : 0,
+        isRealData: false // 予測データフラグ
+      })
+    }
+    
+    return data
+  }
+  
   // Google Adsデータを時間範囲に応じて取得
   const loadAdsData = async (timeRange: string) => {
-    // まず実際のGoogle Ads APIを試行し、失敗時はサンプルデータにフォールバック
-    const realDataEndpoint = `/api/real-ads-data?timeRange=${timeRange}`
+    // プロダクトIDに基づくデータ取得戦略
+    let realDataEndpoint: string
+    
+    if (positionId === 'watashi-compass') {
+      // わたしコンパスの場合: 実データAPIを使用
+      realDataEndpoint = `/api/real-ads-data?timeRange=${timeRange}`
+    } else {
+      // その他のプロダクト: 全サービスAPIから該当プロダクトのデータを取得
+      realDataEndpoint = `/api/all-services-ads?timeRange=${timeRange}&productId=${positionId}`
+    }
     const fallbackEndpoints = {
       '4h': '/api/test-ads-4h-data',
       '1d': '/api/test-ads-daily-data', 
@@ -44,7 +103,8 @@ export default function PositionDetailPage() {
         const realData = await realRes.json()
         console.log(`実際のGoogle Ads API (${timeRange}) レスポンス:`, realData)
         
-        if (realData.success && Array.isArray(realData.data.records)) {
+        // わたしコンパスの場合は既存のレスポンス形式
+        if (positionId === 'watashi-compass' && realData.success && Array.isArray(realData.data.records)) {
           console.log(`実際のGoogle Adsデータ取得成功 (${timeRange}):`, realData.data.records.length, '件')
           const transformedAds = realData.data.records.map((record: any) => ({
             date: record.date,
@@ -61,6 +121,17 @@ export default function PositionDetailPage() {
           }))
           setAds(transformedAds)
           return // 成功時は早期リターン
+        }
+        // その他のプロダクトの場合は全サービスAPIのレスポンス形式
+        else if (positionId !== 'watashi-compass' && realData.success && Array.isArray(realData.services)) {
+          const serviceData = realData.services.find((s: any) => s.productId === positionId)
+          if (serviceData) {
+            console.log(`${positionId} データ取得成功:`, serviceData)
+            // 予測データを時系列形式に変換
+            const mockTimeSeriesData = generateMockTimeSeries(serviceData.metrics, timeRange)
+            setAds(mockTimeSeriesData)
+            return
+          }
         }
       }
       
