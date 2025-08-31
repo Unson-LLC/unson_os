@@ -158,36 +158,21 @@ export async function GET(request: NextRequest) {
 }
 
 /**
- * 将来予測メトリクス生成（実データがないサービス用）
+ * 実際のメトリクス生成（実データがないサービス用）
+ * Google Adsを実行していないサービスは全て0を返す
  */
 function generatePredictiveMetrics(serviceId: string) {
-  // サービス特性に応じた予測データ
-  const serviceProfiles = {
-    'ai-bridge': { baseImpressions: 1000, baseCPC: 80, conversionPotential: 'high' },
-    'ai-coach': { baseImpressions: 800, baseCPC: 120, conversionPotential: 'medium' },
-    'ai-stylist': { baseImpressions: 1200, baseCPC: 90, conversionPotential: 'high' },
-    'mywa': { baseImpressions: 600, baseCPC: 150, conversionPotential: 'medium' },
-    'ai-legacy-creator': { baseImpressions: 400, baseCPC: 200, conversionPotential: 'low' }
-  }
-
-  const profile = serviceProfiles[serviceId] || { baseImpressions: 500, baseCPC: 100, conversionPotential: 'low' }
-  
-  // 予測アルゴリズム（わたしコンパスのパフォーマンスを基準に）
-  const predictedImpressions = profile.baseImpressions
-  const predictedClicks = Math.floor(predictedImpressions * 0.035) // 3.5% CTR予測
-  const predictedCost = predictedClicks * profile.baseCPC
-  const predictedConversions = profile.conversionPotential === 'high' ? Math.ceil(predictedClicks * 0.005) : 
-                              profile.conversionPotential === 'medium' ? Math.ceil(predictedClicks * 0.002) : 0
-
+  // 実際にGoogle Adsを実行していないサービスはすべて0
+  // 将来的にGoogle Adsを開始した場合のみ実データを表示
   return {
-    impressions: predictedImpressions,
-    clicks: predictedClicks,
-    cost: predictedCost,
-    conversions: predictedConversions,
-    cvr: predictedClicks > 0 ? Math.round((predictedConversions / predictedClicks) * 1000) / 10 : 0,
-    cpc: predictedClicks > 0 ? Math.round(predictedCost / predictedClicks * 10) / 10 : 0,
-    cpa: predictedConversions > 0 ? Math.round(predictedCost / predictedConversions) : 0,
-    status: predictedConversions > 0 ? 'active' : predictedClicks > 0 ? 'warning' : 'paused'
+    impressions: 0,
+    clicks: 0,
+    cost: 0,
+    conversions: 0,
+    cvr: 0,
+    cpc: 0,
+    cpa: 0,
+    status: 'paused' // Google Ads未実行状態
   }
 }
 

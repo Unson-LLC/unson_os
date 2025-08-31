@@ -51,12 +51,11 @@ export default function PositionDetailPage() {
         dateStr = `${baseDate.toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' })}~${endDate.toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' })}`
       }
       
-      // メトリクスを時系列に分散（ランダム要素を追加）
-      const variance = 0.3 + Math.random() * 0.4 // 30-70%の幅
-      const impressions = Math.floor(metrics.impressions * variance / periods)
-      const clicks = Math.floor(metrics.clicks * variance / periods)
-      const cost = Math.floor(metrics.cost * variance / periods)
-      const conversions = Math.floor(metrics.conversions * variance / periods)
+      // Google Adsを実行していない場合は全て0
+      const impressions = 0
+      const clicks = 0 
+      const cost = 0
+      const conversions = 0
       
       data.unshift({
         date: baseDate.toISOString(),
