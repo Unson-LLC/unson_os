@@ -2,7 +2,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import EventDetailModal from '@/components/EventDetailModal';
-import { mockEventDetails, mockAIAnalysis } from '../__mocks__/trading-data';
+import { mockEventDetails, mockAIAnalysis } from './__mocks__/trading-data';
 
 describe('EventDetailModal', () => {
   const mockProps = {

@@ -84,6 +84,24 @@ export const getWindowMetricsByProduct = query({
   },
 });
 
+export const clearWindowMetricsByProduct = mutation({
+  args: {
+    product_id: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db
+      .query("adsWindowMetrics")
+      .withIndex("by_product_ts", (q) => q.eq("product_id", args.product_id))
+      .collect();
+    
+    for (const record of existing) {
+      await ctx.db.delete(record._id);
+    }
+    
+    return { deleted: existing.length };
+  },
+});
+
 export const importWindowMetrics = mutation({
   args: {
     workspace_id: v.string(),
