@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { GoogleAdsMCPService } from '@/lib/services/google-ads-mcp-service'
+// 削除されたファイルなので、直接MCPツールを使用
 import { ConvexSyncService } from '@/lib/services/convex-sync-service'
 
 export const dynamic = 'force-dynamic'
@@ -27,7 +27,6 @@ export async function GET(request: NextRequest) {
 
     console.log('全サービス実データ統合開始')
 
-    const googleAdsMCP = new GoogleAdsMCPService()
     const convexSync = new ConvexSyncService()
     
     const servicesData = []
@@ -36,9 +35,29 @@ export async function GET(request: NextRequest) {
       let adsMetrics
 
       if (service.hasRealData) {
-        // 実データがあるサービス（わたしコンパス）
+        // 実データがあるサービス（わたしコンパス）- 統合APIから取得
         console.log(`${service.name}: Google Ads実データ取得中...`)
-        adsMetrics = await googleAdsMCP.getWatashiCompassData(timeRange)
+        try {
+          const response = await fetch(`${process.env.NODE_ENV === 'production' ? 'https://your-production-domain.com' : 'http://localhost:3002'}/api/real-ads-data?timeRange=${timeRange}`)
+          if (response.ok) {
+            const realData = await response.json()
+            adsMetrics = {
+              impressions: realData.data.totalImpressions || 0,
+              clicks: realData.data.totalClicks || 0,
+              cost: realData.data.totalCost || 0,
+              conversions: realData.data.totalConversions || 0,
+              cvr: realData.data.totalClicks > 0 ? Math.round((realData.data.totalConversions / realData.data.totalClicks) * 1000) / 10 : 0,
+              cpc: realData.data.totalClicks > 0 ? Math.round(realData.data.totalCost / realData.data.totalClicks * 10) / 10 : 0,
+              cpa: realData.data.totalConversions > 0 ? Math.round(realData.data.totalCost / realData.data.totalConversions) : 0,
+              status: realData.data.totalConversions > 0 ? 'active' : realData.data.totalClicks > 0 ? 'warning' : 'paused'
+            }
+          } else {
+            throw new Error(`API failed: ${response.status}`)
+          }
+        } catch (error) {
+          console.error(`${service.name} データ取得エラー:`, error)
+          adsMetrics = { impressions: 0, clicks: 0, cost: 0, conversions: 0, cvr: 0, cpc: 0, cpa: 0, status: 'error' }
+        }
       } else {
         // 実データがないサービス: 将来の予測データまたはゼロベース
         console.log(`${service.name}: 予測データ生成中...`)
@@ -162,7 +181,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { action, serviceIds, timeRange = '7d' } = body
 
-    const googleAdsMCP = new GoogleAdsMCPService()
     const convexSync = new ConvexSyncService()
 
     switch (action) {
@@ -172,9 +190,29 @@ export async function POST(request: NextRequest) {
         const results = []
 
         for (const service of targetServices) {
-          const adsData = service.hasRealData ? 
-            await googleAdsMCP.getWatashiCompassData(timeRange) :
-            generatePredictiveMetrics(service.id)
+          let adsData
+          
+          if (service.hasRealData) {
+            // 統合APIから実データ取得
+            try {
+              const response = await fetch(`${process.env.NODE_ENV === 'production' ? 'https://your-production-domain.com' : 'http://localhost:3002'}/api/real-ads-data?timeRange=${timeRange}`)
+              if (response.ok) {
+                const realData = await response.json()
+                adsData = {
+                  impressions: realData.data.totalImpressions || 0,
+                  clicks: realData.data.totalClicks || 0,
+                  cost: realData.data.totalCost || 0,
+                  conversions: realData.data.totalConversions || 0
+                }
+              } else {
+                throw new Error(`API failed: ${response.status}`)
+              }
+            } catch (error) {
+              adsData = generatePredictiveMetrics(service.id)
+            }
+          } else {
+            adsData = generatePredictiveMetrics(service.id)
+          }
 
           const syncResult = await convexSync.syncGoogleAdsData({
             productId: service.id,

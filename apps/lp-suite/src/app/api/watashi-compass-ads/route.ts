@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { GoogleAdsMCPService } from '@/lib/services/google-ads-mcp-service'
+// 削除されたファイルなので、統合APIを使用
 import { ConvexSyncService } from '@/lib/services/convex-sync-service'
 
 export const dynamic = 'force-dynamic'
@@ -15,14 +15,29 @@ export async function GET(request: NextRequest) {
     const timeRange = searchParams.get('timeRange') || '30d'
     const syncToConvex = searchParams.get('sync') === 'true'
 
-    // Google Ads MCPサービス初期化
-    const googleAdsMCP = new GoogleAdsMCPService()
+    // 統合サービス初期化
     const convexSync = new ConvexSyncService()
 
     console.log(`わたしコンパス Google Adsデータ取得開始 (${timeRange})`)
 
-    // Step 1: Google Ads実データ取得
-    const adsMetrics = await googleAdsMCP.getWatashiCompassData(timeRange)
+    // Step 1: 統合APIから実データ取得
+    const response = await fetch(`${process.env.NODE_ENV === 'production' ? 'https://your-production-domain.com' : 'http://localhost:3002'}/api/real-ads-data?timeRange=${timeRange}`)
+    
+    if (!response.ok) {
+      throw new Error(`統合API呼び出し失敗: ${response.status}`)
+    }
+    
+    const realData = await response.json()
+    const adsMetrics = {
+      impressions: realData.data.totalImpressions || 0,
+      clicks: realData.data.totalClicks || 0,
+      cost: realData.data.totalCost || 0,
+      conversions: realData.data.totalConversions || 0,
+      cvr: realData.data.totalClicks > 0 ? Math.round((realData.data.totalConversions / realData.data.totalClicks) * 1000) / 10 : 0,
+      cpc: realData.data.totalClicks > 0 ? Math.round(realData.data.totalCost / realData.data.totalClicks * 10) / 10 : 0,
+      cpa: realData.data.totalConversions > 0 ? Math.round(realData.data.totalCost / realData.data.totalConversions) : 0,
+      status: realData.data.totalConversions > 0 ? 'active' : realData.data.totalClicks > 0 ? 'warning' : 'paused'
+    }
     
     console.log('取得したGoogle Adsメトリクス:', {
       clicks: adsMetrics.clicks,
