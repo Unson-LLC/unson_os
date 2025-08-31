@@ -18,6 +18,12 @@ export default function PositionDetailPage() {
   const [positionData, setPositionData] = useState<any>({})
   const [logs, setLogs] = useState<any[]>([])
   const [ads, setAds] = useState<any[]>([])
+  const [isClient, setIsClient] = useState(false)
+  
+  // クライアントサイドでのみHydrationを完了
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   
   // Google Adsデータを時間範囲に応じて取得
   const loadAdsData = async (timeRange: string) => {
@@ -96,19 +102,46 @@ export default function PositionDetailPage() {
       const res = await fetch(`/api/positions/${positionId}`, { cache: 'no-store' })
       if (res.ok) {
         const data = await res.json()
-        const cplNum = Number(String(data.position?.cpl || 0).replace(/[^0-9]/g, ''))
+        let finalPositionData = data.position
+        
+        // わたしコンパスの場合はMCP Google Ads実データを取得・優先
+        if (positionId === 'watashi-compass') {
+          try {
+            const adsRes = await fetch('/api/watashi-compass-ads?timeRange=7d&sync=true', { cache: 'no-store' })
+            if (adsRes.ok) {
+              const adsData = await adsRes.json()
+              console.log('詳細ページMCP Google Ads データ:', adsData)
+              
+              const ads = adsData.data
+              finalPositionData = {
+                ...finalPositionData,
+                // Google Ads実データを優先使用
+                cvr: ads.cvr || 0,
+                sessions: ads.totalClicks || 0,
+                leads: ads.totalConversions || 0,
+                cpl: ads.cpc || 0,
+                status: ads.status || 'warning'
+              }
+              console.log('わたしコンパス実データ統合完了:', finalPositionData)
+            }
+          } catch (error) {
+            console.warn('MCP Google Ads取得エラー:', error)
+          }
+        }
+        
+        const cplNum = Number(String(finalPositionData?.cpl || 0).replace(/[^0-9]/g, ''))
         setPositionData({
-          name: data.position?.name || positionId,
-          cvr: data.position?.cvr || 0,
-          cvrPrevious: data.position?.cvr || 0,
+          name: finalPositionData?.name || positionId,
+          cvr: finalPositionData?.cvr || 0,
+          cvrPrevious: finalPositionData?.cvr || 0,
           cpl: cplNum,
-          leads: data.position?.leads || 0,
-          sessions: data.position?.sessions || 0,
-          grade: data.position?.grade || '',
+          leads: finalPositionData?.leads || 0,
+          sessions: finalPositionData?.sessions || 0,
+          grade: finalPositionData?.grade || '',
           gradeNote: '',
-          aiRecommendation: data.position?.performance || '',
-          status: data.position?.status || 'active',
-          trend: (data.position?.cvr || 0) >= 10 ? 'up' : 'down',
+          aiRecommendation: finalPositionData?.performance || '',
+          status: finalPositionData?.status || 'active',
+          trend: (finalPositionData?.cvr || 0) >= 10 ? 'up' : 'down',
         })
       }
       // executions
@@ -145,13 +178,16 @@ export default function PositionDetailPage() {
     totalConversions: acc.totalConversions + (ad.conversions || 0)
   }), { totalImpressions: 0, totalClicks: 0, totalCost: 0, totalConversions: 0 })
 
-  // 計算された指標
-  const totalSessions = adsMetrics.totalClicks // クリック数をセッション数とみなす
-  const totalLeads = adsMetrics.totalConversions // コンバージョン数をリード数とみなす
+  // 計算された指標 - Google Ads実データを優先して使用
+  const totalSessions = adsMetrics.totalClicks || positionData.sessions || 0
+  const totalLeads = adsMetrics.totalConversions || positionData.leads || 0
   const actualCVR = totalSessions > 0 ? Math.round((totalLeads / totalSessions) * 1000) / 10 : 0
-  const actualCPL = totalSessions > 0 ? Math.round(adsMetrics.totalCost / totalSessions) : 0 // CPC（Cost Per Click）として計算
+  
+  // CPC/CPA (Google Adsデータから算出)
+  const actualCPL = totalSessions > 0 ? Math.round(adsMetrics.totalCost / totalSessions) : 0
+  
   const actualCTR = adsMetrics.totalImpressions > 0 ? Math.round((adsMetrics.totalClicks / adsMetrics.totalImpressions) * 1000) / 10 : 0
-  const convPct = totalSessions > 0 ? Math.round((totalLeads / totalSessions) * 1000) / 10 : 0
+  const convPct = actualCVR
   
   // 品質評価の計算
   const getQualityGrade = (ctr: number, cvr: number, cpc: number): {grade: string, score: number, note: string} => {
@@ -349,6 +385,15 @@ export default function PositionDetailPage() {
       default: return 'bg-gray-50 text-gray-700 border-gray-200';
     }
   };
+
+  // Hydrationエラーを防ぐため、クライアントサイドでのみレンダリング
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

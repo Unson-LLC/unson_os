@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateLP, LPGenerationPrompt } from '@/lib/lp-generator';
+import { generateFullLP as generateLP, LPGenerationPrompt } from '@/lib/lp-generator';
 import { ulid } from 'ulid';
 
 export async function POST(request: NextRequest) {

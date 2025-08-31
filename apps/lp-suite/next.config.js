@@ -5,6 +5,7 @@ const nextConfig = {
   // 本番環境最適化
   compress: true,
   poweredByHeader: false,
+  reactStrictMode: false,
   
   experimental: {
     optimizePackageImports: ['lucide-react'],

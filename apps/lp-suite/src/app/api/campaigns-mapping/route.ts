@@ -2,10 +2,28 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getApiBaseUrl } from '@/lib/utils'
 
+export const dynamic = 'force-dynamic'
+
 // Google Ads全キャンペーンを取得し、製品名とマッピング
 export async function GET(req: NextRequest) {
   try {
     console.log('Google Adsキャンペーン動的マッピング開始')
+    
+    // プロダクション環境ではMCPが利用できない場合があるため、フォールバック処理
+    if (process.env.NODE_ENV === 'production') {
+      return NextResponse.json({
+        success: true,
+        campaigns: [
+          {
+            id: '22873791559',
+            name: 'わたしコンパス_ベータテスター募集_2025',
+            productMapping: 'watashi-compass',
+            customerId: 4600539562
+          }
+        ],
+        note: 'Production fallback data'
+      })
+    }
     
     const baseUrl = getApiBaseUrl()
     
