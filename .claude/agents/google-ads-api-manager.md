@@ -99,3 +99,109 @@ ACCESS_TOKEN=$(curl -s -X POST \
 - 入札戦略変更後の配信安定性向上
 
 必要に応じて `/Users/ksato/Documents/GitHub/Unson-LLC/unson_os/docs/business-strategy/marketing/advertising/` 配下のナレッジベースを参照してください。
+
+## 🚀 配信開始完全チェックリスト
+
+### 📋 キャンペーン作成から配信開始まで
+
+**フェーズ1: キャンペーン基本設定**
+- [ ] キャンペーン名の設定
+- [ ] 日予算の設定（¥3,000など）
+- [ ] 地域ターゲティング設定（日本）
+- [ ] ネットワーク設定（検索のみ推奨）
+
+**フェーズ2: 広告グループ・広告作成**
+- [ ] 広告グループ名の設定
+- [ ] 広告作成（ヘッドライン・説明文）
+- [ ] 広告の承認確認：`policy_summary.approval_status = APPROVED`
+
+**フェーズ3: キーワード設定**
+- [ ] 基本キーワードの追加
+- [ ] マッチタイプ設定（PHRASE推奨）
+- [ ] キーワード別入札価格設定（50円程度）
+
+**フェーズ4: 入札戦略設定 ⚠️最重要⚠️**
+- [ ] 入札戦略タイプ選択（TARGET_SPEND推奨）
+- [ ] 上限CPC設定（50円 = 50,000,000マイクロ）
+- [ ] **入札戦略システム状態確認**: `LEARNING_NEW`または`ELIGIBLE`
+- [ ] ⚠️ `UNAVAILABLE`の場合は修正必須 - 配信されない
+
+**フェーズ5: 配信開始前最終確認**
+
+必須ステータス確認：
+```sql
+-- キャンペーン確認
+SELECT campaign.status, campaign.serving_status, campaign.bidding_strategy_system_status, campaign.bidding_strategy_type 
+FROM campaign WHERE campaign.id = {CAMPAIGN_ID}
+```
+
+**期待する結果:**
+- `campaign.status = ENABLED`
+- `campaign.serving_status = SERVING`
+- `campaign.bidding_strategy_system_status = LEARNING_NEW` または `ELIGIBLE`
+- `campaign.bidding_strategy_type = TARGET_SPEND`
+
+```sql
+-- 広告グループ確認
+SELECT ad_group.name, ad_group.status FROM ad_group WHERE campaign.id = {CAMPAIGN_ID}
+```
+
+**期待する結果:**
+- `ad_group.status = ENABLED`
+
+```sql
+-- 広告確認
+SELECT ad_group_ad.status, ad_group_ad.policy_summary.approval_status 
+FROM ad_group_ad WHERE ad_group.id = {AD_GROUP_ID}
+```
+
+**期待する結果:**
+- `ad_group_ad.status = ENABLED`
+- `ad_group_ad.policy_summary.approval_status = APPROVED`
+
+```sql
+-- キーワード確認
+SELECT ad_group_criterion.status, ad_group_criterion.keyword.text 
+FROM keyword_view WHERE ad_group.id = {AD_GROUP_ID}
+```
+
+**期待する結果:**
+- `ad_group_criterion.status = ENABLED`
+
+### ⚠️ よくある配信停止原因と対処法
+
+**1. 入札戦略システム = UNAVAILABLE**
+- 原因: 入札戦略が正しく設定されていない
+- 対処: TARGET_SPENDに変更、上限CPC設定
+
+**2. 広告 = DISAPPROVED**
+- 原因: 広告ポリシー違反
+- 対処: 広告文修正・再審査申請
+
+**3. キーワード = PAUSED**
+- 原因: 手動停止または自動停止
+- 対処: 手動で有効化、品質スコア改善
+
+**4. 予算不足**
+- 原因: 日予算が低すぎる
+- 対処: 日予算増額（最低¥1,000推奨）
+
+### 📊 配信開始確認指標
+
+**15-30分後に確認すべき項目:**
+```sql
+SELECT metrics.impressions, metrics.clicks, metrics.cost_micros, segments.hour 
+FROM campaign WHERE campaign.id = {CAMPAIGN_ID} AND segments.date = TODAY
+```
+
+**健全な配信の目安:**
+- インプレッション > 0（最重要）
+- 1時間以内に表示回数が発生
+- CTR > 1%（初期段階）
+
+### 🔧 緊急時の配信復旧手順
+
+1. **bidding_strategy_system_status**を最優先確認
+2. UNAVAILABLE → TARGET_SPEND変更
+3. 15分待機してインプレッション確認
+4. それでも配信されない場合はキーワード・広告ステータス確認
