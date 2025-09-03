@@ -7,6 +7,7 @@ export interface EventLog {
   cvr?: number
   sessions?: number
   cpl?: number
+  cpc?: number
   optimization: string
   ai: string
   // Google Ads specific
@@ -14,8 +15,12 @@ export interface EventLog {
   clicks?: number
   cost?: number
   conversions?: number
+  ctr?: number
   // Event specific
   originalIndex?: number
+  ctrRating?: string
+  cvrRating?: string
+  performanceEmoji?: string
 }
 
 export interface AdsData {
@@ -50,8 +55,8 @@ export function formatGoogleAdsEvent(ads: AdsData): EventLog {
   const cvrRating = parseFloat(cvr) >= 8.0 ? 'good' : parseFloat(cvr) >= 4.0 ? 'average' : 'poor'
   const performanceEmoji = cvrRating === 'good' ? '🎯' : cvrRating === 'average' ? '📊' : '⚠️'
   
-  // 時刻表示（4時間間隔は短縮形、それ以外はそのまま）
-  const displayTime = ads.timeWindow ? `${ads.dateStr} ${ads.timeWindow.split(':')[0]}h~` : ads.dateStr || date
+  // 時刻表示（4時間間隔表示）
+  const displayTime = ads.timeWindow ? `${ads.dateStr} ${ads.timeWindow}` : ads.dateStr || date
   
   return {
     time: displayTime,
@@ -92,8 +97,10 @@ export function mergeEventsAndAds(events: any[], adsData: AdsData[]): EventLog[]
   
   // ベタ書きで時系列ソート（新しい順）
   allLogs.sort((a, b) => {
-    const timeA = new Date(a.sortTime || a.time).getTime()
-    const timeB = new Date(b.sortTime || b.time).getTime()
+    const aTime = (a as any).sortTime || a.time
+    const bTime = (b as any).sortTime || b.time
+    const timeA = new Date(aTime).getTime()
+    const timeB = new Date(bTime).getTime()
     return timeB - timeA // 降順に変更（新しい→古い）
   })
   

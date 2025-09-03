@@ -1,6 +1,13 @@
 import { cronJobs } from "convex/server";
+import { api } from "./_generated/api";
 
-// 一時的に全スケジュールを無効化（未実装の関数参照によるデプロイ失敗回避）
-// 必要なジョブ実装が揃い次第、ここで再度登録します。
 const crons = cronJobs();
+
+// 🟢 GREEN: 最小実装 - 4時間毎Google Adsデータ同期
+crons.interval(
+  "ads-sync", 
+  { hours: 4 }, 
+  api.ads.syncGoogleAdsData
+);
+
 export default crons;
