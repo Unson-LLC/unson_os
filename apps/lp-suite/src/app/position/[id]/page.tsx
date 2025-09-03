@@ -77,15 +77,25 @@ export default function PositionDetailPage() {
   
   // Google Adsデータを時間範囲に応じて取得
   const loadAdsData = async (timeRange: string) => {
-    // プロダクトIDに基づくデータ取得戦略
-    let realDataEndpoint: string
+    // 🔵 REFACTOR: 全てのプロダクトで統一したtime-series-real-data APIを使用
+    const productIdMap: { [key: string]: string } = {
+      'mywa': 'MYWA',
+      'watashi-compass': 'WATASHI-COMPASS'
+    }
     
-    if (positionId === 'watashi-compass') {
-      // わたしコンパスの場合: 実データAPIを使用
-      realDataEndpoint = `/api/real-ads-data?timeRange=${timeRange}`
+    const productId = productIdMap[positionId] || positionId.toUpperCase()
+    
+    // 時間範囲に応じてAPIエンドポイントを動的に変更
+    let realDataEndpoint: string
+    if (timeRange === '1d') {
+      // 日次データAPI（過去7日間）
+      realDataEndpoint = `/api/daily-ads-data?productId=${productId}&days=7`
+    } else if (timeRange === '1w') {
+      // 週次データAPI（過去4週間）
+      realDataEndpoint = `/api/weekly-ads-data?productId=${productId}&weeks=4`
     } else {
-      // その他のプロダクト: 全サービスAPIから該当プロダクトのデータを取得
-      realDataEndpoint = `/api/all-services-ads?timeRange=${timeRange}&productId=${positionId}`
+      // 4時間ウィンドウデータAPI
+      realDataEndpoint = `/api/time-series-real-data?date=2025-09-03&interval=4h&format=raw-data&productId=${productId}`
     }
     const fallbackEndpoints = {
       '4h': '/api/test-ads-4h-data',
@@ -102,35 +112,60 @@ export default function PositionDetailPage() {
         const realData = await realRes.json()
         console.log(`実際のGoogle Ads API (${timeRange}) レスポンス:`, realData)
         
-        // わたしコンパスの場合は既存のレスポンス形式
-        if (positionId === 'watashi-compass' && realData.success && Array.isArray(realData.data.records)) {
-          console.log(`実際のGoogle Adsデータ取得成功 (${timeRange}):`, realData.data.records.length, '件')
-          const transformedAds = realData.data.records.map((record: any) => ({
-            date: record.date,
-            dateStr: record.dateStr,
-            timeWindow: record.timeWindow, // 4時間データのみ
-            impressions: record.impressions,
-            clicks: record.clicks,
-            cost: record.cost,
-            conversions: record.conversions,
-            ctr: record.ctr,
-            cvr: record.cvr,
-            cpc: record.cpc,
-            isRealData: true
-          }))
+        // 🔵 REFACTOR: 時間範囲に応じたデータ処理
+        if (realData.success && Array.isArray(realData.data)) {
+          console.log(`実際のGoogle Adsデータ取得成功 (${positionId}):`, realData.data.length, '件')
+          
+          let transformedAds
+          if (timeRange === '1d') {
+            // 日次データの場合
+            transformedAds = realData.data.map((record: any) => ({
+              date: record.date,
+              dateStr: record.dateStr,
+              timeWindow: record.timeWindow, // "全日"
+              impressions: record.impressions,
+              clicks: record.clicks,
+              cost: record.cost,
+              conversions: record.conversions,
+              ctr: record.ctr,
+              cvr: record.cvr,
+              cpc: record.cpc,
+              isRealData: true
+            }))
+          } else if (timeRange === '1w') {
+            // 週次データの場合
+            transformedAds = realData.data.map((record: any) => ({
+              date: record.date,
+              dateStr: record.dateStr,
+              timeWindow: record.timeWindow, // "週間"
+              impressions: record.impressions,
+              clicks: record.clicks,
+              cost: record.cost,
+              conversions: record.conversions,
+              ctr: record.ctr,
+              cvr: record.cvr,
+              cpc: record.cpc,
+              isRealData: true
+            }))
+          } else {
+            // 4時間ウィンドウデータの場合
+            transformedAds = realData.data.slice(0, 6).map((record: any, index: number) => ({
+              date: new Date(Date.now() - index * 4 * 60 * 60 * 1000).toISOString(),
+              dateStr: new Date(Date.now() - index * 4 * 60 * 60 * 1000).toLocaleDateString('ja-JP'),
+              timeWindow: record.timeSlot, // "20h~0h" 形式
+              impressions: record.impressions,
+              clicks: record.clicks,
+              cost: record.cost,
+              conversions: record.conversions,
+              ctr: record.ctr,
+              cvr: record.cvr,
+              cpc: record.cpc,
+              isRealData: true
+            })).reverse() // 時系列順に並び替え
+          }
+          
           setAds(transformedAds)
           return // 成功時は早期リターン
-        }
-        // その他のプロダクトの場合は全サービスAPIのレスポンス形式
-        else if (positionId !== 'watashi-compass' && realData.success && Array.isArray(realData.services)) {
-          const serviceData = realData.services.find((s: any) => s.productId === positionId)
-          if (serviceData) {
-            console.log(`${positionId} データ取得成功:`, serviceData)
-            // 予測データを時系列形式に変換
-            const mockTimeSeriesData = generateMockTimeSeries(serviceData.metrics, timeRange)
-            setAds(mockTimeSeriesData)
-            return
-          }
         }
       }
       
