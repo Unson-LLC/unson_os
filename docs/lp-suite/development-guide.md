@@ -500,8 +500,8 @@ const monitoring = {
   },
   
   alerts: {
-    critical: "Discord + Slack + Email",
-    warning: "Slack",
+    critical: "Discord + Email",
+    warning: "Discord",
     info: "Dashboard only"
   }
 }
@@ -518,9 +518,11 @@ const monitoring = {
 - [Playwright Testing](https://playwright.dev/)
 
 ### 開発チーム連絡先
-- **技術的質問**: #lp-suite-dev (Slack)
+- **技術的質問**: Discord #lp-suite-dev
 - **バグ報告**: GitHub Issues
 - **緊急連絡**: Discord #urgent-issues
+
+> **変更履歴**: プロジェクト進行中にSlack→Discordコミュニティ運用に移行
 
 **最終更新**: 2025年9月4日  
 **ガイドバージョン**: v2.0

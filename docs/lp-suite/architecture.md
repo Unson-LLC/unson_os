@@ -74,9 +74,9 @@ graph TB
 // Next.js 14 App Router
 - TypeScript: 型安全性確保
 - Tailwind CSS: レスポンシブUI
-- Shadcn/ui: 一貫性のあるコンポーネント
+- shadcn/ui: 一貫性のあるコンポーネント（HeadlessUIから変更）
 - React Hook Form + Zod: フォーム管理・バリデーション
-- Recharts: 時系列データ可視化
+- Chart.js + React-Chartjs-2: 時系列データ可視化（Rechartsから変更）
 ```
 
 ### Backend Infrastructure  

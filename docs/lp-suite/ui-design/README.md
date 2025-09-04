@@ -45,7 +45,7 @@
 - コントラスト比4.5:1以上
 
 ### 4. 一貫性
-- Shadcn/uiコンポーネント活用
+- shadcn/uiコンポーネント活用（HeadlessUIから変更）
 - 統一されたインタラクション
 - 予測可能な動作
 
@@ -55,9 +55,9 @@
 const techStack = {
   framework: "Next.js 14 (App Router)",
   styling: "Tailwind CSS",
-  components: "Shadcn/ui",
+  components: "shadcn/ui", // HeadlessUIから変更
   icons: "Lucide React",
-  charts: "Recharts",
+  charts: "Chart.js + React-Chartjs-2", // Rechartsから変更
   forms: "React Hook Form + Zod",
   state: "React State + Convex",
   animation: "Framer Motion (一部)"
@@ -144,4 +144,4 @@ App
 ---
 
 **最終更新**: 2025年9月4日  
-**UIフレームワーク**: Next.js 14 + Tailwind CSS + Shadcn/ui
+**UIフレームワーク**: Next.js 14 + Tailwind CSS + shadcn/ui
