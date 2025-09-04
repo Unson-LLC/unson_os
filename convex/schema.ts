@@ -272,8 +272,8 @@ export default defineSchema({
 
   // 既存テーブル
   discordApplications: defineTable({
-    workspace_id: v.string(),
-    application_id: v.string(),
+    workspace_id: v.optional(v.string()), // 既存データに合わせて一時的にオプション
+    application_id: v.optional(v.string()), // 既存データに合わせてオプション
     email: v.string(),
     name: v.string(),
     reasons: v.array(v.string()),
@@ -291,8 +291,8 @@ export default defineSchema({
     .index("by_workspace", ["workspace_id"]),
     
   careerApplications: defineTable({
-    workspace_id: v.string(),
-    application_id: v.string(),
+    workspace_id: v.optional(v.string()), // 既存データに合わせてオプション
+    application_id: v.optional(v.string()), // 既存データに合わせてオプション
     name: v.string(),
     email: v.string(),
     position: v.string(),
@@ -317,8 +317,8 @@ export default defineSchema({
     .index("by_workspace", ["workspace_id"]),
     
   contacts: defineTable({
-    workspace_id: v.string(),
-    contact_id: v.string(),
+    workspace_id: v.optional(v.string()), // 既存データに合わせてオプション
+    contact_id: v.optional(v.string()), // 既存データに合わせてオプション
     name: v.string(),
     email: v.string(),
     company: v.optional(v.string()),
@@ -336,8 +336,8 @@ export default defineSchema({
     .index("by_workspace", ["workspace_id"]),
     
   productRequests: defineTable({
-    workspace_id: v.string(),
-    request_id: v.string(),
+    workspace_id: v.optional(v.string()), // 既存データに合わせてオプション
+    request_id: v.optional(v.string()), // 既存データに合わせてオプション
     name: v.string(),
     email: v.string(),
     productType: v.string(),
@@ -385,8 +385,8 @@ export default defineSchema({
     .index("by_workspace", ["workspace_id"]),
     
   waitlist: defineTable({
-    workspace_id: v.string(),
-    waitlist_id: v.string(),
+    workspace_id: v.optional(v.string()), // 既存データに合わせてオプション
+    waitlist_id: v.optional(v.string()), // 既存データに合わせてオプション
     email: v.string(),
     name: v.optional(v.string()),
     company: v.optional(v.string()),
@@ -454,7 +454,7 @@ export default defineSchema({
   playbookRuns: defineTable({
     workspace_id: v.string(),
     product_id: v.string(), // AI-BRIDGE, MYWA, AI-COACH, etc.
-    productName: v.string(),
+    productName: v.string(), // 設計書では productName を使用
     playbookId: v.string(), // pb-001
     phase: v.number(), // 0=planning, 1=validation, 2=development, 3=active
     status: v.union(v.literal("planned"), v.literal("running"), v.literal("completed"), v.literal("failed")),
@@ -511,7 +511,7 @@ export default defineSchema({
 
   phaseReviews: defineTable({
     workspace_id: v.string(),
-    product_id: v.string(),
+    product_id: v.string(), // 設計書: productId → product_id
     productName: v.string(),
     phase: v.number(),
     status: v.union(v.literal("in_progress"), v.literal("completed"), v.literal("gate_passed"), v.literal("gate_failed")),
@@ -586,11 +586,11 @@ export default defineSchema({
     .index("by_product_status", ["product_id", "status"])
     .index("by_campaign_id", ["campaign_id"]),
 
-  // アラート管理テーブル  
+  // アラート管理テーブル（設計書準拠版）
   alerts: defineTable({
     workspace_id: v.string(),
     alert_id: v.string(),
-    product_id: v.optional(v.string()),
+    product_id: v.string(), // 設計書に合わせて必須に変更
     alert_type: v.union(
       v.literal("cvr_below_threshold"),
       v.literal("cpa_above_threshold"), 
@@ -613,10 +613,9 @@ export default defineSchema({
       v.literal("resolved"),
       v.literal("dismissed")
     ),
-    // アラート条件
+    // 設計書追加フィールド
     threshold_value: v.optional(v.number()),
     current_value: v.optional(v.number()),
-    // 関連データ
     session_id: v.optional(v.string()),
     campaign_id: v.optional(v.string()),
     // 解決情報
