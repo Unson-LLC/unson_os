@@ -1,6 +1,6 @@
 // Google Ads最適化エージェント（リファクタリング済み）
-import { Agent } from '@mastra/core'
-import { mastraConfig } from '../config'
+import { Agent } from '@mastra/core/agent'
+import { openaiModel } from '../config'
 import { OPTIMIZATION_SAFETY_LIMITS, ADS_ANALYSIS_THRESHOLDS } from '../config/constants'
 import { OptimizationActionGenerator } from '../tools/optimization-action-generator'
 import { PerformanceAnalysis, OptimizationAction } from '../types'
@@ -23,12 +23,11 @@ const createAgentInstructions = () => `
 export const adsOptimizerAgent = new Agent({
   name: 'google-ads-optimizer',
   instructions: createAgentInstructions(),
-  model: mastraConfig.providers.openai,
-  tools: [
-    {
-      name: 'analyze_performance',
+  model: openaiModel,
+  tools: {
+    analyze_performance: {
       description: 'パフォーマンス指標を分析して問題を特定',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           current_window: { type: 'object' },
@@ -36,10 +35,9 @@ export const adsOptimizerAgent = new Agent({
         }
       }
     },
-    {
-      name: 'generate_optimizations',
+    generate_optimizations: {
       description: '最適化アクションを生成',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           analysis: { type: 'object' },
@@ -58,10 +56,9 @@ export const adsOptimizerAgent = new Agent({
         }
       }
     },
-    {
-      name: 'execute_google_ads_action',
+    execute_google_ads_action: {
       description: 'Google Ads APIを使って実際の最適化を実行',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           action_type: { type: 'string' },
@@ -70,7 +67,7 @@ export const adsOptimizerAgent = new Agent({
         }
       }
     }
-  ]
+  }
 })
 
 export async function generateOptimizationActions(analysis: PerformanceAnalysis): Promise<OptimizationAction[]> {

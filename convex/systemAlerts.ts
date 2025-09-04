@@ -11,10 +11,9 @@ export const createAlert = mutation({
       v.literal("cvr_dropped"),
       v.literal("automation_failed"),
       v.literal("phase_gate_ready"),
-      v.literal("budget_depleted"),
-      v.literal("budget_exceeded"),
-      v.literal("high_cpa"),
-      v.literal("low_performance")
+      v.literal("phase_transition_ready"),
+      v.literal("playbook_step_failed"),
+      v.literal("budget_depleted")
     ),
     severity: v.union(
       v.literal("critical"),
@@ -124,10 +123,14 @@ export const getActiveAlerts = query({
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
-    let query = ctx.db.query("systemAlerts");
+    let query;
     
     if (args.workspaceId) {
-      query = query.withIndex("by_workspace", (q) => q.eq("workspace_id", args.workspaceId));
+      query = ctx.db
+        .query("systemAlerts")
+        .withIndex("by_workspace", (q) => q.eq("workspace_id", args.workspaceId));
+    } else {
+      query = ctx.db.query("systemAlerts");
     }
     
     const alerts = await query.collect();

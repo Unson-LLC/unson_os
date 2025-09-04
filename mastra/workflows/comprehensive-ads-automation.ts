@@ -1,5 +1,6 @@
 // 包括的Google Ads自動化ワークフロー（AI判断による全操作対応）
-import { Workflow } from '@mastra/core'
+import { createWorkflow, createStep } from '@mastra/core/workflows'
+import { z } from 'zod'
 import { fetchAndAnalyzeAds } from './ads-data-fetcher'
 import { 
   comprehensiveAdsAgent, 
@@ -40,38 +41,44 @@ export interface ComprehensiveAutomationResult {
   status: 'success' | 'partial' | 'failed'
 }
 
-// 包括的AI自動化ワークフロー
-export const comprehensiveAdsAutomationWorkflow = new Workflow({
-  name: 'comprehensive-ads-automation',
-  triggerSchema: {
-    customerId: Number,
-    loginCustomerId: Number,
-    productId: String,
-    businessGoals: Array,
-    constraints: Object,
-    dryRun: Boolean
+const comprehensiveAnalysisStep = createStep({
+  id: 'comprehensive-analysis',
+  inputSchema: z.object({
+    customerId: z.number(),
+    loginCustomerId: z.number(),
+    productId: z.string(),
+    businessGoals: z.array(z.string()),
+    constraints: z.any(),
+    dryRun: z.boolean()
+  }),
+  outputSchema: z.any(),
+  execute: async ({ inputData }) => {
+    const { customerId, loginCustomerId, productId } = inputData
+    
+    // 1. 基本パフォーマンス分析
+    const basicAnalysis = await fetchAndAnalyzeAds(customerId, loginCustomerId, productId)
+    
+    // 2. 詳細データ収集（キャンペーン、キーワード、オーディエンス等）
+    const detailedData = await gatherDetailedCampaignData(customerId, loginCustomerId)
+    
+    return { 
+      ...inputData,
+      basicAnalysis, 
+      detailedData,
+      analysisTimestamp: new Date().toISOString()
+    }
   }
 })
-.step('comprehensive-analysis', async (context) => {
-  const { customerId, loginCustomerId, productId } = context.data
-  
-  // 1. 基本パフォーマンス分析
-  const basicAnalysis = await fetchAndAnalyzeAds(customerId, loginCustomerId, productId)
-  
-  // 2. 詳細データ収集（キャンペーン、キーワード、オーディエンス等）
-  const detailedData = await gatherDetailedCampaignData(customerId, loginCustomerId)
-  
-  return { 
-    basicAnalysis, 
-    detailedData,
-    analysisTimestamp: new Date().toISOString()
-  }
-})
-.step('ai-strategy-generation', async (context) => {
-  const { basicAnalysis, detailedData, businessGoals, constraints } = context.data
-  
-  // AIエージェントに包括的戦略立案を依頼
-  const aiPrompt = `
+
+const aiStrategyGenerationStep = createStep({
+  id: 'ai-strategy-generation',
+  inputSchema: z.any(),
+  outputSchema: z.any(),
+  execute: async ({ inputData }) => {
+    const { basicAnalysis, detailedData, businessGoals, constraints } = inputData
+    
+    // AIエージェントに包括的戦略立案を依頼
+    const aiPrompt = `
 Google Ads アカウントの包括的最適化戦略を立案してください。
 
 ## 分析結果
@@ -98,95 +105,44 @@ ${businessGoals.join(', ')}
 5. 実行順序を最適化
 
 analyze_comprehensive_performance と generate_optimization_strategy ツールを使用してください。
-  `
-  
-  const aiResponse = await comprehensiveAdsAgent.generate(aiPrompt)
-  
-  // AI回答から構造化された最適化アクションを生成
-  const comprehensiveActions = await generateComprehensiveOptimizations(
-    basicAnalysis.analysis,
-    detailedData,
-    { businessGoals, constraints }
-  )
-  
-  return { 
-    ...context.data,
-    aiStrategy: aiResponse,
-    comprehensiveActions
-  }
-})
-.step('risk-assessment', async (context) => {
-  const { comprehensiveActions, constraints } = context.data
-  
-  // リスク評価とフィルタリング
-  const assessedActions = comprehensiveActions.map((action: ComprehensiveOptimizationAction) => {
-    const riskScore = calculateRiskScore(action, constraints)
-    return { ...action, calculatedRisk: riskScore }
-  })
-  
-  // リスク許容度に基づくフィルタリング
-  const filteredActions = filterActionsByRisk(assessedActions, constraints.riskTolerance)
-  
-  // 1日の変更上限を適用
-  const limitedActions = filteredActions.slice(0, constraints.maxDailyChanges)
-  
-  return {
-    ...context.data,
-    finalActions: limitedActions,
-    riskAssessment: {
-      totalProposed: comprehensiveActions.length,
-      afterRiskFilter: filteredActions.length,
-      finalCount: limitedActions.length
+    `
+    
+    const aiResponse = await comprehensiveAdsAgent.generate(aiPrompt)
+    
+    // AI回答から構造化された最適化アクションを生成
+    const comprehensiveActions = await generateComprehensiveOptimizations(
+      basicAnalysis.analysis,
+      detailedData,
+      { businessGoals, constraints }
+    )
+    
+    return { 
+      ...inputData,
+      aiStrategy: aiResponse,
+      comprehensiveActions
     }
   }
-})
-.step('comprehensive-execution', async (context) => {
-  const { customerId, loginCustomerId, finalActions, dryRun } = context.data
-  
-  const executor = new GoogleAdsComprehensiveExecutor({
-    customerId: String(customerId),
-    loginCustomerId: String(loginCustomerId)
-  })
-  
-  const executionResults: ComprehensiveExecutionResult[] = []
-  
-  // アクションを優先度順に実行
-  const sortedActions = finalActions.sort((a: any, b: any) => {
-    const priorityOrder = { high: 3, medium: 2, low: 1 }
-    return priorityOrder[b.priority] - priorityOrder[a.priority]
-  })
-  
-  for (const action of sortedActions) {
-    try {
-      if (dryRun) {
-        executionResults.push({
-          success: true,
-          message: `[DRY RUN] ${action.description}`,
-          category: action.category,
-          actionType: action.type
-        })
-      } else {
-        const result = await executor.executeComprehensiveAction(action)
-        executionResults.push(result)
-      }
-    } catch (error: any) {
-      executionResults.push({
-        success: false,
-        message: `実行エラー: ${error.message}`,
-        category: action.category,
-        actionType: action.type,
-        error: error.message
-      })
-    }
-  }
-  
-  return { ...context.data, executionResults }
 })
 
-// メイン実行関数
+export const comprehensiveAdsAutomationWorkflow = createWorkflow({
+  id: 'comprehensive-ads-automation',
+  inputSchema: z.object({
+    customerId: z.number(),
+    loginCustomerId: z.number(),
+    productId: z.string(),
+    businessGoals: z.array(z.string()),
+    constraints: z.any(),
+    dryRun: z.boolean()
+  }),
+  outputSchema: z.any()
+})
+.then(comprehensiveAnalysisStep)
+.then(aiStrategyGenerationStep)
+.commit()
+
 export async function runComprehensiveAutomation(config: ComprehensiveAutomationConfig): Promise<ComprehensiveAutomationResult> {
-  const result = await comprehensiveAdsAutomationWorkflow.execute(config)
-  const data = result.data
+  const result = await comprehensiveAdsAutomationWorkflow.execute({ inputData: config } as any)
+  const data = result
   
   const successfulActions = data.executionResults?.filter((r: any) => r.success).length || 0
   const totalActions = data.finalActions?.length || 0
@@ -229,40 +185,6 @@ async function gatherDetailedCampaignData(customerId: number, loginCustomerId: n
     audiences: [],
     extensions: []
   }
-}
-
-function calculateRiskScore(action: ComprehensiveOptimizationAction, constraints: any): number {
-  const riskFactors = {
-    high: 3,
-    medium: 2,
-    low: 1
-  }
-  
-  const baseRisk = riskFactors[action.riskLevel]
-  
-  // カテゴリ別追加リスク
-  const categoryRisk = {
-    'campaigns': 0.5,    // キャンペーン変更は影響大
-    'budgets': 0.4,      // 予算変更は慎重に
-    'keywords': 0.2,     // キーワードは比較的安全
-    'ads': 0.1,         // 広告は最も安全
-    'audiences': 0.3,    // オーディエンス変更は中リスク
-    'extensions': 0.1    // 表示オプションは低リスク
-  }
-  
-  return baseRisk + (categoryRisk[action.category] || 0)
-}
-
-function filterActionsByRisk(actions: any[], riskTolerance: string): any[] {
-  const maxRiskThresholds = {
-    'conservative': 2.0,
-    'balanced': 3.0,
-    'aggressive': 4.0
-  }
-  
-  const threshold = maxRiskThresholds[riskTolerance] || 2.0
-  
-  return actions.filter(action => action.calculatedRisk <= threshold)
 }
 
 function aggregateEstimatedImprovements(actions: ComprehensiveOptimizationAction[]): Record<string, string> {

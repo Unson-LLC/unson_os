@@ -14,8 +14,10 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as ads from "../ads.js";
+import type * as alerts from "../alerts.js";
 import type * as automation from "../automation.js";
 import type * as automationExecutions from "../automationExecutions.js";
+import type * as campaigns from "../campaigns.js";
 import type * as careers from "../careers.js";
 import type * as contacts from "../contacts.js";
 import type * as crons from "../crons.js";
@@ -43,8 +45,10 @@ import type * as waitlist from "../waitlist.js";
  */
 declare const fullApi: ApiFromModules<{
   ads: typeof ads;
+  alerts: typeof alerts;
   automation: typeof automation;
   automationExecutions: typeof automationExecutions;
+  campaigns: typeof campaigns;
   careers: typeof careers;
   contacts: typeof contacts;
   crons: typeof crons;

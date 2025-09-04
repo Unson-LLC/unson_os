@@ -58,6 +58,34 @@ ACCESS_TOKEN=$(curl -s -X POST \
 
 ## タスク実行例
 
+### キャンペーン削除（REMOVED）タスク
+対象キャンペーンを削除（REMOVED）に変更します（履歴は保持され復元不可）。
+
+手順:
+1. 認証（上記の手順1〜2）
+2. `campaigns:mutate` で `remove` オペレーションを実行
+
+REST例（v19）:
+```bash
+curl -X POST \
+  "https://googleads.googleapis.com/v19/customers/${CUSTOMER_ID}/campaigns:mutate" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "developer-token: ${GOOGLE_ADS_DEVELOPER_TOKEN}" \
+  -H "login-customer-id: ${GOOGLE_ADS_LOGIN_CUSTOMER_ID}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "operations": [
+      { "remove": "customers/'"${CUSTOMER_ID}""/campaigns/'"${CAMPAIGN_ID}"'" }
+    ]
+  }'
+```
+
+リポジトリ内スクリプト:
+```bash
+scripts/google-ads-remove-campaign.sh <customer_id> <login_customer_id> <campaign_id>
+# 例: scripts/google-ads-remove-campaign.sh 4600539562 4600539562 22950806618
+```
+
 ### キーワード最適化タスク
 1. 現在のキーワードパフォーマンスを分析
 2. 3語以上のキーワードを特定し停止

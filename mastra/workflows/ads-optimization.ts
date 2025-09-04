@@ -1,36 +1,66 @@
-// Google Ads完全自動最適化パイプライン（リファクタリング済み）
-import { Workflow } from '@mastra/core'
+// Google Ads完全自動最適化パイプライン（最新Mastra API版）
+import { createWorkflow, createStep } from '@mastra/core/workflows'
+import { z } from 'zod'
 import { analyzeAdsPerformance } from './ads-analysis'
 import { adsOptimizerAgent, generateOptimizationActions } from '../agents/ads-optimizer'
 import { OptimizationExecutor } from '../tools/optimization-executor'
 import { AdsWindow, OptimizationAction, OptimizationResult, OptimizationRecord } from '../types'
 
-export const adsOptimizationWorkflow = new Workflow({
-  name: 'ads-optimization-pipeline',
-  triggerSchema: {
-    currentWindow: Object,
-    previousWindow: Object,
-    productId: String
+// ステップ定義
+const analyzeStep = createStep({
+  id: 'analyze',
+  inputSchema: z.object({
+    currentWindow: z.any(),
+    previousWindow: z.any(),
+    productId: z.string()
+  }),
+  outputSchema: z.any(),
+  execute: async ({ inputData }) => {
+    const { currentWindow, previousWindow } = inputData
+    const analysis = await analyzeAdsPerformance(currentWindow, previousWindow)
+    return { analysis }
   }
 })
-.step('analyze', async (context) => {
-  const { currentWindow, previousWindow } = context.data
-  const analysis = await analyzeAdsPerformance(currentWindow, previousWindow)
-  return { analysis }
+
+const generateActionsStep = createStep({
+  id: 'generate-actions',
+  inputSchema: z.any(),
+  outputSchema: z.any(),
+  execute: async ({ inputData }) => {
+    const { analysis } = inputData
+    const actions = await generateOptimizationActions(analysis)
+    return { analysis, actions }
+  }
 })
-.step('generate-actions', async (context) => {
-  const { analysis } = context.data
-  const actions = await generateOptimizationActions(analysis)
-  return { analysis, actions }
+
+const executeOptimizationsStep = createStep({
+  id: 'execute-optimizations',
+  inputSchema: z.any(),
+  outputSchema: z.any(),
+  execute: async ({ inputData }) => {
+    const { actions } = inputData
+    const results = await OptimizationExecutor.executeOptimizations(actions, { 
+      dryRun: true, 
+      logExecution: true 
+    })
+    return { results }
+  }
 })
-.step('execute-optimizations', async (context) => {
-  const { actions } = context.data
-  const results = await OptimizationExecutor.executeOptimizations(actions, { 
-    dryRun: true, 
-    logExecution: true 
-  })
-  return { results }
+
+// ワークフロー定義
+export const adsOptimizationWorkflow = createWorkflow({
+  id: 'ads-optimization-pipeline',
+  inputSchema: z.object({
+    currentWindow: z.any(),
+    previousWindow: z.any(),
+    productId: z.string()
+  }),
+  outputSchema: z.any()
 })
+.then(analyzeStep)
+.then(generateActionsStep)
+.then(executeOptimizationsStep)
+.commit()
 
 export async function executeFullOptimization(
   currentWindow: AdsWindow, 
@@ -38,22 +68,12 @@ export async function executeFullOptimization(
   productId: string
 ) {
   const result = await adsOptimizationWorkflow.execute({
-    currentWindow,
-    previousWindow,
-    productId
-  })
+    inputData: {
+      currentWindow,
+      previousWindow,
+      productId
+    }
+  } as any)
   
-  return result.data
-}
-
-export async function executeOptimizations(optimizations: OptimizationAction[]): Promise<OptimizationResult[]> {
-  return OptimizationExecutor.executeOptimizations(optimizations)
-}
-
-export function createOptimizationRecord(
-  windowData: AdsWindow,
-  actions: OptimizationAction[],
-  results: OptimizationResult[]
-): OptimizationRecord {
-  return OptimizationExecutor.createOptimizationRecord(windowData, actions, results)
+  return result as OptimizationRecord
 }

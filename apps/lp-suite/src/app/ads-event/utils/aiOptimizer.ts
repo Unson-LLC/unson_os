@@ -9,8 +9,8 @@
 // } from '../../../../../../mastra'
 
 // 一時的なモック関数（ビルド修正まで）
-const analyzeAdsPerformance = async (data: any) => ({ analysis: 'Mock analysis' })
-const generateOptimizationActions = async (analysis: any) => [{ type: 'mock', description: 'Mock action' }]
+const analyzeAdsPerformance = (data: any, previousData?: any) => ({ analysis: 'Mock analysis' })
+const generateOptimizationActions = (analysis: any) => [{ type: 'mock', description: 'Mock action' }]
 const executeOptimizations = async (actions: any) => []
 const createOptimizationRecord = async (record: any) => record
 const executeFullOptimization = async (config: any) => ({ status: 'success', message: 'Mock optimization' })

@@ -253,6 +253,8 @@ export const createStepExecution = mutation({
       success_achieved: args.success_achieved,
       retry_count: args.retry_count,
       started_at: args.started_at,
+      execution_details: {},
+      output_results: {},
       created_at: now,
       updated_at: now,
     };

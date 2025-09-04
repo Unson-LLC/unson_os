@@ -18,6 +18,7 @@
     "validate-config": "node scripts/validate-config.js"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.23",
     "chart.js": "^4.5.0",
     "chokidar": "^4.0.3",
     "class-variance-authority": "^0.7.0",

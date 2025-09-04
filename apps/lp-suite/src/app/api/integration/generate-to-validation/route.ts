@@ -71,7 +71,6 @@ export async function POST(request: NextRequest) {
       results: {
         lpGeneration: {
           success: true,
-          configPath: generationResult.configPath,
           stats: generationResult.stats
         },
         validation: {
@@ -79,10 +78,7 @@ export async function POST(request: NextRequest) {
           url: `${request.url.replace('/api/integration/generate-to-validation', '')}/position/${positionResult.id}`,
           status: 'active'
         },
-        abTest: abTestResult ? {
-          testId: abTestResult.testId,
-          status: 'started'
-        } : null
+        abTest: null
       },
       nextSteps: [
         'LP生成完了',

@@ -31,7 +31,7 @@ const TimeSeriesList: React.FC<TimeSeriesListProps> = ({
   // 無限スクロールのハンドリング
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    const nearBottom = isNearBottom(scrollTop, scrollHeight, clientHeight, SCROLL_THRESHOLD);
+    const nearBottom = scrollTop + clientHeight >= scrollHeight - SCROLL_THRESHOLD;
     
     if (nearBottom && hasMore && !loading && onLoadMore) {
       onLoadMore();
@@ -91,7 +91,7 @@ const TimeSeriesList: React.FC<TimeSeriesListProps> = ({
         
         {/* 時間範囲フィルター */}
         <div className="flex items-center gap-1 mt-3">
-          {(Object.values(TIME_RANGES) as const).map((range) => (
+          {Object.values(TIME_RANGES).map((range) => (
             <button
               key={range}
               className={cn(
@@ -131,12 +131,12 @@ const TimeSeriesList: React.FC<TimeSeriesListProps> = ({
             {events.map((event, index) => (
               <React.Fragment key={event.id}>
                 {/* 日付区切り */}
-                {shouldShowDateSeparator(event.timestamp, events[index - 1]?.timestamp) && (
+                {shouldShowDateSeparator(new Date(event.timestamp), events[index - 1] ? new Date(events[index - 1].timestamp) : null) && (
                   <div 
                     data-testid="date-separator"
                     className="bg-gray-100 px-6 py-2 text-sm text-gray-600 text-center border-t border-gray-300"
                   >
-                    ─────────────── {formatDateSeparator(event.timestamp)} ───────────────
+                    ─────────────── {formatDateSeparator(new Date(event.timestamp))} ───────────────
                   </div>
                 )}
                 
@@ -162,8 +162,8 @@ const TimeSeriesList: React.FC<TimeSeriesListProps> = ({
                         <Clock className="w-4 h-4" />
                         🕐 {event.time}
                       </span>
-                      <span className={cn(commonStyles.textSm, commonStyles.fontMedium, getTrendColor(event.cvr, event.previousCvr))}>
-                        CVR: {event.cvr}% {getTrendArrow(event.cvr, event.previousCvr)}
+                      <span className={cn(commonStyles.textSm, commonStyles.fontMedium, getTrendColor('down'))}>
+                        CVR: {event.cvr}% {getTrendArrow('down')}
                       </span>
                       <span className="text-sm text-gray-600">
                         セッション: {event.sessions}

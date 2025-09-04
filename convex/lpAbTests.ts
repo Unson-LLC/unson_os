@@ -12,7 +12,7 @@ export const createAbTest = mutation({
     variant_configs: v.array(v.object({
       config_id: v.string(),
       traffic_percentage: v.number(),
-      label: v.string(),
+      name: v.string(),
       description: v.optional(v.string()),
     })),
     primary_metric: v.string(),
@@ -126,7 +126,7 @@ export const startAbTest = mutation({
         rollout: 100,
         variants: [
           { key: "control", rollout: 100 - test.variant_configs.reduce((s, v) => s + v.traffic_percentage, 0) },
-          ...test.variant_configs.map(v => ({ key: v.label, rollout: v.traffic_percentage }))
+          ...test.variant_configs.map(v => ({ key: v.name, rollout: v.traffic_percentage }))
         ]
       },
       success: true, // TODO: 実際のPostHog API呼び出し後に更新
@@ -194,7 +194,7 @@ export const updateAbTestResults = mutation({
         revenue: v.optional(v.number()),
       }),
       variants: v.array(v.object({
-        label: v.string(),
+        name: v.string(),
         sessions: v.number(),
         conversions: v.number(),
         conversion_rate: v.number(),
@@ -303,14 +303,18 @@ export const getAbTests = query({
     )),
   },
   handler: async (ctx, args) => {
-    let query = ctx.db.query("lpAbTests");
+    let query;
     
     if (args.product_id) {
-      query = query.withIndex("by_workspace_product", (q) => 
-        q.eq("workspace_id", args.workspace_id).eq("product_id", args.product_id)
-      );
+      query = ctx.db
+        .query("lpAbTests")
+        .withIndex("by_workspace_product", (q) => 
+          q.eq("workspace_id", args.workspace_id).eq("product_id", args.product_id)
+        );
     } else {
-      query = query.filter((q) => q.eq(q.field("workspace_id"), args.workspace_id));
+      query = ctx.db
+        .query("lpAbTests")
+        .filter((q) => q.eq(q.field("workspace_id"), args.workspace_id));
     }
     
     if (args.status) {

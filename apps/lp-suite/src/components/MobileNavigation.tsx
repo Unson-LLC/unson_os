@@ -16,25 +16,29 @@ const MobileNavigation = () => {
       href: '/',
       icon: Home,
       label: 'ダッシュボード',
-      isActive: pathname === '/'
+      isActive: pathname === '/',
+      badge: 0
     },
     {
       href: '/analytics',
       icon: BarChart3,
       label: '分析',
-      isActive: pathname.startsWith('/analytics')
+      isActive: pathname.startsWith('/analytics'),
+      badge: 0
     },
     {
       href: '/activity',
       icon: Activity,
       label: 'アクティビティ',
-      isActive: pathname.startsWith('/activity')
+      isActive: pathname.startsWith('/activity'),
+      badge: 0
     },
     {
       href: '/domains',
       icon: Globe,
       label: 'ドメイン',
-      isActive: pathname.startsWith('/domains')
+      isActive: pathname.startsWith('/domains'),
+      badge: 0
     }
   ];
 

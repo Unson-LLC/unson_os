@@ -42,14 +42,14 @@ export const list = query({
     if (args.status && args.type) {
       contacts = await ctx.db
         .query("contacts")
-        .withIndex("by_status", (q) => q.eq("status", args.status))
+        .withIndex("by_status", (q) => q.eq("status", args.status as "new" | "in_progress" | "resolved" | "closed"))
         .filter((q) => q.eq(q.field("type"), args.type))
         .order("desc")
         .take(args.limit || 50);
     } else if (args.status) {
       contacts = await ctx.db
         .query("contacts")
-        .withIndex("by_status", (q) => q.eq("status", args.status))
+        .withIndex("by_status", (q) => q.eq("status", args.status as "new" | "in_progress" | "resolved" | "closed"))
         .order("desc")
         .take(args.limit || 50);
     } else if (args.type) {

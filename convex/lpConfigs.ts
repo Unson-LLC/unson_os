@@ -6,6 +6,11 @@ export const createLPConfig = mutation({
   args: {
     workspace_id: v.string(),
     product_id: v.string(),
+    name: v.optional(v.string()),
+    description: v.optional(v.string()),
+    is_control: v.optional(v.boolean()),
+    is_active: v.optional(v.boolean()),
+    created_by: v.string(),
     config: v.object({
       meta: v.object({
         title: v.string(),
@@ -39,8 +44,6 @@ export const createLPConfig = mutation({
         images: v.optional(v.any()),
       })),
     }),
-    created_by: v.string(),
-    is_active: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const now = Date.now();
@@ -66,17 +69,14 @@ export const createLPConfig = mutation({
       workspace_id: args.workspace_id,
       config_id,
       product_id: args.product_id,
-      version: 1,
+      name: args.name || `Config ${config_id}`,
+      description: args.description,
+      content: args.config,
+      version: "1",
+      is_control: args.is_control || false,
       is_active: args.is_active || false,
-      meta: args.config.meta,
-      theme: args.config.theme,
-      content: args.config.content,
-      settings: args.config.settings,
-      assets: args.config.assets,
-      optimization_history: [],
       created_at: now,
       updated_at: now,
-      created_by: args.created_by,
     });
     
     // productsテーブルのactive_lp_config_idを更新（アクティブな場合）
@@ -215,21 +215,23 @@ export const updateLPConfig = mutation({
     
     // 設定更新
     if (args.updates.config) {
+      const newContent = { ...config.content };
       if (args.updates.config.meta) {
-        updateData.meta = { ...config.meta, ...args.updates.config.meta };
+        newContent.meta = { ...newContent.meta, ...args.updates.config.meta };
       }
       if (args.updates.config.theme) {
-        updateData.theme = { ...config.theme, ...args.updates.config.theme };
+        newContent.theme = { ...newContent.theme, ...args.updates.config.theme };
       }
       if (args.updates.config.content) {
-        updateData.content = { ...config.content, ...args.updates.config.content };
+        newContent.content = { ...newContent.content, ...args.updates.config.content };
       }
       if (args.updates.config.settings) {
-        updateData.settings = { ...config.settings, ...args.updates.config.settings };
+        newContent.settings = { ...newContent.settings, ...args.updates.config.settings };
       }
       if (args.updates.config.assets) {
-        updateData.assets = { ...config.assets, ...args.updates.config.assets };
+        newContent.assets = { ...newContent.assets, ...args.updates.config.assets };
       }
+      updateData.content = newContent;
     }
     
     // アクティブ状態変更
@@ -288,7 +290,7 @@ export const deleteLPConfig = mutation({
       .filter((q) => 
         q.or(
           q.eq(q.field("control_config_id"), args.config_id),
-          q.gt(q.field("variant_configs").length, 0) // TODO: より具体的なチェック
+          q.neq(q.field("variant_configs"), null) // variant_configsが存在するかチェック
         )
       )
       .filter((q) => 
@@ -336,10 +338,14 @@ export const addOptimizationHistory = mutation({
       cvr_after: args.cvr_after,
     };
     
-    const updatedHistory = [...config.optimization_history, optimizationEntry];
+    const updatedHistory = [...(config.content.optimization_history || []), optimizationEntry];
+    const updatedContent = {
+      ...config.content,
+      optimization_history: updatedHistory
+    };
     
     await ctx.db.patch(config._id, {
-      optimization_history: updatedHistory,
+      content: updatedContent,
       updated_at: Date.now(),
     });
     

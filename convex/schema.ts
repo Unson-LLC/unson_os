@@ -272,6 +272,8 @@ export default defineSchema({
 
   // 既存テーブル
   discordApplications: defineTable({
+    workspace_id: v.string(),
+    application_id: v.string(),
     email: v.string(),
     name: v.string(),
     reasons: v.array(v.string()),
@@ -283,10 +285,14 @@ export default defineSchema({
     processedAt: v.optional(v.number()),
     rejectionReason: v.optional(v.string()),
   })
-    .index("by_email", ["email"])
-    .index("by_status", ["status"]),
+    .index("by_workspace_application", ["workspace_id", "application_id"])
+    .index("by_workspace_email", ["workspace_id", "email"])
+    .index("by_status", ["status"])
+    .index("by_workspace", ["workspace_id"]),
     
   careerApplications: defineTable({
+    workspace_id: v.string(),
+    application_id: v.string(),
     name: v.string(),
     email: v.string(),
     position: v.string(),
@@ -304,26 +310,34 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
+    .index("by_workspace_application", ["workspace_id", "application_id"])
+    .index("by_workspace_email", ["workspace_id", "email"])
     .index("by_position", ["position"])
     .index("by_status", ["status"])
-    .index("by_email", ["email"]),
+    .index("by_workspace", ["workspace_id"]),
     
   contacts: defineTable({
+    workspace_id: v.string(),
+    contact_id: v.string(),
     name: v.string(),
     email: v.string(),
     company: v.optional(v.string()),
     phone: v.optional(v.string()),
     type: v.string(),
     message: v.string(),
-    status: v.union(v.literal("new"), v.literal("in_progress"), v.literal("resolved")),
+    status: v.union(v.literal("new"), v.literal("in_progress"), v.literal("resolved"), v.literal("closed")),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
+    .index("by_workspace_contact", ["workspace_id", "contact_id"])
+    .index("by_workspace_email", ["workspace_id", "email"])
     .index("by_status", ["status"])
     .index("by_type", ["type"])
-    .index("by_email", ["email"]),
+    .index("by_workspace", ["workspace_id"]),
     
   productRequests: defineTable({
+    workspace_id: v.string(),
+    request_id: v.string(),
     name: v.string(),
     email: v.string(),
     productType: v.string(),
@@ -333,11 +347,16 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
+    .index("by_workspace_request", ["workspace_id", "request_id"])
+    .index("by_workspace_email", ["workspace_id", "email"])
     .index("by_status", ["status"])
     .index("by_priority", ["priority"])
-    .index("by_email", ["email"]),
+    .index("by_productType", ["productType"])
+    .index("by_workspace", ["workspace_id"]),
     
   products: defineTable({
+    workspace_id: v.string(),
+    product_id: v.string(),
     name: v.string(),
     description: v.string(),
     longDescription: v.optional(v.string()),
@@ -360,10 +379,14 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
+    .index("by_workspace_product", ["workspace_id", "product_id"])
     .index("by_status", ["status"])
-    .index("by_category", ["category"]),
+    .index("by_category", ["category"])
+    .index("by_workspace", ["workspace_id"]),
     
   waitlist: defineTable({
+    workspace_id: v.string(),
+    waitlist_id: v.string(),
     email: v.string(),
     name: v.optional(v.string()),
     company: v.optional(v.string()),
@@ -373,8 +396,10 @@ export default defineSchema({
     createdAt: v.number(),
     invitedAt: v.optional(v.number()),
   })
-    .index("by_email", ["email"])
-    .index("by_status", ["status"]),
+    .index("by_workspace_waitlist", ["workspace_id", "waitlist_id"])
+    .index("by_workspace_email", ["workspace_id", "email"])
+    .index("by_status", ["status"])
+    .index("by_workspace", ["workspace_id"]),
     
   serviceApplications: defineTable({
     workspace_id: v.string(),
@@ -428,7 +453,7 @@ export default defineSchema({
 
   playbookRuns: defineTable({
     workspace_id: v.string(),
-    productId: v.string(), // 2025-08-001-mywa
+    product_id: v.string(), // AI-BRIDGE, MYWA, AI-COACH, etc.
     productName: v.string(),
     playbookId: v.string(), // pb-001
     phase: v.number(), // 0=planning, 1=validation, 2=development, 3=active
@@ -446,9 +471,9 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index("by_workspace_product", ["workspace_id", "productId"])
+    .index("by_workspace_product", ["workspace_id", "product_id"])
     .index("by_workspace_playbook", ["workspace_id", "playbookId"])
-    .index("by_workspace_product_phase", ["workspace_id", "productId", "phase"])
+    .index("by_workspace_product_phase", ["workspace_id", "product_id", "phase"])
     .index("by_workspace_status", ["workspace_id", "status"]),
 
   // Google Ads 日次メトリクス（プロダクト別）
@@ -486,7 +511,7 @@ export default defineSchema({
 
   phaseReviews: defineTable({
     workspace_id: v.string(),
-    productId: v.string(),
+    product_id: v.string(),
     productName: v.string(),
     phase: v.number(),
     status: v.union(v.literal("in_progress"), v.literal("completed"), v.literal("gate_passed"), v.literal("gate_failed")),
@@ -510,7 +535,161 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index("by_workspace_product", ["workspace_id", "productId"])
-    .index("by_workspace_product_phase", ["workspace_id", "productId", "phase"])
+    .index("by_workspace_product", ["workspace_id", "product_id"])
+    .index("by_workspace_product_phase", ["workspace_id", "product_id", "phase"])
     .index("by_workspace_status", ["workspace_id", "status"]),
+
+  // PostHog Feature Flag同期履歴
+  posthogFlagSync: defineTable({
+    workspace_id: v.string(),
+    ab_test_id: v.string(),
+    flag_key: v.string(),
+    sync_type: v.union(
+      v.literal("create"),
+      v.literal("update"), 
+      v.literal("delete")
+    ),
+    before_state: v.union(v.null(), v.any()),
+    after_state: v.union(v.null(), v.any()),
+    success: v.boolean(),
+    error_message: v.optional(v.string()),
+    synced_at: v.number(),
+  })
+  .index("by_ab_test", ["ab_test_id"])
+  .index("by_workspace", ["workspace_id"])
+  .index("by_sync_type", ["sync_type"])
+  .index("by_timestamp", ["synced_at"]),
+
+  // キャンペーン管理テーブル
+  campaigns: defineTable({
+    workspace_id: v.string(),
+    product_id: v.string(),
+    campaign_id: v.string(), // Google Ads Campaign ID
+    campaign_name: v.string(),
+    platform: v.string(), // 'Google Ads', 'Facebook', etc.
+    status: v.union(
+      v.literal("active"), 
+      v.literal("paused"), 
+      v.literal("ended"),
+      v.literal("draft")
+    ),
+    campaign_type: v.optional(v.string()), // 'Search', 'Display', 'Shopping'
+    budget_daily: v.optional(v.number()), // 日予算 (JPY)
+    target_cpa: v.optional(v.number()), // 目標CPA (JPY)
+    target_roas: v.optional(v.number()), // 目標ROAS
+    start_date: v.number(), // キャンペーン開始日
+    end_date: v.optional(v.number()), // キャンペーン終了日
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+    .index("by_workspace_product", ["workspace_id", "product_id"])
+    .index("by_product_status", ["product_id", "status"])
+    .index("by_campaign_id", ["campaign_id"]),
+
+  // アラート管理テーブル  
+  alerts: defineTable({
+    workspace_id: v.string(),
+    alert_id: v.string(),
+    product_id: v.optional(v.string()),
+    alert_type: v.union(
+      v.literal("cvr_below_threshold"),
+      v.literal("cpa_above_threshold"), 
+      v.literal("budget_depleted"),
+      v.literal("anomaly_detected"),
+      v.literal("revenue_drop"),
+      v.literal("campaign_paused")
+    ),
+    severity: v.union(
+      v.literal("critical"),
+      v.literal("high"),
+      v.literal("medium"),
+      v.literal("low")
+    ),
+    title: v.string(),
+    message: v.string(),
+    status: v.union(
+      v.literal("active"),
+      v.literal("acknowledged"), 
+      v.literal("resolved"),
+      v.literal("dismissed")
+    ),
+    // アラート条件
+    threshold_value: v.optional(v.number()),
+    current_value: v.optional(v.number()),
+    // 関連データ
+    session_id: v.optional(v.string()),
+    campaign_id: v.optional(v.string()),
+    // 解決情報
+    resolved_by: v.optional(v.string()),
+    resolved_at: v.optional(v.number()),
+    resolution_notes: v.optional(v.string()),
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+    .index("by_workspace", ["workspace_id"])
+    .index("by_workspace_product", ["workspace_id", "product_id"])
+    .index("by_status", ["status"])
+    .index("by_severity", ["severity"])
+    .index("by_type", ["alert_type"]),
+
+  // LP A/Bテスト設定
+  lpConfigs: defineTable({
+    workspace_id: v.string(),
+    config_id: v.string(),
+    product_id: v.string(),
+    name: v.string(),
+    description: v.optional(v.string()),
+    content: v.any(), // LP configuration content
+    version: v.optional(v.string()),
+    is_control: v.boolean(),
+    is_active: v.boolean(),
+    created_at: v.number(),
+    updated_at: v.number(),
+  })
+    .index("by_workspace", ["workspace_id"])
+    .index("by_config_id", ["config_id"])
+    .index("by_product", ["product_id"])
+    .index("by_workspace_product", ["workspace_id", "product_id"]),
+
+  // A/Bテスト管理
+  lpAbTests: defineTable({
+    workspace_id: v.string(),
+    test_id: v.string(),
+    product_id: v.string(),
+    name: v.string(),
+    description: v.optional(v.string()),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("running"),
+      v.literal("paused"),
+      v.literal("completed"),
+      v.literal("cancelled")
+    ),
+    posthog_flag_key: v.optional(v.string()),
+    control_config_id: v.string(),
+    variant_configs: v.array(v.object({
+      config_id: v.string(),
+      traffic_percentage: v.number(),
+      name: v.string(),
+    })),
+    primary_metric: v.string(),
+    secondary_metrics: v.optional(v.array(v.string())),
+    target_sample_size: v.optional(v.number()),
+    current_sample_size: v.number(),
+    significance_threshold: v.number(),
+    start_date: v.optional(v.number()),
+    end_date: v.optional(v.number()),
+    planned_duration_days: v.optional(v.number()),
+    auto_declare_winner: v.boolean(),
+    auto_stop_on_significance: v.boolean(),
+    auto_traffic_allocation: v.boolean(),
+    created_at: v.number(),
+    updated_at: v.number(),
+    created_by: v.string(),
+  })
+    .index("by_workspace", ["workspace_id"])
+    .index("by_test_id", ["test_id"])
+    .index("by_product", ["product_id"])
+    .index("by_status", ["status"])
+    .index("by_workspace_product", ["workspace_id", "product_id"]),
 });

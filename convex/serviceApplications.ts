@@ -93,7 +93,7 @@ export const getAllApplications = query({
       .query("serviceApplications")
       .filter(q => 
         args.workspaceId 
-          ? q.eq(q.field("workspaceId"), args.workspaceId)
+          ? q.eq(q.field("workspace_id"), args.workspaceId)
           : true
       )
       .order("desc")

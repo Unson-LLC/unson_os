@@ -1,7 +1,7 @@
 import { Route53Manager } from '../lib/route53-client';
 import { VercelManager } from '../lib/vercel-client';
 import { ConvexClient } from 'convex/browser';
-import { api } from '../../../convex/_generated/api';
+// import { api } from '../../../convex/_generated/api';
 
 export interface DomainConfig {
   productId: string;

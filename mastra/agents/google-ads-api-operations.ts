@@ -1,5 +1,6 @@
 // Google Ads API 操作ビルダー（操作ロジック分離）
-import { GOOGLE_ADS_CONFIG, OPTIMIZATION_SAFETY_LIMITS } from '../config/constants'
+import { GOOGLE_ADS_CONFIG } from '../config/google-ads-constants'
+import { OPTIMIZATION_SAFETY_LIMITS } from '../config/constants'
 import { OptimizationAction } from '../types'
 
 export interface ApiOperation {

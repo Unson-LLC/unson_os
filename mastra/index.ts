@@ -29,9 +29,7 @@ export {
 
 export { 
   adsOptimizationWorkflow, 
-  executeFullOptimization,
-  executeOptimizations,
-  createOptimizationRecord
+  executeFullOptimization
 } from './workflows/ads-optimization'
 
 export { 

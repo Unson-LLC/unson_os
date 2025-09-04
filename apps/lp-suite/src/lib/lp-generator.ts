@@ -373,56 +373,37 @@ function generateDemoLP(prompt: LPGenerationPrompt): Promise<{
           keywords: [prompt.serviceName, prompt.targetAudience, 'ソリューション'],
           ogImage: '/images/demo-og.jpg'
         },
+        content: {
         hero: {
           title: `${prompt.mainBenefit}を実現する${prompt.serviceName}`,
           subtitle: `${prompt.targetAudience}のための革新的なソリューション`,
-          description: prompt.serviceDescription,
-          ctaText: '今すぐ始める',
+          // description: prompt.serviceDescription,
+          cta: '今すぐ始める',
           backgroundImage: '/images/demo-hero.jpg',
-          features: [
-            '簡単な設定で即座に開始',
-            '専門知識不要で誰でも利用可能',
-            '24時間365日サポート体制'
-          ]
+          // features: [
+          //   '簡単な設定で即座に開始',
+          //   '専門知識不要で誰でも利用可能',
+          //   '24時間365日サポート体制'
+          // ]
         },
         problem: {
           title: `${prompt.targetAudience}が直面する課題`,
           subtitle: 'こんなお悩みありませんか？',
           problems: [
-            '従来の方法では限界がある',
-            '時間とコストがかかりすぎる',
-            '専門知識が必要で敷居が高い'
+            { title: '従来の方法では限界がある', description: '既存手法の限界性' },
+            { title: '時間とコストがかかりすぎる', description: 'リソースの無駄な消費' },
+            { title: '専門知識が必要で敷居が高い', description: '技術的ハードルの高さ' }
           ],
-          painPoints: [
-            '効率化したいが方法が分からない',
-            '競合他社に遅れを取りたくない',
-            '投資対効果が見えない'
-          ]
+          description: '以下のような問題に直面していませんか？'
         },
         solution: {
           title: `${prompt.serviceName}が解決します`,
           subtitle: prompt.mainBenefit,
-          benefits: [
-            '作業時間を70%削減',
-            '導入後即座に効果を実感',
-            '専門知識不要で誰でも使える'
-          ],
-          features: [
-            {
-              title: 'AI自動化機能',
-              description: '複雑な作業を自動化し、効率性を大幅向上',
-              icon: 'zap'
-            },
-            {
-              title: '直感的なUI/UX',
-              description: '専門知識不要で、誰でも簡単に操作可能',
-              icon: 'layout'
-            },
-            {
-              title: '24時間サポート',
-              description: 'いつでも安心してご利用いただけるサポート体制',
-              icon: 'headphones'
-            }
+          description: prompt.serviceDescription,
+          solutions: [
+            { title: '作業時間を70%削減', description: 'AI自動化による効率化' },
+            { title: '導入後即座に効果を実感', description: 'シンプルなセットアップ' },
+            { title: '専門知識不要で誰でも使える', description: '直感的なUI/UX設計' }
           ]
         },
         pricing: {
@@ -431,7 +412,7 @@ function generateDemoLP(prompt: LPGenerationPrompt): Promise<{
           plans: [
             {
               name: 'スターター',
-              price: 9980,
+              price: '9980',
               period: 'month',
               description: '個人・小規模チーム向け',
               features: [
@@ -439,11 +420,12 @@ function generateDemoLP(prompt: LPGenerationPrompt): Promise<{
                 'メールサポート',
                 '月次レポート'
               ],
-              isPopular: false
+              cta: '無料トライアル開始',
+              popular: false
             },
             {
               name: 'プロフェッショナル',
-              price: 29800,
+              price: '29800',
               period: 'month',
               description: '成長企業向け',
               features: [
@@ -452,29 +434,58 @@ function generateDemoLP(prompt: LPGenerationPrompt): Promise<{
                 'カスタムレポート',
                 'API連携'
               ],
-              isPopular: true
+              cta: '今すぐ始める',
+              popular: true
             }
           ]
         },
-        cta: {
+        finalCta: {
           title: '今すぐ始めませんか？',
           subtitle: `${prompt.serviceName}で${prompt.mainBenefit}を実現`,
-          description: '14日間の無料トライアルで効果を実感してください',
-          primaryCta: {
-            text: '無料で始める',
-            href: '#signup',
-            variant: 'primary'
-          },
-          secondaryCta: {
-            text: 'デモを見る',
-            href: '#demo',
-            variant: 'secondary'
-          },
-          guarantees: [
+          cta: '無料で始める',
+          urgencyText: 'デモを見る',
+          benefitsList: [
             '14日間無料トライアル',
             'クレジットカード不要',
             'いつでもキャンセル可能'
           ]
+        },
+        features: [
+          {
+            icon: 'zap',
+            title: 'AI自動化機能',
+            description: '複雑な作業を自動化し、効率性を大幅向上'
+          }
+        ],
+        service: {
+          title: 'サービス詳細',
+          services: []
+        },
+        form: {
+          title: '無料相談・お問い合わせ',
+          subtitle: `${prompt.serviceName}について詳しく知りたい方はこちら`,
+          fields: [
+            {
+              type: 'text',
+              name: 'name',
+              label: 'お名前',
+              placeholder: '山田 太郎',
+              required: true
+            },
+            {
+              type: 'email',
+              name: 'email',
+              label: 'メールアドレス',
+              placeholder: 'example@company.com',
+              required: true
+            }
+          ],
+          submitText: '無料相談を申し込む',
+          successMessage: 'お問い合わせありがとうございます。24時間以内にご連絡いたします。'
+        },
+        footer: {
+          companyName: prompt.serviceName
+        }
         }
       };
 
@@ -606,6 +617,14 @@ export async function generateFullLP(prompt: LPGenerationPrompt): Promise<{
         ],
         submitText: "無料相談を申し込む",
         successMessage: "お問い合わせありがとうございます。24時間以内にご連絡いたします。"
+      },
+      features: [],
+      service: {
+        title: "サービス詳細",
+        services: []
+      },
+      footer: {
+        companyName: prompt.serviceName
       }
     }
   };

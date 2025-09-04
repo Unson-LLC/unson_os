@@ -1,7 +1,7 @@
 // 包括的Google Ads AI エージェント（Google Ads APIの全機能対応）
-import { Agent } from '@mastra/core'
-import { mastraConfig } from '../config'
-import { GOOGLE_ADS_CONFIG } from '../config/google-ads-constants'
+import { Agent } from '@mastra/core/agent'
+import { openaiModel } from '../config'
+// import { GOOGLE_ADS_CONFIG } from '../config/google-ads-constants'
 import { PerformanceAnalysis } from '../types'
 
 export interface ComprehensiveOptimizationAction {
@@ -93,12 +93,11 @@ Google Ads APIで可能な全ての操作を判断・実行できます。
 - generate_optimization_strategy: 包括的最適化戦略立案
 - execute_google_ads_operations: 実際のAPI操作実行
 `,
-  model: mastraConfig.providers.openai,
-  tools: [
-    {
-      name: 'analyze_comprehensive_performance',
+  model: openaiModel,
+  tools: {
+    analyze_comprehensive_performance: {
       description: 'Google Ads パフォーマンスの包括的分析',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           metricsData: { type: 'object' },
@@ -108,10 +107,9 @@ Google Ads APIで可能な全ての操作を判断・実行できます。
         }
       }
     },
-    {
-      name: 'generate_optimization_strategy',
+    generate_optimization_strategy: {
       description: '包括的最適化戦略の生成',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           analysis: { type: 'object' },
@@ -124,10 +122,9 @@ Google Ads APIで可能な全ての操作を判断・実行できます。
         }
       }
     },
-    {
-      name: 'execute_google_ads_operations',
+    execute_google_ads_operations: {
       description: 'Google Ads API操作の実行',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           operations: {
@@ -147,10 +144,9 @@ Google Ads APIで可能な全ての操作を判断・実行できます。
         }
       }
     },
-    {
-      name: 'monitor_optimization_results',
+    monitor_optimization_results: {
       description: '最適化結果の監視・評価',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           executedActions: { type: 'array' },
@@ -159,7 +155,7 @@ Google Ads APIで可能な全ての操作を判断・実行できます。
         }
       }
     }
-  ]
+  }
 })
 
 export async function generateComprehensiveOptimizations(
@@ -193,7 +189,7 @@ generate_optimization_strategy ツールを使用して、包括的な最適化�
   const response = await comprehensiveAdsAgent.generate(prompt)
   
   // AIの回答から具体的なアクションを抽出・構造化
-  return parseAiResponseToActions(response)
+  return parseAiResponseToActions(response.text)
 }
 
 function parseAiResponseToActions(aiResponse: string): ComprehensiveOptimizationAction[] {

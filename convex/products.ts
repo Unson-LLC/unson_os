@@ -152,10 +152,11 @@ export const create = mutation({
     users: v.optional(v.string()),
     rating: v.optional(v.number()),
     status: v.union(
-      v.literal("planning"),
+      v.literal("discovery"),
+      v.literal("validation"),
       v.literal("development"),
-      v.literal("testing"),
-      v.literal("launched")
+      v.literal("active"),
+      v.literal("terminated")
     ),
     features: v.optional(v.array(v.string())),
     serviceUrl: v.optional(v.string()),
@@ -193,10 +194,11 @@ export const update = mutation({
     users: v.optional(v.string()),
     rating: v.optional(v.number()),
     status: v.optional(v.union(
-      v.literal("planning"),
+      v.literal("discovery"),
+      v.literal("validation"),
       v.literal("development"),
-      v.literal("testing"),
-      v.literal("launched")
+      v.literal("active"),
+      v.literal("terminated")
     )),
     features: v.optional(v.array(v.string())),
     serviceUrl: v.optional(v.string()),

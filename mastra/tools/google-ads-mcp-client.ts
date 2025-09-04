@@ -97,9 +97,10 @@ export class GoogleAdsMcpClient {
   }
 
   private getDefaultMcpClient(): any {
-    return mastraConfig?.mcp?.googleads || {
-      execute: async () => {
-        throw new Error('MCP Google Ads client not configured')
+    // MCP クライアントの代替実装
+    return {
+      execute: async (toolName: string, params: any) => {
+        throw new Error(`MCP Google Ads client not configured. Tool: ${toolName}, Params: ${JSON.stringify(params)}`)
       }
     }
   }

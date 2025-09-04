@@ -21,8 +21,8 @@ export default function AdsEventDetailPage() {
       try {
         console.log(`実データ取得: ${timestamp}`)
         
-        // 時系列実データAPIから実際のデータを取得
-        const response = await fetch('/api/time-series-real-data?date=2025-08-28&interval=4h&format=raw-data', { 
+        // 🔵 REFACTOR: 実データ日付を修正
+        const response = await fetch('/api/time-series-real-data?date=2025-09-03&interval=4h&format=raw-data&productId=WATASHI-COMPASS', { 
           cache: 'no-store' 
         })
         

@@ -59,10 +59,11 @@ export const getStats = query({
     
     const totalRegistrations = allRegistrations.length;
     
-    // 役割別集計
-    const roleStats = allRegistrations.reduce((acc, registration) => {
-      const role = registration.role || "未指定";
-      acc[role] = (acc[role] || 0) + 1;
+    // 興味分野別集計
+    const interestStats = allRegistrations.reduce((acc, registration) => {
+      registration.interests.forEach(interest => {
+        acc[interest] = (acc[interest] || 0) + 1;
+      });
       return acc;
     }, {} as Record<string, number>);
     
@@ -72,9 +73,9 @@ export const getStats = query({
       r => r.createdAt > thirtyDaysAgo
     );
     
-    // リファラー別集計
-    const referralStats = allRegistrations.reduce((acc, registration) => {
-      const source = registration.referralSource || "直接アクセス";
+    // ソース別集計
+    const sourceStats = allRegistrations.reduce((acc, registration) => {
+      const source = registration.source || "直接アクセス";
       acc[source] = (acc[source] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
@@ -82,8 +83,8 @@ export const getStats = query({
     return {
       totalRegistrations,
       recentRegistrations: recentRegistrations.length,
-      roleStats,
-      referralStats,
+      interestStats,
+      sourceStats,
       averagePerDay: Math.round(recentRegistrations.length / 30),
     };
   },

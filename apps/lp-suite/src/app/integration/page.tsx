@@ -21,7 +21,7 @@ interface WorkflowStep {
   id: string
   name: string
   description: string
-  status: 'pending' | 'in_progress' | 'completed' | 'error'
+  status: 'pending' | 'in_progress' | 'completed' | 'failed'
   duration?: string
   icon: any
 }
@@ -69,7 +69,7 @@ export default function IntegrationPage() {
     switch (status) {
       case 'completed': return <CheckCircle className="w-5 h-5 text-green-500" />
       case 'in_progress': return <Clock className="w-5 h-5 text-blue-500" />
-      case 'error': return <AlertCircle className="w-5 h-5 text-red-500" />
+      case 'failed': return <AlertCircle className="w-5 h-5 text-red-500" />
       default: return <div className="w-5 h-5 rounded-full border-2 border-gray-300" />
     }
   }
@@ -78,7 +78,7 @@ export default function IntegrationPage() {
     switch (status) {
       case 'completed': return 'text-green-600 bg-green-50 border-green-200'
       case 'in_progress': return 'text-blue-600 bg-blue-50 border-blue-200'
-      case 'error': return 'text-red-600 bg-red-50 border-red-200'
+      case 'failed': return 'text-red-600 bg-red-50 border-red-200'
       default: return 'text-gray-600 bg-gray-50 border-gray-200'
     }
   }
@@ -136,7 +136,7 @@ export default function IntegrationPage() {
                 <div className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(workflow.status)}`}>
                   {workflow.status === 'completed' && '完了'}
                   {workflow.status === 'in_progress' && '実行中'}
-                  {workflow.status === 'error' && 'エラー'}
+                  {(workflow.status as any) === 'failed' && 'エラー'}
                 </div>
               </div>
 

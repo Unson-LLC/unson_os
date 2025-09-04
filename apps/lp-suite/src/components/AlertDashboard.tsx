@@ -1,39 +1,59 @@
 // アラートダッシュボードコンポーネント
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Alert } from '@/types/metrics';
 
 export function AlertDashboard() {
-  const [alerts] = useState<Alert[]>([
-    {
-      type: 'cvr_below_threshold',
-      severity: 'medium',
-      message: 'AI Coach Betaセッションで CVR 8.5% が目標値 10% を下回っています',
-      timestamp: '2024-08-20T10:30:00Z',
-      sessionId: 'session2'
-    },
-    {
-      type: 'cpa_above_threshold',
-      severity: 'high',
-      message: 'AI Writer Launchセッションで CPA ¥385 が目標値 ¥300 を上回っています',
-      timestamp: '2024-08-20T09:15:00Z',
-      sessionId: 'session3'
-    },
-    {
-      type: 'anomaly_detected',
-      severity: 'critical',
-      message: '異常な変動を検出: CVR が過去平均の 2.5標準偏差を超えています',
-      timestamp: '2024-08-20T08:45:00Z',
-      sessionId: 'session1'
-    },
-    {
-      type: 'revenue_drop',
-      severity: 'medium',
-      message: '過去24時間で収益が 15% 減少しました',
-      timestamp: '2024-08-20T08:00:00Z'
+  const [alerts, setAlerts] = useState<Alert[]>([])
+  const [loading, setLoading] = useState(true)
+  
+  // Convexからアラートデータを取得
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/alerts?status=active', { cache: 'no-store' })
+        
+        if (response.ok) {
+          const alertData = await response.json()
+          console.log('アラートデータ取得成功:', alertData)
+          
+          if (alertData.success && alertData.alerts) {
+            // ConvexアラートデータをAlert型に変換
+            const convertedAlerts = alertData.alerts.map((alert: any) => ({
+              type: alert.alert_type,
+              severity: alert.severity,
+              message: alert.message,
+              timestamp: new Date(alert.created_at).toISOString(),
+              sessionId: alert.session_id,
+              alertId: alert.alert_id
+            }))
+            setAlerts(convertedAlerts)
+          }
+        } else {
+          console.warn('アラート取得失敗、フォールバックデータ使用')
+          // フォールバック: デモ用のアラートデータ
+          setAlerts([
+            {
+              type: 'cvr_below_threshold',
+              severity: 'medium',
+              message: 'わたしコンパスで CVR 0% が改善が必要です',
+              timestamp: new Date().toISOString(),
+              sessionId: 'watashi-compass'
+            }
+          ])
+        }
+      } catch (error) {
+        console.error('アラート取得エラー:', error)
+        setAlerts([]) // エラー時は空配列
+      } finally {
+        setLoading(false)
+      }
     }
-  ]);
+    
+    fetchAlerts()
+  }, [])
 
   const [filter, setFilter] = useState<'all' | 'critical' | 'high' | 'medium' | 'low'>('all');
 

@@ -1,6 +1,6 @@
 // Analytics洞察生成AIエージェント（REFACTOR フェーズ）
-import { Agent } from '@mastra/core'
-import { mastraConfig } from '../config'
+import { Agent } from '@mastra/core/agent'
+import { openaiModel } from '../config'
 import { GA4Metrics } from '../tools/ga4-client'
 import { PostHogAnalytics } from '../tools/posthog-client'
 
@@ -48,12 +48,11 @@ export const analyticsInsightsAgent = new Agent({
 - riskAlerts: 注意が必要な指標（あれば）
 - opportunityAreas: 成長機会領域
 `,
-  model: mastraConfig.providers.openai,
-  tools: [
-    {
-      name: 'analyze_performance_metrics',
+  model: openaiModel,
+  tools: {
+    analyze_performance_metrics: {
       description: 'GA4とPostHogデータの総合分析',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           ga4Data: { type: 'object' },
@@ -62,10 +61,9 @@ export const analyticsInsightsAgent = new Agent({
         }
       }
     },
-    {
-      name: 'generate_insights',
+    generate_insights: {
       description: '洞察とレコメンデーション生成',
-      schema: {
+      parameters: {
         type: 'object',
         properties: {
           findings: { type: 'array' },
@@ -74,7 +72,7 @@ export const analyticsInsightsAgent = new Agent({
         }
       }
     }
-  ]
+  }
 })
 
 export async function generateAnalyticsInsights(
@@ -107,7 +105,7 @@ analyze_performance_metricsとgenerate_insightsツールを使用して、具体
 
   const aiResponse = await analyticsInsightsAgent.generate(prompt)
   
-  return parseInsightsFromAI(aiResponse, ga4Data, posthogData)
+  return parseInsightsFromAI(aiResponse.text, ga4Data, posthogData)
 }
 
 function parseInsightsFromAI(

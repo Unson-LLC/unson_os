@@ -7,8 +7,7 @@ export const create = mutation({
   args: {
     name: v.string(),
     email: v.string(),
-    productTitle: v.string(),
-    category: v.string(),
+    productType: v.string(),
     description: v.string(),
   },
   handler: async (ctx, args) => {
@@ -32,9 +31,9 @@ export const create = mutation({
 // プロダクトリクエスト一覧取得
 export const list = query({
   args: {
-    status: v.optional(v.string()),
-    category: v.optional(v.string()),
-    priority: v.optional(v.string()),
+    status: v.optional(v.union(v.literal("submitted"), v.literal("reviewing"), v.literal("approved"), v.literal("rejected"))),
+    productType: v.optional(v.string()),
+    priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"))),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
@@ -46,10 +45,10 @@ export const list = query({
         .withIndex("by_status", (q) => q.eq("status", args.status))
         .order("desc")
         .take(args.limit || 50);
-    } else if (args.category) {
+    } else if (args.productType) {
       requests = await ctx.db
         .query("productRequests")
-        .withIndex("by_category", (q) => q.eq("category", args.category))
+        .withIndex("by_productType", (q) => q.eq("productType", args.productType))
         .order("desc")
         .take(args.limit || 50);
     } else if (args.priority) {
@@ -122,7 +121,7 @@ export const getStats = query({
     
     // カテゴリ別集計
     const categoryStats = allRequests.reduce((acc, request) => {
-      acc[request.category] = (acc[request.category] || 0) + 1;
+      acc[request.productType] = (acc[request.productType] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
     
@@ -139,7 +138,7 @@ export const getStats = query({
     );
     
     // 平均処理時間（完了済みのもの）
-    const completedRequests = allRequests.filter(r => r.status === "completed");
+    const completedRequests = allRequests.filter(r => r.status === "approved");
     const avgProcessingTime = completedRequests.length > 0
       ? completedRequests.reduce((acc, request) => {
           return acc + (request.updatedAt - request.createdAt);
@@ -165,13 +164,13 @@ export const getPopularCategories = query({
     const allRequests = await ctx.db.query("productRequests").collect();
     
     const categoryCount = allRequests.reduce((acc, request) => {
-      acc[request.category] = (acc[request.category] || 0) + 1;
+      acc[request.productType] = (acc[request.productType] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
     
     return Object.entries(categoryCount)
       .sort(([,a], [,b]) => (b as number) - (a as number))
       .slice(0, 10)
-      .map(([category, count]) => ({ category, count: count as number }));
+      .map(([productType, count]) => ({ productType, count: count as number }));
   },
 });

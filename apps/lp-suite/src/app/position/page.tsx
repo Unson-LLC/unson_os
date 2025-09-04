@@ -35,7 +35,7 @@ type Position = {
     visitors: number
     conversions: number
     revenue: number
-    trend: 'up' | 'down'
+    trend: 'down'
   }
   campaigns: number
   lastOptimized: string
@@ -93,9 +93,24 @@ export default function PositionsPage() {
           console.warn('全サービス実データ取得エラー:', error)
         }
 
+        // キャンペーン数データを取得
+        console.log('全プロダクトのキャンペーン数取得中')
+        let campaignCounts: Record<string, any> = {}
+        
+        try {
+          const campaignResponse = await fetch('/api/campaigns/counts', { cache: 'no-store' })
+          if (campaignResponse.ok) {
+            const campaignData = await campaignResponse.json()
+            campaignCounts = campaignData.campaignsByProduct || {}
+            console.log('キャンペーン数取得成功:', campaignCounts)
+          }
+        } catch (error) {
+          console.warn('キャンペーン数取得エラー:', error)
+        }
+
         // 各プロダクトに対応するGoogle Adsデータをマッピング
         const positionsWithAdsData = data.positions.map((p: any) => {
-          let adsMetrics = { cvr: 0, cpa: 0, visitors: 0, conversions: 0, revenue: 0, trend: 'down' as const }
+          let adsMetrics = { cvr: 0, cpa: 0, visitors: 0, conversions: 0, revenue: 0, trend: 'down' as 'down' }
           
           // 全サービスAPIから該当データを検索
           const serviceData = allServicesData?.services?.find(s => s.productId === p.id)
@@ -110,11 +125,14 @@ export default function PositionsPage() {
               visitors: metrics.clicks || 0,
               conversions: metrics.conversions || 0,
               revenue: metrics.conversions * 2000, // 推定単価
-              trend: metrics.status === 'active' ? 'up' : 'down'
+              trend: 'down' as const
             }
           } else {
             console.warn(`${p.id}: 実データなし、デフォルト値使用`)
           }
+          
+          // キャンペーン数を取得（Convexから）
+          const campaignData = campaignCounts[p.id] || { total: 0, active: 0, paused: 0 }
           
           return {
             id: p.id,
@@ -125,7 +143,7 @@ export default function PositionsPage() {
             grade: getGradeFromMetrics(adsMetrics.cvr, adsMetrics.cpa),
             createdAt: new Date().toISOString(),
             metrics: adsMetrics,
-            campaigns: Math.floor(Math.random() * 3) + 1,
+            campaigns: campaignData.total,
             lastOptimized: new Date().toISOString(),
             hasRealData: serviceData?.hasRealData || false // 実データフラグ追加
           }
@@ -303,11 +321,7 @@ export default function PositionsPage() {
                   <div className="text-center">
                     <div className="flex items-center justify-center space-x-1">
                       <span className="text-lg font-semibold text-blue-600">{position.metrics.cvr}%</span>
-                      {position.metrics.trend === 'up' ? (
-                        <TrendingUp className="w-4 h-4 text-green-500" />
-                      ) : (
-                        <TrendingDown className="w-4 h-4 text-red-500" />
-                      )}
+                      <TrendingDown className="w-4 h-4 text-red-500" />
                     </div>
                     <div className="text-xs text-gray-500">CVR</div>
                   </div>

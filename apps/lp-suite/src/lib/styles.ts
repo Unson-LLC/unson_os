@@ -17,6 +17,7 @@ export const commonStyles = {
   // レイアウト
   flexBetween: "flex items-center justify-between",
   flexCenter: "flex items-center justify-center",
+  textCenter: "text-center",
   gridCols2: "grid grid-cols-2 gap-4",
   gridCols4: "grid grid-cols-4 gap-4",
   

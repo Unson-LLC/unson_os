@@ -193,16 +193,17 @@ async function fetchGoogleAdsWindowData(productId: string, window: any) {
   ]
   
   const multiplier = hourlyMultipliers[Math.floor(windowHour / 4)]
-  const variation = 0.8 + Math.random() * 0.4 // ±20%の変動
-  const finalMultiplier = multiplier * variation
+  // 固定配分に変更（わたしコンパスの実際のパフォーマンスデータベース）
+  const finalMultiplier = multiplier
   
-  const baseImpressions = 400 // 4時間あたりの基準インプレッション
+  // わたしコンパスの実際の数値をベース（4時間ウィンドウあたり）
+  const baseImpressions = 24 // 1日145 ÷ 6ウィンドウ ≈ 24
   const impressions = Math.floor(baseImpressions * finalMultiplier)
-  const ctr = 0.025 + Math.random() * 0.015 // 2.5-4.0%
+  const ctr = 0.0207 // わたしコンパスの実際のCTR 2.07%
   const clicks = Math.floor(impressions * ctr)
-  const cpc = 80 + Math.random() * 40 // 80-120円
+  const cpc = 67 // わたしコンパスの実際のCPC 67円
   const cost = Math.floor(clicks * cpc)
-  const cvr = 0.08 + Math.random() * 0.05 // 8-13%
+  const cvr = 0.0 // わたしコンパスの実際のCVR 0%
   const conversions = Math.floor(clicks * cvr)
   
   return {
