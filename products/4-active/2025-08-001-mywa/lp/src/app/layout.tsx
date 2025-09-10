@@ -3,6 +3,7 @@ import './globals.css'
 import Analytics from '@/components/Analytics/Analytics'
 import ScrollTracker from '@/components/Analytics/ScrollTracker'
 import PostHogProvider from '@/components/Analytics/PostHogProvider'
+import PostHogScript from '@/components/Analytics/PostHogScript'
 
 export const metadata: Metadata = {
   title: 'MyWa - AI記事要約サービス',
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <PostHogProvider>
+          <PostHogScript />
           {children}
           <Analytics 
             serviceName="mywa"
