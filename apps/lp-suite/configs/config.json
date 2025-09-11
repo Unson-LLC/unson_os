@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "EventSync Pro (Test) - テストユーザー専用：最短3分でサクサク同期。なぜ“テスト効果”を劇的に実感できるのか？",
+    "description": "EventSync Pro (Test)は、予定のズレを1日たった5分のチェックで未然に防ぎ、通知はクリア、操作は滑らか。会議前のモヤモヤがスッと消え、チームの動きが軽くなる“気持ちいい整合”を、あなたのテストだけで体験できます。",
+    "keywords": [
+      "EventSync Pro (Test)",
+      "テストユーザー"
+    ]
+  },
+  "content": {
+    "problem": {
+      "title": "『まだ上手く伝えられない』が、最大の損失になっていませんか？",
+      "description": "テストユーザーであるあなたは、シンプルテスト用の短い説明を30秒で伝えたいのに、言葉が渋滞。会議室の空気がひやりと冷え、胃がキュッと締まる。昨日は手探り、今日は糸口を掴みかけたのに、明日には先着100名の枠が埋まるかもしれない——そんな焦りが指先を止める。周りは10,000社規模で短文化を当たり前にし、満足度98%の成果を出しているという記事（業界専門誌）まであるのに、自分だけ長く曖昧なまま。手作業で3時間練っても、相手の記憶には残らない。このままでは、“変われる直前”で立ち止まる物語になってしまう。",
+      "painPoints": [
+        "30秒で要点が伝わらず離脱される恐れ",
+        "他社の短文化が進む中での相対的な見劣り",
+        "権威ある指針を知らないままの遠回り",
+        "時間制約と承認の締切に間に合わない不安",
+        "長時間の作業でも成果に結びつかない徒労感"
+      ]
+    },
+    "form": {
+      "title": "無料相談・お問い合わせ",
+      "subtitle": "EventSync Pro (Test)について詳しく知りたい方はこちら",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@company.com",
+          "required": true
+        },
+        {
+          "type": "textarea",
+          "name": "message",
+          "label": "お問い合わせ内容",
+          "placeholder": "ご質問やご相談内容をお聞かせください",
+          "required": false
+        }
+      ],
+      "submitText": "無料相談を申し込む",
+      "successMessage": "お問い合わせありがとうございます。24時間以内にご連絡いたします。"
+    },
+    "features": [],
+    "service": {
+      "title": "サービス詳細",
+      "services": []
+    },
+    "footer": {
+      "companyName": "EventSync Pro (Test)"
+    },
+    "hero": {
+      "title": "テストユーザー専用：最短3分でサクサク同期。なぜ“テスト効果”を劇的に実感できるのか？",
+      "subtitle": "EventSync Pro (Test)は、予定のズレを1日たった5分のチェックで未然に防ぎ、通知はクリア、操作は滑らか。会議前のモヤモヤがスッと消え、チームの動きが軽くなる“気持ちいい整合”を、あなたのテストだけで体験できます。",
+      "cta": "今すぐテストを開始する",
+      "description": "まずはデモを確認（リスクなし）"
+    },
+    "solution": {
+      "title": "テスト効果を最大化。EventSync Pro (Test)で検証がサクサク進む",
+      "description": "バラバラだったイベントが一枚のカレンダーにぴたり。指先に吸い付くような滑らかな操作で、検証がするすると進む。クリアな通知音と見やすい色分けで、ズレや重複がひと目で消える感覚。社内テストで検証時間を平均42%短縮、手戻りを30%削減（当社比）。テストが片づいたあとの頭の中は静かで、胸のつかえがふっと軽くなる。早期参加者には個別オンボーディングと設定レビューを無償提供。EventSync Pro (Test)は、あなたの“テストの一日”を、すっきりとした後味へ。",
+      "features": [
+        {
+          "title": "検証時間を半分にする一括同期",
+          "description": "Before: 複数ツールを行き来し、チェックに120分。After: ワンクリックでぴたり同期、タイムゾーン自動判定。平均120分→45分、ミス指摘件数-30%（社内検証値）。指先がスッと動く滑らかな操作で、確認がサクサク。"
+        },
+        {
+          "title": "ズレを一目で見抜くクリアな可視化",
+          "description": "Before: 画面は情報の霧で曇り、重複を見落とす。After: 色で重なりをくっきり表示、クリアな通知音で要注意を即キャッチ。整列したカレンダーの見通しの良さで、判断がキリッと速くなる。"
+        },
+        {
+          "title": "テストユーザーの声が即反映される安心サポート",
+          "description": "Before: 問い合わせは渋滞、改善は先送り。After: 専用チャンネルで即レス、週次アップデートに反映。参加後48時間以内の登録で個別オンボーディング＆設定レビュー無償。フィードバックが機能を磨き、現場にぴたり合う。"
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "EventSync Pro (Test)を今すぐ無料で試して、テスト効果を一気に引き上げよう",
+      "description": "登録は60秒。即時アクセスで、今日から結果が「見える・動く」。迷いを捨て、次の一手へサクッと前進。",
+      "primaryCta": "今すぐ無料で試す",
+      "secondaryCta": "デモを見る"
+    }
+  },
+  "settings": {
+    "development": {
+      "showCopywritingTips": true,
+      "copywritingTipsPosition": "bottom",
+      "showSectionGuides": false
+    }
+  },
+  "theme": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#8B5CF6",
+      "accent": "#EC4899",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "secondary": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    }
+  },
+  "assets": {
+    "logo": "/images/logo.svg",
+    "favicon": "/favicon.ico",
+    "images": {}
+  }
+}

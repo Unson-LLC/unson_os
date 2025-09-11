@@ -4,6 +4,104 @@ import {
   getCopywritingTipsByCategory,
   CopywritingTip 
 } from '@/data/copywriting-tips';
+import { setupPostHogForLP, PostHogConfig } from './posthog-auto-setup';
+
+// GPT-5 Structured Outputs用のJSON Schema定義
+function getSectionJsonSchema(section: string): Record<string, any> {
+  const commonProperties = {
+    title: { type: "string", maxLength: 200 },
+    subtitle: { type: "string", maxLength: 500 },
+    description: { type: "string", maxLength: 1000 }
+  };
+
+  switch (section) {
+    case 'hero':
+      return {
+        title: { type: "string", maxLength: 200 },
+        subtitle: { type: "string", maxLength: 500 },
+        cta: { type: "string", maxLength: 100 },
+        description: { type: "string", maxLength: 1000 }
+      };
+    case 'problem':
+      return {
+        title: { type: "string", maxLength: 200 },
+        description: { type: "string", maxLength: 1000 },
+        painPoints: {
+          type: "array",
+          items: { type: "string", maxLength: 200 },
+          maxItems: 5
+        }
+      };
+    case 'solution':
+      return {
+        title: { type: "string", maxLength: 200 },
+        description: { type: "string", maxLength: 1000 },
+        features: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              title: { type: "string", maxLength: 100 },
+              description: { type: "string", maxLength: 300 }
+            },
+            required: ["title", "description"],
+            additionalProperties: false
+          },
+          maxItems: 4
+        }
+      };
+    case 'pricing':
+      return {
+        title: { type: "string", maxLength: 200 },
+        description: { type: "string", maxLength: 500 },
+        plans: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              name: { type: "string", maxLength: 50 },
+              price: { type: "string", maxLength: 50 },
+              features: {
+                type: "array",
+                items: { type: "string", maxLength: 100 },
+                maxItems: 6
+              },
+              cta: { type: "string", maxLength: 100 }
+            },
+            required: ["name", "price", "features", "cta"],
+            additionalProperties: false
+          },
+          maxItems: 3
+        }
+      };
+    case 'cta':
+      return {
+        title: { type: "string", maxLength: 200 },
+        description: { type: "string", maxLength: 500 },
+        primaryCta: { type: "string", maxLength: 100 },
+        secondaryCta: { type: "string", maxLength: 100 }
+      };
+    default:
+      return commonProperties;
+  }
+}
+
+function getRequiredFields(section: string): string[] {
+  switch (section) {
+    case 'hero':
+      return ['title', 'subtitle', 'cta', 'description'];
+    case 'problem':
+      return ['title', 'description', 'painPoints'];
+    case 'solution':
+      return ['title', 'description', 'features'];
+    case 'pricing':
+      return ['title', 'description', 'plans'];
+    case 'cta':
+      return ['title', 'description', 'primaryCta', 'secondaryCta'];
+    default:
+      return ['title', 'description'];
+  }
+}
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
@@ -16,6 +114,8 @@ export interface LPGenerationPrompt {
   pricing?: string;
   competitorAnalysis?: string;
   brandTone?: string;
+  outputDirectory?: string; // PostHog自動設定用の出力ディレクトリ
+  posthogConfig?: Partial<PostHogConfig>; // カスタムPostHog設定
 }
 
 // セクション別の関連コピーライティングコツを取得
@@ -228,8 +328,22 @@ export async function generateLPSection(
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt }
           ],
-          max_completion_tokens: 3000, // 推論に余裕を持たせる
-          stream: false // ストリーミング無効
+          max_completion_tokens: 3000,
+          stream: false,
+          response_format: {
+            type: "json_schema",
+            json_schema: {
+              name: `${section}_section`,
+              strict: true,
+              schema: {
+                type: "object",
+                properties: getSectionJsonSchema(section),
+                required: getRequiredFields(section),
+                additionalProperties: false
+              }
+            }
+          },
+          reasoning_effort: "medium" // GPT-5の新パラメータ
         })
       });
 
@@ -502,6 +616,62 @@ function generateDemoLP(prompt: LPGenerationPrompt): Promise<{
       });
     }, 3000); // 3秒待機
   });
+}
+
+// PostHog自動設定付きLP生成
+export async function generateFullLPWithPostHog(prompt: LPGenerationPrompt): Promise<{
+  success: boolean;
+  config?: Partial<TemplateConfig>;
+  errors: string[];
+  posthogSetup?: {
+    success: boolean;
+    files: string[];
+    errors: string[];
+  };
+  stats?: {
+    totalSections: number;
+    successfulSections: number;
+    failedSections: number;
+    totalTime: number;
+  };
+}> {
+  console.log('🚀 PostHog統合LP生成開始...');
+  
+  // 通常のLP生成
+  const lpResult = await generateFullLP(prompt);
+  
+  // PostHog自動設定
+  let posthogSetup: any = undefined;
+  
+  if (lpResult.success && prompt.outputDirectory) {
+    console.log('🔧 PostHog自動設定開始...');
+    
+    try {
+      posthogSetup = await setupPostHogForLP(
+        prompt.outputDirectory,
+        prompt.serviceName,
+        prompt.posthogConfig
+      );
+      
+      if (posthogSetup.success) {
+        console.log('✅ PostHog設定完了:', posthogSetup.files.join(', '));
+      } else {
+        console.error('❌ PostHog設定失敗:', posthogSetup.errors.join(', '));
+      }
+    } catch (error) {
+      console.error('❌ PostHog設定エラー:', error);
+      posthogSetup = {
+        success: false,
+        files: [],
+        errors: [error instanceof Error ? error.message : 'Unknown PostHog setup error']
+      };
+    }
+  }
+  
+  return {
+    ...lpResult,
+    posthogSetup
+  };
 }
 
 // 完全なLP生成（安定化版）

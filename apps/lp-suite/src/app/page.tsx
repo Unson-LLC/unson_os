@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { ClientOnlyIcon } from '@/components/shared/ClientOnlyIcon';
+import ProjectList from '@/components/ProjectList';
 
 // 実データ統合インターフェース
 interface RealSystemData {
@@ -324,6 +325,23 @@ export default function IntegratedDashboard() {
               </div>
             </Link>
           </div>
+        </div>
+
+        {/* 生成済みLPプロジェクト */}
+        <div className="bg-white shadow-sm rounded-lg border border-gray-200 mb-8">
+          <div className="px-6 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-medium text-gray-900">生成済みLPプロジェクト</h2>
+              <Link
+                href="/generator"
+                className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              >
+                <ClientOnlyIcon icon={FileText} className="w-4 h-4 mr-2" />
+                新しいLP生成
+              </Link>
+            </div>
+          </div>
+          <ProjectList />
         </div>
 
         {/* 最近のイベント */}
