@@ -51,7 +51,7 @@ export class LPEnvironmentConfigurator {
       NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL: conversionLabel
     } as GoogleAdsEnvConfig;
 
-    await this.writeEnvFile(envPath, updatedConfig);
+    await this.writeEnvFile(envPath, updatedConfig as Record<string, string>);
     console.log(`✅ Updated conversion settings: ${envPath}`);
   }
 

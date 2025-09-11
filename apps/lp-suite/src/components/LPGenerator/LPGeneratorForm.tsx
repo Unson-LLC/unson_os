@@ -21,6 +21,13 @@ export function LPGeneratorForm({ onGenerated, className = '' }: LPGeneratorForm
     brandTone: 'プロフェッショナル'
   });
 
+  const [postHogEnabled, setPostHogEnabled] = useState(true);
+  const [postHogConfig, setPostHogConfig] = useState({
+    googleAdsId: 'AW-17431174236',
+    googleAdsConversionLabel: 'zINmCPbAtIMbENy46vdA',
+    ga4MeasurementId: ''
+  });
+
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState<{
     currentSection: string;
@@ -129,12 +136,19 @@ export function LPGeneratorForm({ onGenerated, className = '' }: LPGeneratorForm
         });
       }, 10000); // 10秒ごとに進捗更新
 
+      // PostHog設定付きプロンプトを準備
+      const enhancedPrompt = {
+        ...prompt,
+        postHogEnabled,
+        posthogConfig: postHogEnabled ? postHogConfig : undefined
+      };
+
       const response = await fetch('/api/generate-lp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(prompt)
+        body: JSON.stringify(enhancedPrompt)
       });
 
       clearInterval(progressTimer);
@@ -364,6 +378,87 @@ export function LPGeneratorForm({ onGenerated, className = '' }: LPGeneratorForm
               </ul>
             </div>
           </div>
+        </div>
+
+        {/* PostHog Analytics設定 */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center space-x-2">
+              <div className="w-5 h-5 text-blue-600">📊</div>
+              <h3 className="font-semibold text-blue-900">Analytics & Tracking設定</h3>
+            </div>
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                checked={postHogEnabled}
+                onChange={(e) => setPostHogEnabled(e.target.checked)}
+                className="mr-2"
+              />
+              <span className="text-sm text-blue-700">有効化</span>
+            </label>
+          </div>
+
+          {postHogEnabled && (
+            <div className="space-y-4">
+              <div className="text-sm text-blue-700 mb-3">
+                PostHog、Google Ads、GA4連携を自動設定します。GCLID追跡とコンバージョン計測が含まれます。
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-blue-700 mb-1">
+                    Google Ads ID
+                  </label>
+                  <input
+                    type="text"
+                    value={postHogConfig.googleAdsId}
+                    onChange={(e) => setPostHogConfig(prev => ({ ...prev, googleAdsId: e.target.value }))}
+                    placeholder="AW-17431174236"
+                    className="w-full px-3 py-2 border border-blue-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-blue-700 mb-1">
+                    コンバージョンラベル
+                  </label>
+                  <input
+                    type="text"
+                    value={postHogConfig.googleAdsConversionLabel}
+                    onChange={(e) => setPostHogConfig(prev => ({ ...prev, googleAdsConversionLabel: e.target.value }))}
+                    placeholder="zINmCPbAtIMbENy46vdA"
+                    className="w-full px-3 py-2 border border-blue-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-blue-700 mb-1">
+                    GA4測定ID（オプション）
+                  </label>
+                  <input
+                    type="text"
+                    value={postHogConfig.ga4MeasurementId}
+                    onChange={(e) => setPostHogConfig(prev => ({ ...prev, ga4MeasurementId: e.target.value }))}
+                    placeholder="G-XXXXXXXXXX"
+                    className="w-full px-3 py-2 border border-blue-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-blue-100 rounded p-3">
+                <div className="text-xs text-blue-600">
+                  <strong>自動生成される機能:</strong>
+                  <ul className="mt-1 space-y-1">
+                    <li>• PostHog CDN版（Arc対応）</li>
+                    <li>• GCLID自動収集・セッション保持</li>
+                    <li>• Google Ads コンバージョントラッキング</li>
+                    <li>• Vercel環境変数設定</li>
+                    <li>• TypeScript完全対応</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* 送信ボタン */}
