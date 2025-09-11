@@ -22,9 +22,9 @@ export default function PostHogScript() {
       
       // CDN版PostHog読み込み（複数CDN試行）
       const cdnUrls = [
-        'https://cdn.jsdelivr.net/npm/posthog-js@latest/dist/posthog.min.js',
-        'https://unpkg.com/posthog-js@latest/dist/posthog.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/posthog-js/1.131.0/posthog.min.js'
+        'https://cdn.jsdelivr.net/npm/posthog-js@latest/dist/array.full.js',
+        'https://unpkg.com/posthog-js@latest/dist/array.full.js',
+        'https://app.posthog.com/static/array.js?v=1.262.0'
       ];
       
       let currentCdnIndex = 0;
@@ -48,7 +48,7 @@ export default function PostHogScript() {
               capture_pageleave: true,
               enable_heatmaps: true,
               debug: process.env.NODE_ENV === 'development',
-              loaded: function(ph) {
+              loaded: function(ph: any) {
                 console.log('🎉 CDN版PostHog初期化成功 for MyWa!', ph);
                 window.__posthog_initialized = true;
                 
@@ -76,7 +76,7 @@ export default function PostHogScript() {
                   console.log('📊 拡張ページビューイベント送信完了!');
                 }, 100);
               },
-              on_request_error: function(error) {
+              on_request_error: function(error: any) {
                 console.error('❌ CDN版PostHogエラー:', error);
               }
             });

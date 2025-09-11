@@ -5,8 +5,8 @@ import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, Suspense } from 'react';
 
-// Arc browser blocks PostHog direct access, using CDN version only
-if (false && typeof window !== 'undefined' && !window.__posthog_initialized) {
+// Always skip direct initialization - use CDN version from PostHogScript.tsx
+if (false) {
   console.log('PostHog ENV Check:', {
     key: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     host: process.env.NEXT_PUBLIC_POSTHOG_HOST
@@ -14,7 +14,7 @@ if (false && typeof window !== 'undefined' && !window.__posthog_initialized) {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || '', {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
     person_profiles: 'identified_only',
-    capture_pageview: '2025-05-24',
+    capture_pageview: false,
     capture_pageleave: true,
     enable_heatmaps: true,
     enable_recording_console_log: true,
@@ -44,8 +44,8 @@ function PostHogPageView() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Arc browser compatibility: CDN version handles pageview
-    if (false && pathname && posthog && typeof window !== 'undefined') {
+    // Always skip - CDN version handles pageview
+    if (false) {
       let url = window.origin + pathname;
       if (searchParams && searchParams.toString()) {
         url = url + '?' + searchParams.toString();
@@ -56,13 +56,15 @@ function PostHogPageView() {
       const gclid = urlParams.get('gclid');
       
       // セッションストレージに保存（ページ遷移でも保持）
-      if (gclid) {
+      if (gclid && typeof gclid === 'string') {
         sessionStorage.setItem('gclid', gclid);
       }
       
+      const storedGclid = sessionStorage.getItem('gclid');
+      
       posthog.capture('$pageview', {
         $current_url: url,
-        gclid: gclid || sessionStorage.getItem('gclid'),
+        gclid: gclid || storedGclid,
         utm_source: urlParams.get('utm_source'),
         utm_medium: urlParams.get('utm_medium'),
         utm_campaign: urlParams.get('utm_campaign'),

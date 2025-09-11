@@ -8,10 +8,11 @@ interface FormSectionProps {
   config: TemplateConfig['content']['form']
   onSubmit?: (data: Record<string, string>) => void
   compact?: boolean
+  prefill?: Record<string, string>
 }
 
-export default function FormSection({ config, onSubmit, compact = false }: FormSectionProps) {
-  const [formData, setFormData] = useState<Record<string, string>>({})
+export default function FormSection({ config, onSubmit, compact = false, prefill = {} }: FormSectionProps) {
+  const [formData, setFormData] = useState<Record<string, string>>(prefill)
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
