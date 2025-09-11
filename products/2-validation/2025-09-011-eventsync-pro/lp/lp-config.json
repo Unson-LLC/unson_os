@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "title": "EventSync Pro - イベント運用効率化プラットフォーム",
+    "description": "複数プラットフォームでのイベント運用を自動化し、AI搭載の分析機能で効果を最大化。小〜中規模イベント主催者のための統合管理ツール。",
+    "keywords": ["イベント管理", "マーケティング自動化", "AI分析", "効率化", "コミュニティ運営", "ウェビナー"]
+  },
+  "service": {
+    "name": "EventSync Pro",
+    "tagline": "複数プラットフォーム対応のイベント運用効率化システム",
+    "description": "Peatix、connpass、Doorkeeperなど複数のイベントプラットフォームでの運用を一元管理し、AI搭載の分析機能で集客効果を最大化します。"
+  },
+  "theme": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#8B5CF6", 
+      "accent": "#EC4899",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "Inter",
+      "body": "Inter"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)",
+      "secondary": "linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)"
+    },
+    "style": "modern"
+  },
+  "content": {
+    "hero": {
+      "enabled": true,
+      "title": "イベント運用の悩み、\\nもう終わりにしませんか？",
+      "subtitle": "複数プラットフォームでの重複作業、効果の見えない広告費、深夜残業...\nEventSync ProのAI搭載システムで全て解決します。",
+      "cta": {
+        "primary": "ウェイトリストに登録"
+      },
+      "image": "hero-bg.jpg"
+    },
+    "problem": {
+      "enabled": true,
+      "title": "こんなお悩みありませんか？",
+      "description": "EventSync Proが解決する6つの主要な課題",
+      "problems": [
+        {
+          "title": "締切前の焦り",
+          "description": "イベント準備に追われて、いつも締切ギリギリで焦っている",
+          "image": "problem-1.jpg"
+        },
+        {
+          "title": "複数媒体の管理",
+          "description": "Peatix、connpass、Doorkeeperで同じ作業を何度も繰り返している", 
+          "image": "problem-2.jpg"
+        },
+        {
+          "title": "広告費の浪費",
+          "description": "効果が見えないまま広告費をかけ続けて、予算を圧迫している",
+          "image": "problem-3.jpg"
+        },
+        {
+          "title": "効果測定の困難",
+          "description": "複数のダッシュボードを見比べても、何が効いているのか分からない",
+          "image": "problem-4.jpg"
+        },
+        {
+          "title": "競合との差",
+          "description": "他のコミュニティは満席なのに、自分のイベントは参加者が集まらない",
+          "image": "problem-5.jpg"
+        },
+        {
+          "title": "深夜残業",
+          "description": "イベント準備やフォローアップ作業で深夜まで働いている",
+          "image": "problem-6.jpg"
+        }
+      ]
+    },
+    "solution": {
+      "enabled": true,
+      "title": "EventSync Proが全て解決します", 
+      "description": "3つの革新的ソリューションで課題を解決",
+      "solutions": [
+        {
+          "title": "一括同期の効率",
+          "description": "複数プラットフォームへの投稿・更新を1クリックで同期。作業時間を80%削減します。",
+          "image": "solution-1.jpg"
+        },
+        {
+          "title": "AI自動最適化", 
+          "description": "AIが参加者データを分析し、最適なタイトル・開催時間・価格設定を自動提案します。",
+          "image": "solution-2.jpg"
+        },
+        {
+          "title": "成果の可視化",
+          "description": "統合ダッシュボードで全プラットフォームの効果を一目で確認。ROIが明確に見えます。",
+          "image": "solution-3.jpg"
+        }
+      ]
+    },
+    "service": {
+      "enabled": true,
+      "title": "主な機能",
+      "subtitle": "EventSync Proの革新的な機能群",
+      "services": [
+        {
+          "title": "クロスプラットフォーム同期",
+          "description": "Peatix、connpass、Doorkeeperなど主要プラットフォームに一括投稿・更新",
+          "features": ["一括投稿", "リアルタイム同期", "重複防止"],
+          "icon": "sync"
+        },
+        {
+          "title": "AI搭載分析エンジン",
+          "description": "参加者行動を分析し、集客効果を最大化する施策を自動提案",
+          "features": ["行動分析", "自動提案", "効果予測"],
+          "icon": "brain"
+        },
+        {
+          "title": "統合レポート機能",
+          "description": "全プラットフォームのデータを統合し、ROIを明確に可視化",
+          "features": ["統合ダッシュボード", "ROI可視化", "カスタムレポート"],
+          "icon": "chart"
+        },
+        {
+          "title": "自動フォローアップ",
+          "description": "参加者への御礼メール、次回案内を自動化。継続参加率を向上",
+          "features": ["自動メール送信", "参加者管理", "継続率向上"],
+          "icon": "mail"
+        }
+      ],
+      "image": "feature-1.jpg"
+    },
+    "pricing": {
+      "enabled": false,
+      "title": "料金プラン",
+      "plans": [
+        {
+          "name": "スタータープラン",
+          "price": "月額 9,800円",
+          "description": "個人・小規模コミュニティ向け",
+          "features": [
+            "2プラットフォーム連携",
+            "月10イベントまで",
+            "基本レポート機能",
+            "メールサポート"
+          ]
+        },
+        {
+          "name": "プロプラン", 
+          "price": "月額 29,800円",
+          "description": "成長中のコミュニティ向け",
+          "features": [
+            "5プラットフォーム連携",
+            "無制限イベント作成",
+            "AI最適化機能",
+            "優先サポート",
+            "カスタムレポート"
+          ],
+          "highlighted": true
+        },
+        {
+          "name": "エンタープライズ",
+          "price": "要相談",
+          "description": "大規模組織向け",
+          "features": [
+            "全プラットフォーム対応",
+            "専用サーバー",
+            "カスタム機能開発",
+            "専任サポート"
+          ]
+        }
+      ]
+    },
+    "cta": {
+      "enabled": true,
+      "title": "今すぐEventSync Proを始めて、イベント運用を変革しませんか？",
+      "subtitle": "14日間無料トライアル実施中。クレジットカード登録不要ですぐに開始できます。",
+      "button": "無料で始める",
+      "image": "cta-bg.jpg"
+    },
+    "features": [],
+    "form": {
+      "title": "ウェイトリストに登録",
+      "subtitle": "EventSync Proの正式リリース時に優先的にご案内いたします",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "お名前を入力してください",
+          "required": true
+        },
+        {
+          "type": "email", 
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "メールアドレスを入力してください",
+          "required": true
+        }
+      ],
+      "submitText": "ウェイトリストに登録する",
+      "successMessage": "ありがとうございます！ウェイトリストに登録いたしました。正式リリース時にご連絡いたします。"
+    },
+    "finalCta": {
+      "title": "今すぐ登録しましょう",
+      "subtitle": "EventSync Proの正式リリース時に優先案内",
+      "cta": "ウェイトリストに登録"
+    },
+    "footer": {
+      "company": "EventSync Pro",
+      "copyright": "© 2025 EventSync Pro. All rights reserved.",
+      "links": []
+    }
+  },
+  "assets": {
+    "images": "/images"
+  },
+  "contact": {
+    "email": "support@eventsync-pro.com",
+    "phone": "03-1234-5678"
+  },
+  "imageGeneration": {
+    "enabled": true,
+    "target": "小〜中規模イベント主催者（コミュニティ/ウェビナー担当）",
+    "theme": "イベント運用効率化・媒体横断マーケティング・AI自動化", 
+    "colors": "Blue (#3B82F6), Purple (#8B5CF6), Pink (#EC4899)",
+    "mood": "プロフェッショナル・効率的・革新的・信頼感",
+    "style": "modern business photography with clean graphics and tech elements"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "EventSync Pro - サービスLP",
-    "description": "イベント主催者のための媒体横断一括運用ツール。Peatix/connpass/Doorkeeper + X/Meta広告を1クリックで自動化し、締切前ブーストまで実行するAI運用係",
+    "title": "EventSync Pro - 1クリックで媒体横断—新規到達30%UP、締切前の申込20%増。サクサク滑らかな運用で、結果は劇的",
+    "description": "小〜中規模イベントの兼務チーム向け。なぜ今まで届かなかった層に届くのか？AI運用係がPeatix・connpass・DoorkeeperとX/Meta広告を1クリックで最適化し、知らないと損する“締切前ブースト”まで自動化。作業はサクサク、レポートはクリア—既存ファン外への到達を30%改善し、申込を20%伸ばします。",
     "keywords": [
       "EventSync Pro",
       "小〜中規模イベント主催者（コミュニティ/ウェビナー担当）",
@@ -9,15 +9,67 @@
     ]
   },
   "content": {
+    "hero": {
+      "title": "1クリックで媒体横断—新規到達30%UP、締切前の申込20%増。サクサク滑らかな運用で、結果は劇的",
+      "subtitle": "小〜中規模イベントの兼務チーム向け。なぜ今まで届かなかった層に届くのか？AI運用係がPeatix・connpass・DoorkeeperとX/Meta広告を1クリックで最適化し、知らないと損する“締切前ブースト”まで自動化。作業はサクサク、レポートはクリア—既存ファン外への到達を30%改善し、申込を20%伸ばします。",
+      "cta": "無料デモを予約する",
+      "description": "リスクなしで始めたい方はこちら：資料ダウンロード（無料・導入義務なし）"
+    },
     "problem": {
-      "title": "締切48時間前、空席が目に刺さる—小さなチームが抱える本当の壁",
-      "description": "1〜5人の兼務で、Peatix/connpass/Doorkeeperの更新、XとMetaの入札調整、登壇者対応…気づけばタブは15個、時計は深夜。締切まであと48時間なのに、会場はまだ空席40%。タイムラインでは他コミュニティが「満席御礼」のスクショを次々投稿し、手のひらは冷たく汗ばむ。業界専門誌でも「締切前の追い込みが参加率を左右」と指摘される中、あなたは手作業の迷路で足を取られ、波に乗る瞬発力を失っている。これは努力不足ではなく、運用が媒体横断で分断されている構造的な問題。放置すれば、次回も同じ夜更かしと同じ空席が待っている。",
-      "painPoints": [
-        "二重入力・誤字による検索流入ロス",
-        "締切前ブーストの打ち遅れ",
-        "広告費のムダ消費と最適化遅延",
-        "兼務による企画・当日運営の圧迫",
-        "勝ち筋コミュニティとの格差拡大"
+      "title": "締切48時間前が勝負なのに、手が回らない——席が埋まらない不安",
+      "description": "1〜5人の兼務チーム。タブは増え、心拍も上がる。Peatix/connpass/Doorkeeperを行き来し、XとMetaで似た設定を打ち直す。",
+      "problems": [
+        {
+          "title": "締切前ブーストが打てない",
+          "description": "締切48時間前が勝負なのに、手動で広告調整する時間がない。残席が動かない不安",
+          "icon": "⏰"
+        },
+        {
+          "title": "二重入力で時間を消耗",
+          "description": "Peatix、connpass、Doorkeeperへの個別入力。誤字脱字で検索順位が下がる",
+          "icon": "📝"
+        },
+        {
+          "title": "広告費の最適化ができない",
+          "description": "X/Meta広告の入札調整に追われ、効果測定どころではない。予算だけ消費",
+          "icon": "💸"
+        },
+        {
+          "title": "効果が見えない焦り",
+          "description": "計測の定義が媒体ごとにズレ、本当の効果が分からない。改善点も不明",
+          "icon": "📊"
+        },
+        {
+          "title": "他コミュニティとの格差",
+          "description": "タイムラインには満席御礼の投稿。同じ努力なのに差がつく一方",
+          "icon": "😔"
+        },
+        {
+          "title": "深夜作業の常態化",
+          "description": "締切前は毎回深夜まで作業。チームメンバーも疲弊しモチベーション低下",
+          "icon": "🌙"
+        }
+      ]
+    },
+    "solution": {
+      "title": "EventSync Proで、イベント運用が劇的に変わる",
+      "description": "媒体横断の一括運用で、今まで届かなかった層に確実にリーチ。AI運用係が締切前ブーストを自動実行。",
+      "solutions": [
+        {
+          "title": "1クリック媒体横断同期",
+          "description": "Peatix、connpass、Doorkeeperを一度の操作で同時更新。二重入力ゼロ",
+          "icon": "🚀"
+        },
+        {
+          "title": "AI締切前ブースト",
+          "description": "締切48時間前に自動でX/Meta広告を最適化。申込率20%向上を実現",
+          "icon": "🎯"
+        },
+        {
+          "title": "スマート広告運用",
+          "description": "既存ファン外への新規リーチ30%改善。AIが自動でターゲティング調整",
+          "icon": "🤖"
+        }
       ]
     },
     "form": {
@@ -58,10 +110,10 @@
       "companyName": "EventSync Pro"
     },
     "finalCta": {
-      "title": "今だけ限定｜EventSync Proで新規リーチ＋30%、申込＋20%を最短今日から",
-      "description": "60秒でセットアップ完了。ダッシュボードに即時アクセスして、媒体横断の一括運用効果をその場で体感。",
-      "primaryCta": "今すぐ無料で試す",
-      "secondaryCta": "デモを見る"
+      "title": "今すぐ始めて、到達+30%・申込+20%を掴む — EventSync Pro",
+      "description": "媒体横断の一括運用で既存ファン外への到達を30%改善。締切前ブーストで申込を20%伸ばす手応えを今すぐ。• 即時アクセスで今日から運用開始／最短数分で初期設定完了 • 契約前に無料で試用OK・いつでもキャンセル可能 • 導入事例多数で安心サポート • 本日中の申込で優先オンボーディング枠を確保（残枠わずか）",
+      "primaryCta": "今すぐ無料で始める",
+      "secondaryCta": "資料を今すぐダウンロード"
     }
   },
   "settings": {
@@ -69,6 +121,19 @@
       "showCopywritingTips": true,
       "copywritingTipsPosition": "bottom",
       "showSectionGuides": false
+    },
+    "analytics": {
+      "postHogKey": "phc_dxzXGDMQP2zNQmNm01TuVkVvQgL2rHcj1Y2xKSFKFrP",
+      "postHogHost": "https://us.i.posthog.com",
+      "googleAdsId": "AW-17431174236",
+      "googleAdsConversionLabel": "event_signup_conversion",
+      "ga4MeasurementId": "G-EVENTSYNC01",
+      "enabledFeatures": [
+        "pageview",
+        "click",
+        "scroll",
+        "form"
+      ]
     }
   },
   "theme": {
@@ -93,5 +158,13 @@
     "logo": "/images/logo.svg",
     "favicon": "/favicon.ico",
     "images": {}
+  },
+  "imageGeneration": {
+    "enabled": true,
+    "target": "小〜中規模イベント主催者（コミュニティ/ウェビナー担当）",
+    "theme": "イベント運用効率化・媒体横断マーケティング・AI自動化",
+    "colors": "Blue (#3B82F6), Purple (#8B5CF6), Pink (#EC4899)",
+    "mood": "プロフェッショナル・効率的・革新的・信頼感",
+    "style": "modern business photography with clean graphics and tech elements"
   }
 }
