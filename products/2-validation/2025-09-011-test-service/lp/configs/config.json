@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "Test Service - 最短7分で仮説が確信に。なぜ結果が“手に取るように”見えるのか？ — Test Service",
+    "description": "テストユーザー向けのプロフェッショナルなクイックバリデーション。サクサク動作と滑らかな操作感、クリアなレポートで次の一手を迷わず決断。",
+    "keywords": [
+      "Test Service",
+      "Test",
+      "users"
+    ]
+  },
+  "content": {
+    "hero": {
+      "title": "最短7分で仮説が確信に。なぜ結果が“手に取るように”見えるのか？ — Test Service",
+      "subtitle": "テストユーザー向けのプロフェッショナルなクイックバリデーション。サクサク動作と滑らかな操作感、クリアなレポートで次の一手を迷わず決断。",
+      "cta": "今すぐ無料で検証を始める",
+      "description": "平均17分で初回セットアップ完了。初期インサイトは24時間以内に到達。クレカ不要・14日間無料トライアルでリスクゼロ。今月の先行登録で優先オンボーディングと検証テンプレートを進呈。"
+    },
+    "problem": {
+      "title": "その“Simple test”、いまのままでは成果と信頼がこぼれ落ちています",
+      "description": "対象: Test users。仕様変更が波のように押し寄せ、手順は散らばり、報告はバラバラ。気づけば3時間の手作業が過ぎ、モニターの光で目がチカチカ、指先はコピペでじんわり痺れる。それでも結果は伝わりにくく、次のリリースまで残り48時間のカウントダウン。周りでは“5分で回せるシンプルテスト”に切り替えたチームが満足度98%を掲げ、障害報告を40%削減したと社内チャネルで話題に。専門家も『テストはシンプルに設計するほど品質は安定する』と繰り返すのに、現場では実行できない—このギャップが、焦りと不安を大きくしていませんか？",
+      "painPoints": [
+        "手作業に3時間かかり、集中力と信頼が目減りする",
+        "他チームは5分で回し結果を出しているという社会的証明がプレッシャーになる",
+        "リリースまでの48時間と限られた検証枠が行動を急かす",
+        "専門家の推奨“シンプル設計”と現場の複雑さの乖離",
+        "Before→After（3時間→5分）の変化が見えているのに越えられない壁"
+      ]
+    },
+    "finalCta": {
+      "title": "迷う前に検証。Test Serviceで今すぐ確信へ",
+      "description": "最短60秒でQuick validation—アイデアのYES/NOがその場でわかる",
+      "primaryCta": "今すぐ無料で検証する",
+      "secondaryCta": "デモを見る"
+    },
+    "form": {
+      "title": "無料相談・お問い合わせ",
+      "subtitle": "Test Serviceについて詳しく知りたい方はこちら",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@company.com",
+          "required": true
+        },
+        {
+          "type": "textarea",
+          "name": "message",
+          "label": "お問い合わせ内容",
+          "placeholder": "ご質問やご相談内容をお聞かせください",
+          "required": false
+        }
+      ],
+      "submitText": "無料相談を申し込む",
+      "successMessage": "お問い合わせありがとうございます。24時間以内にご連絡いたします。"
+    },
+    "features": [],
+    "service": {
+      "title": "サービス詳細",
+      "services": []
+    },
+    "footer": {
+      "companyName": "Test Service"
+    }
+  },
+  "settings": {
+    "development": {
+      "showCopywritingTips": true,
+      "copywritingTipsPosition": "bottom",
+      "showSectionGuides": false
+    }
+  },
+  "theme": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#8B5CF6",
+      "accent": "#EC4899",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "secondary": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    }
+  },
+  "assets": {
+    "logo": "/images/logo.svg",
+    "favicon": "/favicon.ico",
+    "images": {}
+  }
+}

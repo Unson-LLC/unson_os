@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "EventSync Pro - サービスLP",
+    "description": "イベント主催者のための媒体横断一括運用ツール。Peatix/connpass/Doorkeeper + X/Meta広告を1クリックで自動化し、締切前ブーストまで実行するAI運用係",
+    "keywords": [
+      "EventSync Pro",
+      "小〜中規模イベント主催者（コミュニティ/ウェビナー担当）",
+      "1-5人チームでの兼務が多い"
+    ]
+  },
+  "content": {
+    "problem": {
+      "title": "締切48時間前、空席が目に刺さる—小さなチームが抱える本当の壁",
+      "description": "1〜5人の兼務で、Peatix/connpass/Doorkeeperの更新、XとMetaの入札調整、登壇者対応…気づけばタブは15個、時計は深夜。締切まであと48時間なのに、会場はまだ空席40%。タイムラインでは他コミュニティが「満席御礼」のスクショを次々投稿し、手のひらは冷たく汗ばむ。業界専門誌でも「締切前の追い込みが参加率を左右」と指摘される中、あなたは手作業の迷路で足を取られ、波に乗る瞬発力を失っている。これは努力不足ではなく、運用が媒体横断で分断されている構造的な問題。放置すれば、次回も同じ夜更かしと同じ空席が待っている。",
+      "painPoints": [
+        "二重入力・誤字による検索流入ロス",
+        "締切前ブーストの打ち遅れ",
+        "広告費のムダ消費と最適化遅延",
+        "兼務による企画・当日運営の圧迫",
+        "勝ち筋コミュニティとの格差拡大"
+      ]
+    },
+    "form": {
+      "title": "無料相談・お問い合わせ",
+      "subtitle": "EventSync Proについて詳しく知りたい方はこちら",
+      "fields": [
+        {
+          "type": "text",
+          "name": "name",
+          "label": "お名前",
+          "placeholder": "山田 太郎",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "メールアドレス",
+          "placeholder": "example@company.com",
+          "required": true
+        },
+        {
+          "type": "textarea",
+          "name": "message",
+          "label": "お問い合わせ内容",
+          "placeholder": "ご質問やご相談内容をお聞かせください",
+          "required": false
+        }
+      ],
+      "submitText": "無料相談を申し込む",
+      "successMessage": "お問い合わせありがとうございます。24時間以内にご連絡いたします。"
+    },
+    "features": [],
+    "service": {
+      "title": "サービス詳細",
+      "services": []
+    },
+    "footer": {
+      "companyName": "EventSync Pro"
+    },
+    "finalCta": {
+      "title": "今だけ限定｜EventSync Proで新規リーチ＋30%、申込＋20%を最短今日から",
+      "description": "60秒でセットアップ完了。ダッシュボードに即時アクセスして、媒体横断の一括運用効果をその場で体感。",
+      "primaryCta": "今すぐ無料で試す",
+      "secondaryCta": "デモを見る"
+    }
+  },
+  "settings": {
+    "development": {
+      "showCopywritingTips": true,
+      "copywritingTipsPosition": "bottom",
+      "showSectionGuides": false
+    }
+  },
+  "theme": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#8B5CF6",
+      "accent": "#EC4899",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "textLight": "#6B7280"
+    },
+    "fonts": {
+      "heading": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "secondary": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    }
+  },
+  "assets": {
+    "logo": "/images/logo.svg",
+    "favicon": "/favicon.ico",
+    "images": {}
+  }
+}
