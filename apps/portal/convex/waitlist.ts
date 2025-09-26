@@ -61,7 +61,7 @@ export const getStats = query({
     
     // 役割別集計
     const roleStats = allRegistrations.reduce((acc, registration) => {
-      const role = registration.role || "未指定";
+      const role = "未指定"; // roleフィールドがスキーマに存在しないため
       acc[role] = (acc[role] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
@@ -74,7 +74,7 @@ export const getStats = query({
     
     // リファラー別集計
     const referralStats = allRegistrations.reduce((acc, registration) => {
-      const source = registration.referralSource || "直接アクセス";
+      const source = registration.source || "直接アクセス";
       acc[source] = (acc[source] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);

@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { LPGenerationPrompt } from '@/lib/lp-generator';
 import { Wand2, Loader2, CheckCircle, XCircle, Lightbulb, Target, DollarSign, Users, AlertCircle, RefreshCw } from 'lucide-react';
+import ImageGenerationPanel from '@/components/ImageGenerationPanel';
+import { TemplateConfig } from '@/types/template';
 
 interface LPGeneratorFormProps {
   onGenerated?: (config: any) => void;
@@ -26,6 +28,17 @@ export function LPGeneratorForm({ onGenerated, className = '' }: LPGeneratorForm
     googleAdsId: 'AW-17431174236',
     googleAdsConversionLabel: 'zINmCPbAtIMbENy46vdA',
     ga4MeasurementId: ''
+  });
+
+  const [templateConfig, setTemplateConfig] = useState<Partial<TemplateConfig>>({
+    imageGeneration: {
+      enabled: false,
+      target: '',
+      theme: '',
+      colors: '',
+      mood: '',
+      style: ''
+    }
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
@@ -460,6 +473,13 @@ export function LPGeneratorForm({ onGenerated, className = '' }: LPGeneratorForm
             </div>
           )}
         </div>
+
+        {/* 画像生成設定 */}
+        <ImageGenerationPanel 
+          config={templateConfig as TemplateConfig}
+          serviceName={prompt.serviceName}
+          onConfigUpdate={(updates) => setTemplateConfig(prev => ({ ...prev, ...updates }))}
+        />
 
         {/* 送信ボタン */}
         <button

@@ -62,20 +62,15 @@ export const getStats = query({
     if (args.category && args.category !== "全て") {
       products = await ctx.db
         .query("products")
-        .withIndex("by_category", (q) => q.eq("category", args.category))
+        .withIndex("by_category", (q) => q.eq("category", args.category!))
         .collect();
     } else {
       products = await ctx.db.query("products").collect();
     }
     
-    const totalUsers = products.reduce((sum, product) => {
-      const userCount = parseInt(product.users.replace(/[^0-9]/g, ''));
-      return sum + userCount;
-    }, 0);
-    
-    const averageRating = products.length > 0 
-      ? (products.reduce((sum, product) => sum + product.rating, 0) / products.length)
-      : 0;
+    // スキーマにusersとratingフィールドが存在しないため、仮の値を使用
+    const totalUsers = 0;
+    const averageRating = 0;
     
     const statusCounts = products.reduce((acc, product) => {
       acc[product.status] = (acc[product.status] || 0) + 1;
@@ -85,7 +80,7 @@ export const getStats = query({
     return {
       totalProducts: products.length,
       totalUsers,
-      averageRating: Number(averageRating.toFixed(1)),
+      averageRating: Number(averageRating),
       statusCounts,
       categories: Array.from(new Set(products.map(p => p.category))),
     };
@@ -130,10 +125,9 @@ export const search = query({
     
     // テキスト検索（簡易版）
     const searchTerm = args.query.toLowerCase();
-    const filteredProducts = products.filter(product => 
+    const filteredProducts = products.filter(product =>
       product.name.toLowerCase().includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm) ||
-      product.features.some((feature: string) => feature.toLowerCase().includes(searchTerm))
+      product.description.toLowerCase().includes(searchTerm)
     );
     
     return filteredProducts.slice(0, args.limit || 20);
@@ -146,16 +140,13 @@ export const create = mutation({
     name: v.string(),
     category: v.string(),
     description: v.string(),
-    longDescription: v.optional(v.string()),
-    price: v.string(),
-    users: v.string(),
-    rating: v.number(),
     status: v.union(
-      v.literal("active"),
-      v.literal("beta"),
-      v.literal("coming-soon")
+      v.literal("planning"),
+      v.literal("development"),
+      v.literal("testing"),
+      v.literal("launched")
     ),
-    features: v.array(v.string()),
+    launchDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const now = Date.now();
@@ -177,16 +168,13 @@ export const update = mutation({
     name: v.optional(v.string()),
     category: v.optional(v.string()),
     description: v.optional(v.string()),
-    longDescription: v.optional(v.string()),
-    price: v.optional(v.string()),
-    users: v.optional(v.string()),
-    rating: v.optional(v.number()),
     status: v.optional(v.union(
-      v.literal("active"),
-      v.literal("beta"),
-      v.literal("coming-soon")
+      v.literal("planning"),
+      v.literal("development"),
+      v.literal("testing"),
+      v.literal("launched")
     )),
-    features: v.optional(v.array(v.string())),
+    launchDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const { id, ...updates } = args;

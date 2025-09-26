@@ -11,6 +11,13 @@
   
   body {
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    color: var(--color-text, #1F2937);
+    background-color: var(--color-background, #FFFFFF);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading, 'Inter', sans-serif);
   }
 }
 
@@ -61,5 +68,115 @@
   
   .table-header {
     @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  /* LP専用スタイル */
+  .gradient-primary {
+    background: var(--gradient-primary, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary, linear-gradient(135deg, #4facfe 0%, #00f2fe 100%));
+  }
+
+  .hero-gradient {
+    @apply bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500;
+  }
+
+  .container-width {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .card-hover {
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+
+  .section-pattern {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgb(219 234 254 / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%);
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    to {
+      transform: translateX(100%) translateY(100%);
+    }
   }
 }

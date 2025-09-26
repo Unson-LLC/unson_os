@@ -60,7 +60,14 @@ export default defineSchema({
     productType: v.string(),
     description: v.string(),
     priority: v.union(v.literal("low"), v.literal("medium"), v.literal("high")),
-    status: v.union(v.literal("submitted"), v.literal("reviewing"), v.literal("approved"), v.literal("rejected")),
+    status: v.union(
+      v.literal("submitted"),
+      v.literal("reviewing"),
+      v.literal("approved"),
+      v.literal("in_development"),
+      v.literal("completed"),
+      v.literal("rejected")
+    ),
     createdAt: v.number(),
     updatedAt: v.number(),
   })

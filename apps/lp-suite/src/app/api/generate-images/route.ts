@@ -22,8 +22,10 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // 出力パスを決定
-    const defaultOutputPath = path.join(process.cwd(), 'public', 'generated-images', serviceName);
+    // 出力パスを決定 - LP プロジェクトディレクトリに保存
+    const projectName = serviceName.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+    const projectDirName = `2025-09-011-${projectName}`;
+    const defaultOutputPath = path.join(process.cwd(), '../../products/2-validation', projectDirName, 'lp/images');
     const finalOutputPath = outputPath || defaultOutputPath;
 
     // 出力ディレクトリを作成
