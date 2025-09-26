@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDSdu48kEdL0uHTFH31-vfFB3_nP5Vbq7Q';
+const API_KEY = process.env.GEMINI_API_KEY;
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent';
 
 // Nano Banana（Gemini 2.5）専用の一貫性確保プロンプト
