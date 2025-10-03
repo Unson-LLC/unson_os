@@ -1,4 +1,10 @@
 {
+  "buildCommand": "cd apps/portal && npm run build",
+  "devCommand": "cd apps/portal && npm run dev",
+  "installCommand": "npm install && cd apps/portal && npm install",
+  "framework": "nextjs",
+  "outputDirectory": "apps/portal/.next",
+  "regions": ["hnd1"],
   "functions": {
     "src/app/api/service-application/route.ts": {
       "maxDuration": 30

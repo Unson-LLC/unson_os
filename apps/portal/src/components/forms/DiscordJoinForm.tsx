@@ -173,7 +173,15 @@ export function DiscordJoinForm({ onClose }: DiscordJoinFormProps) {
           reasons: [],
           otherReason: '',
           skills: '',
-          expectations: ''
+          expectations: '',
+          occupation: '',
+          experienceLevel: '',
+          currentRole: '',
+          interests: [],
+          motivations: [],
+          timeCommitment: '',
+          learningGoals: [],
+          contributionAreas: []
         })
       } else {
         setSubmitStatus('error')

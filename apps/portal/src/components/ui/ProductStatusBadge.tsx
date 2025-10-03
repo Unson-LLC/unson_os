@@ -27,19 +27,45 @@ export function ProductStatusBadge({ product, testId, size = 'xs' }: ProductStat
           利用可能
         </span>
       )
-    case 'beta':
+    case 'development':
       return (
-        <span 
+        <span
           className={`${paddingClass} bg-yellow-100 text-yellow-700 ${sizeClass} rounded-full`}
           data-testid={testId || "concept-badge"}
         >
-          ベータ版
+          開発中
         </span>
       )
-    case 'coming-soon':
+    case 'validation':
+      return (
+        <span
+          className={`${paddingClass} bg-purple-100 text-purple-700 ${sizeClass} rounded-full`}
+          data-testid={testId || "concept-badge"}
+        >
+          検証中
+        </span>
+      )
+    case 'discovery':
+      return (
+        <span
+          className={`${paddingClass} bg-blue-100 text-blue-700 ${sizeClass} rounded-full`}
+          data-testid={testId || "concept-badge"}
+        >
+          構想段階
+        </span>
+      )
+    case 'terminated':
+      return (
+        <span
+          className={`${paddingClass} bg-gray-100 text-gray-700 ${sizeClass} rounded-full`}
+          data-testid={testId || "concept-badge"}
+        >
+          終了
+        </span>
+      )
     default:
       return (
-        <span 
+        <span
           className={`${paddingClass} bg-blue-100 text-blue-700 ${sizeClass} rounded-full`}
           data-testid={testId || "concept-badge"}
         >
