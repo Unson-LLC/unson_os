@@ -15,7 +15,7 @@ export const create = mutation({
     // 既存の申請があるかチェック
     const existing = await ctx.db
       .query("discordApplications")
-      .withIndex("by_email", (q) => q.eq("email", args.email))
+      .filter((q) => q.eq(q.field("email"), args.email))
       .first();
 
     if (existing && existing.status === "approved") {
@@ -79,7 +79,7 @@ export const getByEmail = query({
   handler: async (ctx, args) => {
     return await ctx.db
       .query("discordApplications")
-      .withIndex("by_email", (q) => q.eq("email", args.email))
+      .filter((q) => q.eq(q.field("email"), args.email))
       .first();
   },
 });
@@ -91,7 +91,6 @@ export const getRecent = query({
     const limit = args.limit || 50;
     return await ctx.db
       .query("discordApplications")
-      .withIndex("by_creation_time")
       .order("desc")
       .take(limit);
   },

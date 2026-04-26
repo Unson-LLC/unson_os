@@ -144,6 +144,8 @@ export const search = query({
 // プロダクト作成
 export const create = mutation({
   args: {
+    workspace_id: v.optional(v.string()),
+    product_id: v.optional(v.string()),
     name: v.string(),
     category: v.string(),
     description: v.string(),
@@ -171,9 +173,16 @@ export const create = mutation({
   },
   handler: async (ctx, args) => {
     const now = Date.now();
+    const fallbackProductId = args.name
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "") || `product-${now}`;
     
     const productId = await ctx.db.insert("products", {
       ...args,
+      workspace_id: args.workspace_id || "unson-os-workspace",
+      product_id: args.product_id || fallbackProductId,
       createdAt: now,
       updatedAt: now,
     });

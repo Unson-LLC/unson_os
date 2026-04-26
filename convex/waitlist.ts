@@ -15,7 +15,7 @@ export const add = mutation({
     // 重複チェック
     const existing = await ctx.db
       .query("waitlist")
-      .withIndex("by_email", (q) => q.eq("email", args.email))
+      .filter((q) => q.eq(q.field("email"), args.email))
       .first();
     
     if (existing) {
@@ -96,7 +96,7 @@ export const checkEmail = query({
   handler: async (ctx, args) => {
     const existing = await ctx.db
       .query("waitlist")
-      .withIndex("by_email", (q) => q.eq("email", args.email))
+      .filter((q) => q.eq(q.field("email"), args.email))
       .first();
     
     return { exists: !!existing };
