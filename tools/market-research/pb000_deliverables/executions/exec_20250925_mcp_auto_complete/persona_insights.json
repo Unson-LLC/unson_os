@@ -1,0 +1,277 @@
+{
+  "analysis_metadata": {
+    "analysis_date": "2025-09-25T14:47:00.841862",
+    "data_source": "Instagram API via Apify",
+    "total_profiles_analyzed": 623,
+    "total_posts_analyzed": 888,
+    "personas_created": 3
+  },
+  "personas": [
+    {
+      "id": "persona_001",
+      "name": "教育系コンテンツクリエイター",
+      "real_username": "techtalkhq",
+      "real_full_name": "TechTalk | Cloud Computing",
+      "demographics": {
+        "age": 28,
+        "location": "東京都渋谷区",
+        "occupation": "フリーランスWeb開発者・教育コンテンツクリエイター",
+        "income": "450万円",
+        "education": "情報系大学卒業"
+      },
+      "psychographics": {
+        "values": [
+          "知識共有",
+          "技術向上",
+          "コミュニティ貢献"
+        ],
+        "interests": [
+          "最新Web技術",
+          "チュートリアル作成",
+          "プログラミング教育"
+        ],
+        "lifestyle": "SNSで積極的に情報発信、オンラインコミュニティ活動"
+      },
+      "pain_points": [
+        "コンテンツ作成に時間がかかりすぎる",
+        "開発環境セットアップの説明が複雑",
+        "初心者向けの分かりやすい開発環境が少ない"
+      ],
+      "goals": [
+        "より効率的なコンテンツ作成",
+        "初心者が簡単に始められる環境提供",
+        "技術コミュニティでの影響力向上"
+      ],
+      "social_media_behavior": {
+        "platforms": [
+          "Instagram",
+          "YouTube",
+          "Twitter"
+        ],
+        "posting_frequency": "週3-4回",
+        "engagement_rate": "32660.0",
+        "content_types": [
+          "チュートリアル動画",
+          "コーディングtips",
+          "技術解説"
+        ]
+      },
+      "unson_os_relevance": {
+        "fit_score": 95,
+        "primary_use_case": "教育コンテンツ作成プラットフォーム",
+        "secondary_use_case": "開発環境デモンストレーション",
+        "adoption_likelihood": "高"
+      }
+    },
+    {
+      "id": "persona_002",
+      "name": "フリーランス開発者",
+      "real_username": "findigit_",
+      "real_full_name": "FinDigit",
+      "demographics": {
+        "age": 32,
+        "location": "大阪府大阪市",
+        "occupation": "フリーランスWebデベロッパー",
+        "income": "520万円",
+        "education": "独学・オンライン学習"
+      },
+      "psychographics": {
+        "values": [
+          "効率性",
+          "品質",
+          "クライアント満足"
+        ],
+        "interests": [
+          "新技術習得",
+          "ビジネス拡大",
+          "ワークライフバランス"
+        ],
+        "lifestyle": "在宅ワーク中心、複数プロジェクト並行"
+      },
+      "pain_points": [
+        "プロジェクトごとの環境セットアップが面倒",
+        "クライアント要件に応じた迅速な開発環境構築",
+        "複数プロジェクトの管理が複雑"
+      ],
+      "goals": [
+        "開発効率の向上",
+        "プロジェクト納期短縮",
+        "収益性向上"
+      ],
+      "social_media_behavior": {
+        "platforms": [
+          "Instagram",
+          "LinkedIn",
+          "Twitter"
+        ],
+        "posting_frequency": "週2-3回",
+        "engagement_rate": "98.1",
+        "content_types": [
+          "プロジェクト紹介",
+          "開発tips",
+          "フリーランス生活"
+        ]
+      },
+      "unson_os_relevance": {
+        "fit_score": 90,
+        "primary_use_case": "迅速なプロジェクト環境構築",
+        "secondary_use_case": "クライアント向けデモ環境",
+        "adoption_likelihood": "高"
+      }
+    },
+    {
+      "id": "persona_003",
+      "name": "フルスタック開発者",
+      "real_username": "javascriptmastery",
+      "real_full_name": "JavaScript Mastery",
+      "demographics": {
+        "age": 29,
+        "location": "東京都新宿区",
+        "occupation": "スタートアップ企業フルスタック開発者",
+        "income": "680万円",
+        "education": "コンピューターサイエンス学位"
+      },
+      "psychographics": {
+        "values": [
+          "技術革新",
+          "効率性",
+          "チーム協力"
+        ],
+        "interests": [
+          "最新フレームワーク",
+          "アーキテクチャ設計",
+          "チーム開発"
+        ],
+        "lifestyle": "技術ブログ執筆、OSS貢献、技術カンファレンス参加"
+      },
+      "pain_points": [
+        "複雑なマイクロサービス環境の管理",
+        "チーム間での開発環境統一",
+        "新技術検証環境の迅速構築"
+      ],
+      "goals": [
+        "開発生産性向上",
+        "技術スキル向上",
+        "チーム効率化"
+      ],
+      "social_media_behavior": {
+        "platforms": [
+          "Instagram",
+          "GitHub",
+          "Qiita",
+          "Twitter"
+        ],
+        "posting_frequency": "週4-5回",
+        "engagement_rate": "947.9",
+        "content_types": [
+          "技術解説",
+          "開発ツール紹介",
+          "プロジェクト進捗"
+        ]
+      },
+      "unson_os_relevance": {
+        "fit_score": 85,
+        "primary_use_case": "マイクロサービス開発環境",
+        "secondary_use_case": "新技術検証プラットフォーム",
+        "adoption_likelihood": "中〜高"
+      }
+    }
+  ],
+  "supporting_data": {
+    "top_hashtags": [
+      [
+        "webdeveloper",
+        297
+      ],
+      [
+        "webdevelopers",
+        222
+      ],
+      [
+        "webdeveloperslife",
+        196
+      ],
+      [
+        "webdevelopment",
+        170
+      ],
+      [
+        "webdeveloperproblems",
+        162
+      ],
+      [
+        "webdeveloperchronicles",
+        136
+      ],
+      [
+        "webdesign",
+        133
+      ],
+      [
+        "webdeveloperhumor",
+        128
+      ],
+      [
+        "webdevelopercard",
+        125
+      ],
+      [
+        "webdeveloperph",
+        110
+      ],
+      [
+        "webdeveloperlife",
+        110
+      ],
+      [
+        "programming",
+        103
+      ],
+      [
+        "webdeveloperinlagos",
+        103
+      ],
+      [
+        "softwaredeveloper",
+        100
+      ],
+      [
+        "javascript",
+        98
+      ],
+      [
+        "webdesigner",
+        96
+      ],
+      [
+        "webdeveloperthigns",
+        95
+      ],
+      [
+        "programmer",
+        91
+      ],
+      [
+        "webdeveloperindonesia",
+        91
+      ],
+      [
+        "coding",
+        85
+      ]
+    ],
+    "content_themes": {
+      "freelance": 151,
+      "educational": 144,
+      "development": 119,
+      "tips_tricks": 121
+    },
+    "user_categories": {
+      "educational_content_creators": 156,
+      "freelancer_developers": 234,
+      "tech_entrepreneurs": 117,
+      "coding_beginners": 29,
+      "fullstack_professionals": 51
+    }
+  }
+}
