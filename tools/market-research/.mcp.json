@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "apify": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/actors-mcp-server"
+      ],
+      "env": {
+        "APIFY_TOKEN": "${APIFY_TOKEN}"
+      }
+    },
+    "langgraph-deep-search": {
+      "type": "stdio",
+      "command": "/home/c0b23070/unson/unson-os-market-research/langgraph-deepsearch-mcp/.venv/bin/python",
+      "args": [
+        "/home/c0b23070/unson/unson-os-market-research/langgraph-deepsearch-mcp/gemini_server.py"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}",
+        "PYTHONPATH": "/home/c0b23070/unson/unson-os-market-research/langgraph-deepsearch-mcp/src"
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "description": "Nemotron-Personas-Japan フィールドマッピング定義",
+  "version": "1.0.0",
+  "dataset": "nvidia/Nemotron-Personas-Japan",
+  "total_fields": 22,
+
+  "field_categories": {
+    "demographic_fields": {
+      "description": "デモグラフィック情報（基本属性）",
+      "fields": ["age", "sex", "prefecture", "region", "country", "occupation", "education_level", "marital_status"]
+    },
+    "persona_fields": {
+      "description": "ペルソナナラティブ（詳細な人物像）",
+      "fields": ["professional_persona", "sports_persona", "arts_persona", "travel_persona", "culinary_persona", "general_persona"]
+    },
+    "behavioral_fields": {
+      "description": "行動・興味関心フィールド",
+      "fields": ["hobbies_and_interests", "skills_and_expertise", "career_goals", "cultural_background"]
+    }
+  },
+
+  "field_definitions": {
+    "age": {
+      "type": "integer",
+      "description": "年齢（18歳以上）",
+      "range": [18, 100],
+      "usage": "ペルソナ選定の主要フィルタ条件"
+    },
+    "sex": {
+      "type": "string",
+      "description": "性別（国勢調査データに基づく）",
+      "values": ["男性", "女性"],
+      "usage": "デモグラフィック分析"
+    },
+    "prefecture": {
+      "type": "string",
+      "description": "都道府県（全47都道府県）",
+      "examples": ["東京都", "大阪府", "北海道"],
+      "usage": "地域ターゲティング"
+    },
+    "region": {
+      "type": "string",
+      "description": "地方区分",
+      "examples": ["関東", "関西", "九州"],
+      "usage": "広域地域分析"
+    },
+    "country": {
+      "type": "string",
+      "description": "国",
+      "default": "日本",
+      "usage": "国際化対応時の拡張用"
+    },
+    "occupation": {
+      "type": "string",
+      "description": "職業（1,500+カテゴリー）",
+      "examples": ["ITエンジニア", "デザイナー", "営業"],
+      "usage": "Instagram キーワード生成の主要ソース"
+    },
+    "education_level": {
+      "type": "string",
+      "description": "学歴",
+      "examples": ["大学卒業", "高校卒業", "大学院卒業"],
+      "usage": "ペルソナ詳細化"
+    },
+    "marital_status": {
+      "type": "string",
+      "description": "婚姻状況",
+      "examples": ["未婚", "既婚"],
+      "usage": "ライフステージ分析"
+    },
+    "professional_persona": {
+      "type": "string",
+      "description": "プロフェッショナルペルソナ（職業関連の詳細な人物像）",
+      "usage": "ビジネス関連ペルソナの主要情報源"
+    },
+    "sports_persona": {
+      "type": "string",
+      "description": "スポーツペルソナ（スポーツ・健康関連の人物像）",
+      "usage": "スポーツ関連ターゲティング"
+    },
+    "arts_persona": {
+      "type": "string",
+      "description": "アーツペルソナ（芸術・文化関連の人物像）",
+      "usage": "クリエイティブ分野ターゲティング"
+    },
+    "travel_persona": {
+      "type": "string",
+      "description": "トラベルペルソナ（旅行関連の人物像）",
+      "usage": "旅行・観光関連ターゲティング"
+    },
+    "culinary_persona": {
+      "type": "string",
+      "description": "カリナリーペルソナ（料理・食文化関連の人物像）",
+      "usage": "飲食・グルメ関連ターゲティング"
+    },
+    "general_persona": {
+      "type": "string",
+      "description": "一般ペルソナ（総合的な人物像）",
+      "usage": "全般的なペルソナ理解"
+    },
+    "hobbies_and_interests": {
+      "type": "string",
+      "description": "趣味・興味関心",
+      "usage": "Instagram キーワード生成のセカンダリーソース"
+    },
+    "skills_and_expertise": {
+      "type": "string",
+      "description": "スキル・専門知識",
+      "usage": "Instagram キーワード生成のターシャリーソース"
+    },
+    "career_goals": {
+      "type": "string",
+      "description": "キャリア目標・野心",
+      "usage": "Instagram キーワード生成の主要ソース（転職、起業等）"
+    },
+    "cultural_background": {
+      "type": "string",
+      "description": "文化的背景",
+      "usage": "文化的妥当性チェック"
+    }
+  },
+
+  "instagram_keyword_priority": {
+    "description": "Instagram キーワード生成時の優先順位",
+    "priority_1_primary": ["occupation", "career_goals"],
+    "priority_2_secondary": ["hobbies_and_interests", "professional_persona"],
+    "priority_3_tertiary": ["skills_and_expertise", "age"],
+    "priority_4_supplementary": ["sports_persona", "travel_persona", "culinary_persona"]
+  },
+
+  "filtering_strategies": {
+    "age_range_filter": {
+      "description": "年齢範囲でフィルタリング",
+      "example": "age >= 20 AND age <= 29"
+    },
+    "occupation_keyword_filter": {
+      "description": "職業キーワードで部分一致フィルタリング",
+      "example": "occupation LIKE '%IT%' OR occupation LIKE '%エンジニア%'"
+    },
+    "prefecture_exact_filter": {
+      "description": "都道府県で完全一致フィルタリング",
+      "example": "prefecture == '東京都'"
+    },
+    "multi_condition_filter": {
+      "description": "複数条件の AND/OR 組み合わせ",
+      "example": "(age >= 20 AND age <= 29) AND (prefecture == '東京都')"
+    }
+  },
+
+  "usage_examples": {
+    "example_1": {
+      "user_input": "20代のIT業界転職検討者",
+      "extracted_conditions": {
+        "age_range": [20, 29],
+        "occupation_keywords": ["IT", "エンジニア", "プログラマー"],
+        "career_goals_keywords": ["転職"]
+      },
+      "expected_result": "3-5件のITエンジニアペルソナ（20代、転職意向あり）"
+    },
+    "example_2": {
+      "user_input": "30代フリーランスデザイナー",
+      "extracted_conditions": {
+        "age_range": [30, 39],
+        "occupation_keywords": ["デザイナー", "クリエイター"],
+        "career_goals_keywords": ["フリーランス", "独立"]
+      },
+      "expected_result": "3-5件のデザイナーペルソナ（30代、フリーランス）"
+    }
+  },
+
+  "notes": [
+    "全フィールドは日本語で記述されている",
+    "18歳未満のペルソナは含まれていない（10代ターゲットは Instagram のみで対応）",
+    "都道府県は全47都道府県をカバー",
+    "職業は 1,500+ カテゴリーの多様性",
+    "統計的に日本の人口統計に準拠"
+  ]
+}

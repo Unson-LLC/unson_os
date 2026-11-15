@@ -53,7 +53,7 @@ export const startPlaybookRun = mutation({
     
     return await ctx.db.insert("playbookRuns", {
       workspace_id: args.workspace_id,
-      productId: args.productId,
+      product_id: args.productId,
       productName: args.productName,
       playbookId: args.playbookId,
       phase: args.phase,
@@ -101,7 +101,7 @@ export const getProductPlaybookRuns = query({
     return await ctx.db
       .query("playbookRuns")
       .withIndex("by_workspace_product", (q) => 
-        q.eq("workspace_id", args.workspace_id).eq("productId", args.productId))
+        q.eq("workspace_id", args.workspace_id).eq("product_id", args.productId))
       .order("desc")
       .collect();
   },
@@ -129,7 +129,7 @@ export const createPhaseReview = mutation({
     
     return await ctx.db.insert("phaseReviews", {
       workspace_id: args.workspace_id,
-      productId: args.productId,
+      product_id: args.productId,
       productName: args.productName,
       phase: args.phase,
       status: "in_progress",
@@ -179,7 +179,7 @@ export const getProductPhaseReviews = query({
     return await ctx.db
       .query("phaseReviews")
       .withIndex("by_workspace_product", (q) => 
-        q.eq("workspace_id", args.workspace_id).eq("productId", args.productId))
+        q.eq("workspace_id", args.workspace_id).eq("product_id", args.productId))
       .order("desc")
       .collect();
   },

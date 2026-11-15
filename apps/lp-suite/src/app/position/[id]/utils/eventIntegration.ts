@@ -7,6 +7,11 @@ export interface EventLog {
   cvr?: number
   sessions?: number
   cpl?: number
+  ctr?: number
+  cpc?: number
+  ctrRating?: 'good' | 'average' | 'poor'
+  cvrRating?: 'good' | 'average' | 'poor'
+  performanceEmoji?: string
   optimization: string
   ai: string
   // Google Ads specific
@@ -75,8 +80,9 @@ export function formatGoogleAdsEvent(ads: AdsData): EventLog {
 
 // ベタ書きでイベントログとGoogle Ads実績を時系列マージ
 export function mergeEventsAndAds(events: any[], adsData: AdsData[]): EventLog[] {
-  const eventLogs = events.map((e, index) => ({
+  const eventLogs: EventLog[] = events.map((e, index) => ({
     time: e.time,
+    sortTime: e.sortTime || e.timestamp || e.time,
     type: 'event' as const,
     cvr: 0,
     sessions: 0, 
