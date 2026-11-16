@@ -25,7 +25,7 @@ jobs:
     # Comments run the default-branch script; pull requests run their merge ref.
     if: ${{ github.event_name == 'pull_request' || (github.event.issue.pull_request && github.event.issue.state == 'open') }}
     name: Post verify-skill status
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, unson-ci-light]
     timeout-minutes: 5
     steps:
       # 自前ランナーは作業ディレクトリを使い回す。前のjobのsparse checkoutが残ると一部のファイルしか展開されない（unson #2180 と同じ）。
