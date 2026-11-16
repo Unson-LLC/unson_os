@@ -1,0 +1,62 @@
+name: Verification skill status
+
+# Posts the verify-skill commit status that the merge wrapper requires.
+# The decision logic is .github/scripts/verify_skill_status.py.
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited, ready_for_review]
+  issue_comment:
+    types: [created, edited, deleted]
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+  issues: read
+  statuses: write
+
+concurrency:
+  group: verify-skill-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  post-status:
+    # Comments run the default-branch script; pull requests run their merge ref.
+    if: ${{ github.event_name == 'pull_request' || (github.event.issue.pull_request && github.event.issue.state == 'open') }}
+    name: Post verify-skill status
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # 自前ランナーは作業ディレクトリを使い回す。前のjobのsparse checkoutが残ると一部のファイルしか展開されない（unson #2180 と同じ）。
+      - name: Clear leftover sparse checkout
+        run: |
+          if [ -d .git ]; then
+            git config --local --unset-all core.sparseCheckout && echo "cleared core.sparseCheckout" || true
+            git config --local --unset-all core.sparseCheckoutCone || true
+            rm -f .git/info/sparse-checkout
+            # A blob:none partial clone stays filtered on every later fetch and has missing objects.
+            # Remove it so actions/checkout makes a fresh non-filtered clone of the same ref.
+            if git config --local --get extensions.partialClone > /dev/null || git config --local --get-regexp '^remote\..*\.promisor$' > /dev/null; then
+              rm -rf .git && echo "removed leftover partial clone"
+            fi
+          fi
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Test the decision logic
+        run: python3 -m unittest discover -s .github/scripts -p 'test_verify_skill_status.py'
+      - name: Post verification decision
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
+        run: |
+          # Only pull requests into main go through the merge wrapper.
+          base="$(curl -fsS -H "Authorization: Bearer $GITHUB_TOKEN" -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
+            | python3 -c 'import json, sys; print(json.load(sys.stdin)["base"]["ref"])')"
+          if [ "$base" != main ]; then
+            echo "verify-skill: skipped for base $base"
+            exit 0
+          fi
+          python3 .github/scripts/verify_skill_status.py "$GITHUB_REPOSITORY" "$PR_NUMBER"
