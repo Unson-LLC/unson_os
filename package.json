@@ -66,7 +66,7 @@
     "google-ads-api": "^20.0.1",
     "google-auth-library": "^9.0.0",
     "lucide-react": "^0.303.0",
-    "next": "14.0.4",
+    "next": "14.2.35",
     "openai": "^5.13.1",
     "pg": "^8.11.0",
     "playwright": "^1.54.2",
